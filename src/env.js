@@ -8,6 +8,11 @@ export const env = createEnv({
    */
   server: {
     NODE_ENV: z.enum(["development", "test", "production"]),
+    CMS_BASE_URL: z.string(),
+    CMS_BASE_URI: z.string(),
+    GRAPHQL_ENDPOINT: z.string(),
+    CMS_GRAPHQL_AUTH_PASS: z.string(),
+    CMS_GRAPHQL_AUTH_USER: z.string(),
   },
 
   /**
@@ -25,6 +30,11 @@ export const env = createEnv({
    */
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
+    CMS_BASE_URL: process.env.CMS_BASE_URL,
+    CMS_BASE_URI: process.env.CMS_BASE_URI,
+    GRAPHQL_ENDPOINT: process.env.GRAPHQL_ENDPOINT,
+    CMS_GRAPHQL_AUTH_PASS: process.env.CMS_GRAPHQL_AUTH_PASS,
+    CMS_GRAPHQL_AUTH_USER: process.env.CMS_GRAPHQL_AUTH_USER,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   /**
