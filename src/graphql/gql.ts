@@ -15,16 +15,22 @@ import * as types from './graphql';
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 type Documents = {
-    "\n  query Pages {\n    pages {\n      edges {\n        node {\n          title\n        }\n      }\n    }\n  }\n": typeof types.PagesDocument,
+    "\n  query Employees {\n    employees {\n      nodes {\n        title\n      }\n    }\n  }\n": typeof types.EmployeesDocument,
+    "\n  query Page($slug: ID!) {\n    page(id: $slug, idType: URI) {\n      id\n      title\n      slug\n      content\n    }\n  }\n": typeof types.PageDocument,
 };
 const documents: Documents = {
-    "\n  query Pages {\n    pages {\n      edges {\n        node {\n          title\n        }\n      }\n    }\n  }\n": types.PagesDocument,
+    "\n  query Employees {\n    employees {\n      nodes {\n        title\n      }\n    }\n  }\n": types.EmployeesDocument,
+    "\n  query Page($slug: ID!) {\n    page(id: $slug, idType: URI) {\n      id\n      title\n      slug\n      content\n    }\n  }\n": types.PageDocument,
 };
 
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query Pages {\n    pages {\n      edges {\n        node {\n          title\n        }\n      }\n    }\n  }\n"): typeof import('./graphql').PagesDocument;
+export function graphql(source: "\n  query Employees {\n    employees {\n      nodes {\n        title\n      }\n    }\n  }\n"): typeof import('./graphql').EmployeesDocument;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query Page($slug: ID!) {\n    page(id: $slug, idType: URI) {\n      id\n      title\n      slug\n      content\n    }\n  }\n"): typeof import('./graphql').PageDocument;
 
 
 export function graphql(source: string) {

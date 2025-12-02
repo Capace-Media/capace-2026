@@ -12549,10 +12549,17 @@ export type WritingSettings = {
   useSmilies?: Maybe<Scalars['Boolean']['output']>;
 };
 
-export type PagesQueryVariables = Exact<{ [key: string]: never; }>;
+export type EmployeesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type PagesQuery = { __typename?: 'RootQuery', pages?: { __typename?: 'RootQueryToPageConnection', edges: Array<{ __typename?: 'RootQueryToPageConnectionEdge', node: { __typename?: 'Page', title?: string | null } }> } | null };
+export type EmployeesQuery = { __typename?: 'RootQuery', employees?: { __typename?: 'RootQueryToEmployeeConnection', nodes: Array<{ __typename?: 'Employee', title?: string | null }> } | null };
+
+export type PageQueryVariables = Exact<{
+  slug: Scalars['ID']['input'];
+}>;
+
+
+export type PageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page', id: string, title?: string | null, slug?: string | null, content?: string | null } | null };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -12573,14 +12580,22 @@ export class TypedDocumentString<TResult, TVariables>
   }
 }
 
-export const PagesDocument = new TypedDocumentString(`
-    query Pages {
-  pages {
-    edges {
-      node {
-        title
-      }
+export const EmployeesDocument = new TypedDocumentString(`
+    query Employees {
+  employees {
+    nodes {
+      title
     }
   }
 }
-    `) as unknown as TypedDocumentString<PagesQuery, PagesQueryVariables>;
+    `) as unknown as TypedDocumentString<EmployeesQuery, EmployeesQueryVariables>;
+export const PageDocument = new TypedDocumentString(`
+    query Page($slug: ID!) {
+  page(id: $slug, idType: URI) {
+    id
+    title
+    slug
+    content
+  }
+}
+    `) as unknown as TypedDocumentString<PageQuery, PageQueryVariables>;
