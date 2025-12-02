@@ -1,8 +1,8 @@
 import type { CodegenConfig } from "@graphql-codegen/cli";
 
 const config: CodegenConfig = {
-  schema: "https://graphql.org/graphql/",
-  documents: ["src/**/*.{ts,tsx}"],
+  schema: "https://media.capace.se/graphql",
+  documents: ["src/**/*.{ts,tsx,graphql}"],
   ignoreNoDocuments: true,
   generates: {
     "./src/graphql/": {

@@ -1,16 +1,20 @@
 import { graphql } from "../graphql";
 import { execute } from "@/graphql/execute";
 
-const PeopleCountQuery = graphql(`
-  query PeopleCount {
-    allPeople {
-      totalCount
+const PagesQuery = graphql(`
+  query Pages {
+    pages {
+      edges {
+        node {
+          title
+        }
+      }
     }
   }
 `);
 
-execute(PeopleCountQuery).then((data) => {
-  console.log("data:", data.allPeople?.totalCount);
+execute(PagesQuery).then((data) => {
+  console.log("data:", data.pages?.edges);
 });
 
 export default function HomePage() {
