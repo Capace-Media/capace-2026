@@ -1,12 +1,14 @@
-import { execute } from "@/graphql/execute";
-import { PageQuery } from "@/lib/queries/pages";
+import { getAllCaseSlugs } from "@/lib/fetchers/cases";
+import { getPage } from "@/lib/fetchers/pages";
 
-execute(PageQuery, "force-cache", { slug: "om-oss" }).then((data) => {
-  console.log("data:", data.page);
-});
+export default async function HomePage() {
+  const data = await getPage("hem");
+  const slugs = await getAllCaseSlugs();
+  console.log("slugs:", slugs);
 
-export default function HomePage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center"></main>
+    <main className="flex min-h-screen flex-col items-center justify-center">
+      {data.page?.title}
+    </main>
   );
 }

@@ -307,8 +307,6 @@ export type CaseConnectionPageInfo = {
 /** The &quot;CaseContent&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
 export type CaseContent = AcfFieldGroup & AcfFieldGroupFields & CaseContent_Fields & {
   __typename?: 'CaseContent';
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;CaseContent&quot; Field Group */
-  companyName?: Maybe<Scalars['String']['output']>;
   /**
    * The name of the field group
    * @deprecated Use __typename instead
@@ -447,8 +445,6 @@ export type CaseContentQuote_Fields = {
 
 /** Interface representing fields of the ACF &quot;CaseContent&quot; Field Group */
 export type CaseContent_Fields = {
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;CaseContent&quot; Field Group */
-  companyName?: Maybe<Scalars['String']['output']>;
   /**
    * The name of the field group
    * @deprecated Use __typename instead
@@ -13335,6 +13331,11 @@ export type WritingSettings = {
   useSmilies?: Maybe<Scalars['Boolean']['output']>;
 };
 
+export type AllCaseSlugsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AllCaseSlugsQuery = { __typename?: 'RootQuery', cases?: { __typename?: 'RootQueryToCaseConnection', nodes: Array<{ __typename?: 'Case', slug?: string | null }> } | null };
+
 export type EmployeesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -13366,6 +13367,15 @@ export class TypedDocumentString<TResult, TVariables>
   }
 }
 
+export const AllCaseSlugsDocument = new TypedDocumentString(`
+    query AllCaseSlugs {
+  cases {
+    nodes {
+      slug
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<AllCaseSlugsQuery, AllCaseSlugsQueryVariables>;
 export const EmployeesDocument = new TypedDocumentString(`
     query Employees {
   employees {

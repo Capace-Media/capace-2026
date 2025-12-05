@@ -326,10 +326,6 @@ interface CaseConnectionPageInfo implements PageInfo & WPPageInfo {
 The &quot;CaseContent&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
 """
 type CaseContent implements AcfFieldGroup & AcfFieldGroupFields & CaseContent_Fields {
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;CaseContent&quot; Field Group
-  """
-  companyName: String
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
   """
@@ -504,10 +500,6 @@ interface CaseContentQuote_Fields implements AcfFieldGroup & AcfFieldGroupFields
 Interface representing fields of the ACF &quot;CaseContent&quot; Field Group
 """
 interface CaseContent_Fields implements AcfFieldGroup & AcfFieldGroupFields {
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;CaseContent&quot; Field Group
-  """
-  companyName: String
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
   """

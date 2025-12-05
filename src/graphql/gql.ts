@@ -15,14 +15,20 @@ import * as types from './graphql';
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 type Documents = {
+    "\n  query AllCaseSlugs {\n    cases {\n      nodes {\n        slug\n      }\n    }\n  }\n": typeof types.AllCaseSlugsDocument,
     "\n  query Employees {\n    employees {\n      nodes {\n        title\n      }\n    }\n  }\n": typeof types.EmployeesDocument,
     "\n  query Page($slug: ID!) {\n    page(id: $slug, idType: URI) {\n      id\n      title\n      slug\n    }\n  }\n": typeof types.PageDocument,
 };
 const documents: Documents = {
+    "\n  query AllCaseSlugs {\n    cases {\n      nodes {\n        slug\n      }\n    }\n  }\n": types.AllCaseSlugsDocument,
     "\n  query Employees {\n    employees {\n      nodes {\n        title\n      }\n    }\n  }\n": types.EmployeesDocument,
     "\n  query Page($slug: ID!) {\n    page(id: $slug, idType: URI) {\n      id\n      title\n      slug\n    }\n  }\n": types.PageDocument,
 };
 
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query AllCaseSlugs {\n    cases {\n      nodes {\n        slug\n      }\n    }\n  }\n"): typeof import('./graphql').AllCaseSlugsDocument;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
