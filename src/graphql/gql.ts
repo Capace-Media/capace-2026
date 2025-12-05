@@ -18,11 +18,13 @@ type Documents = {
     "\n  query AllCaseSlugs {\n    cases {\n      nodes {\n        slug\n      }\n    }\n  }\n": typeof types.AllCaseSlugsDocument,
     "\n  query Employees {\n    employees {\n      nodes {\n        title\n      }\n    }\n  }\n": typeof types.EmployeesDocument,
     "\n  query Page($slug: ID!) {\n    page(id: $slug, idType: URI) {\n      id\n      title\n      slug\n    }\n  }\n": typeof types.PageDocument,
+    "\n  query AllServicesSlugs {\n    serviceCategories {\n      nodes {\n        slug\n        services {\n          nodes {\n            slug\n          }\n        }\n      }\n    }\n  }\n": typeof types.AllServicesSlugsDocument,
 };
 const documents: Documents = {
     "\n  query AllCaseSlugs {\n    cases {\n      nodes {\n        slug\n      }\n    }\n  }\n": types.AllCaseSlugsDocument,
     "\n  query Employees {\n    employees {\n      nodes {\n        title\n      }\n    }\n  }\n": types.EmployeesDocument,
     "\n  query Page($slug: ID!) {\n    page(id: $slug, idType: URI) {\n      id\n      title\n      slug\n    }\n  }\n": types.PageDocument,
+    "\n  query AllServicesSlugs {\n    serviceCategories {\n      nodes {\n        slug\n        services {\n          nodes {\n            slug\n          }\n        }\n      }\n    }\n  }\n": types.AllServicesSlugsDocument,
 };
 
 /**
@@ -37,6 +39,10 @@ export function graphql(source: "\n  query Employees {\n    employees {\n      n
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  query Page($slug: ID!) {\n    page(id: $slug, idType: URI) {\n      id\n      title\n      slug\n    }\n  }\n"): typeof import('./graphql').PageDocument;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query AllServicesSlugs {\n    serviceCategories {\n      nodes {\n        slug\n        services {\n          nodes {\n            slug\n          }\n        }\n      }\n    }\n  }\n"): typeof import('./graphql').AllServicesSlugsDocument;
 
 
 export function graphql(source: string) {

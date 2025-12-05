@@ -13348,6 +13348,11 @@ export type PageQueryVariables = Exact<{
 
 export type PageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page', id: string, title?: string | null, slug?: string | null } | null };
 
+export type AllServicesSlugsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AllServicesSlugsQuery = { __typename?: 'RootQuery', serviceCategories?: { __typename?: 'RootQueryToServiceCategoryConnection', nodes: Array<{ __typename?: 'ServiceCategory', slug?: string | null, services?: { __typename?: 'ServiceCategoryToServiceConnection', nodes: Array<{ __typename?: 'Service', slug?: string | null }> } | null }> } | null };
+
 export class TypedDocumentString<TResult, TVariables>
   extends String
   implements DocumentTypeDecoration<TResult, TVariables>
@@ -13394,3 +13399,17 @@ export const PageDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<PageQuery, PageQueryVariables>;
+export const AllServicesSlugsDocument = new TypedDocumentString(`
+    query AllServicesSlugs {
+  serviceCategories {
+    nodes {
+      slug
+      services {
+        nodes {
+          slug
+        }
+      }
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<AllServicesSlugsQuery, AllServicesSlugsQueryVariables>;
