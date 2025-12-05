@@ -16,11 +16,11 @@ import * as types from './graphql';
  */
 type Documents = {
     "\n  query Employees {\n    employees {\n      nodes {\n        title\n      }\n    }\n  }\n": typeof types.EmployeesDocument,
-    "\n  query Page($slug: ID!) {\n    page(id: $slug, idType: URI) {\n      id\n      title\n      slug\n      content\n    }\n  }\n": typeof types.PageDocument,
+    "\n  query Page($slug: ID!) {\n    page(id: $slug, idType: URI) {\n      id\n      title\n      slug\n    }\n  }\n": typeof types.PageDocument,
 };
 const documents: Documents = {
     "\n  query Employees {\n    employees {\n      nodes {\n        title\n      }\n    }\n  }\n": types.EmployeesDocument,
-    "\n  query Page($slug: ID!) {\n    page(id: $slug, idType: URI) {\n      id\n      title\n      slug\n      content\n    }\n  }\n": types.PageDocument,
+    "\n  query Page($slug: ID!) {\n    page(id: $slug, idType: URI) {\n      id\n      title\n      slug\n    }\n  }\n": types.PageDocument,
 };
 
 /**
@@ -30,7 +30,7 @@ export function graphql(source: "\n  query Employees {\n    employees {\n      n
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query Page($slug: ID!) {\n    page(id: $slug, idType: URI) {\n      id\n      title\n      slug\n      content\n    }\n  }\n"): typeof import('./graphql').PageDocument;
+export function graphql(source: "\n  query Page($slug: ID!) {\n    page(id: $slug, idType: URI) {\n      id\n      title\n      slug\n    }\n  }\n"): typeof import('./graphql').PageDocument;
 
 
 export function graphql(source: string) {

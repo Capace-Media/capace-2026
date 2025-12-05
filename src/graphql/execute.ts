@@ -1,7 +1,10 @@
 import type { TypedDocumentString } from "./graphql";
 
+type CacheMethod = "force-cache" | { revalidate: number };
+
 export async function execute<TResult, TVariables>(
   query: TypedDocumentString<TResult, TVariables>,
+  cacheMethod: CacheMethod,
   ...[variables]: TVariables extends Record<string, never> ? [] : [TVariables]
 ) {
   const response = await fetch("https://media.capace.se/graphql", {
@@ -13,6 +16,7 @@ export async function execute<TResult, TVariables>(
     body: JSON.stringify({
       query,
       variables,
+      cache: cacheMethod,
     }),
   });
 

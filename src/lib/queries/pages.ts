@@ -6,7 +6,6 @@ export const PageQuery = graphql(`
       id
       title
       slug
-      content
     }
   }
 `);

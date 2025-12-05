@@ -1,13 +1,8 @@
 import { execute } from "@/graphql/execute";
-import { EmployeesQuery } from "@/queries/employees";
-import { PageQuery } from "@/queries/pages/pages";
+import { PageQuery } from "@/lib/queries/pages";
 
-execute(PageQuery, { slug: "om-oss" }).then((data) => {
-  console.log("data:", data);
-});
-
-execute(EmployeesQuery).then((data) => {
-  console.log("employees:", data.employees?.nodes);
+execute(PageQuery, "force-cache", { slug: "om-oss" }).then((data) => {
+  console.log("data:", data.page);
 });
 
 export default function HomePage() {
