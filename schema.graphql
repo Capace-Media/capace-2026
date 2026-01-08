@@ -86,12 +86,14 @@ type AcfMediaItemConnectionPageInfo implements MediaItemConnectionPageInfo & Pag
 }
 
 """Options Page registered by ACF"""
-interface AcfOptionsPage implements Node {
+interface AcfOptionsPage implements Node & WithAcfSectionsContent {
   """The globally unique ID for the object"""
   id: ID!
   menuTitle: String
   pageTitle: String
   parentId: String
+  """Fields of the SectionsContent ACF Field Group"""
+  sectionsContent: SectionsContent
 }
 
 """
@@ -143,7 +145,7 @@ enum AvatarRatingEnum {
 }
 
 """The case type"""
-type Case implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfCaseContent {
+type Case implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfCaseContent & WithAcfSectionsContent {
   """The ancestors of the content node."""
   ancestors(
     """
@@ -272,6 +274,8 @@ type Case implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node 
   previewRevisionDatabaseId: Int
   """Whether the object is a node in the preview state"""
   previewRevisionId: ID
+  """Fields of the SectionsContent ACF Field Group"""
+  sectionsContent: SectionsContent
   """
   The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
   """
@@ -650,7 +654,7 @@ type CaseToPreviewConnectionEdge implements CaseConnectionEdge & Edge & OneToOne
 """
 A taxonomy term that classifies content. Categories support hierarchy and can be used to create a nested structure.
 """
-type Category implements DatabaseIdentifier & HierarchicalNode & HierarchicalTermNode & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable {
+type Category implements DatabaseIdentifier & HierarchicalNode & HierarchicalTermNode & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable & WithAcfSectionsContent {
   """
   The ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root).
   """
@@ -781,6 +785,8 @@ type Category implements DatabaseIdentifier & HierarchicalNode & HierarchicalTer
     """Arguments for filtering the connection"""
     where: CategoryToPostConnectionWhereArgs
   ): CategoryToPostConnection
+  """Fields of the SectionsContent ACF Field Group"""
+  sectionsContent: SectionsContent
   """An alphanumeric identifier for the object unique to its type."""
   slug: String
   """Connection between the Category type and the Taxonomy type"""
@@ -1238,7 +1244,7 @@ interface CollaboratorContent_Fields implements AcfFieldGroup & AcfFieldGroupFie
 """
 A response or reaction to content submitted by users. Comments are typically associated with a specific content entry.
 """
-type Comment implements DatabaseIdentifier & Node & UniformResourceIdentifiable {
+type Comment implements DatabaseIdentifier & Node & UniformResourceIdentifiable & WithAcfSectionsContent {
   """
   User agent used to post the comment. This field is equivalent to WP_Comment-&gt;comment_agent and the value matching the &quot;comment_agent&quot; column in SQL.
   """
@@ -1322,6 +1328,8 @@ type Comment implements DatabaseIdentifier & Node & UniformResourceIdentifiable 
     """Arguments for filtering the connection"""
     where: CommentToCommentConnectionWhereArgs
   ): CommentToCommentConnection
+  """Fields of the SectionsContent ACF Field Group"""
+  sectionsContent: SectionsContent
   """
   The approval status of the comment. This field is equivalent to WP_Comment-&gt;comment_approved and the value matching the &quot;comment_approved&quot; column in SQL.
   """
@@ -1736,7 +1744,7 @@ interface Connection {
 """
 Base interface for content objects like posts, pages, and media items. Provides common fields available across these content types.
 """
-interface ContentNode implements Node & UniformResourceIdentifiable {
+interface ContentNode implements Node & UniformResourceIdentifiable & WithAcfSectionsContent {
   """Connection between the ContentNode type and the ContentType type"""
   contentType: ContentNodeToContentTypeConnectionEdge
   """The name of the Content Type the node belongs to"""
@@ -1823,6 +1831,8 @@ interface ContentNode implements Node & UniformResourceIdentifiable {
   previewRevisionDatabaseId: Int
   """Whether the object is a node in the preview state"""
   previewRevisionId: ID
+  """Fields of the SectionsContent ACF Field Group"""
+  sectionsContent: SectionsContent
   """
   The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
   """
@@ -1988,7 +1998,9 @@ type ContentNodeToEnqueuedStylesheetConnectionPageInfo implements EnqueuedStyles
 """
 A layout pattern that can help inform how content might be structured and displayed. Templates can define specialized layouts for different types of content.
 """
-interface ContentTemplate {
+interface ContentTemplate implements WithAcfSectionsContent {
+  """Fields of the SectionsContent ACF Field Group"""
+  sectionsContent: SectionsContent
   """The name of the template"""
   templateName: String
 }
@@ -2880,7 +2892,9 @@ input DateQueryInput {
 }
 
 """The template assigned to the node"""
-type DefaultTemplate implements ContentTemplate {
+type DefaultTemplate implements ContentTemplate & WithAcfSectionsContent {
+  """Fields of the SectionsContent ACF Field Group"""
+  sectionsContent: SectionsContent
   """The name of the template"""
   templateName: String
 }
@@ -3240,7 +3254,7 @@ interface Edge {
 }
 
 """The employee type"""
-type Employee implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfEmployeeContent {
+type Employee implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfEmployeeContent & WithAcfSectionsContent {
   """The ancestors of the content node."""
   ancestors(
     """
@@ -3364,6 +3378,8 @@ type Employee implements ContentNode & DatabaseIdentifier & MenuItemLinkable & N
   previewRevisionDatabaseId: Int
   """Whether the object is a node in the preview state"""
   previewRevisionId: ID
+  """Fields of the SectionsContent ACF Field Group"""
+  sectionsContent: SectionsContent
   """
   The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
   """
@@ -3731,7 +3747,7 @@ interface EnqueuedStylesheetConnectionPageInfo implements PageInfo & WPPageInfo 
   startCursor: String
 }
 
-type Faq implements AcfOptionsPage & Node & WithAcfQuestions {
+type Faq implements AcfOptionsPage & Node & WithAcfQuestions & WithAcfSectionsContent {
   """The globally unique ID for the object"""
   id: ID!
   menuTitle: String
@@ -3739,9 +3755,11 @@ type Faq implements AcfOptionsPage & Node & WithAcfQuestions {
   parentId: String
   """Fields of the Questions ACF Field Group"""
   questions: Questions
+  """Fields of the SectionsContent ACF Field Group"""
+  sectionsContent: SectionsContent
 }
 
-type Footer implements AcfOptionsPage & Node & WithAcfFooterContent {
+type Footer implements AcfOptionsPage & Node & WithAcfFooterContent & WithAcfSectionsContent {
   """Fields of the FooterContent ACF Field Group"""
   footerContent: FooterContent
   """The globally unique ID for the object"""
@@ -3749,6 +3767,8 @@ type Footer implements AcfOptionsPage & Node & WithAcfFooterContent {
   menuTitle: String
   pageTitle: String
   parentId: String
+  """Fields of the SectionsContent ACF Field Group"""
+  sectionsContent: SectionsContent
 }
 
 """
@@ -3828,7 +3848,7 @@ type GeneralSettings {
 """
 Content that can be organized in a parent-child structure. Provides fields for navigating up and down the hierarchy and maintaining structured relationships.
 """
-interface HierarchicalContentNode implements ContentNode & DatabaseIdentifier & HierarchicalNode & Node & UniformResourceIdentifiable {
+interface HierarchicalContentNode implements ContentNode & DatabaseIdentifier & HierarchicalNode & Node & UniformResourceIdentifiable & WithAcfSectionsContent {
   """
   Returns ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root).
   """
@@ -3959,6 +3979,8 @@ interface HierarchicalContentNode implements ContentNode & DatabaseIdentifier & 
   previewRevisionDatabaseId: Int
   """Whether the object is a node in the preview state"""
   previewRevisionId: ID
+  """Fields of the SectionsContent ACF Field Group"""
+  sectionsContent: SectionsContent
   """
   The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
   """
@@ -4162,7 +4184,7 @@ interface HierarchicalNode implements DatabaseIdentifier & Node {
 }
 
 """Term node with hierarchical (parent/child) relationships"""
-interface HierarchicalTermNode implements DatabaseIdentifier & HierarchicalNode & Node & TermNode & UniformResourceIdentifiable {
+interface HierarchicalTermNode implements DatabaseIdentifier & HierarchicalNode & Node & TermNode & UniformResourceIdentifiable & WithAcfSectionsContent {
   """The number of objects connected to the object"""
   count: Int
   """The unique identifier stored in the database"""
@@ -4221,6 +4243,8 @@ interface HierarchicalTermNode implements DatabaseIdentifier & HierarchicalNode 
   parentDatabaseId: Int
   """The globally unique identifier of the parent node."""
   parentId: ID
+  """Fields of the SectionsContent ACF Field Group"""
+  sectionsContent: SectionsContent
   """An alphanumeric identifier for the object unique to its type."""
   slug: String
   """The name of the taxonomy that the object is associated with"""
@@ -4257,7 +4281,7 @@ type MediaDetails {
 """
 Represents uploaded media, including images, videos, documents, and audio files.
 """
-type MediaItem implements ContentNode & DatabaseIdentifier & HierarchicalContentNode & HierarchicalNode & Node & NodeWithAuthor & NodeWithComments & NodeWithTemplate & NodeWithTitle & UniformResourceIdentifiable {
+type MediaItem implements ContentNode & DatabaseIdentifier & HierarchicalContentNode & HierarchicalNode & Node & NodeWithAuthor & NodeWithComments & NodeWithTemplate & NodeWithTitle & UniformResourceIdentifiable & WithAcfSectionsContent {
   """Alternative text to display when resource is not displayed"""
   altText: String
   """
@@ -4460,6 +4484,8 @@ type MediaItem implements ContentNode & DatabaseIdentifier & HierarchicalContent
   previewRevisionDatabaseId: Int
   """Whether the object is a node in the preview state"""
   previewRevisionId: ID
+  """Fields of the SectionsContent ACF Field Group"""
+  sectionsContent: SectionsContent
   """The sizes attribute value for an image."""
   sizes(
     """Size of the MediaItem to calculate sizes with"""
@@ -4745,7 +4771,7 @@ type MediaSize {
 """
 Collections of navigation links. Menus can be assigned to designated locations and used to build site navigation structures.
 """
-type Menu implements DatabaseIdentifier & Node {
+type Menu implements DatabaseIdentifier & Node & WithAcfSectionsContent {
   """The number of items in the menu"""
   count: Int
   """The unique identifier stored in the database"""
@@ -4777,6 +4803,8 @@ type Menu implements DatabaseIdentifier & Node {
   ): MenuToMenuItemConnection
   """Display name of the menu. Equivalent to WP_Term-&gt;name."""
   name: String
+  """Fields of the SectionsContent ACF Field Group"""
+  sectionsContent: SectionsContent
   """The url friendly name of the menu. Equivalent to WP_Term-&gt;slug"""
   slug: String
 }
@@ -4824,7 +4852,7 @@ interface MenuConnectionPageInfo implements PageInfo & WPPageInfo {
 """
 Navigation menu items are the individual items assigned to a menu. These are rendered as the links in a navigation menu.
 """
-type MenuItem implements DatabaseIdentifier & Node {
+type MenuItem implements DatabaseIdentifier & Node & WithAcfSectionsContent {
   """Connection between the MenuItem type and the MenuItem type"""
   childItems(
     """
@@ -4876,6 +4904,8 @@ type MenuItem implements DatabaseIdentifier & Node {
   Path for the resource. Relative path for internal resources. Absolute path for external resources.
   """
   path: String
+  """Fields of the SectionsContent ACF Field Group"""
+  sectionsContent: SectionsContent
   """Target attribute for the menu item link."""
   target: String
   """Title attribute for the menu item link"""
@@ -6583,7 +6613,7 @@ interface PostConnectionPageInfo implements PageInfo & WPPageInfo {
 """
 A standardized classification system for content presentation styles. These formats can be used to display content differently based on type, such as &quot;standard&quot;, &quot;gallery&quot;, &quot;video&quot;, etc.
 """
-type PostFormat implements DatabaseIdentifier & Node & TermNode & UniformResourceIdentifiable {
+type PostFormat implements DatabaseIdentifier & Node & TermNode & UniformResourceIdentifiable & WithAcfSectionsContent {
   """Connection between the PostFormat type and the ContentNode type"""
   contentNodes(
     """
@@ -6674,6 +6704,8 @@ type PostFormat implements DatabaseIdentifier & Node & TermNode & UniformResourc
     """Arguments for filtering the connection"""
     where: PostFormatToPostConnectionWhereArgs
   ): PostFormatToPostConnection
+  """Fields of the SectionsContent ACF Field Group"""
+  sectionsContent: SectionsContent
   """An alphanumeric identifier for the object unique to its type."""
   slug: String
   """Connection between the PostFormat type and the Taxonomy type"""
@@ -11400,6 +11432,12 @@ type SectionsContentBlocksCaseCardGridLayout implements AcfFieldGroup & AcfField
   ): AcfContentNodeConnection
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """Lets the user filter between categories"""
+  filter: Boolean
+  """Italic heading with accented color"""
+  headingAccent: String
+  """White bold heading, rendered underneath the accented heading."""
+  mainHeading: String
   """
   Field of the &quot;select&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksCaseCardGridLayout&quot; Field Group
   """
@@ -11429,6 +11467,12 @@ interface SectionsContentBlocksCaseCardGridLayout_Fields implements AcfFieldGrou
   ): AcfContentNodeConnection
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """Lets the user filter between categories"""
+  filter: Boolean
+  """Italic heading with accented color"""
+  headingAccent: String
+  """White bold heading, rendered underneath the accented heading."""
+  mainHeading: String
   """
   Field of the &quot;select&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksCaseCardGridLayout&quot; Field Group
   """
@@ -11447,6 +11491,22 @@ type SectionsContentBlocksCollaboratorsBannerLayout implements AcfFieldGroup & A
 Interface representing fields of the ACF &quot;SectionsContentBlocksCollaboratorsBannerLayout&quot; Field Group
 """
 interface SectionsContentBlocksCollaboratorsBannerLayout_Fields implements AcfFieldGroup & AcfFieldGroupFields & SectionsContentBlocks_Layout {
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+}
+
+"""
+The &quot;SectionsContentBlocksContactFormLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type SectionsContentBlocksContactFormLayout implements AcfFieldGroup & AcfFieldGroupFields & SectionsContentBlocksContactFormLayout_Fields & SectionsContentBlocks_Layout {
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+}
+
+"""
+Interface representing fields of the ACF &quot;SectionsContentBlocksContactFormLayout&quot; Field Group
+"""
+interface SectionsContentBlocksContactFormLayout_Fields implements AcfFieldGroup & AcfFieldGroupFields & SectionsContentBlocks_Layout {
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
 }
@@ -11755,29 +11815,6 @@ The &quot;SectionsContentBlocksTestimonialsLayout&quot; Field Group. Added to th
 type SectionsContentBlocksTestimonialsLayout implements AcfFieldGroup & AcfFieldGroupFields & SectionsContentBlocksTestimonialsLayout_Fields & SectionsContentBlocks_Layout {
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
-  """Number of latest testimonials to display."""
-  itemAmount: Float
-  """
-  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksTestimonialsLayout&quot; Field Group
-  """
-  items(
-    """
-    Cursor used along with the "first" argument to reference where in the dataset to get data
-    """
-    after: String
-    """
-    Cursor used along with the "last" argument to reference where in the dataset to get data
-    """
-    before: String
-    """The number of items to return after the referenced "after" cursor"""
-    first: Int
-    """The number of items to return before the referenced "before" cursor"""
-    last: Int
-  ): AcfContentNodeConnection
-  """
-  Field of the &quot;select&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksTestimonialsLayout&quot; Field Group
-  """
-  sortingOrder: [String]
 }
 
 """
@@ -11786,29 +11823,6 @@ Interface representing fields of the ACF &quot;SectionsContentBlocksTestimonials
 interface SectionsContentBlocksTestimonialsLayout_Fields implements AcfFieldGroup & AcfFieldGroupFields & SectionsContentBlocks_Layout {
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
-  """Number of latest testimonials to display."""
-  itemAmount: Float
-  """
-  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksTestimonialsLayout&quot; Field Group
-  """
-  items(
-    """
-    Cursor used along with the "first" argument to reference where in the dataset to get data
-    """
-    after: String
-    """
-    Cursor used along with the "last" argument to reference where in the dataset to get data
-    """
-    before: String
-    """The number of items to return after the referenced "after" cursor"""
-    first: Int
-    """The number of items to return before the referenced "before" cursor"""
-    last: Int
-  ): AcfContentNodeConnection
-  """
-  Field of the &quot;select&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksTestimonialsLayout&quot; Field Group
-  """
-  sortingOrder: [String]
 }
 
 """
@@ -11872,7 +11886,7 @@ type SendPasswordResetEmailPayload {
 }
 
 """The service type"""
-type Service implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfServiceContent {
+type Service implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfSectionsContent & WithAcfServiceContent {
   """The ancestors of the content node."""
   ancestors(
     """
@@ -11997,6 +12011,8 @@ type Service implements ContentNode & DatabaseIdentifier & MenuItemLinkable & No
   previewRevisionDatabaseId: Int
   """Whether the object is a node in the preview state"""
   previewRevisionId: ID
+  """Fields of the SectionsContent ACF Field Group"""
+  sectionsContent: SectionsContent
   """Connection between the Service type and the serviceCategory type"""
   serviceCategories(
     """
@@ -12055,7 +12071,7 @@ type Service implements ContentNode & DatabaseIdentifier & MenuItemLinkable & No
 }
 
 """The serviceCategory type"""
-type ServiceCategory implements DatabaseIdentifier & HierarchicalNode & HierarchicalTermNode & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable & WithAcfServiceCateogoryContent {
+type ServiceCategory implements DatabaseIdentifier & HierarchicalNode & HierarchicalTermNode & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable & WithAcfSectionsContent {
   """
   The ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root).
   """
@@ -12171,10 +12187,10 @@ type ServiceCategory implements DatabaseIdentifier & HierarchicalNode & Hierarch
   parentDatabaseId: Int
   """The globally unique identifier of the parent node."""
   parentId: ID
+  """Fields of the SectionsContent ACF Field Group"""
+  sectionsContent: SectionsContent
   """The id field matches the WP_Post-&gt;ID field."""
   serviceCategoryId: Int @deprecated(reason: "Deprecated in favor of databaseId")
-  """Fields of the ServiceCateogoryContent ACF Field Group"""
-  serviceCateogoryContent: ServiceCateogoryContent
   """Connection between the ServiceCategory type and the service type"""
   services(
     """
@@ -12574,46 +12590,6 @@ type ServiceCategoryToTaxonomyConnectionEdge implements Edge & OneToOneConnectio
   cursor: String
   """The node of the connection, without the edges"""
   node: Taxonomy!
-}
-
-"""
-The &quot;ServiceCateogoryContent&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
-"""
-type ServiceCateogoryContent implements AcfFieldGroup & AcfFieldGroupFields & ServiceCateogoryContent_Fields {
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;ServiceCateogoryContent&quot; Field Group
-  """
-  headingAccent: String
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;ServiceCateogoryContent&quot; Field Group
-  """
-  headingMain: String
-  """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;ServiceCateogoryContent&quot; Field Group
-  """
-  textContent: String
-}
-
-"""
-Interface representing fields of the ACF &quot;ServiceCateogoryContent&quot; Field Group
-"""
-interface ServiceCateogoryContent_Fields implements AcfFieldGroup & AcfFieldGroupFields {
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;ServiceCateogoryContent&quot; Field Group
-  """
-  headingAccent: String
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;ServiceCateogoryContent&quot; Field Group
-  """
-  headingMain: String
-  """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;ServiceCateogoryContent&quot; Field Group
-  """
-  textContent: String
 }
 
 """
@@ -13043,7 +13019,7 @@ type Settings {
 """
 A taxonomy term used to organize and classify content. Tags do not have a hierarchy and are generally used for more specific classifications.
 """
-type Tag implements DatabaseIdentifier & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable {
+type Tag implements DatabaseIdentifier & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable & WithAcfSectionsContent {
   """Connection between the Tag type and the ContentNode type"""
   contentNodes(
     """
@@ -13132,6 +13108,8 @@ type Tag implements DatabaseIdentifier & MenuItemLinkable & Node & TermNode & Un
     """Arguments for filtering the connection"""
     where: TagToPostConnectionWhereArgs
   ): TagToPostConnection
+  """Fields of the SectionsContent ACF Field Group"""
+  sectionsContent: SectionsContent
   """An alphanumeric identifier for the object unique to its type."""
   slug: String
   """The id field matches the WP_Post-&gt;ID field."""
@@ -13617,7 +13595,7 @@ type TaxonomyToTermNodeConnectionPageInfo implements PageInfo & TermNodeConnecti
 """
 Base interface for taxonomy terms such as categories and tags. Terms are used to organize and classify content.
 """
-interface TermNode implements Node & UniformResourceIdentifiable {
+interface TermNode implements Node & UniformResourceIdentifiable & WithAcfSectionsContent {
   """The number of objects connected to the object"""
   count: Int
   """Identifies the primary key from the database."""
@@ -13672,6 +13650,8 @@ interface TermNode implements Node & UniformResourceIdentifiable {
   link: String
   """The human friendly name of the object."""
   name: String
+  """Fields of the SectionsContent ACF Field Group"""
+  sectionsContent: SectionsContent
   """An alphanumeric identifier for the object unique to its type."""
   slug: String
   """The name of the taxonomy that the object is associated with"""
@@ -13825,7 +13805,7 @@ enum TermObjectsConnectionOrderbyEnum {
 }
 
 """The testimonial type"""
-type Testimonial implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfTestimonialContent {
+type Testimonial implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfSectionsContent & WithAcfTestimonialContent {
   """The ancestors of the content node."""
   ancestors(
     """
@@ -13950,6 +13930,8 @@ type Testimonial implements ContentNode & DatabaseIdentifier & MenuItemLinkable 
   previewRevisionDatabaseId: Int
   """Whether the object is a node in the preview state"""
   previewRevisionId: ID
+  """Fields of the SectionsContent ACF Field Group"""
+  sectionsContent: SectionsContent
   """
   The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
   """
@@ -14846,7 +14828,7 @@ type UpdateUserPayload {
 """
 A registered user account. Users can be assigned roles, author content, and have various capabilities within the site.
 """
-type User implements Commenter & DatabaseIdentifier & Node & UniformResourceIdentifiable {
+type User implements Commenter & DatabaseIdentifier & Node & UniformResourceIdentifiable & WithAcfSectionsContent {
   """
   Avatar object for user. The avatar object can be retrieved in different sizes by specifying the size argument.
   """
@@ -15050,6 +15032,8 @@ type User implements Commenter & DatabaseIdentifier & Node & UniformResourceIden
     """The number of items to return before the referenced "before" cursor"""
     last: Int
   ): UserToUserRoleConnection
+  """Fields of the SectionsContent ACF Field Group"""
+  sectionsContent: SectionsContent
   """
   Whether the Toolbar should be displayed when the user is viewing the site.
   """
@@ -15882,14 +15866,6 @@ Provides access to fields of the &quot;SectionsContent&quot; ACF Field Group via
 interface WithAcfSectionsContent {
   """Fields of the SectionsContent ACF Field Group"""
   sectionsContent: SectionsContent
-}
-
-"""
-Provides access to fields of the &quot;ServiceCateogoryContent&quot; ACF Field Group via the &quot;serviceCateogoryContent&quot; field
-"""
-interface WithAcfServiceCateogoryContent {
-  """Fields of the ServiceCateogoryContent ACF Field Group"""
-  serviceCateogoryContent: ServiceCateogoryContent
 }
 
 """

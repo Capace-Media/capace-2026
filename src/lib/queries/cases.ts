@@ -39,24 +39,37 @@ export const CasePreviewsQuery = graphql(`
   }
 `);
 
-export const CasesQuery = graphql(`
-  query MyQuery2($slug: ID = "") {
+export const CaseQuery = graphql(`
+  query Case($slug: ID = "eventourage") {
     case(id: $slug, idType: URI) {
       caseContent {
+        url
         textContent_02
         textContent01
         summaryContinued
         summary
         shortDescription
-        services {
-          nodes {
-            slug
+        heading_02
+        heading_01
+        imageBanner {
+          node {
+            altText
+            mediaItemUrl
+            mediaDetails {
+              width
+              height
+            }
           }
         }
-        quote {
-          author
-          authorTitle
-          textContent
+        images {
+          nodes {
+            altText
+            mediaItemUrl
+            mediaDetails {
+              width
+              height
+            }
+          }
         }
         projectBrief {
           bulletPoint {
@@ -65,14 +78,23 @@ export const CasesQuery = graphql(`
           }
           image {
             node {
-              caption
               altText
+              mediaItemUrl
               mediaDetails {
-                height
                 width
-                filePath
+                height
               }
             }
+          }
+        }
+        quote {
+          author
+          authorTitle
+          textContent
+        }
+        services {
+          nodes {
+            slug
           }
         }
       }

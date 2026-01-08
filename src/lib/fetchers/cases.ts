@@ -2,7 +2,7 @@ import { execute } from "@/graphql/execute";
 import {
   AllCaseSlugsQuery,
   CasePreviewsQuery,
-  CasesQuery,
+  CaseQuery,
 } from "../queries/cases";
 
 export async function getCaseSlugs() {
@@ -15,5 +15,5 @@ export async function getCasePreviews() {
 }
 
 export async function getCase(slug: string) {
-  return (await execute(CasesQuery, "force-cache", { slug })).case;
+  return (await execute(CaseQuery, "force-cache", { slug })).case?.caseContent;
 }

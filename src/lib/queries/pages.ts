@@ -113,8 +113,6 @@ export const PageQuery = graphql(`
           }
           ... on SectionsContentBlocksTestimonialsLayout {
             __typename
-            itemAmount
-            sortingOrder
           }
           ... on SectionsContentBlocksFaqLayout {
             __typename

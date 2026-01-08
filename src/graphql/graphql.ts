@@ -107,6 +107,8 @@ export type AcfOptionsPage = {
   menuTitle?: Maybe<Scalars['String']['output']>;
   pageTitle?: Maybe<Scalars['String']['output']>;
   parentId?: Maybe<Scalars['String']['output']>;
+  /** Fields of the SectionsContent ACF Field Group */
+  sectionsContent?: Maybe<SectionsContent>;
 };
 
 /** Avatars are profile images for users. WordPress by default uses the Gravatar service to host and fetch avatars from. */
@@ -149,7 +151,7 @@ export enum AvatarRatingEnum {
 }
 
 /** The case type */
-export type Case = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfCaseContent & {
+export type Case = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfCaseContent & WithAcfSectionsContent & {
   __typename?: 'Case';
   /**
    * The ancestors of the content node.
@@ -232,6 +234,8 @@ export type Case = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & 
   previewRevisionDatabaseId?: Maybe<Scalars['Int']['output']>;
   /** Whether the object is a node in the preview state */
   previewRevisionId?: Maybe<Scalars['ID']['output']>;
+  /** Fields of the SectionsContent ACF Field Group */
+  sectionsContent?: Maybe<SectionsContent>;
   /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
   slug?: Maybe<Scalars['String']['output']>;
   /** The current status of the object */
@@ -578,7 +582,7 @@ export type CaseToPreviewConnectionEdge = CaseConnectionEdge & Edge & OneToOneCo
 };
 
 /** A taxonomy term that classifies content. Categories support hierarchy and can be used to create a nested structure. */
-export type Category = DatabaseIdentifier & HierarchicalNode & HierarchicalTermNode & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable & {
+export type Category = DatabaseIdentifier & HierarchicalNode & HierarchicalTermNode & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable & WithAcfSectionsContent & {
   __typename?: 'Category';
   /** The ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root). */
   ancestors?: Maybe<CategoryToAncestorsCategoryConnection>;
@@ -627,6 +631,8 @@ export type Category = DatabaseIdentifier & HierarchicalNode & HierarchicalTermN
   parentId?: Maybe<Scalars['ID']['output']>;
   /** Connection between the Category type and the post type */
   posts?: Maybe<CategoryToPostConnection>;
+  /** Fields of the SectionsContent ACF Field Group */
+  sectionsContent?: Maybe<SectionsContent>;
   /** An alphanumeric identifier for the object unique to its type. */
   slug?: Maybe<Scalars['String']['output']>;
   /** Connection between the Category type and the Taxonomy type */
@@ -1093,7 +1099,7 @@ export type CollaboratorContent_Fields = {
 };
 
 /** A response or reaction to content submitted by users. Comments are typically associated with a specific content entry. */
-export type Comment = DatabaseIdentifier & Node & UniformResourceIdentifiable & {
+export type Comment = DatabaseIdentifier & Node & UniformResourceIdentifiable & WithAcfSectionsContent & {
   __typename?: 'Comment';
   /** User agent used to post the comment. This field is equivalent to WP_Comment-&gt;comment_agent and the value matching the &quot;comment_agent&quot; column in SQL. */
   agent?: Maybe<Scalars['String']['output']>;
@@ -1150,6 +1156,8 @@ export type Comment = DatabaseIdentifier & Node & UniformResourceIdentifiable & 
   parentId?: Maybe<Scalars['ID']['output']>;
   /** Connection between the Comment type and the Comment type */
   replies?: Maybe<CommentToCommentConnection>;
+  /** Fields of the SectionsContent ACF Field Group */
+  sectionsContent?: Maybe<SectionsContent>;
   /** The approval status of the comment. This field is equivalent to WP_Comment-&gt;comment_approved and the value matching the &quot;comment_approved&quot; column in SQL. */
   status?: Maybe<CommentStatusEnum>;
   /** Type of comment. This field is equivalent to WP_Comment-&gt;comment_type and the value matching the &quot;comment_type&quot; column in SQL. */
@@ -1573,6 +1581,8 @@ export type ContentNode = {
   previewRevisionDatabaseId?: Maybe<Scalars['Int']['output']>;
   /** Whether the object is a node in the preview state */
   previewRevisionId?: Maybe<Scalars['ID']['output']>;
+  /** Fields of the SectionsContent ACF Field Group */
+  sectionsContent?: Maybe<SectionsContent>;
   /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
   slug?: Maybe<Scalars['String']['output']>;
   /** The current status of the object */
@@ -1738,6 +1748,8 @@ export type ContentNodeToEnqueuedStylesheetConnectionPageInfo = EnqueuedStyleshe
 
 /** A layout pattern that can help inform how content might be structured and displayed. Templates can define specialized layouts for different types of content. */
 export type ContentTemplate = {
+  /** Fields of the SectionsContent ACF Field Group */
+  sectionsContent?: Maybe<SectionsContent>;
   /** The name of the template */
   templateName?: Maybe<Scalars['String']['output']>;
 };
@@ -2490,8 +2502,10 @@ export type DateQueryInput = {
 };
 
 /** The template assigned to the node */
-export type DefaultTemplate = ContentTemplate & {
+export type DefaultTemplate = ContentTemplate & WithAcfSectionsContent & {
   __typename?: 'DefaultTemplate';
+  /** Fields of the SectionsContent ACF Field Group */
+  sectionsContent?: Maybe<SectionsContent>;
   /** The name of the template */
   templateName?: Maybe<Scalars['String']['output']>;
 };
@@ -2791,7 +2805,7 @@ export type Edge = {
 };
 
 /** The employee type */
-export type Employee = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfEmployeeContent & {
+export type Employee = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfEmployeeContent & WithAcfSectionsContent & {
   __typename?: 'Employee';
   /**
    * The ancestors of the content node.
@@ -2872,6 +2886,8 @@ export type Employee = ContentNode & DatabaseIdentifier & MenuItemLinkable & Nod
   previewRevisionDatabaseId?: Maybe<Scalars['Int']['output']>;
   /** Whether the object is a node in the preview state */
   previewRevisionId?: Maybe<Scalars['ID']['output']>;
+  /** Fields of the SectionsContent ACF Field Group */
+  sectionsContent?: Maybe<SectionsContent>;
   /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
   slug?: Maybe<Scalars['String']['output']>;
   /** The current status of the object */
@@ -3238,7 +3254,7 @@ export type EnqueuedStylesheetConnectionPageInfo = {
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
-export type Faq = AcfOptionsPage & Node & WithAcfQuestions & {
+export type Faq = AcfOptionsPage & Node & WithAcfQuestions & WithAcfSectionsContent & {
   __typename?: 'Faq';
   /** The globally unique ID for the object */
   id: Scalars['ID']['output'];
@@ -3247,9 +3263,11 @@ export type Faq = AcfOptionsPage & Node & WithAcfQuestions & {
   parentId?: Maybe<Scalars['String']['output']>;
   /** Fields of the Questions ACF Field Group */
   questions?: Maybe<Questions>;
+  /** Fields of the SectionsContent ACF Field Group */
+  sectionsContent?: Maybe<SectionsContent>;
 };
 
-export type Footer = AcfOptionsPage & Node & WithAcfFooterContent & {
+export type Footer = AcfOptionsPage & Node & WithAcfFooterContent & WithAcfSectionsContent & {
   __typename?: 'Footer';
   /** Fields of the FooterContent ACF Field Group */
   footerContent?: Maybe<FooterContent>;
@@ -3258,6 +3276,8 @@ export type Footer = AcfOptionsPage & Node & WithAcfFooterContent & {
   menuTitle?: Maybe<Scalars['String']['output']>;
   pageTitle?: Maybe<Scalars['String']['output']>;
   parentId?: Maybe<Scalars['String']['output']>;
+  /** Fields of the SectionsContent ACF Field Group */
+  sectionsContent?: Maybe<SectionsContent>;
 };
 
 /** The &quot;FooterContent&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
@@ -3384,6 +3404,8 @@ export type HierarchicalContentNode = {
   previewRevisionDatabaseId?: Maybe<Scalars['Int']['output']>;
   /** Whether the object is a node in the preview state */
   previewRevisionId?: Maybe<Scalars['ID']['output']>;
+  /** Fields of the SectionsContent ACF Field Group */
+  sectionsContent?: Maybe<SectionsContent>;
   /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
   slug?: Maybe<Scalars['String']['output']>;
   /** The current status of the object */
@@ -3633,6 +3655,8 @@ export type HierarchicalTermNode = {
   parentDatabaseId?: Maybe<Scalars['Int']['output']>;
   /** The globally unique identifier of the parent node. */
   parentId?: Maybe<Scalars['ID']['output']>;
+  /** Fields of the SectionsContent ACF Field Group */
+  sectionsContent?: Maybe<SectionsContent>;
   /** An alphanumeric identifier for the object unique to its type. */
   slug?: Maybe<Scalars['String']['output']>;
   /** The name of the taxonomy that the object is associated with */
@@ -3688,7 +3712,7 @@ export type MediaDetailsSizesArgs = {
 };
 
 /** Represents uploaded media, including images, videos, documents, and audio files. */
-export type MediaItem = ContentNode & DatabaseIdentifier & HierarchicalContentNode & HierarchicalNode & Node & NodeWithAuthor & NodeWithComments & NodeWithTemplate & NodeWithTitle & UniformResourceIdentifiable & {
+export type MediaItem = ContentNode & DatabaseIdentifier & HierarchicalContentNode & HierarchicalNode & Node & NodeWithAuthor & NodeWithComments & NodeWithTemplate & NodeWithTitle & UniformResourceIdentifiable & WithAcfSectionsContent & {
   __typename?: 'MediaItem';
   /** Alternative text to display when resource is not displayed */
   altText?: Maybe<Scalars['String']['output']>;
@@ -3791,6 +3815,8 @@ export type MediaItem = ContentNode & DatabaseIdentifier & HierarchicalContentNo
   previewRevisionDatabaseId?: Maybe<Scalars['Int']['output']>;
   /** Whether the object is a node in the preview state */
   previewRevisionId?: Maybe<Scalars['ID']['output']>;
+  /** Fields of the SectionsContent ACF Field Group */
+  sectionsContent?: Maybe<SectionsContent>;
   /** The sizes attribute value for an image. */
   sizes?: Maybe<Scalars['String']['output']>;
   /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
@@ -4129,7 +4155,7 @@ export type MediaSize = {
 };
 
 /** Collections of navigation links. Menus can be assigned to designated locations and used to build site navigation structures. */
-export type Menu = DatabaseIdentifier & Node & {
+export type Menu = DatabaseIdentifier & Node & WithAcfSectionsContent & {
   __typename?: 'Menu';
   /** The number of items in the menu */
   count?: Maybe<Scalars['Int']['output']>;
@@ -4150,6 +4176,8 @@ export type Menu = DatabaseIdentifier & Node & {
   menuItems?: Maybe<MenuToMenuItemConnection>;
   /** Display name of the menu. Equivalent to WP_Term-&gt;name. */
   name?: Maybe<Scalars['String']['output']>;
+  /** Fields of the SectionsContent ACF Field Group */
+  sectionsContent?: Maybe<SectionsContent>;
   /** The url friendly name of the menu. Equivalent to WP_Term-&gt;slug */
   slug?: Maybe<Scalars['String']['output']>;
 };
@@ -4195,7 +4223,7 @@ export type MenuConnectionPageInfo = {
 };
 
 /** Navigation menu items are the individual items assigned to a menu. These are rendered as the links in a navigation menu. */
-export type MenuItem = DatabaseIdentifier & Node & {
+export type MenuItem = DatabaseIdentifier & Node & WithAcfSectionsContent & {
   __typename?: 'MenuItem';
   /** Connection between the MenuItem type and the MenuItem type */
   childItems?: Maybe<MenuItemToMenuItemConnection>;
@@ -4237,6 +4265,8 @@ export type MenuItem = DatabaseIdentifier & Node & {
   parentId?: Maybe<Scalars['ID']['output']>;
   /** Path for the resource. Relative path for internal resources. Absolute path for external resources. */
   path?: Maybe<Scalars['String']['output']>;
+  /** Fields of the SectionsContent ACF Field Group */
+  sectionsContent?: Maybe<SectionsContent>;
   /** Target attribute for the menu item link. */
   target?: Maybe<Scalars['String']['output']>;
   /** Title attribute for the menu item link */
@@ -5696,7 +5726,7 @@ export type PostConnectionPageInfo = {
 };
 
 /** A standardized classification system for content presentation styles. These formats can be used to display content differently based on type, such as &quot;standard&quot;, &quot;gallery&quot;, &quot;video&quot;, etc. */
-export type PostFormat = DatabaseIdentifier & Node & TermNode & UniformResourceIdentifiable & {
+export type PostFormat = DatabaseIdentifier & Node & TermNode & UniformResourceIdentifiable & WithAcfSectionsContent & {
   __typename?: 'PostFormat';
   /** Connection between the PostFormat type and the ContentNode type */
   contentNodes?: Maybe<PostFormatToContentNodeConnection>;
@@ -5735,6 +5765,8 @@ export type PostFormat = DatabaseIdentifier & Node & TermNode & UniformResourceI
   postFormatId?: Maybe<Scalars['Int']['output']>;
   /** Connection between the PostFormat type and the post type */
   posts?: Maybe<PostFormatToPostConnection>;
+  /** Fields of the SectionsContent ACF Field Group */
+  sectionsContent?: Maybe<SectionsContent>;
   /** An alphanumeric identifier for the object unique to its type. */
   slug?: Maybe<Scalars['String']['output']>;
   /** Connection between the PostFormat type and the Taxonomy type */
@@ -10028,6 +10060,12 @@ export type SectionsContentBlocksCaseCardGridLayout = AcfFieldGroup & AcfFieldGr
    * @deprecated Use __typename instead
    */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
+  /** Lets the user filter between categories */
+  filter?: Maybe<Scalars['Boolean']['output']>;
+  /** Italic heading with accented color */
+  headingAccent?: Maybe<Scalars['String']['output']>;
+  /** White bold heading, rendered underneath the accented heading. */
+  mainHeading?: Maybe<Scalars['String']['output']>;
   /** Field of the &quot;select&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksCaseCardGridLayout&quot; Field Group */
   sortingOrder?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
 };
@@ -10050,6 +10088,12 @@ export type SectionsContentBlocksCaseCardGridLayout_Fields = {
    * @deprecated Use __typename instead
    */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
+  /** Lets the user filter between categories */
+  filter?: Maybe<Scalars['Boolean']['output']>;
+  /** Italic heading with accented color */
+  headingAccent?: Maybe<Scalars['String']['output']>;
+  /** White bold heading, rendered underneath the accented heading. */
+  mainHeading?: Maybe<Scalars['String']['output']>;
   /** Field of the &quot;select&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksCaseCardGridLayout&quot; Field Group */
   sortingOrder?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
 };
@@ -10075,6 +10119,25 @@ export type SectionsContentBlocksCollaboratorsBannerLayout = AcfFieldGroup & Acf
 
 /** Interface representing fields of the ACF &quot;SectionsContentBlocksCollaboratorsBannerLayout&quot; Field Group */
 export type SectionsContentBlocksCollaboratorsBannerLayout_Fields = {
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars['String']['output']>;
+};
+
+/** The &quot;SectionsContentBlocksContactFormLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
+export type SectionsContentBlocksContactFormLayout = AcfFieldGroup & AcfFieldGroupFields & SectionsContentBlocksContactFormLayout_Fields & SectionsContentBlocks_Layout & {
+  __typename?: 'SectionsContentBlocksContactFormLayout';
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars['String']['output']>;
+};
+
+/** Interface representing fields of the ACF &quot;SectionsContentBlocksContactFormLayout&quot; Field Group */
+export type SectionsContentBlocksContactFormLayout_Fields = {
   /**
    * The name of the field group
    * @deprecated Use __typename instead
@@ -10345,21 +10408,6 @@ export type SectionsContentBlocksTestimonialsLayout = AcfFieldGroup & AcfFieldGr
    * @deprecated Use __typename instead
    */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
-  /** Number of latest testimonials to display. */
-  itemAmount?: Maybe<Scalars['Float']['output']>;
-  /** Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksTestimonialsLayout&quot; Field Group */
-  items?: Maybe<AcfContentNodeConnection>;
-  /** Field of the &quot;select&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksTestimonialsLayout&quot; Field Group */
-  sortingOrder?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-};
-
-
-/** The &quot;SectionsContentBlocksTestimonialsLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
-export type SectionsContentBlocksTestimonialsLayoutItemsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** Interface representing fields of the ACF &quot;SectionsContentBlocksTestimonialsLayout&quot; Field Group */
@@ -10369,21 +10417,6 @@ export type SectionsContentBlocksTestimonialsLayout_Fields = {
    * @deprecated Use __typename instead
    */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
-  /** Number of latest testimonials to display. */
-  itemAmount?: Maybe<Scalars['Float']['output']>;
-  /** Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksTestimonialsLayout&quot; Field Group */
-  items?: Maybe<AcfContentNodeConnection>;
-  /** Field of the &quot;select&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksTestimonialsLayout&quot; Field Group */
-  sortingOrder?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-};
-
-
-/** Interface representing fields of the ACF &quot;SectionsContentBlocksTestimonialsLayout&quot; Field Group */
-export type SectionsContentBlocksTestimonialsLayout_FieldsItemsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** The &quot;SectionsContentBlocksTimelineLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
@@ -10445,7 +10478,7 @@ export type SendPasswordResetEmailPayload = {
 };
 
 /** The service type */
-export type Service = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfServiceContent & {
+export type Service = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfSectionsContent & WithAcfServiceContent & {
   __typename?: 'Service';
   /**
    * The ancestors of the content node.
@@ -10521,6 +10554,8 @@ export type Service = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node
   previewRevisionDatabaseId?: Maybe<Scalars['Int']['output']>;
   /** Whether the object is a node in the preview state */
   previewRevisionId?: Maybe<Scalars['ID']['output']>;
+  /** Fields of the SectionsContent ACF Field Group */
+  sectionsContent?: Maybe<SectionsContent>;
   /** Connection between the Service type and the serviceCategory type */
   serviceCategories?: Maybe<ServiceToServiceCategoryConnection>;
   /** Fields of the ServiceContent ACF Field Group */
@@ -10604,7 +10639,7 @@ export type ServiceTitleArgs = {
 };
 
 /** The serviceCategory type */
-export type ServiceCategory = DatabaseIdentifier & HierarchicalNode & HierarchicalTermNode & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable & WithAcfServiceCateogoryContent & {
+export type ServiceCategory = DatabaseIdentifier & HierarchicalNode & HierarchicalTermNode & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable & WithAcfSectionsContent & {
   __typename?: 'ServiceCategory';
   /** The ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root). */
   ancestors?: Maybe<ServiceCategoryToAncestorsServiceCategoryConnection>;
@@ -10646,13 +10681,13 @@ export type ServiceCategory = DatabaseIdentifier & HierarchicalNode & Hierarchic
   parentDatabaseId?: Maybe<Scalars['Int']['output']>;
   /** The globally unique identifier of the parent node. */
   parentId?: Maybe<Scalars['ID']['output']>;
+  /** Fields of the SectionsContent ACF Field Group */
+  sectionsContent?: Maybe<SectionsContent>;
   /**
    * The id field matches the WP_Post-&gt;ID field.
    * @deprecated Deprecated in favor of databaseId
    */
   serviceCategoryId?: Maybe<Scalars['Int']['output']>;
-  /** Fields of the ServiceCateogoryContent ACF Field Group */
-  serviceCateogoryContent?: Maybe<ServiceCateogoryContent>;
   /** Connection between the ServiceCategory type and the service type */
   services?: Maybe<ServiceCategoryToServiceConnection>;
   /** An alphanumeric identifier for the object unique to its type. */
@@ -11042,37 +11077,6 @@ export type ServiceCategoryToTaxonomyConnectionEdge = Edge & OneToOneConnection 
   node: Taxonomy;
 };
 
-/** The &quot;ServiceCateogoryContent&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
-export type ServiceCateogoryContent = AcfFieldGroup & AcfFieldGroupFields & ServiceCateogoryContent_Fields & {
-  __typename?: 'ServiceCateogoryContent';
-  /**
-   * The name of the field group
-   * @deprecated Use __typename instead
-   */
-  fieldGroupName?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;ServiceCateogoryContent&quot; Field Group */
-  headingAccent?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;ServiceCateogoryContent&quot; Field Group */
-  headingMain?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;ServiceCateogoryContent&quot; Field Group */
-  textContent?: Maybe<Scalars['String']['output']>;
-};
-
-/** Interface representing fields of the ACF &quot;ServiceCateogoryContent&quot; Field Group */
-export type ServiceCateogoryContent_Fields = {
-  /**
-   * The name of the field group
-   * @deprecated Use __typename instead
-   */
-  fieldGroupName?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;ServiceCateogoryContent&quot; Field Group */
-  headingAccent?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;ServiceCateogoryContent&quot; Field Group */
-  headingMain?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;ServiceCateogoryContent&quot; Field Group */
-  textContent?: Maybe<Scalars['String']['output']>;
-};
-
 /** A paginated collection of service Nodes, Supports cursor-based pagination and filtering to efficiently retrieve sets of service Nodes */
 export type ServiceConnection = {
   /** A list of edges (relational context) between RootQuery and connected service Nodes */
@@ -11428,7 +11432,7 @@ export type Settings = {
 };
 
 /** A taxonomy term used to organize and classify content. Tags do not have a hierarchy and are generally used for more specific classifications. */
-export type Tag = DatabaseIdentifier & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable & {
+export type Tag = DatabaseIdentifier & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable & WithAcfSectionsContent & {
   __typename?: 'Tag';
   /** Connection between the Tag type and the ContentNode type */
   contentNodes?: Maybe<TagToContentNodeConnection>;
@@ -11462,6 +11466,8 @@ export type Tag = DatabaseIdentifier & MenuItemLinkable & Node & TermNode & Unif
   name?: Maybe<Scalars['String']['output']>;
   /** Connection between the Tag type and the post type */
   posts?: Maybe<TagToPostConnection>;
+  /** Fields of the SectionsContent ACF Field Group */
+  sectionsContent?: Maybe<SectionsContent>;
   /** An alphanumeric identifier for the object unique to its type. */
   slug?: Maybe<Scalars['String']['output']>;
   /**
@@ -11955,6 +11961,8 @@ export type TermNode = {
   link?: Maybe<Scalars['String']['output']>;
   /** The human friendly name of the object. */
   name?: Maybe<Scalars['String']['output']>;
+  /** Fields of the SectionsContent ACF Field Group */
+  sectionsContent?: Maybe<SectionsContent>;
   /** An alphanumeric identifier for the object unique to its type. */
   slug?: Maybe<Scalars['String']['output']>;
   /** The name of the taxonomy that the object is associated with */
@@ -12114,7 +12122,7 @@ export enum TermObjectsConnectionOrderbyEnum {
 }
 
 /** The testimonial type */
-export type Testimonial = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfTestimonialContent & {
+export type Testimonial = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfSectionsContent & WithAcfTestimonialContent & {
   __typename?: 'Testimonial';
   /**
    * The ancestors of the content node.
@@ -12190,6 +12198,8 @@ export type Testimonial = ContentNode & DatabaseIdentifier & MenuItemLinkable & 
   previewRevisionDatabaseId?: Maybe<Scalars['Int']['output']>;
   /** Whether the object is a node in the preview state */
   previewRevisionId?: Maybe<Scalars['ID']['output']>;
+  /** Fields of the SectionsContent ACF Field Group */
+  sectionsContent?: Maybe<SectionsContent>;
   /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
   slug?: Maybe<Scalars['String']['output']>;
   /** The current status of the object */
@@ -12981,7 +12991,7 @@ export type UpdateUserPayload = {
 };
 
 /** A registered user account. Users can be assigned roles, author content, and have various capabilities within the site. */
-export type User = Commenter & DatabaseIdentifier & Node & UniformResourceIdentifiable & {
+export type User = Commenter & DatabaseIdentifier & Node & UniformResourceIdentifiable & WithAcfSectionsContent & {
   __typename?: 'User';
   /** Avatar object for user. The avatar object can be retrieved in different sizes by specifying the size argument. */
   avatar?: Maybe<Avatar>;
@@ -13041,6 +13051,8 @@ export type User = Commenter & DatabaseIdentifier & Node & UniformResourceIdenti
   revisions?: Maybe<UserToRevisionsConnection>;
   /** Connection between the User type and the UserRole type */
   roles?: Maybe<UserToUserRoleConnection>;
+  /** Fields of the SectionsContent ACF Field Group */
+  sectionsContent?: Maybe<SectionsContent>;
   /** Whether the Toolbar should be displayed when the user is viewing the site. */
   shouldShowAdminToolbar?: Maybe<Scalars['Boolean']['output']>;
   /** The slug for the user. This field is equivalent to WP_User-&gt;user_nicename */
@@ -13882,12 +13894,6 @@ export type WithAcfSectionsContent = {
   sectionsContent?: Maybe<SectionsContent>;
 };
 
-/** Provides access to fields of the &quot;ServiceCateogoryContent&quot; ACF Field Group via the &quot;serviceCateogoryContent&quot; field */
-export type WithAcfServiceCateogoryContent = {
-  /** Fields of the ServiceCateogoryContent ACF Field Group */
-  serviceCateogoryContent?: Maybe<ServiceCateogoryContent>;
-};
-
 /** Provides access to fields of the &quot;ServiceContent&quot; ACF Field Group via the &quot;serviceContent&quot; field */
 export type WithAcfServiceContent = {
   /** Fields of the ServiceContent ACF Field Group */
@@ -13929,12 +13935,12 @@ export type CasePreviewsQuery = { __typename?: 'RootQuery', cases?: { __typename
             | { __typename?: 'Testimonial', slug?: string | null }
           > } | null } | null }> } | null };
 
-export type MyQuery2QueryVariables = Exact<{
+export type CaseQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['ID']['input']>;
 }>;
 
 
-export type MyQuery2Query = { __typename?: 'RootQuery', case?: { __typename?: 'Case', caseContent?: { __typename?: 'CaseContent', textContent_02?: string | null, textContent01?: string | null, summaryContinued?: string | null, summary?: string | null, shortDescription?: string | null, services?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
+export type CaseQuery = { __typename?: 'RootQuery', case?: { __typename?: 'Case', caseContent?: { __typename?: 'CaseContent', url?: string | null, textContent_02?: string | null, textContent01?: string | null, summaryContinued?: string | null, summary?: string | null, shortDescription?: string | null, heading_02?: string | null, heading_01?: string | null, imageBanner?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null } } | null, images?: { __typename?: 'AcfMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null }> } | null, projectBrief?: { __typename?: 'CaseContentProjectBrief', bulletPoint?: Array<{ __typename?: 'CaseContentProjectBriefBulletPoint', description?: string | null, title?: string | null } | null> | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null } } | null } | null, quote?: { __typename?: 'CaseContentQuote', author?: string | null, authorTitle?: string | null, textContent?: string | null } | null, services?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
           | { __typename?: 'Case', slug?: string | null }
           | { __typename?: 'Employee', slug?: string | null }
           | { __typename?: 'MediaItem', slug?: string | null }
@@ -13942,7 +13948,7 @@ export type MyQuery2Query = { __typename?: 'RootQuery', case?: { __typename?: 'C
           | { __typename?: 'Post', slug?: string | null }
           | { __typename?: 'Service', slug?: string | null }
           | { __typename?: 'Testimonial', slug?: string | null }
-        > } | null, quote?: { __typename?: 'CaseContentQuote', author?: string | null, authorTitle?: string | null, textContent?: string | null } | null, projectBrief?: { __typename?: 'CaseContentProjectBrief', bulletPoint?: Array<{ __typename?: 'CaseContentProjectBriefBulletPoint', description?: string | null, title?: string | null } | null> | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', caption?: string | null, altText?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null, filePath?: string | null } | null } } | null } | null } | null } | null };
+        > } | null } | null } | null };
 
 export type EmployeesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -13977,20 +13983,42 @@ export type PageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page'
                 | { __typename?: 'Testimonial', id: string }
                }> } | null }
         | { __typename: 'SectionsContentBlocksCollaboratorsBannerLayout' }
+        | { __typename?: 'SectionsContentBlocksContactFormLayout' }
         | { __typename: 'SectionsContentBlocksEmployeesLayout', headingAccent?: string | null, headingMain?: string | null }
         | { __typename: 'SectionsContentBlocksFaqLayout' }
         | { __typename: 'SectionsContentBlocksImageBannerLayout', fullWidth?: boolean | null, images?: { __typename?: 'AcfMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', altText?: string | null, caption?: string | null, mediaDetails?: { __typename?: 'MediaDetails', filePath?: string | null, height?: number | null, width?: number | null } | null }> } | null }
         | { __typename: 'SectionsContentBlocksLatestNewsGridLayout' }
         | { __typename: 'SectionsContentBlocksMediaAndTextLayout', mediaAndText?: { __typename?: 'SectionsContentBlocksMediaAndText', accentedHeading?: string | null, ctaButton?: boolean | null, ctaLabel?: string | null, ctaUrl?: string | null, mainHeading?: string | null, textContent?: string | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', id: string, altText?: string | null, caption?: string | null, sourceUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', filePath?: string | null, height?: number | null, width?: number | null } | null } } | null } | null }
         | { __typename: 'SectionsContentBlocksServicesCardsLayout', headingAccent?: string | null, headingMain?: string | null, textContent?: string | null }
-        | { __typename: 'SectionsContentBlocksTestimonialsLayout', itemAmount?: number | null, sortingOrder?: Array<string | null> | null }
+        | { __typename: 'SectionsContentBlocksTestimonialsLayout' }
         | { __typename: 'SectionsContentBlocksTimelineLayout' }
        | null> | null } | null } | null };
 
-export type AllServicesSlugsQueryVariables = Exact<{ [key: string]: never; }>;
+export type ServicesSlugsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type AllServicesSlugsQuery = { __typename?: 'RootQuery', serviceCategories?: { __typename?: 'RootQueryToServiceCategoryConnection', nodes: Array<{ __typename?: 'ServiceCategory', slug?: string | null, services?: { __typename?: 'ServiceCategoryToServiceConnection', nodes: Array<{ __typename?: 'Service', slug?: string | null }> } | null }> } | null };
+export type ServicesSlugsQuery = { __typename?: 'RootQuery', serviceCategories?: { __typename?: 'RootQueryToServiceCategoryConnection', nodes: Array<{ __typename?: 'ServiceCategory', slug?: string | null, services?: { __typename?: 'ServiceCategoryToServiceConnection', nodes: Array<{ __typename?: 'Service', slug?: string | null }> } | null }> } | null };
+
+export type ServicePageQueryVariables = Exact<{
+  slug?: InputMaybe<Scalars['ID']['input']>;
+}>;
+
+
+export type ServicePageQuery = { __typename?: 'RootQuery', service?: { __typename?: 'Service', title?: string | null, sectionsContent?: { __typename?: 'SectionsContent', blocks?: Array<
+        | { __typename: 'SectionsContentBlocksAnimatedCardsLayout', ctaButton?: boolean | null, ctaLabel?: string | null, numberingStyle?: Array<string | null> | null, headingMain?: string | null, headingAccent?: string | null, ctaUrl?: string | null }
+        | { __typename: 'SectionsContentBlocksCardsAndTextLayout', headingAccent?: string | null, textContent?: string | null, headingMain?: string | null }
+        | { __typename: 'SectionsContentBlocksCaseCardGridLayout', filter?: boolean | null, sortingOrder?: Array<string | null> | null, mainHeading?: string | null, headingAccent?: string | null }
+        | { __typename: 'SectionsContentBlocksCollaboratorsBannerLayout' }
+        | { __typename: 'SectionsContentBlocksContactFormLayout' }
+        | { __typename: 'SectionsContentBlocksEmployeesLayout', headingAccent?: string | null, headingMain?: string | null }
+        | { __typename: 'SectionsContentBlocksFaqLayout' }
+        | { __typename: 'SectionsContentBlocksImageBannerLayout', fullWidth?: boolean | null }
+        | { __typename: 'SectionsContentBlocksLatestNewsGridLayout' }
+        | { __typename: 'SectionsContentBlocksMediaAndTextLayout' }
+        | { __typename: 'SectionsContentBlocksServicesCardsLayout', headingAccent?: string | null, textContent?: string | null, headingMain?: string | null }
+        | { __typename: 'SectionsContentBlocksTestimonialsLayout' }
+        | { __typename: 'SectionsContentBlocksTimelineLayout' }
+       | null> | null } | null, serviceContent?: { __typename?: 'ServiceContent', textContent?: string | null, shortDescription?: string | null, icon?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null } | null } | null };
 
 export type TestimonialsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -14053,24 +14081,37 @@ export const CasePreviewsDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<CasePreviewsQuery, CasePreviewsQueryVariables>;
-export const MyQuery2Document = new TypedDocumentString(`
-    query MyQuery2($slug: ID = "") {
+export const CaseDocument = new TypedDocumentString(`
+    query Case($slug: ID = "eventourage") {
   case(id: $slug, idType: URI) {
     caseContent {
+      url
       textContent_02
       textContent01
       summaryContinued
       summary
       shortDescription
-      services {
-        nodes {
-          slug
+      heading_02
+      heading_01
+      imageBanner {
+        node {
+          altText
+          mediaItemUrl
+          mediaDetails {
+            width
+            height
+          }
         }
       }
-      quote {
-        author
-        authorTitle
-        textContent
+      images {
+        nodes {
+          altText
+          mediaItemUrl
+          mediaDetails {
+            width
+            height
+          }
+        }
       }
       projectBrief {
         bulletPoint {
@@ -14079,20 +14120,29 @@ export const MyQuery2Document = new TypedDocumentString(`
         }
         image {
           node {
-            caption
             altText
+            mediaItemUrl
             mediaDetails {
-              height
               width
-              filePath
+              height
             }
           }
+        }
+      }
+      quote {
+        author
+        authorTitle
+        textContent
+      }
+      services {
+        nodes {
+          slug
         }
       }
     }
   }
 }
-    `) as unknown as TypedDocumentString<MyQuery2Query, MyQuery2QueryVariables>;
+    `) as unknown as TypedDocumentString<CaseQuery, CaseQueryVariables>;
 export const EmployeesDocument = new TypedDocumentString(`
     query Employees {
   employees {
@@ -14240,8 +14290,6 @@ export const PageDocument = new TypedDocumentString(`
         }
         ... on SectionsContentBlocksTestimonialsLayout {
           __typename
-          itemAmount
-          sortingOrder
         }
         ... on SectionsContentBlocksFaqLayout {
           __typename
@@ -14297,8 +14345,8 @@ export const PageDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<PageQuery, PageQueryVariables>;
-export const AllServicesSlugsDocument = new TypedDocumentString(`
-    query AllServicesSlugs {
+export const ServicesSlugsDocument = new TypedDocumentString(`
+    query ServicesSlugs {
   serviceCategories {
     nodes {
       slug
@@ -14310,7 +14358,101 @@ export const AllServicesSlugsDocument = new TypedDocumentString(`
     }
   }
 }
-    `) as unknown as TypedDocumentString<AllServicesSlugsQuery, AllServicesSlugsQueryVariables>;
+    `) as unknown as TypedDocumentString<ServicesSlugsQuery, ServicesSlugsQueryVariables>;
+export const ServicePageDocument = new TypedDocumentString(`
+    query ServicePage($slug: ID = "") {
+  service(id: $slug, idType: URI) {
+    title
+    sectionsContent {
+      blocks {
+        __typename
+        ... on SectionsContentBlocksContactFormLayout {
+          __typename
+        }
+        ... on SectionsContentBlocksEmployeesLayout {
+          __typename
+          headingAccent
+          headingMain
+        }
+        ... on SectionsContentBlocksTimelineLayout {
+          __typename
+        }
+        ... on SectionsContentBlocksServicesCardsLayout {
+          __typename
+          headingAccent
+          textContent
+          headingMain
+        }
+        ... on SectionsContentBlocksCardsAndTextLayout {
+          __typename
+          headingAccent
+          textContent
+          headingMain
+        }
+        ... on SectionsContentBlocksLatestNewsGridLayout {
+          __typename
+        }
+        ... on SectionsContentBlocksFaqLayout {
+          __typename
+        }
+        ... on SectionsContentBlocksCollaboratorsBannerLayout {
+          __typename
+        }
+        ... on SectionsContentBlocksTestimonialsLayout {
+          __typename
+        }
+        ... on SectionsContentBlocksCaseCardGridLayout {
+          __typename
+          filter
+          sortingOrder
+          mainHeading
+          headingAccent
+        }
+        ... on SectionsContentBlocksAnimatedCardsLayout {
+          ctaButton
+          ctaLabel
+          numberingStyle
+          headingMain
+          headingAccent
+          ctaUrl
+          __typename
+        }
+        ... on SectionsContentBlocksImageBannerLayout {
+          __typename
+          fullWidth
+        }
+        ... on SectionsContentBlocksMediaAndTextLayout {
+          __typename
+        }
+      }
+    }
+    serviceContent {
+      textContent
+      shortDescription
+      icon {
+        node {
+          altText
+          mediaItemUrl
+          mediaDetails {
+            height
+            width
+          }
+        }
+      }
+      image {
+        node {
+          altText
+          mediaItemUrl
+          mediaDetails {
+            height
+            width
+          }
+        }
+      }
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<ServicePageQuery, ServicePageQueryVariables>;
 export const TestimonialsDocument = new TypedDocumentString(`
     query Testimonials {
   testimonials {
