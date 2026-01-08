@@ -3,7 +3,10 @@ import Header from "@/components/layout/header";
 import "@/styles/globals.css";
 
 import { type Metadata } from "next";
-import { Geist } from "next/font/google";
+import { Geist, Inter } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
   title: "Webbyrå i Malmö - Vi hjälper ditt företag att synas | CAPACE MEDIA",
@@ -21,7 +24,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${geist.variable}`}>
+    <html lang="en" className={cn(geist.variable, inter.variable)}>
       <body className="flex min-h-screen flex-col">
         <Header />
         <main className="flex-1">{children}</main>

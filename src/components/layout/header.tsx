@@ -1,14 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Button } from "../ui/button";
 
 export default function Header() {
   return (
-    <header>
+    <header className="flex items-center justify-between gap-6 border border-green-400">
       <nav>
-        <ul>
+        <ul className="flex gap-6">
           <li>
             <Link href={"/tjanster"}>Våra tjänster</Link>
+          </li>
+          <li>
             <Link href={"/om-oss"}>Våra tjänster</Link>
+          </li>
+          <li>
             <Link href={"/Kundcase"}>Kundcase</Link>
           </li>
         </ul>
@@ -20,6 +25,7 @@ export default function Header() {
           fill
         />
       </div>
+      <Button>Knapptext här</Button>
     </header>
   );
 }
