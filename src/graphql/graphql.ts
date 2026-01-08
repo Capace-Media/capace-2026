@@ -3211,7 +3211,7 @@ export type FooterContent = AcfFieldGroup & AcfFieldGroupFields & FooterContent_
   heading?: Maybe<Scalars['String']['output']>;
   /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;FooterContent&quot; Field Group */
   telephone?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;FooterContent&quot; Field Group */
+  /** Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;FooterContent&quot; Field Group */
   textContent?: Maybe<Scalars['String']['output']>;
 };
 
@@ -3230,7 +3230,7 @@ export type FooterContent_Fields = {
   heading?: Maybe<Scalars['String']['output']>;
   /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;FooterContent&quot; Field Group */
   telephone?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;FooterContent&quot; Field Group */
+  /** Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;FooterContent&quot; Field Group */
   textContent?: Maybe<Scalars['String']['output']>;
 };
 
@@ -4745,7 +4745,7 @@ export enum OrderEnum {
 }
 
 /** A standalone content entry generally used for static, non-chronological content such as &quot;About Us&quot; or &quot;Contact&quot; pages. */
-export type Page = ContentNode & DatabaseIdentifier & HierarchicalContentNode & HierarchicalNode & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithPageAttributes & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfPageContent & {
+export type Page = ContentNode & DatabaseIdentifier & HierarchicalContentNode & HierarchicalNode & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithPageAttributes & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfPageContent & WithAcfSectionsContent & {
   __typename?: 'Page';
   /** Returns ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root). */
   ancestors?: Maybe<HierarchicalContentNodeToContentNodeAncestorsConnection>;
@@ -4850,6 +4850,8 @@ export type Page = ContentNode & DatabaseIdentifier & HierarchicalContentNode & 
   revisionOf?: Maybe<NodeWithRevisionsToContentNodeConnectionEdge>;
   /** Connection between the Page type and the page type */
   revisions?: Maybe<PageToRevisionConnection>;
+  /** Fields of the SectionsContent ACF Field Group */
+  sectionsContent?: Maybe<SectionsContent>;
   /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
   slug?: Maybe<Scalars['String']['output']>;
   /** The current status of the object */
@@ -10015,50 +10017,73 @@ export type SectionsContentBlocksLatestNewsGridLayout_Fields = {
   fieldGroupName?: Maybe<Scalars['String']['output']>;
 };
 
-/** The &quot;SectionsContentBlocksMediaAndTextLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
-export type SectionsContentBlocksMediaAndTextLayout = AcfFieldGroup & AcfFieldGroupFields & SectionsContentBlocksMediaAndTextLayout_Fields & SectionsContentBlocks_Layout & {
-  __typename?: 'SectionsContentBlocksMediaAndTextLayout';
+/** The &quot;SectionsContentBlocksMediaAndText&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
+export type SectionsContentBlocksMediaAndText = AcfFieldGroup & AcfFieldGroupFields & SectionsContentBlocksMediaAndText_Fields & {
+  __typename?: 'SectionsContentBlocksMediaAndText';
   /** Italic heading with accented color */
   accentedHeading?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;true_false&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndTextLayout&quot; Field Group */
+  /** Field of the &quot;true_false&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndText&quot; Field Group */
   ctaButton?: Maybe<Scalars['Boolean']['output']>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndTextLayout&quot; Field Group */
+  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndText&quot; Field Group */
   ctaLabel?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;url&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndTextLayout&quot; Field Group */
+  /** Field of the &quot;url&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndText&quot; Field Group */
   ctaUrl?: Maybe<Scalars['String']['output']>;
   /**
    * The name of the field group
    * @deprecated Use __typename instead
    */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndTextLayout&quot; Field Group */
+  /** Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndText&quot; Field Group */
   image?: Maybe<AcfMediaItemConnectionEdge>;
   /** White bold heading, rendered underneath the accented heading. */
   mainHeading?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndTextLayout&quot; Field Group */
+  /** Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndText&quot; Field Group */
   textContent?: Maybe<Scalars['String']['output']>;
+};
+
+/** The &quot;SectionsContentBlocksMediaAndTextLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
+export type SectionsContentBlocksMediaAndTextLayout = AcfFieldGroup & AcfFieldGroupFields & SectionsContentBlocksMediaAndTextLayout_Fields & SectionsContentBlocks_Layout & {
+  __typename?: 'SectionsContentBlocksMediaAndTextLayout';
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndTextLayout&quot; Field Group */
+  mediaAndText?: Maybe<SectionsContentBlocksMediaAndText>;
 };
 
 /** Interface representing fields of the ACF &quot;SectionsContentBlocksMediaAndTextLayout&quot; Field Group */
 export type SectionsContentBlocksMediaAndTextLayout_Fields = {
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndTextLayout&quot; Field Group */
+  mediaAndText?: Maybe<SectionsContentBlocksMediaAndText>;
+};
+
+/** Interface representing fields of the ACF &quot;SectionsContentBlocksMediaAndText&quot; Field Group */
+export type SectionsContentBlocksMediaAndText_Fields = {
   /** Italic heading with accented color */
   accentedHeading?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;true_false&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndTextLayout&quot; Field Group */
+  /** Field of the &quot;true_false&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndText&quot; Field Group */
   ctaButton?: Maybe<Scalars['Boolean']['output']>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndTextLayout&quot; Field Group */
+  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndText&quot; Field Group */
   ctaLabel?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;url&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndTextLayout&quot; Field Group */
+  /** Field of the &quot;url&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndText&quot; Field Group */
   ctaUrl?: Maybe<Scalars['String']['output']>;
   /**
    * The name of the field group
    * @deprecated Use __typename instead
    */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndTextLayout&quot; Field Group */
+  /** Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndText&quot; Field Group */
   image?: Maybe<AcfMediaItemConnectionEdge>;
   /** White bold heading, rendered underneath the accented heading. */
   mainHeading?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndTextLayout&quot; Field Group */
+  /** Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndText&quot; Field Group */
   textContent?: Maybe<Scalars['String']['output']>;
 };
 
@@ -10382,7 +10407,7 @@ export type ServiceTitleArgs = {
 };
 
 /** The serviceCategory type */
-export type ServiceCategory = DatabaseIdentifier & HierarchicalNode & HierarchicalTermNode & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable & {
+export type ServiceCategory = DatabaseIdentifier & HierarchicalNode & HierarchicalTermNode & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable & WithAcfServiceCateogoryContent & {
   __typename?: 'ServiceCategory';
   /** The ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root). */
   ancestors?: Maybe<ServiceCategoryToAncestorsServiceCategoryConnection>;
@@ -10429,6 +10454,8 @@ export type ServiceCategory = DatabaseIdentifier & HierarchicalNode & Hierarchic
    * @deprecated Deprecated in favor of databaseId
    */
   serviceCategoryId?: Maybe<Scalars['Int']['output']>;
+  /** Fields of the ServiceCateogoryContent ACF Field Group */
+  serviceCateogoryContent?: Maybe<ServiceCateogoryContent>;
   /** Connection between the ServiceCategory type and the service type */
   services?: Maybe<ServiceCategoryToServiceConnection>;
   /** An alphanumeric identifier for the object unique to its type. */
@@ -10816,6 +10843,37 @@ export type ServiceCategoryToTaxonomyConnectionEdge = Edge & OneToOneConnection 
   cursor?: Maybe<Scalars['String']['output']>;
   /** The node of the connection, without the edges */
   node: Taxonomy;
+};
+
+/** The &quot;ServiceCateogoryContent&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
+export type ServiceCateogoryContent = AcfFieldGroup & AcfFieldGroupFields & ServiceCateogoryContent_Fields & {
+  __typename?: 'ServiceCateogoryContent';
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;ServiceCateogoryContent&quot; Field Group */
+  headingAccent?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;ServiceCateogoryContent&quot; Field Group */
+  headingMain?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;ServiceCateogoryContent&quot; Field Group */
+  textContent?: Maybe<Scalars['String']['output']>;
+};
+
+/** Interface representing fields of the ACF &quot;ServiceCateogoryContent&quot; Field Group */
+export type ServiceCateogoryContent_Fields = {
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;ServiceCateogoryContent&quot; Field Group */
+  headingAccent?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;ServiceCateogoryContent&quot; Field Group */
+  headingMain?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;ServiceCateogoryContent&quot; Field Group */
+  textContent?: Maybe<Scalars['String']['output']>;
 };
 
 /** A paginated collection of service Nodes, Supports cursor-based pagination and filtering to efficiently retrieve sets of service Nodes */
@@ -13346,6 +13404,12 @@ export type WithAcfSectionsContent = {
   sectionsContent?: Maybe<SectionsContent>;
 };
 
+/** Provides access to fields of the &quot;ServiceCateogoryContent&quot; ACF Field Group via the &quot;serviceCateogoryContent&quot; field */
+export type WithAcfServiceCateogoryContent = {
+  /** Fields of the ServiceCateogoryContent ACF Field Group */
+  serviceCateogoryContent?: Maybe<ServiceCateogoryContent>;
+};
+
 /** Provides access to fields of the &quot;ServiceContent&quot; ACF Field Group via the &quot;serviceContent&quot; field */
 export type WithAcfServiceContent = {
   /** Fields of the ServiceContent ACF Field Group */
@@ -13383,7 +13447,27 @@ export type PageQueryVariables = Exact<{
 }>;
 
 
-export type PageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page', id: string, title?: string | null, slug?: string | null } | null };
+export type PageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page', id: string, title?: string | null, slug?: string | null, pageContent?: { __typename?: 'PageContent', heroSize?: Array<string | null> | null, medium?: { __typename?: 'PageContentMedium', heading_accent?: string | null, heading_main?: string | null, text?: string | null } | null, large?: { __typename?: 'PageContentLarge', ctaLabel?: string | null, ctaUrl?: string | null, heading?: string | null, subheading?: string | null, heroImage?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaDetails?: { __typename?: 'MediaDetails', filePath?: string | null, height?: number | null, width?: number | null } | null } } | null } | null } | null, sectionsContent?: { __typename?: 'SectionsContent', blocks?: Array<
+        | { __typename: 'SectionsContentBlocksAnimatedCardsLayout', ctaButton?: boolean | null, ctaLabel?: string | null, ctaUrl?: string | null, headingAccent?: string | null, headingMain?: string | null, numberingStyle?: Array<string | null> | null, cards?: Array<{ __typename?: 'SectionsContentBlocksCards', card?: { __typename?: 'SectionsContentBlocksCardsCard', ctaButton?: boolean | null, ctaLabel?: string | null, ctaUrl?: string | null, textContent?: string | null, title?: string | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, caption?: string | null, mediaDetails?: { __typename?: 'MediaDetails', filePath?: string | null, height?: number | null, width?: number | null } | null } } | null } | null } | null> | null }
+        | { __typename: 'SectionsContentBlocksCardsAndTextLayout', headingAccent?: string | null, headingMain?: string | null, textContent?: string | null, cards?: Array<{ __typename?: 'SectionsContentBlocksCards', card?: { __typename?: 'SectionsContentBlocksCardsCard', ctaButton?: boolean | null, ctaLabel?: string | null, ctaUrl?: string | null, textContent?: string | null, title?: string | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, caption?: string | null, mediaDetails?: { __typename?: 'MediaDetails', filePath?: string | null, height?: number | null, width?: number | null } | null } } | null } | null } | null> | null }
+        | { __typename: 'SectionsContentBlocksCaseCardGridLayout', sortingOrder?: Array<string | null> | null, cases?: { __typename?: 'AcfContentNodeConnection', edges: Array<{ __typename?: 'AcfContentNodeConnectionEdge', node:
+                | { __typename?: 'Case', id: string }
+                | { __typename?: 'Employee', id: string }
+                | { __typename?: 'MediaItem', id: string }
+                | { __typename?: 'Page', id: string }
+                | { __typename?: 'Post', id: string }
+                | { __typename?: 'Service', id: string }
+               }> } | null }
+        | { __typename: 'SectionsContentBlocksCollaboratorsBannerLayout' }
+        | { __typename: 'SectionsContentBlocksEmployeesLayout', headingAccent?: string | null, headingMain?: string | null }
+        | { __typename: 'SectionsContentBlocksFaqLayout' }
+        | { __typename: 'SectionsContentBlocksImageBannerLayout', fullWidth?: boolean | null, images?: { __typename?: 'AcfMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', altText?: string | null, caption?: string | null, mediaDetails?: { __typename?: 'MediaDetails', filePath?: string | null, height?: number | null, width?: number | null } | null }> } | null }
+        | { __typename: 'SectionsContentBlocksLatestNewsGridLayout' }
+        | { __typename: 'SectionsContentBlocksMediaAndTextLayout', mediaAndText?: { __typename?: 'SectionsContentBlocksMediaAndText', accentedHeading?: string | null, ctaButton?: boolean | null, ctaLabel?: string | null, ctaUrl?: string | null, mainHeading?: string | null, textContent?: string | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', id: string, altText?: string | null, caption?: string | null, sourceUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', filePath?: string | null, height?: number | null, width?: number | null } | null } } | null } | null }
+        | { __typename: 'SectionsContentBlocksServicesCardsLayout', headingAccent?: string | null, headingMain?: string | null, textContent?: string | null }
+        | { __typename: 'SectionsContentBlocksTestimonialsLayout', itemAmount?: number | null, sortingOrder?: Array<string | null> | null }
+        | { __typename: 'SectionsContentBlocksTimelineLayout' }
+       | null> | null } | null } | null };
 
 export type AllServicesSlugsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -13446,6 +13530,167 @@ export const PageDocument = new TypedDocumentString(`
     id
     title
     slug
+    pageContent {
+      heroSize
+      medium {
+        heading_accent
+        heading_main
+        text
+      }
+      large {
+        ctaLabel
+        ctaUrl
+        heading
+        subheading
+        heroImage {
+          node {
+            altText
+            mediaDetails {
+              filePath
+              height
+              width
+            }
+          }
+        }
+      }
+    }
+    sectionsContent {
+      blocks {
+        ... on SectionsContentBlocksMediaAndTextLayout {
+          __typename
+          mediaAndText {
+            accentedHeading
+            ctaButton
+            ctaLabel
+            ctaUrl
+            mainHeading
+            textContent
+            image {
+              node {
+                id
+                altText
+                caption
+                sourceUrl
+                mediaDetails {
+                  filePath
+                  height
+                  width
+                }
+              }
+            }
+          }
+        }
+        ... on SectionsContentBlocksImageBannerLayout {
+          __typename
+          fullWidth
+          images {
+            nodes {
+              altText
+              caption
+              mediaDetails {
+                filePath
+                height
+                width
+              }
+            }
+          }
+        }
+        ... on SectionsContentBlocksAnimatedCardsLayout {
+          __typename
+          ctaButton
+          ctaLabel
+          ctaUrl
+          headingAccent
+          headingMain
+          numberingStyle
+          cards {
+            card {
+              ctaButton
+              ctaLabel
+              ctaUrl
+              textContent
+              title
+              image {
+                node {
+                  altText
+                  caption
+                  mediaDetails {
+                    filePath
+                    height
+                    width
+                  }
+                }
+              }
+            }
+          }
+        }
+        ... on SectionsContentBlocksCaseCardGridLayout {
+          __typename
+          sortingOrder
+          cases {
+            edges {
+              node {
+                id
+              }
+            }
+          }
+        }
+        ... on SectionsContentBlocksTestimonialsLayout {
+          __typename
+          itemAmount
+          sortingOrder
+        }
+        ... on SectionsContentBlocksFaqLayout {
+          __typename
+        }
+        ... on SectionsContentBlocksLatestNewsGridLayout {
+          __typename
+        }
+        ... on SectionsContentBlocksCardsAndTextLayout {
+          __typename
+          headingAccent
+          headingMain
+          textContent
+          cards {
+            card {
+              ctaButton
+              ctaLabel
+              ctaUrl
+              textContent
+              title
+              image {
+                node {
+                  altText
+                  caption
+                  mediaDetails {
+                    filePath
+                    height
+                    width
+                  }
+                }
+              }
+            }
+          }
+        }
+        ... on SectionsContentBlocksServicesCardsLayout {
+          __typename
+          headingAccent
+          headingMain
+          textContent
+        }
+        ... on SectionsContentBlocksTimelineLayout {
+          __typename
+        }
+        ... on SectionsContentBlocksEmployeesLayout {
+          __typename
+          headingAccent
+          headingMain
+        }
+        ... on SectionsContentBlocksCollaboratorsBannerLayout {
+          __typename
+        }
+      }
+    }
   }
 }
     `) as unknown as TypedDocumentString<PageQuery, PageQueryVariables>;

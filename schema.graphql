@@ -3696,7 +3696,7 @@ type FooterContent implements AcfFieldGroup & AcfFieldGroupFields & FooterConten
   """
   telephone: String
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;FooterContent&quot; Field Group
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;FooterContent&quot; Field Group
   """
   textContent: String
 }
@@ -3722,7 +3722,7 @@ interface FooterContent_Fields implements AcfFieldGroup & AcfFieldGroupFields {
   """
   telephone: String
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;FooterContent&quot; Field Group
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;FooterContent&quot; Field Group
   """
   textContent: String
 }
@@ -5447,7 +5447,7 @@ enum OrderEnum {
 """
 A standalone content entry generally used for static, non-chronological content such as &quot;About Us&quot; or &quot;Contact&quot; pages.
 """
-type Page implements ContentNode & DatabaseIdentifier & HierarchicalContentNode & HierarchicalNode & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithPageAttributes & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfPageContent {
+type Page implements ContentNode & DatabaseIdentifier & HierarchicalContentNode & HierarchicalNode & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithPageAttributes & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfPageContent & WithAcfSectionsContent {
   """
   Returns ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root).
   """
@@ -5661,6 +5661,8 @@ type Page implements ContentNode & DatabaseIdentifier & HierarchicalContentNode 
     """Arguments for filtering the connection"""
     where: PageToRevisionConnectionWhereArgs
   ): PageToRevisionConnection
+  """Fields of the SectionsContent ACF Field Group"""
+  sectionsContent: SectionsContent
   """
   The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
   """
@@ -11385,65 +11387,89 @@ interface SectionsContentBlocksLatestNewsGridLayout_Fields implements AcfFieldGr
 }
 
 """
-The &quot;SectionsContentBlocksMediaAndTextLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+The &quot;SectionsContentBlocksMediaAndText&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
 """
-type SectionsContentBlocksMediaAndTextLayout implements AcfFieldGroup & AcfFieldGroupFields & SectionsContentBlocksMediaAndTextLayout_Fields & SectionsContentBlocks_Layout {
+type SectionsContentBlocksMediaAndText implements AcfFieldGroup & AcfFieldGroupFields & SectionsContentBlocksMediaAndText_Fields {
   """Italic heading with accented color"""
   accentedHeading: String
   """
-  Field of the &quot;true_false&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndTextLayout&quot; Field Group
+  Field of the &quot;true_false&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndText&quot; Field Group
   """
   ctaButton: Boolean
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndTextLayout&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndText&quot; Field Group
   """
   ctaLabel: String
   """
-  Field of the &quot;url&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndTextLayout&quot; Field Group
+  Field of the &quot;url&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndText&quot; Field Group
   """
   ctaUrl: String
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
   """
-  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndTextLayout&quot; Field Group
+  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndText&quot; Field Group
   """
   image: AcfMediaItemConnectionEdge
   """White bold heading, rendered underneath the accented heading."""
   mainHeading: String
   """
-  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndTextLayout&quot; Field Group
+  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndText&quot; Field Group
   """
   textContent: String
+}
+
+"""
+The &quot;SectionsContentBlocksMediaAndTextLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type SectionsContentBlocksMediaAndTextLayout implements AcfFieldGroup & AcfFieldGroupFields & SectionsContentBlocksMediaAndTextLayout_Fields & SectionsContentBlocks_Layout {
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndTextLayout&quot; Field Group
+  """
+  mediaAndText: SectionsContentBlocksMediaAndText
 }
 
 """
 Interface representing fields of the ACF &quot;SectionsContentBlocksMediaAndTextLayout&quot; Field Group
 """
 interface SectionsContentBlocksMediaAndTextLayout_Fields implements AcfFieldGroup & AcfFieldGroupFields & SectionsContentBlocks_Layout {
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndTextLayout&quot; Field Group
+  """
+  mediaAndText: SectionsContentBlocksMediaAndText
+}
+
+"""
+Interface representing fields of the ACF &quot;SectionsContentBlocksMediaAndText&quot; Field Group
+"""
+interface SectionsContentBlocksMediaAndText_Fields implements AcfFieldGroup & AcfFieldGroupFields {
   """Italic heading with accented color"""
   accentedHeading: String
   """
-  Field of the &quot;true_false&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndTextLayout&quot; Field Group
+  Field of the &quot;true_false&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndText&quot; Field Group
   """
   ctaButton: Boolean
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndTextLayout&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndText&quot; Field Group
   """
   ctaLabel: String
   """
-  Field of the &quot;url&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndTextLayout&quot; Field Group
+  Field of the &quot;url&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndText&quot; Field Group
   """
   ctaUrl: String
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
   """
-  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndTextLayout&quot; Field Group
+  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndText&quot; Field Group
   """
   image: AcfMediaItemConnectionEdge
   """White bold heading, rendered underneath the accented heading."""
   mainHeading: String
   """
-  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndTextLayout&quot; Field Group
+  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;SectionsContentBlocksMediaAndText&quot; Field Group
   """
   textContent: String
 }
@@ -11820,7 +11846,7 @@ type Service implements ContentNode & DatabaseIdentifier & MenuItemLinkable & No
 }
 
 """The serviceCategory type"""
-type ServiceCategory implements DatabaseIdentifier & HierarchicalNode & HierarchicalTermNode & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable {
+type ServiceCategory implements DatabaseIdentifier & HierarchicalNode & HierarchicalTermNode & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable & WithAcfServiceCateogoryContent {
   """
   The ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root).
   """
@@ -11938,6 +11964,8 @@ type ServiceCategory implements DatabaseIdentifier & HierarchicalNode & Hierarch
   parentId: ID
   """The id field matches the WP_Post-&gt;ID field."""
   serviceCategoryId: Int @deprecated(reason: "Deprecated in favor of databaseId")
+  """Fields of the ServiceCateogoryContent ACF Field Group"""
+  serviceCateogoryContent: ServiceCateogoryContent
   """Connection between the ServiceCategory type and the service type"""
   services(
     """
@@ -12337,6 +12365,46 @@ type ServiceCategoryToTaxonomyConnectionEdge implements Edge & OneToOneConnectio
   cursor: String
   """The node of the connection, without the edges"""
   node: Taxonomy!
+}
+
+"""
+The &quot;ServiceCateogoryContent&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type ServiceCateogoryContent implements AcfFieldGroup & AcfFieldGroupFields & ServiceCateogoryContent_Fields {
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;ServiceCateogoryContent&quot; Field Group
+  """
+  headingAccent: String
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;ServiceCateogoryContent&quot; Field Group
+  """
+  headingMain: String
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;ServiceCateogoryContent&quot; Field Group
+  """
+  textContent: String
+}
+
+"""
+Interface representing fields of the ACF &quot;ServiceCateogoryContent&quot; Field Group
+"""
+interface ServiceCateogoryContent_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;ServiceCateogoryContent&quot; Field Group
+  """
+  headingAccent: String
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;ServiceCateogoryContent&quot; Field Group
+  """
+  headingMain: String
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;ServiceCateogoryContent&quot; Field Group
+  """
+  textContent: String
 }
 
 """
@@ -15295,6 +15363,14 @@ Provides access to fields of the &quot;SectionsContent&quot; ACF Field Group via
 interface WithAcfSectionsContent {
   """Fields of the SectionsContent ACF Field Group"""
   sectionsContent: SectionsContent
+}
+
+"""
+Provides access to fields of the &quot;ServiceCateogoryContent&quot; ACF Field Group via the &quot;serviceCateogoryContent&quot; field
+"""
+interface WithAcfServiceCateogoryContent {
+  """Fields of the ServiceCateogoryContent ACF Field Group"""
+  serviceCateogoryContent: ServiceCateogoryContent
 }
 
 """
