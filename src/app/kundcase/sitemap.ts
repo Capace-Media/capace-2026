@@ -1,10 +1,10 @@
 import { env } from "@/env";
-import { getAllCaseSlugs } from "@/lib/fetchers/cases";
+import { getCaseSlugs } from "@/lib/fetchers/cases";
 import type { MetadataRoute } from "next";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const url = env.SITE_URL;
-  const slugs = await getAllCaseSlugs();
+  const slugs = await getCaseSlugs();
   if (!slugs || slugs.length === 0) return [];
 
   const entries: MetadataRoute.Sitemap = slugs.map((slug) => ({
