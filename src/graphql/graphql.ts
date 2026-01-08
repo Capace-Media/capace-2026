@@ -13432,6 +13432,32 @@ export type AllCaseSlugsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type AllCaseSlugsQuery = { __typename?: 'RootQuery', cases?: { __typename?: 'RootQueryToCaseConnection', nodes: Array<{ __typename?: 'Case', slug?: string | null }> } | null };
 
+export type CasePreviewsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CasePreviewsQuery = { __typename?: 'RootQuery', cases?: { __typename?: 'RootQueryToCaseConnection', nodes: Array<{ __typename?: 'Case', title?: string | null, caseContent?: { __typename?: 'CaseContent', shortDescription?: string | null, projectBrief?: { __typename?: 'CaseContentProjectBrief', image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null, filePath?: string | null } | null } } | null } | null, services?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
+            | { __typename?: 'Case', slug?: string | null }
+            | { __typename?: 'Employee', slug?: string | null }
+            | { __typename?: 'MediaItem', slug?: string | null }
+            | { __typename?: 'Page', slug?: string | null }
+            | { __typename?: 'Post', slug?: string | null }
+            | { __typename?: 'Service', slug?: string | null }
+          > } | null } | null }> } | null };
+
+export type MyQuery2QueryVariables = Exact<{
+  slug?: InputMaybe<Scalars['ID']['input']>;
+}>;
+
+
+export type MyQuery2Query = { __typename?: 'RootQuery', case?: { __typename?: 'Case', caseContent?: { __typename?: 'CaseContent', textContent_02?: string | null, textContent01?: string | null, summaryContinued?: string | null, summary?: string | null, shortDescription?: string | null, services?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
+          | { __typename?: 'Case', slug?: string | null }
+          | { __typename?: 'Employee', slug?: string | null }
+          | { __typename?: 'MediaItem', slug?: string | null }
+          | { __typename?: 'Page', slug?: string | null }
+          | { __typename?: 'Post', slug?: string | null }
+          | { __typename?: 'Service', slug?: string | null }
+        > } | null, quote?: { __typename?: 'CaseContentQuote', author?: string | null, authorTitle?: string | null, textContent?: string | null } | null, projectBrief?: { __typename?: 'CaseContentProjectBrief', bulletPoint?: Array<{ __typename?: 'CaseContentProjectBriefBulletPoint', description?: string | null, title?: string | null } | null> | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', caption?: string | null, altText?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null, filePath?: string | null } | null } } | null } | null } | null } | null };
+
 export type EmployeesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -13502,6 +13528,74 @@ export const AllCaseSlugsDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<AllCaseSlugsQuery, AllCaseSlugsQueryVariables>;
+export const CasePreviewsDocument = new TypedDocumentString(`
+    query CasePreviews {
+  cases {
+    nodes {
+      caseContent {
+        projectBrief {
+          image {
+            node {
+              mediaDetails {
+                width
+                height
+                filePath
+              }
+            }
+          }
+        }
+        shortDescription
+        services {
+          nodes {
+            slug
+          }
+        }
+      }
+      title
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<CasePreviewsQuery, CasePreviewsQueryVariables>;
+export const MyQuery2Document = new TypedDocumentString(`
+    query MyQuery2($slug: ID = "") {
+  case(id: $slug, idType: URI) {
+    caseContent {
+      textContent_02
+      textContent01
+      summaryContinued
+      summary
+      shortDescription
+      services {
+        nodes {
+          slug
+        }
+      }
+      quote {
+        author
+        authorTitle
+        textContent
+      }
+      projectBrief {
+        bulletPoint {
+          description
+          title
+        }
+        image {
+          node {
+            caption
+            altText
+            mediaDetails {
+              height
+              width
+              filePath
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<MyQuery2Query, MyQuery2QueryVariables>;
 export const EmployeesDocument = new TypedDocumentString(`
     query Employees {
   employees {
