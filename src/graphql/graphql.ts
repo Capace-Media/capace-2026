@@ -3184,6 +3184,17 @@ export type EnqueuedStylesheetConnectionPageInfo = {
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
+export type Faq = AcfOptionsPage & Node & WithAcfQuestions & {
+  __typename?: 'Faq';
+  /** The globally unique ID for the object */
+  id: Scalars['ID']['output'];
+  menuTitle?: Maybe<Scalars['String']['output']>;
+  pageTitle?: Maybe<Scalars['String']['output']>;
+  parentId?: Maybe<Scalars['String']['output']>;
+  /** Fields of the Questions ACF Field Group */
+  questions?: Maybe<Questions>;
+};
+
 export type Footer = AcfOptionsPage & Node & WithAcfFooterContent & {
   __typename?: 'Footer';
   /** Fields of the FooterContent ACF Field Group */
@@ -7558,7 +7569,7 @@ export type RootMutationUpdateUserArgs = {
 };
 
 /** The root entry point into the Graph */
-export type RootQuery = WithAcfOptionsPageFooter & {
+export type RootQuery = WithAcfOptionsPageFaq & WithAcfOptionsPageFooter & {
   __typename?: 'RootQuery';
   /** Entry point to get all settings for the site */
   allSettings?: Maybe<Settings>;
@@ -7598,6 +7609,7 @@ export type RootQuery = WithAcfOptionsPageFooter & {
   employeeBy?: Maybe<Employee>;
   /** Connection between the RootQuery type and the employee type */
   employees?: Maybe<RootQueryToEmployeeConnection>;
+  faq?: Maybe<Faq>;
   footer?: Maybe<Footer>;
   /** Fields of the &#039;GeneralSettings&#039; settings group */
   generalSettings?: Maybe<GeneralSettings>;
@@ -13381,6 +13393,11 @@ export type WithAcfFooterContent = {
   footerContent?: Maybe<FooterContent>;
 };
 
+/** Access point for the &quot;Faq&quot; ACF Options Page */
+export type WithAcfOptionsPageFaq = {
+  faq?: Maybe<Faq>;
+};
+
 /** Access point for the &quot;Footer&quot; ACF Options Page */
 export type WithAcfOptionsPageFooter = {
   footer?: Maybe<Footer>;
@@ -13390,6 +13407,12 @@ export type WithAcfOptionsPageFooter = {
 export type WithAcfPageContent = {
   /** Fields of the PageContent ACF Field Group */
   pageContent?: Maybe<PageContent>;
+};
+
+/** Provides access to fields of the &quot;Questions&quot; ACF Field Group via the &quot;questions&quot; field */
+export type WithAcfQuestions = {
+  /** Fields of the Questions ACF Field Group */
+  questions?: Maybe<Questions>;
 };
 
 /** Provides access to fields of the &quot;ReusableFields&quot; ACF Field Group via the &quot;reusableFields&quot; field */
@@ -13462,6 +13485,11 @@ export type EmployeesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type EmployeesQuery = { __typename?: 'RootQuery', employees?: { __typename?: 'RootQueryToEmployeeConnection', nodes: Array<{ __typename?: 'Employee', title?: string | null }> } | null };
+
+export type FaqQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FaqQuery = { __typename?: 'RootQuery', faq?: { __typename?: 'Faq', questions?: { __typename?: 'Questions', questions?: Array<{ __typename?: 'QuestionsQuestions', question?: string | null, answer?: string | null } | null> | null } | null } | null };
 
 export type FooterQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -13605,6 +13633,18 @@ export const EmployeesDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<EmployeesQuery, EmployeesQueryVariables>;
+export const FaqDocument = new TypedDocumentString(`
+    query FAQ {
+  faq {
+    questions {
+      questions {
+        question
+        answer
+      }
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<FaqQuery, FaqQueryVariables>;
 export const FooterDocument = new TypedDocumentString(`
     query Footer {
   footer {

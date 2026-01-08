@@ -3665,6 +3665,16 @@ interface EnqueuedStylesheetConnectionPageInfo implements PageInfo & WPPageInfo 
   startCursor: String
 }
 
+type Faq implements AcfOptionsPage & Node & WithAcfQuestions {
+  """The globally unique ID for the object"""
+  id: ID!
+  menuTitle: String
+  pageTitle: String
+  parentId: String
+  """Fields of the Questions ACF Field Group"""
+  questions: Questions
+}
+
 type Footer implements AcfOptionsPage & Node & WithAcfFooterContent {
   """Fields of the FooterContent ACF Field Group"""
   footerContent: FooterContent
@@ -8601,7 +8611,7 @@ type RootMutation {
 }
 
 """The root entry point into the Graph"""
-type RootQuery implements WithAcfOptionsPageFooter {
+type RootQuery implements WithAcfOptionsPageFaq & WithAcfOptionsPageFooter {
   """Entry point to get all settings for the site"""
   allSettings: Settings
   """An object of the case Type. """
@@ -8792,6 +8802,7 @@ type RootQuery implements WithAcfOptionsPageFooter {
     """Arguments for filtering the connection"""
     where: RootQueryToEmployeeConnectionWhereArgs
   ): RootQueryToEmployeeConnection
+  faq: Faq
   footer: Footer
   """Fields of the &#039;GeneralSettings&#039; settings group"""
   generalSettings: GeneralSettings
@@ -15336,6 +15347,11 @@ interface WithAcfFooterContent {
   footerContent: FooterContent
 }
 
+"""Access point for the &quot;Faq&quot; ACF Options Page"""
+interface WithAcfOptionsPageFaq {
+  faq: Faq
+}
+
 """Access point for the &quot;Footer&quot; ACF Options Page"""
 interface WithAcfOptionsPageFooter {
   footer: Footer
@@ -15347,6 +15363,14 @@ Provides access to fields of the &quot;PageContent&quot; ACF Field Group via the
 interface WithAcfPageContent {
   """Fields of the PageContent ACF Field Group"""
   pageContent: PageContent
+}
+
+"""
+Provides access to fields of the &quot;Questions&quot; ACF Field Group via the &quot;questions&quot; field
+"""
+interface WithAcfQuestions {
+  """Fields of the Questions ACF Field Group"""
+  questions: Questions
 }
 
 """
