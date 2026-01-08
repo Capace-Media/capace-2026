@@ -1,4 +1,5 @@
 import Footer from "@/components/layout/footer";
+import Header from "@/components/layout/header";
 import "@/styles/globals.css";
 
 import { type Metadata } from "next";
@@ -22,6 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geist.variable}`}>
       <body className="flex min-h-screen flex-col">
+        <Header />
         <main className="flex-1">{children}</main>
         <Footer />
       </body>
