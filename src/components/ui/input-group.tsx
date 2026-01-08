@@ -99,6 +99,7 @@ function InputGroupButton({
       variant={variant}
       className={cn(inputGroupButtonVariants({ size }), className)}
       {...props}
+      withArrow={false}
     />
   );
 }

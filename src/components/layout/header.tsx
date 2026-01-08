@@ -25,7 +25,9 @@ export default function Header() {
           fill
         />
       </div>
-      <Button>Knapptext här</Button>
+      <Button withArrow variant={"secondaryAccent"}>
+        Knapptext här
+      </Button>
     </header>
   );
 }

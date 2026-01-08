@@ -482,9 +482,14 @@ function FormExample() {
                 />
               </Field>
               <Field orientation="horizontal">
-                <Button type="submit">Submit</Button>
+                <Button type="submit" withArrow>
+                  Default button
+                </Button>
                 <Button variant="secondary" type="button">
-                  Cancel
+                  Secondary
+                </Button>
+                <Button variant="secondaryAccent" type="button">
+                  SecondaryAccent
                 </Button>
               </Field>
             </FieldGroup>
