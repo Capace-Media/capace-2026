@@ -100,6 +100,15 @@ export type AcfMediaItemConnectionPageInfo = MediaItemConnectionPageInfo & PageI
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
+/** Options Page registered by ACF */
+export type AcfOptionsPage = {
+  /** The globally unique ID for the object */
+  id: Scalars['ID']['output'];
+  menuTitle?: Maybe<Scalars['String']['output']>;
+  pageTitle?: Maybe<Scalars['String']['output']>;
+  parentId?: Maybe<Scalars['String']['output']>;
+};
+
 /** Avatars are profile images for users. WordPress by default uses the Gravatar service to host and fetch avatars from. */
 export type Avatar = {
   __typename?: 'Avatar';
@@ -3175,12 +3184,23 @@ export type EnqueuedStylesheetConnectionPageInfo = {
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
-/** The &quot;Footer&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
-export type Footer = AcfFieldGroup & AcfFieldGroupFields & Footer_Fields & {
+export type Footer = AcfOptionsPage & Node & WithAcfFooterContent & {
   __typename?: 'Footer';
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Footer&quot; Field Group */
+  /** Fields of the FooterContent ACF Field Group */
+  footerContent?: Maybe<FooterContent>;
+  /** The globally unique ID for the object */
+  id: Scalars['ID']['output'];
+  menuTitle?: Maybe<Scalars['String']['output']>;
+  pageTitle?: Maybe<Scalars['String']['output']>;
+  parentId?: Maybe<Scalars['String']['output']>;
+};
+
+/** The &quot;FooterContent&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
+export type FooterContent = AcfFieldGroup & AcfFieldGroupFields & FooterContent_Fields & {
+  __typename?: 'FooterContent';
+  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;FooterContent&quot; Field Group */
   address?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;email&quot; Field Type added to the schema as part of the &quot;Footer&quot; Field Group */
+  /** Field of the &quot;email&quot; Field Type added to the schema as part of the &quot;FooterContent&quot; Field Group */
   email?: Maybe<Scalars['String']['output']>;
   /**
    * The name of the field group
@@ -3189,17 +3209,17 @@ export type Footer = AcfFieldGroup & AcfFieldGroupFields & Footer_Fields & {
   fieldGroupName?: Maybe<Scalars['String']['output']>;
   /** Large text with stickers covering parts of it. */
   heading?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Footer&quot; Field Group */
+  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;FooterContent&quot; Field Group */
   telephone?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Footer&quot; Field Group */
+  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;FooterContent&quot; Field Group */
   textContent?: Maybe<Scalars['String']['output']>;
 };
 
-/** Interface representing fields of the ACF &quot;Footer&quot; Field Group */
-export type Footer_Fields = {
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Footer&quot; Field Group */
+/** Interface representing fields of the ACF &quot;FooterContent&quot; Field Group */
+export type FooterContent_Fields = {
+  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;FooterContent&quot; Field Group */
   address?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;email&quot; Field Type added to the schema as part of the &quot;Footer&quot; Field Group */
+  /** Field of the &quot;email&quot; Field Type added to the schema as part of the &quot;FooterContent&quot; Field Group */
   email?: Maybe<Scalars['String']['output']>;
   /**
    * The name of the field group
@@ -3208,9 +3228,9 @@ export type Footer_Fields = {
   fieldGroupName?: Maybe<Scalars['String']['output']>;
   /** Large text with stickers covering parts of it. */
   heading?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Footer&quot; Field Group */
+  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;FooterContent&quot; Field Group */
   telephone?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Footer&quot; Field Group */
+  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;FooterContent&quot; Field Group */
   textContent?: Maybe<Scalars['String']['output']>;
 };
 
@@ -7536,7 +7556,7 @@ export type RootMutationUpdateUserArgs = {
 };
 
 /** The root entry point into the Graph */
-export type RootQuery = {
+export type RootQuery = WithAcfOptionsPageFooter & {
   __typename?: 'RootQuery';
   /** Entry point to get all settings for the site */
   allSettings?: Maybe<Settings>;
@@ -7576,6 +7596,7 @@ export type RootQuery = {
   employeeBy?: Maybe<Employee>;
   /** Connection between the RootQuery type and the employee type */
   employees?: Maybe<RootQueryToEmployeeConnection>;
+  footer?: Maybe<Footer>;
   /** Fields of the &#039;GeneralSettings&#039; settings group */
   generalSettings?: Maybe<GeneralSettings>;
   /** An object of the mediaItem Type.  */
@@ -13296,6 +13317,17 @@ export type WithAcfEmployeeContent = {
   employeeContent?: Maybe<EmployeeContent>;
 };
 
+/** Provides access to fields of the &quot;FooterContent&quot; ACF Field Group via the &quot;footerContent&quot; field */
+export type WithAcfFooterContent = {
+  /** Fields of the FooterContent ACF Field Group */
+  footerContent?: Maybe<FooterContent>;
+};
+
+/** Access point for the &quot;Footer&quot; ACF Options Page */
+export type WithAcfOptionsPageFooter = {
+  footer?: Maybe<Footer>;
+};
+
 /** Provides access to fields of the &quot;PageContent&quot; ACF Field Group via the &quot;pageContent&quot; field */
 export type WithAcfPageContent = {
   /** Fields of the PageContent ACF Field Group */
@@ -13340,6 +13372,11 @@ export type EmployeesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type EmployeesQuery = { __typename?: 'RootQuery', employees?: { __typename?: 'RootQueryToEmployeeConnection', nodes: Array<{ __typename?: 'Employee', title?: string | null }> } | null };
+
+export type FooterQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FooterQuery = { __typename?: 'RootQuery', footer?: { __typename?: 'Footer', footerContent?: { __typename?: 'FooterContent', address?: string | null, email?: string | null, heading?: string | null, telephone?: string | null, textContent?: string | null } | null } | null };
 
 export type PageQueryVariables = Exact<{
   slug: Scalars['ID']['input'];
@@ -13390,6 +13427,19 @@ export const EmployeesDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<EmployeesQuery, EmployeesQueryVariables>;
+export const FooterDocument = new TypedDocumentString(`
+    query Footer {
+  footer {
+    footerContent {
+      address
+      email
+      heading
+      telephone
+      textContent
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<FooterQuery, FooterQueryVariables>;
 export const PageDocument = new TypedDocumentString(`
     query Page($slug: ID!) {
   page(id: $slug, idType: URI) {
