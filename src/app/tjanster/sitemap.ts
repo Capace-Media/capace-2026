@@ -1,10 +1,10 @@
 import { env } from "@/env";
-import { getAllServiceCategoriesSlugs } from "@/lib/fetchers/services";
+import { getServiceCategorySlugs } from "@/lib/fetchers/services";
 import type { MetadataRoute } from "next";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const url = env.SITE_URL;
-  const categorySlugs = await getAllServiceCategoriesSlugs();
+  const categorySlugs = await getServiceCategorySlugs();
   if (!categorySlugs || categorySlugs.length === 0) return [];
 
   const entries: MetadataRoute.Sitemap = [];
