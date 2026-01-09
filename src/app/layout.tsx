@@ -23,7 +23,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={cn(poppins.className)}>
-      <body className="flex min-h-screen flex-col">
+      <body className="mx-auto flex min-h-screen max-w-400 flex-col">
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
