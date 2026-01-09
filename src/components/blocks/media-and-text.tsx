@@ -19,29 +19,33 @@ export default function MediaAndText(props: Props) {
   const image = props.data.mediaAndText?.image?.node;
 
   return (
-    <div className="flex w-full flex-col border border-pink-400">
-      <div className="border border-red-300">
-        <h3 className="text-accent">{data?.accentedHeading}</h3>
-        <h3>{data?.mainHeading}</h3>
+    <div className="grid grid-cols-1 grid-rows-3 gap-6 lg:grid-cols-2 lg:grid-rows-[auto_1fr_1fr] lg:gap-12">
+      <div className="order-1 flex flex-col items-center lg:items-start">
+        <h3 className="font-caveat text-accent text-4xl lowercase lg:text-6xl">
+          {data?.accentedHeading}
+        </h3>
+        <h3 className="text-4xl font-bold capitalize lg:text-6xl">
+          {data?.mainHeading}
+        </h3>
       </div>
-      <div className="flex flex-col-reverse gap-2 border border-blue-400">
-        {data?.textContent && parse(data?.textContent)}
-        <div className="relative aspect-video border border-green-400">
-          <Image
-            src={image?.sourceUrl || ""}
-            alt={image?.altText || ""}
-            fill
-            objectFit="cover"
-          />
-        </div>
+      <div className="relative order-2 col-span-1 row-span-3 flex lg:order-0">
+        <Image
+          src={image?.sourceUrl || ""}
+          alt={image?.altText || ""}
+          fill
+          objectFit="cover"
+        />
       </div>
-      {props.data.mediaAndText?.ctaUrl && (
-        <Button withArrow className={"w-fit"}>
-          <Link href={props.data.mediaAndText.ctaUrl}>
-            {props.data.mediaAndText?.ctaLabel}
+      <div className="prose prose-invert italic-accent order-3 flex flex-col">
+        {parse(data?.textContent || "")}
+      </div>
+      <div className="order-4 flex justify-center py-10 lg:justify-start">
+        {data?.ctaUrl && (
+          <Link href={data.ctaUrl}>
+            <Button withArrow>{data?.ctaLabel}</Button>
           </Link>
-        </Button>
-      )}
+        )}
+      </div>
     </div>
   );
 }

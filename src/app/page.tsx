@@ -1,5 +1,4 @@
 import Blocks from "@/components/blocks/blocks";
-import { ComponentExample } from "@/components/component-example";
 import { getPage } from "@/lib/fetchers/pages";
 import { notFound } from "next/navigation";
 
@@ -10,9 +9,7 @@ export default async function Page() {
   if (!data) notFound();
   return (
     <>
-      {data.title}
       <Blocks blocks={blocks} />
-      <ComponentExample />;
     </>
   );
 }
