@@ -4,9 +4,9 @@ import { Button } from "../ui/button";
 
 export default function Header() {
   return (
-    <header className="flex items-center justify-between gap-6 border border-green-400">
+    <header className="flex h-20 items-center justify-between gap-6 px-24 text-sm">
       <nav>
-        <ul className="flex gap-6">
+        <ul className="border-border/15 flex gap-6 rounded-full border p-3">
           <li>
             <Link href={"/tjanster"}>Våra tjänster</Link>
           </li>
@@ -25,7 +25,7 @@ export default function Header() {
           fill
         />
       </div>
-      <Button withArrow variant={"secondaryAccent"}>
+      <Button withArrow variant={"secondaryAccent"} size={"sm"}>
         Knapptext här
       </Button>
     </header>

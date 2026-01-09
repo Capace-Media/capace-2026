@@ -481,7 +481,7 @@ function FormExample() {
                   placeholder="Add any additional comments"
                 />
               </Field>
-              <Field orientation="horizontal">
+              <Field orientation="vertical">
                 <Button type="submit" withArrow>
                   Default button
                 </Button>
