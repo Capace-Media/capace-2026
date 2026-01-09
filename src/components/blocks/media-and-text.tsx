@@ -19,19 +19,21 @@ export default function MediaAndText(props: Props) {
   const image = props.data.mediaAndText?.image?.node;
 
   return (
-    <div className="grid grid-cols-1 grid-rows-3 gap-6 lg:grid-cols-2 lg:grid-rows-[auto_1fr_1fr] lg:gap-12">
+    <section className="grid grid-cols-1 grid-rows-3 gap-6 lg:grid-cols-2 lg:grid-rows-[auto_1fr_1fr] lg:gap-12">
       <div className="order-1 flex flex-col items-center lg:items-start">
-        <h3 className="font-caveat text-accent text-4xl lowercase lg:text-6xl">
-          {data?.accentedHeading}
-        </h3>
-        <h3 className="text-4xl font-bold capitalize lg:text-6xl">
-          {data?.mainHeading}
+        <h3 className="text-4xl lg:text-6xl">
+          <span className="font-caveat text-accent block lowercase">
+            {data?.accentedHeading}
+          </span>
+          <span className="block font-bold capitalize">
+            {data?.mainHeading}
+          </span>
         </h3>
       </div>
       <div className="relative order-2 col-span-1 row-span-3 flex lg:order-0">
         <Image
           src={image?.sourceUrl || ""}
-          alt={image?.altText || ""}
+          alt={image?.altText || "Dekorativ bild"}
           fill
           objectFit="cover"
         />
@@ -41,11 +43,11 @@ export default function MediaAndText(props: Props) {
       </div>
       <div className="order-4 flex justify-center py-10 lg:justify-start">
         {data?.ctaUrl && (
-          <Link href={data.ctaUrl}>
-            <Button withArrow>{data?.ctaLabel}</Button>
-          </Link>
+          <Button withArrow variant={"secondaryAccent"}>
+            <Link href={data.ctaUrl}>{data?.ctaLabel}</Link>
+          </Button>
         )}
       </div>
-    </div>
+    </section>
   );
 }

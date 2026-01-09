@@ -14,7 +14,7 @@ export default async function Footer() {
         <div className="flex flex-col lg:flex-row">
           <div className="flex flex-1 flex-col gap-6 pb-6 md:min-w-150">
             <p className="text-sm">{data?.textContent}</p>
-            <ul className="flex flex-col gap-6 text-sm font-bold lg:flex-row lg:gap-12 [&>li]:flex [&>li]:items-center [&>li]:gap-2 [&>li]:before:block [&>li]:before:size-2 [&>li]:before:rounded-full [&>li]:before:bg-white">
+            <ul className="flex flex-col gap-6 text-sm font-bold lg:flex-row lg:gap-12 [&>li]:flex [&>li]:items-center [&>li]:gap-2 [&>li]:before:block [&>li]:before:size-2 [&>li]:before:rounded-full [&>li]:before:bg-white [&>li]:hover:text-white">
               <li>
                 <a href={`tel:${data?.telephone}`}>{data?.telephone}</a>
               </li>
@@ -35,11 +35,11 @@ export default async function Footer() {
                 </address>
               </li>
             </ul>
-            <ul className="flex items-center justify-center gap-8 border-t-2 border-b-2 border-t-black border-b-black py-8 lg:justify-start lg:border-none [&_img]:size-10 lg:[&_img]:size-[30px]">
+            <ul className="flex items-center justify-center gap-8 border-t-2 border-b-2 border-t-black border-b-black py-8 lg:justify-start lg:border-none [&_a:hover]:invert [&_img]:size-10 lg:[&_img]:size-[30px]">
               <li>
                 <a href="#" aria-label="Länk till Facebook">
                   <Image
-                    src={"/icons/facebook.svg"}
+                    src={"/logotypes/facebook.svg"}
                     height={30}
                     width={30}
                     alt={"Facebook logotyp"}
@@ -49,7 +49,7 @@ export default async function Footer() {
               <li>
                 <a href="#" aria-label="Länk till Instagram">
                   <Image
-                    src={"/icons/instagram.svg"}
+                    src={"/logotypes/instagram.svg"}
                     height={30}
                     width={30}
                     alt={"Instagram logotyp"}
@@ -59,7 +59,7 @@ export default async function Footer() {
               <li>
                 <a href="#" aria-label="Länk till LinkedIn">
                   <Image
-                    src={"/icons/linkedin.svg"}
+                    src={"/logotypes/linkedin.svg"}
                     height={30}
                     width={30}
                     alt={"LinkedIn logotyp"}
@@ -69,7 +69,7 @@ export default async function Footer() {
               <li>
                 <a href="#" className="relative" aria-label="Länk till TikTok">
                   <Image
-                    src={"/icons/tiktok.svg"}
+                    src={"/logotypes/tiktok.svg"}
                     height={30}
                     width={30}
                     alt={"Tiktok logotyp"}

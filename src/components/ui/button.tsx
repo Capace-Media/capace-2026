@@ -2,17 +2,18 @@
 
 import { Button as ButtonPrimitive } from "@base-ui/react/button";
 import { cva, type VariantProps } from "class-variance-authority";
-
+import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 import { ArrowDown } from "lucide-react";
+import React, { useState } from "react";
 
 const buttonVariants = cva(
-  "focus-visible:border-ring w-full max-w-70 sm:w-fit font-light! cursor-pointer focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 rounded-full border border-transparent bg-clip-padding text-sm font-medium focus-visible:ring-[3px] aria-invalid:ring-[3px] [&_svg:not([class*='size-'])]:size-4 inline-flex items-center justify-center whitespace-nowrap transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none shrink-0 [&_svg]:shrink-0 outline-none group/button select-none",
+  "focus-visible:border-ring w-full max-w-70 sm:w-fit font-light! cursor-pointer focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 rounded-full border border-transparent bg-clip-padding text-sm font-medium focus-visible:ring-[10px] aria-invalid:ring-[3px] [&_svg:not([class*='size-'])]:size-4 inline-flex items-center justify-center whitespace-nowrap transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none shrink-0 [&_svg]:shrink-0 outline-none group/button select-none",
   {
     variants: {
       variant: {
         default:
-          "bg-background text-primary-foreground hover:bg-primary hover:text-background border-1 border-accent shadow-[0_0_0px_4px_rgba(0,0,0,1),0_0_0px_5px_var(--accent)]",
+          "bg-background text-primary-foreground hover:bg-primary hover:text-background border-1 border-accent shadow-[0_0_0px_4px_rgba(0,0,0,1),0_0_0px_5px_var(--accent)] hover:shadow-[0_0_0px_4px_rgba(0,0,0,1),0_0_0px_6px_var(--accent)]",
         outline:
           "border-border shadow-[0_0_0px_4px_rgba(0,0,0,1),0_0_0px_5px_var(--accent)] bg-input/30 hover:bg-input/50 hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground",
         secondary:
@@ -52,6 +53,8 @@ function Button({
   ...props
 }: ButtonPrimitive.Props &
   VariantProps<typeof buttonVariants> & { withArrow?: boolean }) {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <ButtonPrimitive
       data-slot="button"
@@ -61,13 +64,18 @@ function Button({
         size === "default" ? (withArrow ? "pr-1 pl-3" : "px-3") : "",
         "group flex items-center justify-between gap-6",
       )}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       {...props}
     >
       {props.children}
       {withArrow && (
-        <div className="border-border/15 group-hover:border-background rounded-full border p-2">
+        <motion.div
+          animate={{ rotate: isHovered ? -90 : 0 }}
+          className="border-border/15 group-hover:border-background rounded-full border p-2"
+        >
           <ArrowDown className={cn(size === "sm" ? "size-6" : "size-6")} />
-        </div>
+        </motion.div>
       )}
     </ButtonPrimitive>
   );

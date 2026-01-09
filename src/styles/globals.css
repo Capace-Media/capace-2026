@@ -137,4 +137,8 @@
   .prose b {
     color: white !important;
   }
+  a:hover {
+    text-decoration: underline;
+    color: white;
+  }
 }
