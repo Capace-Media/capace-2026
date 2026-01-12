@@ -3,7 +3,7 @@ import { blockComponents } from ".";
 
 interface Props {
   block: NonNullable<
-    NonNullable<NonNullable<PageQuery["page"]>["sectionsContent"]>["blocks"]
+    NonNullable<NonNullable<PageQuery["page"]>["blocks"]>["blocks"]
   >[number];
 }
 export default function Block(props: Props) {
@@ -16,5 +16,6 @@ export default function Block(props: Props) {
     return null;
   }
 
-  return <BlockComponent data={props.block as any} />;
+  // @ts-expect-error - TypeScript can't narrow the union type properly here
+  return <BlockComponent data={props.block} />;
 }

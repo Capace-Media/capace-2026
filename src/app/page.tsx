@@ -4,8 +4,9 @@ import { notFound } from "next/navigation";
 
 export default async function Page() {
   const data = await getPage("hem");
+  console.log("data:", data);
 
-  const blocks = data?.sectionsContent?.blocks;
+  const blocks = data?.blocks?.blocks;
   if (!data) notFound();
   return (
     <>

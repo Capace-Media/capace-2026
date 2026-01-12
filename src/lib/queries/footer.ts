@@ -9,6 +9,24 @@ export const FooterQuery = graphql(`
         heading
         telephone
         textContent
+        socials {
+          facebook
+          instagram
+          linkedin
+          threads
+          tiktok
+          x
+        }
+        certifications {
+          nodes {
+            altText
+            mediaItemUrl
+            mediaDetails {
+              height
+              width
+            }
+          }
+        }
       }
     }
   }

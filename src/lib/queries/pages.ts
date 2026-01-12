@@ -1,167 +1,45 @@
 import { graphql } from "@/graphql/gql";
 
 export const PageQuery = graphql(`
-  query Page($slug: ID!) {
+  query Page($slug: ID = "hem") {
     page(id: $slug, idType: URI) {
-      id
       title
       slug
-      pageContent {
-        heroSize
-        medium {
-          heading_accent
-          heading_main
-          text
-        }
-        large {
-          ctaLabel
-          ctaUrl
-          heading
-          subheading
-          heroImage {
-            node {
-              altText
-              mediaDetails {
-                filePath
-                height
-                width
-              }
-            }
-          }
-        }
-      }
-      sectionsContent {
+      blocks {
         blocks {
-          ... on SectionsContentBlocksMediaAndTextLayout {
+          ... on BlocksBlocksMediaAndTextLayout {
             __typename
             mediaAndText {
-              accentedHeading
-              ctaButton
-              ctaLabel
-              ctaUrl
-              mainHeading
-              textContent
               image {
                 node {
-                  id
                   altText
-                  caption
-                  sourceUrl
+                  mediaItemUrl
                   mediaDetails {
-                    filePath
                     height
                     width
                   }
                 }
               }
-            }
-          }
-          ... on SectionsContentBlocksImageBannerLayout {
-            __typename
-            fullWidth
-            images {
-              nodes {
-                altText
-                caption
-                mediaDetails {
-                  filePath
-                  height
-                  width
-                }
-              }
-            }
-          }
-          ... on SectionsContentBlocksAnimatedCardsLayout {
-            __typename
-            ctaButton
-            ctaLabel
-            ctaUrl
-            headingAccent
-            headingMain
-            numberingStyle
-            cards {
-              card {
-                ctaButton
-                ctaLabel
-                ctaUrl
-                textContent
-                title
-                image {
-                  node {
-                    altText
-                    caption
-                    mediaDetails {
-                      filePath
-                      height
-                      width
+              button {
+                ariaLabel
+                __typename
+                label
+                url {
+                  externalLink
+                  internalLink {
+                    nodes {
+                      slug
                     }
                   }
+                  internalOrExternal
                 }
               }
-            }
-          }
-          ... on SectionsContentBlocksCaseCardGridLayout {
-            __typename
-            sortingOrder
-            cases {
-              edges {
-                node {
-                  id
-                }
+              accentHeading {
+                accent
+                main
               }
+              textContent
             }
-          }
-          ... on SectionsContentBlocksTestimonialsLayout {
-            __typename
-          }
-          ... on SectionsContentBlocksFaqLayout {
-            __typename
-          }
-          ... on SectionsContentBlocksLatestNewsGridLayout {
-            __typename
-          }
-          ... on SectionsContentBlocksCardsAndTextLayout {
-            __typename
-            headingAccent
-            headingMain
-            textContent
-            cards {
-              card {
-                ctaButton
-                ctaLabel
-                ctaUrl
-                textContent
-                title
-                image {
-                  node {
-                    altText
-                    caption
-                    mediaDetails {
-                      filePath
-                      height
-                      width
-                    }
-                  }
-                }
-              }
-            }
-          }
-          ... on SectionsContentBlocksServicesCardsLayout {
-            __typename
-            headingAccent
-            headingMain
-            textContent
-          }
-          ... on SectionsContentBlocksTimelineLayout {
-            __typename
-          }
-          ... on SectionsContentBlocksEmployeesLayout {
-            __typename
-            headingAccent
-            headingMain
-          }
-          ... on SectionsContentBlocksCollaboratorsBannerLayout {
-            __typename
           }
         }
       }
