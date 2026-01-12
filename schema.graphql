@@ -4742,7 +4742,7 @@ interface EnqueuedStylesheetConnectionPageInfo implements PageInfo & WPPageInfo 
 }
 
 """The faq type"""
-type Faq implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfBlocks {
+type Faq implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfBlocks & WithAcfFaqContent {
   """The ancestors of the content node."""
   ancestors(
     """
@@ -4815,6 +4815,8 @@ type Faq implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node &
     """The number of items to return before the referenced "before" cursor"""
     last: Int
   ): ContentNodeToEnqueuedStylesheetConnection
+  """Fields of the FaqContent ACF Field Group"""
+  faqContent: FaqContent
   """The id field matches the WP_Post-&gt;ID field."""
   faqId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
   """
@@ -4944,10 +4946,6 @@ type FaqContent implements AcfFieldGroup & AcfFieldGroupFields & FaqContent_Fiel
   Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;FaqContent&quot; Field Group
   """
   longAnswer: String
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;FaqContent&quot; Field Group
-  """
-  question: String
 }
 
 """
@@ -4964,10 +4962,6 @@ interface FaqContent_Fields implements AcfFieldGroup & AcfFieldGroupFields {
   Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;FaqContent&quot; Field Group
   """
   longAnswer: String
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;FaqContent&quot; Field Group
-  """
-  question: String
 }
 
 """
@@ -7232,19 +7226,15 @@ The &quot;PageContentLarge&quot; Field Group. Added to the Schema by &quot;WPGra
 """
 type PageContentLarge implements AcfFieldGroup & AcfFieldGroupFields & PageContentLarge_Fields {
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;PageContentLarge&quot; Field Group
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;PageContentLarge&quot; Field Group
   """
-  ctaLabel: String
-  """
-  Field of the &quot;url&quot; Field Type added to the schema as part of the &quot;PageContentLarge&quot; Field Group
-  """
-  ctaUrl: String
+  button: PageContentLargeButton
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
-  """
-  This is your H1. Underlined text will render with accent color and no underline.
-  """
+  """This is your H1. White, bold text."""
   heading: String
+  """Part of same heading, but in accent color."""
+  headingAccent: String
   """
   Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;PageContentLarge&quot; Field Group
   """
@@ -7254,23 +7244,59 @@ type PageContentLarge implements AcfFieldGroup & AcfFieldGroupFields & PageConte
 }
 
 """
+The &quot;PageContentLargeButton&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type PageContentLargeButton implements AcfFieldGroup & AcfFieldGroupFields & PageContentLargeButton_Fields {
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;PageContentLargeButton&quot; Field Group
+  """
+  ariaLabel: String
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;PageContentLargeButton&quot; Field Group
+  """
+  label: String
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;PageContentLargeButton&quot; Field Group
+  """
+  url: ReusableFieldsButtonUrl
+}
+
+"""
+Interface representing fields of the ACF &quot;PageContentLargeButton&quot; Field Group
+"""
+interface PageContentLargeButton_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;PageContentLargeButton&quot; Field Group
+  """
+  ariaLabel: String
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;PageContentLargeButton&quot; Field Group
+  """
+  label: String
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;PageContentLargeButton&quot; Field Group
+  """
+  url: ReusableFieldsButtonUrl
+}
+
+"""
 Interface representing fields of the ACF &quot;PageContentLarge&quot; Field Group
 """
 interface PageContentLarge_Fields implements AcfFieldGroup & AcfFieldGroupFields {
   """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;PageContentLarge&quot; Field Group
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;PageContentLarge&quot; Field Group
   """
-  ctaLabel: String
-  """
-  Field of the &quot;url&quot; Field Type added to the schema as part of the &quot;PageContentLarge&quot; Field Group
-  """
-  ctaUrl: String
+  button: PageContentLargeButton
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
-  """
-  This is your H1. Underlined text will render with accent color and no underline.
-  """
+  """This is your H1. White, bold text."""
   heading: String
+  """Part of same heading, but in accent color."""
+  headingAccent: String
   """
   Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;PageContentLarge&quot; Field Group
   """
@@ -7640,7 +7666,7 @@ enum PluginStatusEnum {
 """
 A chronological content entry typically used for blog posts, news articles, or similar date-based content.
 """
-type Post implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & NodeWithTrackbacks & Previewable & UniformResourceIdentifiable & WithAcfBlocks & WithAcfFaqContent & WithAcfReusableFields {
+type Post implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & NodeWithTrackbacks & Previewable & UniformResourceIdentifiable & WithAcfBlocks & WithAcfReusableFields {
   """The ancestors of the content node."""
   ancestors(
     """
@@ -7764,8 +7790,6 @@ type Post implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node 
     """Format of the field output"""
     format: PostObjectFieldFormatEnum
   ): String
-  """Fields of the FaqContent ACF Field Group"""
-  faqContent: FaqContent
   """
   Connection between the NodeWithFeaturedImage type and the MediaItem type
   """
@@ -9481,7 +9505,7 @@ type ReusableFieldsButtonUrl implements AcfFieldGroup & AcfFieldGroupFields & Re
   """
   Field of the &quot;true_false&quot; Field Type added to the schema as part of the &quot;ReusableFieldsButtonUrl&quot; Field Group
   """
-  internalOrExternal: Boolean
+  is_internal: Boolean
 }
 
 """
@@ -9514,7 +9538,7 @@ interface ReusableFieldsButtonUrl_Fields implements AcfFieldGroup & AcfFieldGrou
   """
   Field of the &quot;true_false&quot; Field Type added to the schema as part of the &quot;ReusableFieldsButtonUrl&quot; Field Group
   """
-  internalOrExternal: Boolean
+  is_internal: Boolean
 }
 
 """

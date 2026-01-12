@@ -20,6 +20,7 @@ export const FooterQuery = graphql(`
         certifications {
           nodes {
             altText
+            id
             mediaItemUrl
             mediaDetails {
               height

@@ -4139,7 +4139,7 @@ export type EnqueuedStylesheetConnectionPageInfo = {
 };
 
 /** The faq type */
-export type Faq = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfBlocks & {
+export type Faq = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfBlocks & WithAcfFaqContent & {
   __typename?: 'Faq';
   /**
    * The ancestors of the content node.
@@ -4170,6 +4170,8 @@ export type Faq = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & N
   enqueuedScripts?: Maybe<ContentNodeToEnqueuedScriptConnection>;
   /** Connection between the ContentNode type and the EnqueuedStylesheet type */
   enqueuedStylesheets?: Maybe<ContentNodeToEnqueuedStylesheetConnection>;
+  /** Fields of the FaqContent ACF Field Group */
+  faqContent?: Maybe<FaqContent>;
   /**
    * The id field matches the WP_Post-&gt;ID field.
    * @deprecated Deprecated in favor of the databaseId field
@@ -4315,8 +4317,6 @@ export type FaqContent = AcfFieldGroup & AcfFieldGroupFields & FaqContent_Fields
   fieldGroupName?: Maybe<Scalars['String']['output']>;
   /** Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;FaqContent&quot; Field Group */
   longAnswer?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;FaqContent&quot; Field Group */
-  question?: Maybe<Scalars['String']['output']>;
 };
 
 /** Interface representing fields of the ACF &quot;FaqContent&quot; Field Group */
@@ -4330,8 +4330,6 @@ export type FaqContent_Fields = {
   fieldGroupName?: Maybe<Scalars['String']['output']>;
   /** Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;FaqContent&quot; Field Group */
   longAnswer?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;FaqContent&quot; Field Group */
-  question?: Maybe<Scalars['String']['output']>;
 };
 
 /** Identifier types for retrieving a specific Faq. Specifies which unique attribute is used to find an exact Faq. */
@@ -6286,36 +6284,67 @@ export type PageContent = AcfFieldGroup & AcfFieldGroupFields & PageContent_Fiel
 /** The &quot;PageContentLarge&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
 export type PageContentLarge = AcfFieldGroup & AcfFieldGroupFields & PageContentLarge_Fields & {
   __typename?: 'PageContentLarge';
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;PageContentLarge&quot; Field Group */
-  ctaLabel?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;url&quot; Field Type added to the schema as part of the &quot;PageContentLarge&quot; Field Group */
-  ctaUrl?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;PageContentLarge&quot; Field Group */
+  button?: Maybe<PageContentLargeButton>;
   /**
    * The name of the field group
    * @deprecated Use __typename instead
    */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
-  /** This is your H1. Underlined text will render with accent color and no underline. */
+  /** This is your H1. White, bold text. */
   heading?: Maybe<Scalars['String']['output']>;
+  /** Part of same heading, but in accent color. */
+  headingAccent?: Maybe<Scalars['String']['output']>;
   /** Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;PageContentLarge&quot; Field Group */
   heroImage?: Maybe<AcfMediaItemConnectionEdge>;
   /** This is your H2. */
   subheading?: Maybe<Scalars['String']['output']>;
 };
 
-/** Interface representing fields of the ACF &quot;PageContentLarge&quot; Field Group */
-export type PageContentLarge_Fields = {
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;PageContentLarge&quot; Field Group */
-  ctaLabel?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;url&quot; Field Type added to the schema as part of the &quot;PageContentLarge&quot; Field Group */
-  ctaUrl?: Maybe<Scalars['String']['output']>;
+/** The &quot;PageContentLargeButton&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
+export type PageContentLargeButton = AcfFieldGroup & AcfFieldGroupFields & PageContentLargeButton_Fields & {
+  __typename?: 'PageContentLargeButton';
+  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;PageContentLargeButton&quot; Field Group */
+  ariaLabel?: Maybe<Scalars['String']['output']>;
   /**
    * The name of the field group
    * @deprecated Use __typename instead
    */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
-  /** This is your H1. Underlined text will render with accent color and no underline. */
+  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;PageContentLargeButton&quot; Field Group */
+  label?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;PageContentLargeButton&quot; Field Group */
+  url?: Maybe<ReusableFieldsButtonUrl>;
+};
+
+/** Interface representing fields of the ACF &quot;PageContentLargeButton&quot; Field Group */
+export type PageContentLargeButton_Fields = {
+  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;PageContentLargeButton&quot; Field Group */
+  ariaLabel?: Maybe<Scalars['String']['output']>;
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;PageContentLargeButton&quot; Field Group */
+  label?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;PageContentLargeButton&quot; Field Group */
+  url?: Maybe<ReusableFieldsButtonUrl>;
+};
+
+/** Interface representing fields of the ACF &quot;PageContentLarge&quot; Field Group */
+export type PageContentLarge_Fields = {
+  /** Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;PageContentLarge&quot; Field Group */
+  button?: Maybe<PageContentLargeButton>;
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars['String']['output']>;
+  /** This is your H1. White, bold text. */
   heading?: Maybe<Scalars['String']['output']>;
+  /** Part of same heading, but in accent color. */
+  headingAccent?: Maybe<Scalars['String']['output']>;
   /** Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;PageContentLarge&quot; Field Group */
   heroImage?: Maybe<AcfMediaItemConnectionEdge>;
   /** This is your H2. */
@@ -6645,7 +6674,7 @@ export enum PluginStatusEnum {
 }
 
 /** A chronological content entry typically used for blog posts, news articles, or similar date-based content. */
-export type Post = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & NodeWithTrackbacks & Previewable & UniformResourceIdentifiable & WithAcfBlocks & WithAcfFaqContent & WithAcfReusableFields & {
+export type Post = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & NodeWithTrackbacks & Previewable & UniformResourceIdentifiable & WithAcfBlocks & WithAcfReusableFields & {
   __typename?: 'Post';
   /**
    * The ancestors of the content node.
@@ -6692,8 +6721,6 @@ export type Post = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & 
   enqueuedStylesheets?: Maybe<ContentNodeToEnqueuedStylesheetConnection>;
   /** The excerpt of the post. */
   excerpt?: Maybe<Scalars['String']['output']>;
-  /** Fields of the FaqContent ACF Field Group */
-  faqContent?: Maybe<FaqContent>;
   /** Connection between the NodeWithFeaturedImage type and the MediaItem type */
   featuredImage?: Maybe<NodeWithFeaturedImageToMediaItemConnectionEdge>;
   /** The database identifier for the featured image node assigned to the content node */
@@ -8195,7 +8222,7 @@ export type ReusableFieldsButtonUrl = AcfFieldGroup & AcfFieldGroupFields & Reus
   /** Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;ReusableFieldsButtonUrl&quot; Field Group */
   internalLink?: Maybe<AcfContentNodeConnection>;
   /** Field of the &quot;true_false&quot; Field Type added to the schema as part of the &quot;ReusableFieldsButtonUrl&quot; Field Group */
-  internalOrExternal?: Maybe<Scalars['Boolean']['output']>;
+  is_internal?: Maybe<Scalars['Boolean']['output']>;
 };
 
 
@@ -8219,7 +8246,7 @@ export type ReusableFieldsButtonUrl_Fields = {
   /** Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;ReusableFieldsButtonUrl&quot; Field Group */
   internalLink?: Maybe<AcfContentNodeConnection>;
   /** Field of the &quot;true_false&quot; Field Type added to the schema as part of the &quot;ReusableFieldsButtonUrl&quot; Field Group */
-  internalOrExternal?: Maybe<Scalars['Boolean']['output']>;
+  is_internal?: Maybe<Scalars['Boolean']['output']>;
 };
 
 
@@ -13926,14 +13953,23 @@ export type EmployeesQuery = { __typename?: 'RootQuery', employees?: { __typenam
 export type FooterQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type FooterQuery = { __typename?: 'RootQuery', footer?: { __typename?: 'Footer', footerContent?: { __typename?: 'FooterContent', address?: string | null, email?: string | null, heading?: string | null, telephone?: string | null, textContent?: string | null, socials?: { __typename?: 'FooterContentSocials', facebook?: string | null, instagram?: string | null, linkedin?: string | null, threads?: string | null, tiktok?: string | null, x?: string | null } | null, certifications?: { __typename?: 'AcfMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null }> } | null } | null } | null };
+export type FooterQuery = { __typename?: 'RootQuery', footer?: { __typename?: 'Footer', footerContent?: { __typename?: 'FooterContent', address?: string | null, email?: string | null, heading?: string | null, telephone?: string | null, textContent?: string | null, socials?: { __typename?: 'FooterContentSocials', facebook?: string | null, instagram?: string | null, linkedin?: string | null, threads?: string | null, tiktok?: string | null, x?: string | null } | null, certifications?: { __typename?: 'AcfMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', altText?: string | null, id: string, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null }> } | null } | null } | null };
 
 export type PageQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['ID']['input']>;
 }>;
 
 
-export type PageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page', title?: string | null, slug?: string | null, blocks?: { __typename?: 'Blocks', blocks?: Array<
+export type PageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page', title?: string | null, slug?: string | null, pageContent?: { __typename?: 'PageContent', large?: { __typename?: 'PageContentLarge', heading?: string | null, headingAccent?: string | null, subheading?: string | null, heroImage?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null, button?: { __typename?: 'PageContentLargeButton', ariaLabel?: string | null, label?: string | null, url?: { __typename?: 'ReusableFieldsButtonUrl', externalLink?: string | null, is_internal?: boolean | null, internalLink?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
+                | { __typename?: 'Case', slug?: string | null }
+                | { __typename?: 'Employee', slug?: string | null }
+                | { __typename?: 'Faq', slug?: string | null }
+                | { __typename?: 'MediaItem', slug?: string | null }
+                | { __typename?: 'Page', slug?: string | null }
+                | { __typename?: 'Post', slug?: string | null }
+                | { __typename?: 'Service', slug?: string | null }
+                | { __typename?: 'Testimonial', slug?: string | null }
+              > } | null } | null } | null } | null } | null, blocks?: { __typename?: 'Blocks', blocks?: Array<
         | { __typename?: 'BlocksBlocksAnimatedCardsLayout' }
         | { __typename?: 'BlocksBlocksCardsAndTextLayout' }
         | { __typename?: 'BlocksBlocksCaseCardGridLayout' }
@@ -13943,7 +13979,7 @@ export type PageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page'
         | { __typename?: 'BlocksBlocksFaqLayout' }
         | { __typename?: 'BlocksBlocksImageBannerLayout' }
         | { __typename?: 'BlocksBlocksLatestNewsGridLayout' }
-        | { __typename: 'BlocksBlocksMediaAndTextLayout', mediaAndText?: { __typename?: 'BlocksBlocksMediaAndText', textContent?: string | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null, button?: { __typename: 'BlocksBlocksMediaAndTextButton', ariaLabel?: string | null, label?: string | null, url?: { __typename?: 'ReusableFieldsButtonUrl', externalLink?: string | null, internalOrExternal?: boolean | null, internalLink?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
+        | { __typename: 'BlocksBlocksMediaAndTextLayout', mediaAndText?: { __typename?: 'BlocksBlocksMediaAndText', textContent?: string | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null, button?: { __typename: 'BlocksBlocksMediaAndTextButton', ariaLabel?: string | null, label?: string | null, url?: { __typename?: 'ReusableFieldsButtonUrl', externalLink?: string | null, internalLink?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
                     | { __typename?: 'Case', slug?: string | null }
                     | { __typename?: 'Employee', slug?: string | null }
                     | { __typename?: 'Faq', slug?: string | null }
@@ -14010,6 +14046,7 @@ export const FooterDocument = new TypedDocumentString(`
       certifications {
         nodes {
           altText
+          id
           mediaItemUrl
           mediaDetails {
             height
@@ -14026,6 +14063,36 @@ export const PageDocument = new TypedDocumentString(`
   page(id: $slug, idType: URI) {
     title
     slug
+    pageContent {
+      large {
+        heading
+        headingAccent
+        subheading
+        heroImage {
+          node {
+            altText
+            mediaItemUrl
+            mediaDetails {
+              height
+              width
+            }
+          }
+        }
+        button {
+          ariaLabel
+          label
+          url {
+            externalLink
+            internalLink {
+              nodes {
+                slug
+              }
+            }
+            is_internal
+          }
+        }
+      }
+    }
     blocks {
       blocks {
         ... on BlocksBlocksMediaAndTextLayout {
@@ -14052,7 +14119,6 @@ export const PageDocument = new TypedDocumentString(`
                     slug
                   }
                 }
-                internalOrExternal
               }
             }
             accentHeading {

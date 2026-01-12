@@ -146,6 +146,7 @@ export default async function Footer() {
           <div className="flex flex-1 flex-wrap items-center justify-center gap-4 pb-10 lg:items-end">
             {data?.certifications?.nodes.map((image) => (
               <Image
+                key={image.id}
                 src={image.mediaItemUrl || ""}
                 alt={image.altText || ""}
                 width={100}

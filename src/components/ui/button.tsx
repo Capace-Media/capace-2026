@@ -17,9 +17,9 @@ const buttonVariants = cva(
         outline:
           "border-border shadow-[0_0_0px_4px_rgba(0,0,0,1),0_0_0px_5px_var(--accent)] bg-input/30 hover:bg-input/50 hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground",
         secondary:
-          "bg-background shadow-[0_0_0px_4px_rgba(0,0,0,1),0_0_0px_5px_rgba(255,255,255,0.2)] text-foreground border border-border/15 hover:bg-secondary/20 aria-expanded:bg-secondary aria-expanded:text-secondary-foreground",
+          "bg-background shadow-[0_0_0px_4px_rgba(0,0,0,1),0_0_0px_5px_rgba(255,255,255,1)] text-foreground border border-border/15 hover:bg-secondary/20 aria-expanded:bg-secondary aria-expanded:text-secondary-foreground",
         secondaryAccent:
-          "bg-background shadow-[0_0_0px_4px_rgba(0,0,0,1),0_0_0px_5px_rgba(255,255,255,0.2)] text-accent border border-border/15 hover:bg-accent hover:text-background aria-expanded:bg-secondary aria-expanded:text-secondary-foreground",
+          "bg-background shadow-[0_0_0px_4px_rgba(0,0,0,1),0_0_0px_5px_rgba(45,45,45,1)] text-accent border border-border/15 hover:bg-accent hover:text-background aria-expanded:bg-secondary aria-expanded:text-secondary-foreground",
         ghost:
           "hover:bg-muted/20 hover:text-foreground dark:hover:bg-muted/50 aria-expanded:bg-muted aria-expanded:text-foreground",
         destructive:

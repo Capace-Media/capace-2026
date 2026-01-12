@@ -5,6 +5,36 @@ export const PageQuery = graphql(`
     page(id: $slug, idType: URI) {
       title
       slug
+      pageContent {
+        large {
+          heading
+          headingAccent
+          subheading
+          heroImage {
+            node {
+              altText
+              mediaItemUrl
+              mediaDetails {
+                height
+                width
+              }
+            }
+          }
+          button {
+            ariaLabel
+            label
+            url {
+              externalLink
+              internalLink {
+                nodes {
+                  slug
+                }
+              }
+              is_internal
+            }
+          }
+        }
+      }
       blocks {
         blocks {
           ... on BlocksBlocksMediaAndTextLayout {
@@ -31,7 +61,6 @@ export const PageQuery = graphql(`
                       slug
                     }
                   }
-                  internalOrExternal
                 }
               }
               accentHeading {

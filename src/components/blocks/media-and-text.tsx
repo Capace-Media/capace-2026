@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import HeadingWithAccent from "../shared/heading-with-accent";
+import ExternalOrInternalLink from "../shared/external-or-internal-link";
 
 interface Props {
   data: Extract<
@@ -20,7 +21,7 @@ export default function MediaAndText(props: Props) {
   const button = props.data.mediaAndText?.button;
 
   return (
-    <section className="grid grid-cols-1 grid-rows-3 gap-6 lg:grid-cols-2 lg:grid-rows-[auto_1fr_1fr] lg:gap-12">
+    <section className="container grid grid-cols-1 grid-rows-3 gap-6 lg:grid-cols-2 lg:grid-rows-[auto_1fr_1fr] lg:gap-12">
       <HeadingWithAccent
         accentedHeading={data?.accentHeading?.accent || ""}
         mainHeading={data?.accentHeading?.main || ""}
@@ -37,24 +38,17 @@ export default function MediaAndText(props: Props) {
         {parse(data?.textContent || "")}
       </div>
       <div className="order-4 flex justify-center py-10 lg:justify-start">
-        {button?.url && (
-          <Button
-            withArrow
-            variant={"secondaryAccent"}
-            nativeButton={false}
-            render={
-              <Link
-                href={
-                  button.url.externalLink ||
-                  button.url.internalLink?.nodes?.[0]?.slug ||
-                  "#"
-                }
-                className="hover:no-underline"
-              />
+        {button?.url && button.label && (
+          <ExternalOrInternalLink
+            urlOrSlug={
+              button.url.externalLink ||
+              button.url.internalLink?.nodes?.[0]?.slug ||
+              ""
             }
-          >
-            {button?.label}
-          </Button>
+            isExternal={!!button.url.externalLink}
+            ariaLabel={button.ariaLabel || ""}
+            label={button.label}
+          />
         )}
       </div>
     </section>
