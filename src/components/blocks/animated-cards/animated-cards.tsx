@@ -23,13 +23,9 @@ export default function AnimatedCards(props: Props) {
         {props.data.cards?.map((card, index) => {
           const zIndex = (props.data.cards?.length || 1) - index;
           return (
-            <AnimatedCard
-              key={index}
-              card={card}
-              cards={props.data.cards}
-              index={index}
-              zIndex={zIndex}
-            />
+            <div className="flex flex-col border border-green-300" key={index}>
+              <AnimatedCard card={card} index={index} zIndex={zIndex} />
+            </div>
           );
         })}
       </div>

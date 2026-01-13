@@ -10,7 +10,7 @@ export default function useTriggerCardAnimation() {
     if (!ref.current || triggered) return;
 
     const rect = ref.current.getBoundingClientRect();
-    const viewportMid = window.innerHeight * 0.5;
+    const viewportMid = window.innerHeight * 0.3;
 
     const elementMid = rect.top + rect.height / 2;
 
