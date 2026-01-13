@@ -1,9 +1,7 @@
 import type { PageQuery } from "@/graphql/graphql";
 import Block from "./block";
 
-type Blocks = NonNullable<
-  NonNullable<PageQuery["page"]>["sectionsContent"]
->["blocks"];
+type Blocks = NonNullable<NonNullable<PageQuery["page"]>["blocks"]>["blocks"];
 
 interface Props {
   blocks: Blocks | undefined | null;

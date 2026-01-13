@@ -70,6 +70,9 @@ export const PageQuery = graphql(`
               textContent
             }
           }
+          ... on BlocksBlocksCollaboratorsBannerLayout {
+            __typename
+          }
         }
       }
     }

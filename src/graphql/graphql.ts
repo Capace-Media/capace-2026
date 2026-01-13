@@ -1932,6 +1932,19 @@ export type CollaboratorContent_Fields = {
   fieldGroupName?: Maybe<Scalars['String']['output']>;
 };
 
+export type Collaborators = AcfOptionsPage & Node & WithAcfBlocks & WithAcfCollaboratorContent & {
+  __typename?: 'Collaborators';
+  /** Fields of the Blocks ACF Field Group */
+  blocks?: Maybe<Blocks>;
+  /** Fields of the CollaboratorContent ACF Field Group */
+  collaboratorContent?: Maybe<CollaboratorContent>;
+  /** The globally unique ID for the object */
+  id: Scalars['ID']['output'];
+  menuTitle?: Maybe<Scalars['String']['output']>;
+  pageTitle?: Maybe<Scalars['String']['output']>;
+  parentId?: Maybe<Scalars['String']['output']>;
+};
+
 /** A response or reaction to content submitted by users. Comments are typically associated with a specific content entry. */
 export type Comment = DatabaseIdentifier & Node & UniformResourceIdentifiable & WithAcfBlocks & {
   __typename?: 'Comment';
@@ -8787,7 +8800,7 @@ export type RootMutationUpdateUserArgs = {
 };
 
 /** The root entry point into the Graph */
-export type RootQuery = WithAcfOptionsPageFooter & {
+export type RootQuery = WithAcfOptionsPageCollaborators & WithAcfOptionsPageFooter & {
   __typename?: 'RootQuery';
   /** Entry point to get all settings for the site */
   allSettings?: Maybe<Settings>;
@@ -8808,6 +8821,7 @@ export type RootQuery = WithAcfOptionsPageFooter & {
   categories?: Maybe<RootQueryToCategoryConnection>;
   /** A 0bject */
   category?: Maybe<Category>;
+  collaborators?: Maybe<Collaborators>;
   /** Returns a Comment */
   comment?: Maybe<Comment>;
   /** Connection between the RootQuery type and the Comment type */
@@ -13887,6 +13901,12 @@ export type WithAcfBlocks = {
   blocks?: Maybe<Blocks>;
 };
 
+/** Provides access to fields of the &quot;CollaboratorContent&quot; ACF Field Group via the &quot;collaboratorContent&quot; field */
+export type WithAcfCollaboratorContent = {
+  /** Fields of the CollaboratorContent ACF Field Group */
+  collaboratorContent?: Maybe<CollaboratorContent>;
+};
+
 /** Provides access to fields of the &quot;EmployeeContent&quot; ACF Field Group via the &quot;employeeContent&quot; field */
 export type WithAcfEmployeeContent = {
   /** Fields of the EmployeeContent ACF Field Group */
@@ -13903,6 +13923,11 @@ export type WithAcfFaqContent = {
 export type WithAcfFooterContent = {
   /** Fields of the FooterContent ACF Field Group */
   footerContent?: Maybe<FooterContent>;
+};
+
+/** Access point for the &quot;Collaborators&quot; ACF Options Page */
+export type WithAcfOptionsPageCollaborators = {
+  collaborators?: Maybe<Collaborators>;
 };
 
 /** Access point for the &quot;Footer&quot; ACF Options Page */
@@ -13945,10 +13970,10 @@ export type WritingSettings = {
   useSmilies?: Maybe<Scalars['Boolean']['output']>;
 };
 
-export type EmployeesQueryVariables = Exact<{ [key: string]: never; }>;
+export type CollaboratorsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type EmployeesQuery = { __typename?: 'RootQuery', employees?: { __typename?: 'RootQueryToEmployeeConnection', nodes: Array<{ __typename?: 'Employee', title?: string | null }> } | null };
+export type CollaboratorsQuery = { __typename?: 'RootQuery', collaborators?: { __typename?: 'Collaborators', collaboratorContent?: { __typename?: 'CollaboratorContent', collaborators?: Array<{ __typename?: 'CollaboratorContentCollaborators', url?: string | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null } } | null } | null> | null } | null } | null };
 
 export type FooterQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -13973,7 +13998,7 @@ export type PageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page'
         | { __typename?: 'BlocksBlocksAnimatedCardsLayout' }
         | { __typename?: 'BlocksBlocksCardsAndTextLayout' }
         | { __typename?: 'BlocksBlocksCaseCardGridLayout' }
-        | { __typename?: 'BlocksBlocksCollaboratorsBannerLayout' }
+        | { __typename: 'BlocksBlocksCollaboratorsBannerLayout' }
         | { __typename?: 'BlocksBlocksContactFormLayout' }
         | { __typename?: 'BlocksBlocksEmployeesLayout' }
         | { __typename?: 'BlocksBlocksFaqLayout' }
@@ -14017,15 +14042,27 @@ export class TypedDocumentString<TResult, TVariables>
   }
 }
 
-export const EmployeesDocument = new TypedDocumentString(`
-    query Employees {
-  employees {
-    nodes {
-      title
+export const CollaboratorsDocument = new TypedDocumentString(`
+    query Collaborators {
+  collaborators {
+    collaboratorContent {
+      collaborators {
+        image {
+          node {
+            altText
+            mediaItemUrl
+            mediaDetails {
+              width
+              height
+            }
+          }
+        }
+        url
+      }
     }
   }
 }
-    `) as unknown as TypedDocumentString<EmployeesQuery, EmployeesQueryVariables>;
+    `) as unknown as TypedDocumentString<CollaboratorsQuery, CollaboratorsQueryVariables>;
 export const FooterDocument = new TypedDocumentString(`
     query Footer {
   footer {
@@ -14127,6 +14164,9 @@ export const PageDocument = new TypedDocumentString(`
             }
             textContent
           }
+        }
+        ... on BlocksBlocksCollaboratorsBannerLayout {
+          __typename
         }
       }
     }

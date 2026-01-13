@@ -2177,6 +2177,18 @@ interface CollaboratorContent_Fields implements AcfFieldGroup & AcfFieldGroupFie
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
 }
 
+type Collaborators implements AcfOptionsPage & Node & WithAcfBlocks & WithAcfCollaboratorContent {
+  """Fields of the Blocks ACF Field Group"""
+  blocks: Blocks
+  """Fields of the CollaboratorContent ACF Field Group"""
+  collaboratorContent: CollaboratorContent
+  """The globally unique ID for the object"""
+  id: ID!
+  menuTitle: String
+  pageTitle: String
+  parentId: String
+}
+
 """
 A response or reaction to content submitted by users. Comments are typically associated with a specific content entry.
 """
@@ -9968,7 +9980,7 @@ type RootMutation {
 }
 
 """The root entry point into the Graph"""
-type RootQuery implements WithAcfOptionsPageFooter {
+type RootQuery implements WithAcfOptionsPageCollaborators & WithAcfOptionsPageFooter {
   """Entry point to get all settings for the site"""
   allSettings: Settings
   """An object of the case Type. """
@@ -10058,6 +10070,7 @@ type RootQuery implements WithAcfOptionsPageFooter {
     """Type of unique identifier to fetch by. Default is Global ID"""
     idType: CategoryIdType
   ): Category
+  collaborators: Collaborators
   """Returns a Comment"""
   comment(
     """Unique identifier for the comment node."""
@@ -15759,6 +15772,14 @@ interface WithAcfBlocks {
 }
 
 """
+Provides access to fields of the &quot;CollaboratorContent&quot; ACF Field Group via the &quot;collaboratorContent&quot; field
+"""
+interface WithAcfCollaboratorContent {
+  """Fields of the CollaboratorContent ACF Field Group"""
+  collaboratorContent: CollaboratorContent
+}
+
+"""
 Provides access to fields of the &quot;EmployeeContent&quot; ACF Field Group via the &quot;employeeContent&quot; field
 """
 interface WithAcfEmployeeContent {
@@ -15780,6 +15801,11 @@ Provides access to fields of the &quot;FooterContent&quot; ACF Field Group via t
 interface WithAcfFooterContent {
   """Fields of the FooterContent ACF Field Group"""
   footerContent: FooterContent
+}
+
+"""Access point for the &quot;Collaborators&quot; ACF Options Page"""
+interface WithAcfOptionsPageCollaborators {
+  collaborators: Collaborators
 }
 
 """Access point for the &quot;Footer&quot; ACF Options Page"""
