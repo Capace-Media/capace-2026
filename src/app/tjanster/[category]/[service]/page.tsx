@@ -8,5 +8,5 @@ export default async function Page(
   const data = await getServicePage(service);
   console.log("data:", data);
 
-  return <div>{data?.title}</div>;
+  return <div></div>;
 }
