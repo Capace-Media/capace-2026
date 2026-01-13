@@ -1,4 +1,4 @@
-import AnimatedCards from "./animated-cards";
+import AnimatedCards from "./animated-cards/animated-cards";
 import CollaboratorsBannerWrapper from "./collaborators-banner/collaborators-banner-wrapper";
 import MediaAndText from "./media-and-text";
 export const blockComponents = {

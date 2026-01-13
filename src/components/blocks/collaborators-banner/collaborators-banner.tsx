@@ -53,7 +53,7 @@ export default function CollaboratorsBanner(props: Props) {
   if (!props.items) return null;
 
   return (
-    <div className="overflow-hidden">
+    <div className="border-b-muted border-t-muted my-14 overflow-hidden border-t border-b">
       <div ref={ref} className="flex">
         {/* Två listor för att skapa infinityeffekt */}
         {props.items.map((item, i) => (

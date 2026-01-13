@@ -25,7 +25,7 @@ export const CollaboratorImage = (props: Props) => {
         <Image
           src={props.imgSrc}
           alt={props.altText}
-          objectFit="contain"
+          className="object-contain"
           fill
         />
       </a>
@@ -36,9 +36,9 @@ export const CollaboratorImage = (props: Props) => {
         <Image
           src={"/misc/diamond.svg"}
           alt=""
-          objectFit="contain"
           width={20}
           height={20}
+          className="object-contain"
         />
       </div>
     </div>

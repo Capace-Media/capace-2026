@@ -31,7 +31,7 @@ export default function MediaAndText(props: Props) {
           src={image?.mediaItemUrl || ""}
           alt={image?.altText || "Dekorativ bild"}
           fill
-          objectFit="cover"
+          className="object-cover"
         />
       </div>
       <div className="prose prose-invert italic-accent order-3 flex flex-col">

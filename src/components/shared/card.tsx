@@ -12,12 +12,12 @@ interface Props {
 }
 export default function Card(props: Props) {
   return (
-    <div className="bg-background flex flex-col items-center rounded-lg border p-8">
+    <div className="bg-background border-muted flex h-100 max-w-100 flex-col items-center rounded-lg border p-8">
       <div className="text-accent items-center justify-center rounded-full p-4 text-sm font-bold">
         {props.index}
       </div>
-      <h4>{props.title}</h4>
-      <p>{props.textContent}</p>
+      <h3 className="text-3xl font-bold">{props.title}</h3>
+      <p className="text-muted-foreground">{props.textContent}</p>
       {/* {props.buttonUrl && props.buttonLabel && (
         <Button render={<Link></Link>}>{props.buttonLabel}</Button>
       )} */}

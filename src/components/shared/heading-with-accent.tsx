@@ -9,7 +9,7 @@ export default function HeadingWithAccent(props: Props) {
         <span className="font-caveat text-accent block lowercase">
           {props.accentedHeading}
         </span>
-        <span className="block font-bold capitalize">{props.mainHeading}</span>
+        <span className="block font-bold">{props.mainHeading}</span>
       </h3>
     </div>
   );
