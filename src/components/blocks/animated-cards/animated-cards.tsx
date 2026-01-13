@@ -20,14 +20,12 @@ export default function AnimatedCards(props: Props) {
         mainHeading={props.data.accentHeading?.main || ""}
       />
       <div className="flex flex-col py-8 lg:flex-row">
-        {props.data.cards?.map((card, index) => {
-          const zIndex = (props.data.cards?.length || 1) - index;
-          return (
-            <div className="flex flex-col border border-green-300" key={index}>
-              <AnimatedCard card={card} index={index} zIndex={zIndex} />
-            </div>
-          );
-        })}
+        <AnimatedCard
+          card={props.data.cards?.[0]}
+          index={0}
+          zIndex={props.data.cards?.length || 10}
+          cards={props.data.cards}
+        />
       </div>
     </section>
   );

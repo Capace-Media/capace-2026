@@ -7,49 +7,44 @@ interface Props {
   card: any;
   index: number;
   zIndex: number;
+  cards: any;
 }
 
 export function AnimatedCard(props: Props) {
-  const { ref, triggered } = useTriggerCardAnimation();
-  const [cardHeight, setCardHeight] = useState(0);
   const CARD_OFFSET = 40;
 
-  useLayoutEffect(() => {
-    if (!ref.current) return;
-    setCardHeight(ref.current.getBoundingClientRect().height);
-  }, []);
+  const nextCard = props.cards[props.index + 1];
 
   return (
     <motion.div
-      key={cardHeight}
-      ref={ref}
       initial={{
-        y: props.index === 0 ? 0 : -cardHeight * props.index,
+        y: props.index === 0 ? 0 : -400,
       }}
-      animate={
-        triggered
-          ? { y: props.index === 0 ? 0 : -CARD_OFFSET * props.index }
-          : {
-              y:
-                props.index === 0
-                  ? 0
-                  : (-cardHeight + CARD_OFFSET) * props.index,
-            }
-      }
       transition={{ duration: 0.5, ease: "easeOut" }}
       className="flex-1"
       style={{ zIndex: props.zIndex }}
     >
       {props.zIndex}
-      <Card
-        index={props.index + 1}
-        imgSrc={props.card?.card?.image?.node.mediaItemUrl || ""}
-        altText={props.card?.card?.image?.node.altText || "Dekorativ bild"}
-        title={props.card?.card?.title || ""}
-        textContent={props.card?.card?.textContent || ""}
-        buttonLabel={null}
-        buttonUrl={null}
-      />
+
+      <div style={{ position: "relative", zIndex: props.zIndex }}>
+        <Card
+          index={props.index + 1}
+          imgSrc={props.card?.card?.image?.node.mediaItemUrl || ""}
+          altText={props.card?.card?.image?.node.altText || "Dekorativ bild"}
+          title={props.card?.card?.title || ""}
+          textContent={props.card?.card?.textContent || ""}
+          buttonLabel={null}
+          buttonUrl={null}
+        />
+      </div>
+      {nextCard && (
+        <AnimatedCard
+          card={nextCard}
+          cards={props.cards}
+          index={props.index + 1}
+          zIndex={props.zIndex - 1}
+        />
+      )}
     </motion.div>
   );
 }
