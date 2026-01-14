@@ -109,6 +109,21 @@ export const PageQuery = graphql(`
               }
             }
           }
+          ... on BlocksBlocksFaqLayout {
+            __typename
+            questions {
+              nodes {
+                ... on Faq {
+                  id
+                  faqContent {
+                    answer
+                    longAnswer
+                  }
+                  title
+                }
+              }
+            }
+          }
           ... on BlocksBlocksAnimatedCardsLayout {
             __typename
             accentHeading {

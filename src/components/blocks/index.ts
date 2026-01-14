@@ -1,6 +1,7 @@
 import AnimatedCards from "./animated-cards/animated-cards";
 import CasesGrid from "./cases-grid";
 import CollaboratorsBannerWrapper from "./collaborators-banner/collaborators-banner-wrapper";
+import Faq from "./faq";
 import MediaAndText from "./media-and-text";
 export const blockComponents = {
   BlocksBlocksMediaAndTextLayout: MediaAndText,
@@ -10,7 +11,7 @@ export const blockComponents = {
   BlocksBlocksCollaboratorsBannerLayout: CollaboratorsBannerWrapper,
   BlocksBlocksContactFormLayout: null,
   BlocksBlocksEmployeesLayout: null,
-  BlocksBlocksFaqLayout: null,
+  BlocksBlocksFaqLayout: Faq,
   BlocksBlocksImageBannerLayout: null,
   BlocksBlocksLatestNewsGridLayout: null,
   BlocksBlocksServicesCardsLayout: null,

@@ -42,7 +42,7 @@ export default function Card(props: Props) {
         <p className="text-muted-foreground text-center text-sm font-light">
           {props.textContent}
         </p>
-        {props.buttonProps && (
+        {props.buttonProps?.label && props.buttonProps?.url && (
           <ExternalOrInternalLink buttonProps={props.buttonProps} />
         )}
       </div>

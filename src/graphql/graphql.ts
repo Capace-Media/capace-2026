@@ -445,6 +445,17 @@ export type BlocksBlocksFaqLayout = AcfFieldGroup & AcfFieldGroupFields & Blocks
    * @deprecated Use __typename instead
    */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;BlocksBlocksFaqLayout&quot; Field Group */
+  questions?: Maybe<AcfContentNodeConnection>;
+};
+
+
+/** The &quot;BlocksBlocksFaqLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
+export type BlocksBlocksFaqLayoutQuestionsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** Interface representing fields of the ACF &quot;BlocksBlocksFaqLayout&quot; Field Group */
@@ -454,6 +465,17 @@ export type BlocksBlocksFaqLayout_Fields = {
    * @deprecated Use __typename instead
    */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;BlocksBlocksFaqLayout&quot; Field Group */
+  questions?: Maybe<AcfContentNodeConnection>;
+};
+
+
+/** Interface representing fields of the ACF &quot;BlocksBlocksFaqLayout&quot; Field Group */
+export type BlocksBlocksFaqLayout_FieldsQuestionsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** The &quot;BlocksBlocksImageBannerLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
@@ -14023,7 +14045,16 @@ export type PageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page'
         | { __typename: 'BlocksBlocksCollaboratorsBannerLayout' }
         | { __typename?: 'BlocksBlocksContactFormLayout' }
         | { __typename?: 'BlocksBlocksEmployeesLayout' }
-        | { __typename?: 'BlocksBlocksFaqLayout' }
+        | { __typename: 'BlocksBlocksFaqLayout', questions?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
+              | { __typename?: 'Case' }
+              | { __typename?: 'Employee' }
+              | { __typename?: 'Faq', id: string, title?: string | null, faqContent?: { __typename?: 'FaqContent', answer?: string | null, longAnswer?: string | null } | null }
+              | { __typename?: 'MediaItem' }
+              | { __typename?: 'Page' }
+              | { __typename?: 'Post' }
+              | { __typename?: 'Service' }
+              | { __typename?: 'Testimonial' }
+            > } | null }
         | { __typename?: 'BlocksBlocksImageBannerLayout' }
         | { __typename?: 'BlocksBlocksLatestNewsGridLayout' }
         | { __typename: 'BlocksBlocksMediaAndTextLayout', mediaAndText?: { __typename?: 'BlocksBlocksMediaAndText', textContent?: string | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null, button?: { __typename: 'BlocksBlocksMediaAndTextButton', ariaLabel?: string | null, label?: string | null, url?: { __typename?: 'ReusableFieldsButtonUrl', externalLink?: string | null, internalLink?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
@@ -14222,6 +14253,21 @@ export const PageDocument = new TypedDocumentString(`
                     name
                   }
                 }
+              }
+            }
+          }
+        }
+        ... on BlocksBlocksFaqLayout {
+          __typename
+          questions {
+            nodes {
+              ... on Faq {
+                id
+                faqContent {
+                  answer
+                  longAnswer
+                }
+                title
               }
             }
           }

@@ -5,7 +5,7 @@ import Link from "next/link";
 export default async function Footer() {
   const data = await getFooterData();
   return (
-    <footer className="bg-accent text-background relative px-4 py-10 text-sm md:px-20">
+    <footer className="bg-accent text-background relative z-100 px-4 py-10 text-sm md:px-20">
       <div className="absolute top-0 left-0 h-14 w-14 -translate-y-full lg:h-40 lg:w-40">
         <Image src={"/misc/footer-corner.svg"} fill alt="" aria-hidden="true" />
       </div>

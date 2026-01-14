@@ -480,6 +480,23 @@ The &quot;BlocksBlocksFaqLayout&quot; Field Group. Added to the Schema by &quot;
 type BlocksBlocksFaqLayout implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksFaqLayout_Fields & BlocksBlocks_Layout {
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;BlocksBlocksFaqLayout&quot; Field Group
+  """
+  questions(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+  ): AcfContentNodeConnection
 }
 
 """
@@ -488,6 +505,23 @@ Interface representing fields of the ACF &quot;BlocksBlocksFaqLayout&quot; Field
 interface BlocksBlocksFaqLayout_Fields implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocks_Layout {
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;BlocksBlocksFaqLayout&quot; Field Group
+  """
+  questions(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+  ): AcfContentNodeConnection
 }
 
 """
