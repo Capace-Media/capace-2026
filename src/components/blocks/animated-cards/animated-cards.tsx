@@ -14,18 +14,15 @@ interface Props {
 
 export default function AnimatedCards(props: Props) {
   return (
-    <section className="container">
+    <section className="container flex flex-col items-center">
       <HeadingWithAccent
         accentedHeading={props.data.accentHeading?.accent || ""}
         mainHeading={props.data.accentHeading?.main || ""}
       />
-      <div className="flex flex-col py-8 lg:flex-row">
-        <AnimatedCard
-          card={props.data.cards?.[0]}
-          index={0}
-          zIndex={props.data.cards?.length || 10}
-          cards={props.data.cards}
-        />
+      <div className="flex flex-col border py-8 sm:flex-row">
+        {props.data.cards?.map((card, index) => (
+          <AnimatedCard card={card} index={index + 1} key={index} />
+        ))}
       </div>
     </section>
   );

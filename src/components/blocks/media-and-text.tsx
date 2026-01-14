@@ -22,10 +22,13 @@ export default function MediaAndText(props: Props) {
 
   return (
     <section className="container grid grid-cols-1 grid-rows-3 gap-6 lg:grid-cols-2 lg:grid-rows-[auto_1fr_1fr] lg:gap-12">
-      <HeadingWithAccent
-        accentedHeading={data?.accentHeading?.accent || ""}
-        mainHeading={data?.accentHeading?.main || ""}
-      />
+      <div className="order-1">
+        <HeadingWithAccent
+          textAlign="left"
+          accentedHeading={data?.accentHeading?.accent || ""}
+          mainHeading={data?.accentHeading?.main || ""}
+        />
+      </div>
       <div className="relative order-2 col-span-1 row-span-3 flex lg:order-0">
         <Image
           src={image?.mediaItemUrl || ""}
