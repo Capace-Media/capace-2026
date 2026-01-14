@@ -1,8 +1,12 @@
 import Card from "@/components/shared/card";
+import type {
+  BlocksBlocksCards,
+  ReusableFieldsButton_Fields,
+} from "@/graphql/graphql";
 import { motion } from "motion/react";
 
 interface Props {
-  card: any;
+  card: BlocksBlocksCards;
   index: number;
   zIndex: number;
 }
@@ -19,9 +23,8 @@ export function AnimatedCard(props: Props) {
         altText={props.card?.card?.image?.node.altText || "Dekorativ bild"}
         title={props.card?.card?.title || ""}
         textContent={props.card?.card?.textContent || ""}
-        buttonLabel={null}
-        buttonUrl={null}
         numbered
+        buttonProps={props.card.card?.button as ReusableFieldsButton_Fields}
       />
     </motion.div>
   );

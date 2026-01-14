@@ -1,4 +1,4 @@
-import type { PageQuery } from "@/graphql/graphql";
+import type { PageQuery, ReusableFieldsButton_Fields } from "@/graphql/graphql";
 import Image from "next/image";
 import parse from "html-react-parser";
 import ExternalOrInternalLink from "../shared/external-or-internal-link";
@@ -40,14 +40,7 @@ const HeroLarge = (data: Props) => {
           {parse(heroData?.subheading || "")}
         </div>
         <ExternalOrInternalLink
-          urlOrSlug={
-            heroData?.button?.url?.externalLink ||
-            heroData?.button?.url?.internalLink?.nodes[0]?.slug ||
-            ""
-          }
-          isExternal={!!heroData?.button?.url?.externalLink}
-          ariaLabel={heroData?.button?.ariaLabel || ""}
-          label={heroData?.button?.label || ""}
+          buttonProps={heroData?.button as ReusableFieldsButton_Fields}
         />
       </div>
     </section>

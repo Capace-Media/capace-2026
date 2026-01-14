@@ -1,8 +1,6 @@
-import type { PageQuery } from "@/graphql/graphql";
+import type { PageQuery, ReusableFieldsButton_Fields } from "@/graphql/graphql";
 import parse from "html-react-parser";
 import Image from "next/image";
-import { Button } from "../ui/button";
-import Link from "next/link";
 import HeadingWithAccent from "../shared/heading-with-accent";
 import ExternalOrInternalLink from "../shared/external-or-internal-link";
 
@@ -43,14 +41,7 @@ export default function MediaAndText(props: Props) {
       <div className="order-4 flex justify-center py-10 lg:justify-start">
         {button?.url && button.label && (
           <ExternalOrInternalLink
-            urlOrSlug={
-              button.url.externalLink ||
-              button.url.internalLink?.nodes?.[0]?.slug ||
-              ""
-            }
-            isExternal={!!button.url.externalLink}
-            ariaLabel={button.ariaLabel || ""}
-            label={button.label}
+            buttonProps={button as ReusableFieldsButton_Fields}
           />
         )}
       </div>

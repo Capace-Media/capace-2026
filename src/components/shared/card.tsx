@@ -1,6 +1,7 @@
 import Image from "next/image";
 import ExternalOrInternalLink from "./external-or-internal-link";
 import { cn } from "@/lib/utils";
+import type { ReusableFieldsButton_Fields } from "@/graphql/graphql";
 
 interface Props {
   index: number;
@@ -8,10 +9,9 @@ interface Props {
   altText: string;
   title: string;
   textContent: string;
-  buttonLabel: string | undefined | null;
-  buttonUrl: string | undefined | null;
   withBorder?: boolean;
   numbered?: boolean;
+  buttonProps?: ReusableFieldsButton_Fields;
 }
 export default function Card(props: Props) {
   return (
@@ -42,13 +42,8 @@ export default function Card(props: Props) {
         <p className="text-muted-foreground text-center text-sm font-light">
           {props.textContent}
         </p>
-        {props.buttonUrl && props.buttonLabel && (
-          <ExternalOrInternalLink
-            urlOrSlug={props.buttonUrl}
-            isExternal={false}
-            ariaLabel={""}
-            label={props.buttonLabel}
-          />
+        {props.buttonProps && (
+          <ExternalOrInternalLink buttonProps={props.buttonProps} />
         )}
       </div>
     </div>

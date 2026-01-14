@@ -1,38 +1,41 @@
 import Link from "next/link";
+import type { ReusableFieldsButton_Fields } from "@/graphql/graphql";
 import { Button } from "../ui/button";
 
 interface Props {
-  urlOrSlug: string;
-  isExternal: boolean;
-  ariaLabel: string;
-  label: string;
+  buttonProps: ReusableFieldsButton_Fields;
 }
 
-export default function ExternalOrInternalLink(props: Props) {
+export default function ExternalOrInternalLink({ buttonProps }: Props) {
+  const isExternal = buttonProps.url?.is_internal === false;
+  const urlOrSlug = isExternal
+    ? buttonProps.url?.externalLink || "#"
+    : buttonProps.url?.internalLink?.nodes?.[0]?.slug || "#";
+
   return (
     <Button
       withArrow
       variant={"secondaryAccent"}
       nativeButton={false}
       render={
-        props.isExternal ? (
+        isExternal ? (
           <a
-            href={props.urlOrSlug}
+            href={urlOrSlug}
             rel="noopener noreferrer nofollow"
             target="_blank"
-            aria-label={props.ariaLabel}
+            aria-label={buttonProps.ariaLabel || undefined}
             className="hover:no-underline"
           />
         ) : (
           <Link
-            href={props.urlOrSlug}
-            aria-label={props.ariaLabel}
+            href={urlOrSlug}
+            aria-label={buttonProps.ariaLabel || undefined}
             className="hover:no-underline"
           />
         )
       }
     >
-      {props.label}
+      {buttonProps.label}
     </Button>
   );
 }

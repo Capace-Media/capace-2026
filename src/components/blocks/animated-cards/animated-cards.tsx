@@ -1,5 +1,5 @@
 "use client";
-import type { PageQuery } from "@/graphql/graphql";
+import type { BlocksBlocksCards, PageQuery } from "@/graphql/graphql";
 import HeadingWithAccent from "../../shared/heading-with-accent";
 import { AnimatedCard } from "./animated-card";
 
@@ -22,7 +22,7 @@ export default function AnimatedCards(props: Props) {
       <div className="flex flex-col py-14 lg:flex-row">
         {props.data.cards?.map((card, index) => (
           <AnimatedCard
-            card={card}
+            card={card as BlocksBlocksCards}
             index={index}
             key={index}
             zIndex={props.data.cards?.length! - index}
