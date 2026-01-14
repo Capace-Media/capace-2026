@@ -28,7 +28,7 @@ export default function CasesGrid(props: Props) {
             mainHeading={props.data.accentHeading?.main || ""}
           />
         </div>
-        <div className="grid grid-cols-1 gap-12 py-8 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-12 py-20 lg:grid-cols-2">
           {props.data.cases?.nodes.map((item, index) => {
             if (item.__typename !== "Case") return null;
             return (
@@ -41,7 +41,7 @@ export default function CasesGrid(props: Props) {
                       item.title ||
                       ""
                     }
-                    className="object-cover"
+                    className="rounded-[36px] object-cover"
                     fill
                   />
 
@@ -100,6 +100,9 @@ export default function CasesGrid(props: Props) {
             );
           })}
         </div>
+        <Button withArrow variant={"secondaryAccent"}>
+          Se fler kundprojekt
+        </Button>
       </section>
     </>
   );
