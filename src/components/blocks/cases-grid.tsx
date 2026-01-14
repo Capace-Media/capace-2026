@@ -18,16 +18,21 @@ export default function CasesGrid(props: Props) {
 
   return (
     <>
-      <section className="section flex flex-col items-center border">
-        <HeadingWithAccent
-          accentedHeading={props.data.accentHeading?.accent || ""}
-          mainHeading={props.data.accentHeading?.main || ""}
-        />
+      <section
+        className="section flex flex-col items-center"
+        aria-labelledby="cases-heading"
+      >
+        <div id="cases-heading">
+          <HeadingWithAccent
+            accentedHeading={props.data.accentHeading?.accent || ""}
+            mainHeading={props.data.accentHeading?.main || ""}
+          />
+        </div>
         <div className="grid grid-cols-1 gap-12 py-8 lg:grid-cols-2">
           {props.data.cases?.nodes.map((item, index) => {
             if (item.__typename !== "Case") return null;
             return (
-              <div key={index} className="flex flex-1 flex-col gap-4">
+              <article key={index} className="flex flex-1 flex-col gap-4">
                 <div className="relative aspect-[1.3] h-auto w-full">
                   <Image
                     src={item.caseContent?.heroImage?.node.mediaItemUrl || ""}
@@ -61,6 +66,7 @@ export default function CasesGrid(props: Props) {
                       withArrow
                       variant={"secondaryAccent"}
                       className="w-[170]!"
+                      aria-label={`Läs mer om ${item.title}`}
                     >
                       Läs mer
                     </Button>
@@ -68,7 +74,10 @@ export default function CasesGrid(props: Props) {
                 </div>
                 <div className="flex flex-col-reverse justify-between gap-2 sm:flex-row">
                   <h3 className="flex items-center gap-3 text-lg font-bold">
-                    <span className="bg-accent h-3 w-3 rounded-full"></span>
+                    <span
+                      className="bg-accent h-3 w-3 rounded-full"
+                      aria-hidden="true"
+                    ></span>
                     {item.title}
                   </h3>
                   <div className="flex gap-2">
@@ -87,7 +96,7 @@ export default function CasesGrid(props: Props) {
                 <p className="text-muted-foreground text-sm">
                   {item.caseContent?.shortDescription}
                 </p>
-              </div>
+              </article>
             );
           })}
         </div>
