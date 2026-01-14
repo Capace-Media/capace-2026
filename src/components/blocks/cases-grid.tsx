@@ -18,19 +18,12 @@ export default function CasesGrid(props: Props) {
 
   return (
     <>
-      <svg width="0" height="0" style={{ position: "absolute" }}>
-        <defs>
-          <clipPath id="rounded-image-mask" clipPathUnits="objectBoundingBox">
-            <path d="M0.935,0 H0.065 C0.029,0,0,0.037,0,0.082 V0.917 C0,0.963,0.029,1,0.065,1 H0.502 C0.537,1,0.566,0.963,0.566,0.919 V0.87 H0.566 C0.566,0.825,0.594,0.789,0.63,0.788 H0.935 C0.971,0.788,1,0.751,1,0.706 V0.082 C1,0.037,0.971,0,0.935,0 H0.935 Z" />
-          </clipPath>
-        </defs>
-      </svg>
       <section className="section flex flex-col items-center border">
         <HeadingWithAccent
           accentedHeading={props.data.accentHeading?.accent || ""}
           mainHeading={props.data.accentHeading?.main || ""}
         />
-        <div className="flex flex-col gap-12 py-8 sm:flex-row">
+        <div className="grid grid-cols-1 gap-12 py-8 lg:grid-cols-2">
           {props.data.cases?.nodes.map((item, index) => {
             if (item.__typename !== "Case") return null;
             return (
@@ -44,16 +37,34 @@ export default function CasesGrid(props: Props) {
                       ""
                     }
                     className="object-cover"
-                    style={{ clipPath: "url(#rounded-image-mask)" }}
                     fill
                   />
-                  <Button
-                    withArrow
-                    variant={"secondaryAccent"}
-                    className="absolute right-2 bottom-0 w-[170]!"
-                  >
-                    Läs mer
-                  </Button>
+
+                  <div className="absolute right-0 bottom-0 flex items-center justify-center rounded-tl-[36px] bg-black pt-4 pr-1 pl-4">
+                    <div className="absolute top-0 right-0 h-6 w-6 -translate-y-full lg:h-8 lg:w-8">
+                      <Image
+                        src={"/misc/rounded-image-corner.svg"}
+                        fill
+                        alt=""
+                        aria-hidden="true"
+                      />
+                    </div>
+                    <div className="absolute bottom-0 left-0 h-6 w-6 -translate-x-full lg:h-8 lg:w-8">
+                      <Image
+                        src={"/misc/rounded-image-corner.svg"}
+                        fill
+                        alt=""
+                        aria-hidden="true"
+                      />
+                    </div>
+                    <Button
+                      withArrow
+                      variant={"secondaryAccent"}
+                      className="w-[170]!"
+                    >
+                      Läs mer
+                    </Button>
+                  </div>
                 </div>
                 <div className="flex flex-col-reverse justify-between gap-2 sm:flex-row">
                   <h3 className="flex items-center gap-3 text-lg font-bold">
@@ -66,7 +77,7 @@ export default function CasesGrid(props: Props) {
                       <Link
                         href={`tjanster/${category.slug}`}
                         key={index}
-                        className="border-muted text-muted-foreground hover:border-accent rounded-full border p-2 text-base transition-colors duration-300 hover:text-white hover:no-underline md:text-xs"
+                        className="border-muted text-muted-foreground hover:border-accent rounded-full border p-2 px-4 text-base transition-colors duration-300 hover:text-white hover:no-underline sm:text-xs"
                       >
                         {category.name}
                       </Link>

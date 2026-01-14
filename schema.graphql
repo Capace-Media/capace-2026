@@ -3721,6 +3721,8 @@ input CreateServiceInput {
   A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types.
   """
   menuOrder: Int
+  """The ID of the parent object"""
+  parentId: ID
   """The password used to protect the content of the object"""
   password: String
   """The slug of the object"""
@@ -8557,6 +8559,8 @@ enum PostStatusEnum {
   ACF_DISABLED
   """Automatically saved content that has not been manually saved"""
   AUTO_DRAFT
+  """Objects with the dp-rewrite-republish status"""
+  DP_REWRITE_REPUBLISH
   """Content that is saved but not yet published or visible to the public"""
   DRAFT
   """Objects with the future status"""
@@ -10571,10 +10575,6 @@ type RootQuery implements WithAcfOptionsPageCollaborators & WithAcfOptionsPageFo
     id: ID
     """Get the service by its database ID"""
     serviceId: Int
-    """
-    Get the service by its slug (only available for non-hierarchical types)
-    """
-    slug: String
     """Get the service by its uri"""
     uri: String
   ): Service @deprecated(reason: "Deprecated in favor of using the single entry point for this type with ID and IDType fields. For example, instead of postBy( id: &quot;&quot; ), use post(id: &quot;&quot; idType: &quot;&quot;)")
@@ -12645,8 +12645,10 @@ type SendPasswordResetEmailPayload {
 }
 
 """The service type"""
-type Service implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfBlocks & WithAcfServiceContent {
-  """The ancestors of the content node."""
+type Service implements ContentNode & DatabaseIdentifier & HierarchicalContentNode & HierarchicalNode & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithPageAttributes & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfBlocks & WithAcfServiceContent {
+  """
+  Returns ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root).
+  """
   ancestors(
     """
     Cursor used along with the "first" argument to reference where in the dataset to get data
@@ -12660,9 +12662,30 @@ type Service implements ContentNode & DatabaseIdentifier & MenuItemLinkable & No
     first: Int
     """The number of items to return before the referenced "before" cursor"""
     last: Int
-  ): ServiceToServiceConnection @deprecated(reason: "This content type is not hierarchical and typically will not have ancestors")
+    """Arguments for filtering the connection"""
+    where: HierarchicalContentNodeToContentNodeAncestorsConnectionWhereArgs
+  ): HierarchicalContentNodeToContentNodeAncestorsConnection
   """Fields of the Blocks ACF Field Group"""
   blocks: Blocks
+  """
+  Connection between the HierarchicalContentNode type and the ContentNode type
+  """
+  children(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+    """Arguments for filtering the connection"""
+    where: HierarchicalContentNodeToContentNodeChildrenConnectionWhereArgs
+  ): HierarchicalContentNodeToContentNodeChildrenConnection
   """The content of the post."""
   content(
     """Format of the field output"""
@@ -12755,6 +12778,10 @@ type Service implements ContentNode & DatabaseIdentifier & MenuItemLinkable & No
   """The permalink of the post"""
   link: String
   """
+  A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types.
+  """
+  menuOrder: Int
+  """
   The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time.
   """
   modified: String
@@ -12762,8 +12789,12 @@ type Service implements ContentNode & DatabaseIdentifier & MenuItemLinkable & No
   The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT.
   """
   modifiedGmt: String
-  """The parent of the content node."""
-  parent: ServiceToParentConnectionEdge @deprecated(reason: "This content type is not hierarchical and typically will not have a parent")
+  """The parent of the node. The parent object can be of various types"""
+  parent: HierarchicalContentNodeToParentContentNodeConnectionEdge
+  """Database id of the parent node"""
+  parentDatabaseId: Int
+  """The globally unique identifier of the parent node."""
+  parentId: ID
   """The password for the service object."""
   password: String
   """Connection between the service type and the service type"""
@@ -12782,7 +12813,7 @@ type Service implements ContentNode & DatabaseIdentifier & MenuItemLinkable & No
   slug: String
   """The current status of the object"""
   status: String
-  """The template assigned to the node"""
+  """The template assigned to a node of content"""
   template: ContentTemplate
   """
   The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made.
@@ -12887,22 +12918,8 @@ enum ServiceIdType {
   DATABASE_ID
   """Identify a resource by the (hashed) Global ID."""
   ID
-  """
-  Identify a resource by the slug. Available to non-hierarchcial Types where the slug is a unique identifier.
-  """
-  SLUG
   """Identify a resource by the URI."""
   URI
-}
-
-"""Connection between the service type and the service type"""
-type ServiceToParentConnectionEdge implements Edge & OneToOneConnection & ServiceConnectionEdge {
-  """
-  Opaque reference to the nodes position in the connection. Value can be used with pagination args.
-  """
-  cursor: String
-  """The node of the connection, without the edges"""
-  node: Service! @deprecated(reason: "This content type is not hierarchical and typically will not have a parent")
 }
 
 """Connection between the service type and the service type"""
@@ -12913,38 +12930,6 @@ type ServiceToPreviewConnectionEdge implements Edge & OneToOneConnection & Servi
   cursor: String
   """The node of the connection, without the edges"""
   node: Service!
-}
-
-"""Connection between the service type and the service type"""
-type ServiceToServiceConnection implements Connection & ServiceConnection {
-  """Edges for the ServiceToServiceConnection connection"""
-  edges: [ServiceToServiceConnectionEdge!]!
-  """The nodes of the connection, without the edges"""
-  nodes: [Service!]!
-  """Information about pagination in a connection."""
-  pageInfo: ServiceToServiceConnectionPageInfo!
-}
-
-"""An edge in a connection"""
-type ServiceToServiceConnectionEdge implements Edge & ServiceConnectionEdge {
-  """A cursor for use in pagination"""
-  cursor: String @deprecated(reason: "This content type is not hierarchical and typically will not have ancestors")
-  """The item at the end of the edge"""
-  node: Service! @deprecated(reason: "This content type is not hierarchical and typically will not have ancestors")
-}
-
-"""
-Pagination metadata specific to &quot;ServiceToServiceConnection&quot; collections. Provides cursors and flags for navigating through sets of ServiceToServiceConnection Nodes.
-"""
-type ServiceToServiceConnectionPageInfo implements PageInfo & ServiceConnectionPageInfo & WPPageInfo {
-  """When paginating forwards, the cursor to continue."""
-  endCursor: String
-  """When paginating forwards, are there more items?"""
-  hasNextPage: Boolean!
-  """When paginating backwards, are there more items?"""
-  hasPreviousPage: Boolean!
-  """When paginating backwards, the cursor to continue."""
-  startCursor: String
 }
 
 """All of the registered settings"""
@@ -14616,6 +14601,8 @@ input UpdateServiceInput {
   A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types.
   """
   menuOrder: Int
+  """The ID of the parent object"""
+  parentId: ID
   """The password used to protect the content of the object"""
   password: String
   """The slug of the object"""

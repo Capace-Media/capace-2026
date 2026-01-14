@@ -3242,6 +3242,8 @@ export type CreateServiceInput = {
   date?: InputMaybe<Scalars['String']['input']>;
   /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
   menuOrder?: InputMaybe<Scalars['Int']['input']>;
+  /** The ID of the parent object */
+  parentId?: InputMaybe<Scalars['ID']['input']>;
   /** The password used to protect the content of the object */
   password?: InputMaybe<Scalars['String']['input']>;
   /** The slug of the object */
@@ -7413,6 +7415,8 @@ export enum PostStatusEnum {
   AcfDisabled = 'ACF_DISABLED',
   /** Automatically saved content that has not been manually saved */
   AutoDraft = 'AUTO_DRAFT',
+  /** Objects with the dp-rewrite-republish status */
+  DpRewriteRepublish = 'DP_REWRITE_REPUBLISH',
   /** Content that is saved but not yet published or visible to the public */
   Draft = 'DRAFT',
   /** Objects with the future status */
@@ -9360,7 +9364,6 @@ export type RootQueryServiceArgs = {
 export type RootQueryServiceByArgs = {
   id?: InputMaybe<Scalars['ID']['input']>;
   serviceId?: InputMaybe<Scalars['Int']['input']>;
-  slug?: InputMaybe<Scalars['String']['input']>;
   uri?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -11174,15 +11177,14 @@ export type SendPasswordResetEmailPayload = {
 };
 
 /** The service type */
-export type Service = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfBlocks & WithAcfServiceContent & {
+export type Service = ContentNode & DatabaseIdentifier & HierarchicalContentNode & HierarchicalNode & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithPageAttributes & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfBlocks & WithAcfServiceContent & {
   __typename?: 'Service';
-  /**
-   * The ancestors of the content node.
-   * @deprecated This content type is not hierarchical and typically will not have ancestors
-   */
-  ancestors?: Maybe<ServiceToServiceConnection>;
+  /** Returns ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root). */
+  ancestors?: Maybe<HierarchicalContentNodeToContentNodeAncestorsConnection>;
   /** Fields of the Blocks ACF Field Group */
   blocks?: Maybe<Blocks>;
+  /** Connection between the HierarchicalContentNode type and the ContentNode type */
+  children?: Maybe<HierarchicalContentNodeToContentNodeChildrenConnection>;
   /** The content of the post. */
   content?: Maybe<Scalars['String']['output']>;
   /** Connection between the ContentNode type and the ContentType type */
@@ -11235,15 +11237,18 @@ export type Service = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node
   lastEditedBy?: Maybe<ContentNodeToEditLastConnectionEdge>;
   /** The permalink of the post */
   link?: Maybe<Scalars['String']['output']>;
+  /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
+  menuOrder?: Maybe<Scalars['Int']['output']>;
   /** The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time. */
   modified?: Maybe<Scalars['String']['output']>;
   /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
   modifiedGmt?: Maybe<Scalars['String']['output']>;
-  /**
-   * The parent of the content node.
-   * @deprecated This content type is not hierarchical and typically will not have a parent
-   */
-  parent?: Maybe<ServiceToParentConnectionEdge>;
+  /** The parent of the node. The parent object can be of various types */
+  parent?: Maybe<HierarchicalContentNodeToParentContentNodeConnectionEdge>;
+  /** Database id of the parent node */
+  parentDatabaseId?: Maybe<Scalars['Int']['output']>;
+  /** The globally unique identifier of the parent node. */
+  parentId?: Maybe<Scalars['ID']['output']>;
   /** The password for the service object. */
   password?: Maybe<Scalars['String']['output']>;
   /** Connection between the service type and the service type */
@@ -11263,7 +11268,7 @@ export type Service = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node
   slug?: Maybe<Scalars['String']['output']>;
   /** The current status of the object */
   status?: Maybe<Scalars['String']['output']>;
-  /** The template assigned to the node */
+  /** The template assigned to a node of content */
   template?: Maybe<ContentTemplate>;
   /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
   title?: Maybe<Scalars['String']['output']>;
@@ -11278,6 +11283,17 @@ export type ServiceAncestorsArgs = {
   before?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Int']['input']>;
   last?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<HierarchicalContentNodeToContentNodeAncestorsConnectionWhereArgs>;
+};
+
+
+/** The service type */
+export type ServiceChildrenArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<HierarchicalContentNodeToContentNodeChildrenConnectionWhereArgs>;
 };
 
 
@@ -11381,23 +11397,9 @@ export enum ServiceIdType {
   DatabaseId = 'DATABASE_ID',
   /** Identify a resource by the (hashed) Global ID. */
   Id = 'ID',
-  /** Identify a resource by the slug. Available to non-hierarchcial Types where the slug is a unique identifier. */
-  Slug = 'SLUG',
   /** Identify a resource by the URI. */
   Uri = 'URI'
 }
-
-/** Connection between the service type and the service type */
-export type ServiceToParentConnectionEdge = Edge & OneToOneConnection & ServiceConnectionEdge & {
-  __typename?: 'ServiceToParentConnectionEdge';
-  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /**
-   * The node of the connection, without the edges
-   * @deprecated This content type is not hierarchical and typically will not have a parent
-   */
-  node: Service;
-};
 
 /** Connection between the service type and the service type */
 export type ServiceToPreviewConnectionEdge = Edge & OneToOneConnection & ServiceConnectionEdge & {
@@ -11406,45 +11408,6 @@ export type ServiceToPreviewConnectionEdge = Edge & OneToOneConnection & Service
   cursor?: Maybe<Scalars['String']['output']>;
   /** The node of the connection, without the edges */
   node: Service;
-};
-
-/** Connection between the service type and the service type */
-export type ServiceToServiceConnection = Connection & ServiceConnection & {
-  __typename?: 'ServiceToServiceConnection';
-  /** Edges for the ServiceToServiceConnection connection */
-  edges: Array<ServiceToServiceConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<Service>;
-  /** Information about pagination in a connection. */
-  pageInfo: ServiceToServiceConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type ServiceToServiceConnectionEdge = Edge & ServiceConnectionEdge & {
-  __typename?: 'ServiceToServiceConnectionEdge';
-  /**
-   * A cursor for use in pagination
-   * @deprecated This content type is not hierarchical and typically will not have ancestors
-   */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /**
-   * The item at the end of the edge
-   * @deprecated This content type is not hierarchical and typically will not have ancestors
-   */
-  node: Service;
-};
-
-/** Pagination metadata specific to &quot;ServiceToServiceConnection&quot; collections. Provides cursors and flags for navigating through sets of ServiceToServiceConnection Nodes. */
-export type ServiceToServiceConnectionPageInfo = PageInfo & ServiceConnectionPageInfo & WpPageInfo & {
-  __typename?: 'ServiceToServiceConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
 };
 
 /** All of the registered settings */
@@ -12891,6 +12854,8 @@ export type UpdateServiceInput = {
   ignoreEditLock?: InputMaybe<Scalars['Boolean']['input']>;
   /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
   menuOrder?: InputMaybe<Scalars['Int']['input']>;
+  /** The ID of the parent object */
+  parentId?: InputMaybe<Scalars['ID']['input']>;
   /** The password used to protect the content of the object */
   password?: InputMaybe<Scalars['String']['input']>;
   /** The slug of the object */

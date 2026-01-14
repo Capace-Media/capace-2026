@@ -29,14 +29,14 @@ const HeroLarge = (data: Props) => {
         fill
         aria-hidden="true"
       />
-      <div className="relative container flex h-full flex-col items-center justify-center gap-6 pt-40">
+      <div className="section relative flex h-full flex-col items-center justify-center gap-6 pt-40">
         <h1 className="text-center text-5xl leading-14 font-bold">
           <span className="drop-shadow-lg">{heroData?.heading}</span>
           <span className="text-accent drop-shadow-lg">
             {heroData?.headingAccent}
           </span>
         </h1>
-        <div className="mb-auto text-center font-normal drop-shadow-lg sm:mb-0">
+        <div className="text-center font-normal drop-shadow-lg sm:mb-0">
           {parse(heroData?.subheading || "")}
         </div>
         <ExternalOrInternalLink
