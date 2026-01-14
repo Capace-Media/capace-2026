@@ -13,6 +13,7 @@ export const env = createEnv({
     GRAPHQL_ENDPOINT: z.string(),
     CMS_GRAPHQL_AUTH_PASS: z.string(),
     CMS_GRAPHQL_AUTH_USER: z.string(),
+    SITE_URL: z.string(),
   },
 
   /**
@@ -35,6 +36,7 @@ export const env = createEnv({
     GRAPHQL_ENDPOINT: process.env.GRAPHQL_ENDPOINT,
     CMS_GRAPHQL_AUTH_PASS: process.env.CMS_GRAPHQL_AUTH_PASS,
     CMS_GRAPHQL_AUTH_USER: process.env.CMS_GRAPHQL_AUTH_USER,
+    SITE_URL: process.env.SITE_URL,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   /**
