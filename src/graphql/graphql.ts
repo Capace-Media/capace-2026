@@ -14048,7 +14048,7 @@ export type PageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page'
         | { __typename: 'BlocksBlocksFaqLayout', questions?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
               | { __typename?: 'Case' }
               | { __typename?: 'Employee' }
-              | { __typename?: 'Faq', id: string, title?: string | null, faqContent?: { __typename?: 'FaqContent', answer?: string | null, longAnswer?: string | null } | null }
+              | { __typename: 'Faq', id: string, title?: string | null, faqContent?: { __typename?: 'FaqContent', answer?: string | null, longAnswer?: string | null } | null }
               | { __typename?: 'MediaItem' }
               | { __typename?: 'Page' }
               | { __typename?: 'Post' }
@@ -14263,6 +14263,7 @@ export const PageDocument = new TypedDocumentString(`
             nodes {
               ... on Faq {
                 id
+                __typename
                 faqContent {
                   answer
                   longAnswer

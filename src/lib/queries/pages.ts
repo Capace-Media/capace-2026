@@ -115,6 +115,7 @@ export const PageQuery = graphql(`
               nodes {
                 ... on Faq {
                   id
+                  __typename
                   faqContent {
                     answer
                     longAnswer
