@@ -17,14 +17,14 @@ export default function Card(props: Props) {
   return (
     <div
       className={cn(
-        "bg-background border-muted justify-between-4 flex h-full max-w-100 flex-col items-center rounded-xl border p-8",
+        "bg-background border-muted justify-between-4 flex h-full max-w-100 flex-col items-center rounded-xl border px-8 pt-4 pb-20",
         props.withBorder && "border-accent",
       )}
     >
       <div className="flex h-40 w-full flex-col items-center justify-center">
         {props.numbered && (
           <div className="text-accent items-center justify-center rounded-full p-4 text-base font-bold">
-            {props.index.toString().padStart(2, "0")}
+            {(props.index + 1).toString().padStart(2, "0")}
           </div>
         )}
 

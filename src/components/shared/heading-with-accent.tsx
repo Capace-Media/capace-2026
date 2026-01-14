@@ -10,7 +10,7 @@ export default function HeadingWithAccent(props: Props) {
     <div className="flex flex-col items-center lg:items-start">
       <h3
         className={cn(
-          "text-4xl lg:text-6xl",
+          "text-4xl lg:text-5xl",
           props.textAlign === "left" ? "text-left" : "text-center",
         )}
       >

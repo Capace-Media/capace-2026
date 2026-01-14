@@ -4,11 +4,15 @@ import { motion } from "motion/react";
 interface Props {
   card: any;
   index: number;
+  zIndex: number;
 }
 
 export function AnimatedCard(props: Props) {
   return (
-    <motion.div>
+    <motion.div
+      style={{ zIndex: props.zIndex }}
+      initial={{ x: props.index === 0 ? 0 : -20 * props.index }}
+    >
       <Card
         index={props.index}
         imgSrc={props.card?.card?.image?.node.mediaItemUrl || ""}

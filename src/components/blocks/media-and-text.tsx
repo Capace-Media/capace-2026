@@ -21,7 +21,7 @@ export default function MediaAndText(props: Props) {
   const button = props.data.mediaAndText?.button;
 
   return (
-    <section className="container grid grid-cols-1 grid-rows-3 gap-6 lg:grid-cols-2 lg:grid-rows-[auto_1fr_1fr] lg:gap-12">
+    <section className="section grid grid-cols-1 grid-rows-3 gap-6 lg:grid-cols-2 lg:grid-rows-[auto_1fr_1fr] lg:gap-12">
       <div className="order-1">
         <HeadingWithAccent
           textAlign="left"
