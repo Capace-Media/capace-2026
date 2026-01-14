@@ -73,6 +73,42 @@ export const PageQuery = graphql(`
           ... on BlocksBlocksCollaboratorsBannerLayout {
             __typename
           }
+          ... on BlocksBlocksCaseCardGridLayout {
+            __typename
+            accentHeading {
+              accent
+              main
+            }
+            cases {
+              nodes {
+                ... on Case {
+                  __typename
+                  id
+                  title
+                  slug
+                  caseContent {
+                    shortDescription
+                    heroImage {
+                      node {
+                        altText
+                        mediaItemUrl
+                        mediaDetails {
+                          height
+                          width
+                        }
+                      }
+                    }
+                  }
+                  casesCategories {
+                    nodes {
+                      slug
+                      name
+                    }
+                  }
+                }
+              }
+            }
+          }
           ... on BlocksBlocksAnimatedCardsLayout {
             __typename
             accentHeading {

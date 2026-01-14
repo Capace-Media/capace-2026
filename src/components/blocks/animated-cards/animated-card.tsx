@@ -15,7 +15,7 @@ export function AnimatedCard(props: Props) {
   return (
     <motion.div
       style={{ zIndex: props.zIndex }}
-      initial={{ x: props.index === 0 ? 0 : -20 * props.index }}
+      // initial={{ x: props.index === 0 ? 0 : -20 * props.index }}
     >
       <Card
         index={props.index}

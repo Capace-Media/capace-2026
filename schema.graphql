@@ -741,7 +741,7 @@ interface Blocks_Fields implements AcfFieldGroup & AcfFieldGroupFields {
 }
 
 """The case type"""
-type Case implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfBlocks {
+type Case implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfBlocks & WithAcfCaseContent {
   """The ancestors of the content node."""
   ancestors(
     """
@@ -759,6 +759,8 @@ type Case implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node 
   ): CaseToCaseConnection @deprecated(reason: "This content type is not hierarchical and typically will not have ancestors")
   """Fields of the Blocks ACF Field Group"""
   blocks: Blocks
+  """Fields of the CaseContent ACF Field Group"""
+  caseContent: CaseContent
   """The id field matches the WP_Post-&gt;ID field."""
   caseId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
   """Connection between the Case type and the caseCategory type"""
@@ -1319,6 +1321,46 @@ interface CaseConnectionPageInfo implements PageInfo & WPPageInfo {
   hasPreviousPage: Boolean!
   """When paginating backwards, the cursor to continue."""
   startCursor: String
+}
+
+"""
+The &quot;CaseContent&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type CaseContent implements AcfFieldGroup & AcfFieldGroupFields & Blocks_Fields & CaseContent_Fields {
+  """
+  Field of the &quot;flexible_content&quot; Field Type added to the schema as part of the &quot;Blocks&quot; Field Group
+  """
+  blocks: [BlocksBlocks_Layout]
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;CaseContent&quot; Field Group
+  """
+  heroImage: AcfMediaItemConnectionEdge
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;CaseContent&quot; Field Group
+  """
+  shortDescription: String
+}
+
+"""
+Interface representing fields of the ACF &quot;CaseContent&quot; Field Group
+"""
+interface CaseContent_Fields implements AcfFieldGroup & AcfFieldGroupFields & Blocks_Fields {
+  """
+  Field of the &quot;flexible_content&quot; Field Type added to the schema as part of the &quot;Blocks&quot; Field Group
+  """
+  blocks: [BlocksBlocks_Layout]
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;CaseContent&quot; Field Group
+  """
+  heroImage: AcfMediaItemConnectionEdge
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;CaseContent&quot; Field Group
+  """
+  shortDescription: String
 }
 
 """
@@ -15769,6 +15811,14 @@ Provides access to fields of the &quot;Blocks&quot; ACF Field Group via the &quo
 interface WithAcfBlocks {
   """Fields of the Blocks ACF Field Group"""
   blocks: Blocks
+}
+
+"""
+Provides access to fields of the &quot;CaseContent&quot; ACF Field Group via the &quot;caseContent&quot; field
+"""
+interface WithAcfCaseContent {
+  """Fields of the CaseContent ACF Field Group"""
+  caseContent: CaseContent
 }
 
 """
