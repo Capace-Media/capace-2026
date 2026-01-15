@@ -36,7 +36,7 @@ export default function Faq(props: Props) {
             >
               <AccordionTrigger className="group p-0 text-base">
                 <div className="flex h-full w-full">
-                  <div className="flex h-full w-20 shrink-0 items-center justify-center py-4">
+                  <div className="flex h-full w-10 shrink-0 items-center justify-center py-4 text-xs sm:w-20 sm:text-base">
                     {(index + 1).toString().padStart(2, "0")}
                   </div>
                   <div className="border-l-muted border-r-muted flex h-full w-full items-center border-r border-l p-4">
@@ -45,11 +45,11 @@ export default function Faq(props: Props) {
                 </div>
               </AccordionTrigger>
               <AccordionContent className="flex">
-                <div className="flex w-20 shrink-0" />
+                <div className="flex w-10 shrink-0 sm:w-20" />
                 <div className="border-muted flex flex-1 border-r border-l px-4 pb-6">
                   {question.faqContent?.answer}
                 </div>
-                <div className="flex w-15" />
+                <div className="flex w-10 sm:w-15" />
               </AccordionContent>
             </AccordionItem>
           );

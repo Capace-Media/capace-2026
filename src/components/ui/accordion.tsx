@@ -40,8 +40,8 @@ function AccordionTrigger({
         {...props}
       >
         {children}
-        <div className="flex h-full w-15 shrink-0 items-center justify-center">
-          <Plus className="text-muted-foreground group-data-panel-open:text-background group-hover:text-background pointer-events-none size-6 shrink-0 translate-y-0.5 transition-transform duration-400 group-data-panel-open:rotate-45" />
+        <div className="flex h-full w-10 shrink-0 items-center justify-center sm:w-15">
+          <Plus className="text-muted-foreground group-data-panel-open:text-background group-hover:text-background pointer-events-none size-4 shrink-0 translate-y-0.5 transition-transform duration-400 group-data-panel-open:rotate-45 sm:size-6" />
         </div>
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
