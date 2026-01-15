@@ -4,9 +4,9 @@ import { Button } from "../ui/button";
 
 export default function Header() {
   return (
-    <header className="fixed z-100 flex h-30 w-full max-w-400 items-center justify-between gap-6 px-24 text-sm">
+    <header className="fixed z-100 flex h-30 w-full max-w-400 items-center justify-between gap-6 border px-24 text-sm">
       <nav className="max-w-[1/3] flex-1">
-        <ul className="border-border/15 flex gap-10 rounded-full p-3">
+        <ul className="flex h-12 justify-evenly gap-10 rounded-full border p-3">
           <li>
             <Link href={"/tjanster"}>Våra tjänster</Link>
           </li>
@@ -19,16 +19,18 @@ export default function Header() {
         </ul>
       </nav>
       <div className="flex max-w-[1/3] flex-1 justify-center">
-        <Image
-          src={"/logotypes/capace-media.svg"}
-          alt="Logotyp för Capace Media Group AB"
-          width={150}
-          height={50}
-        />
+        <div className="flex h-12 items-center justify-center rounded-full border px-8 py-1">
+          <Image
+            src={"/logotypes/capace-media.svg"}
+            alt="Logotyp för Capace Media Group AB"
+            width={110}
+            height={40}
+          />
+        </div>
       </div>
-      <div className="max-w-[1/3] flex-1">
+      <div className="flex max-w-[1/3] flex-1 justify-end">
         <Button withArrow variant={"secondaryAccent"} size={"sm"}>
-          Knapptext här
+          Knapptext
         </Button>
       </div>
     </header>
