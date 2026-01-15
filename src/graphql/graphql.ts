@@ -440,6 +440,8 @@ export type BlocksBlocksEmployeesLayout_FieldsEmployeesArgs = {
 /** The &quot;BlocksBlocksFaqLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
 export type BlocksBlocksFaqLayout = AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksFaqLayout_Fields & BlocksBlocks_Layout & {
   __typename?: 'BlocksBlocksFaqLayout';
+  /** A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space. */
+  accentHeading?: Maybe<BlocksBlocksAccentHeading>;
   /**
    * The name of the field group
    * @deprecated Use __typename instead
@@ -460,6 +462,8 @@ export type BlocksBlocksFaqLayoutQuestionsArgs = {
 
 /** Interface representing fields of the ACF &quot;BlocksBlocksFaqLayout&quot; Field Group */
 export type BlocksBlocksFaqLayout_Fields = {
+  /** A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space. */
+  accentHeading?: Maybe<BlocksBlocksAccentHeading>;
   /**
    * The name of the field group
    * @deprecated Use __typename instead
@@ -14045,7 +14049,7 @@ export type PageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page'
         | { __typename: 'BlocksBlocksCollaboratorsBannerLayout' }
         | { __typename?: 'BlocksBlocksContactFormLayout' }
         | { __typename?: 'BlocksBlocksEmployeesLayout' }
-        | { __typename: 'BlocksBlocksFaqLayout', questions?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
+        | { __typename: 'BlocksBlocksFaqLayout', accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null, questions?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
               | { __typename?: 'Case' }
               | { __typename?: 'Employee' }
               | { __typename: 'Faq', id: string, title?: string | null, faqContent?: { __typename?: 'FaqContent', answer?: string | null, longAnswer?: string | null } | null }
@@ -14259,6 +14263,10 @@ export const PageDocument = new TypedDocumentString(`
         }
         ... on BlocksBlocksFaqLayout {
           __typename
+          accentHeading {
+            accent
+            main
+          }
           questions {
             nodes {
               ... on Faq {

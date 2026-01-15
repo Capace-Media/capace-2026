@@ -111,6 +111,10 @@ export const PageQuery = graphql(`
           }
           ... on BlocksBlocksFaqLayout {
             __typename
+            accentHeading {
+              accent
+              main
+            }
             questions {
               nodes {
                 ... on Faq {

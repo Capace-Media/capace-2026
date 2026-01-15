@@ -22,6 +22,7 @@ export default function MediaAndText(props: Props) {
     <section className="section grid grid-cols-1 grid-rows-3 gap-6 lg:grid-cols-2 lg:grid-rows-[auto_1fr_1fr] lg:gap-12">
       <div className="order-1">
         <HeadingWithAccent
+          noBottomMargin
           textAlign="left"
           accentedHeading={data?.accentHeading?.accent || ""}
           mainHeading={data?.accentHeading?.main || ""}

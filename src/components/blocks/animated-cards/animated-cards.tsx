@@ -19,7 +19,7 @@ export default function AnimatedCards(props: Props) {
         accentedHeading={props.data.accentHeading?.accent || ""}
         mainHeading={props.data.accentHeading?.main || ""}
       />
-      <div className="flex flex-col py-14 lg:flex-row">
+      <div className="flex flex-col lg:flex-row">
         {props.data.cards?.map((card, index) => (
           <AnimatedCard
             card={card as BlocksBlocksCards}

@@ -478,6 +478,10 @@ interface BlocksBlocksEmployeesLayout_Fields implements AcfFieldGroup & AcfField
 The &quot;BlocksBlocksFaqLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
 """
 type BlocksBlocksFaqLayout implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksFaqLayout_Fields & BlocksBlocks_Layout {
+  """
+  A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space.
+  """
+  accentHeading: BlocksBlocksAccentHeading
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
   """
@@ -503,6 +507,10 @@ type BlocksBlocksFaqLayout implements AcfFieldGroup & AcfFieldGroupFields & Bloc
 Interface representing fields of the ACF &quot;BlocksBlocksFaqLayout&quot; Field Group
 """
 interface BlocksBlocksFaqLayout_Fields implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocks_Layout {
+  """
+  A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space.
+  """
+  accentHeading: BlocksBlocksAccentHeading
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
   """
