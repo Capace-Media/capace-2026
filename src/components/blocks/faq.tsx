@@ -25,8 +25,6 @@ export default function Faq(props: Props) {
       <Accordion multiple={false} className="mx-auto w-full max-w-200">
         {props.data?.questions?.nodes.map((question, index) => {
           if (question.__typename !== "Faq") {
-            console.log("returning");
-
             return;
           }
           return (
@@ -35,24 +33,22 @@ export default function Faq(props: Props) {
               value={question.faqContent?.answer}
               className="border-muted border last:border-b"
             >
-              <AccordionTrigger className="p-0! text-base">
-                <div className="group flex h-full w-full items-center">
-                  <div className="flex h-full w-20 justify-center py-6">
+              <AccordionTrigger className="group p-0 text-base">
+                <div className="flex h-full w-full">
+                  <div className="flex h-full w-20 shrink-0 items-center justify-center py-4">
                     {(index + 1).toString().padStart(2, "0")}
                   </div>
-                  <div className="border-l-muted border-r-muted flex h-full w-full items-center border-r border-l px-4 group-hover:underline">
+                  <div className="border-l-muted border-r-muted flex h-full w-full items-center border-r border-l p-4 group-hover:underline">
                     {question.title}
                   </div>
                 </div>
               </AccordionTrigger>
-              <AccordionContent className="flex h-full flex-col">
-                <div className="group flex h-full w-full items-center">
-                  <div className="border-muted flex h-20 w-20 border-r" />
-                  <div className="flex flex-1 px-4">
-                    {question.faqContent?.answer}
-                  </div>
-                  <div className="border-muted flex h-20 w-20 border-l" />
+              <AccordionContent className="flex">
+                <div className="flex w-20 shrink-0" />
+                <div className="border-muted flex flex-1 border-r border-l px-4 py-8">
+                  {question.faqContent?.answer}
                 </div>
+                <div className="flex w-20" />
               </AccordionContent>
             </AccordionItem>
           );
