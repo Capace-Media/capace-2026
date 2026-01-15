@@ -6,7 +6,6 @@ export default async function Page(
   const { service } = await props.params;
 
   const data = await getServicePage(service);
-  console.log("data:", data);
 
   return <div></div>;
 }

@@ -109,6 +109,13 @@ export const PageQuery = graphql(`
               }
             }
           }
+          ... on BlocksBlocksTestimonialsLayout {
+            __typename
+            accentHeading {
+              accent
+              main
+            }
+          }
           ... on BlocksBlocksFaqLayout {
             __typename
             accentHeading {

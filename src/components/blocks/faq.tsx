@@ -17,8 +17,6 @@ interface Props {
 }
 
 export default function Faq(props: Props) {
-  console.log("faq data:", props.data);
-
   return (
     <section className="section flex flex-col items-center">
       <HeadingWithAccent

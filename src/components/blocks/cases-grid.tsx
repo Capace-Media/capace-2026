@@ -14,8 +14,6 @@ interface Props {
 }
 
 export default function CasesGrid(props: Props) {
-  console.log("Cases data:", props.data);
-
   return (
     <>
       <section

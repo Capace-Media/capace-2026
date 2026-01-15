@@ -661,6 +661,8 @@ export type BlocksBlocksMediaAndText_Fields = {
 /** The &quot;BlocksBlocksTestimonialsLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
 export type BlocksBlocksTestimonialsLayout = AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksTestimonialsLayout_Fields & BlocksBlocks_Layout & {
   __typename?: 'BlocksBlocksTestimonialsLayout';
+  /** A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space. */
+  accentHeading?: Maybe<BlocksBlocksAccentHeading>;
   /**
    * The name of the field group
    * @deprecated Use __typename instead
@@ -670,6 +672,8 @@ export type BlocksBlocksTestimonialsLayout = AcfFieldGroup & AcfFieldGroupFields
 
 /** Interface representing fields of the ACF &quot;BlocksBlocksTestimonialsLayout&quot; Field Group */
 export type BlocksBlocksTestimonialsLayout_Fields = {
+  /** A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space. */
+  accentHeading?: Maybe<BlocksBlocksAccentHeading>;
   /**
    * The name of the field group
    * @deprecated Use __typename instead
@@ -14071,7 +14075,7 @@ export type PageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page'
                     | { __typename?: 'Service', slug?: string | null }
                     | { __typename?: 'Testimonial', slug?: string | null }
                   > } | null } | null } | null, accentHeading?: { __typename?: 'BlocksBlocksMediaAndTextAccentHeading', accent?: string | null, main?: string | null } | null } | null }
-        | { __typename?: 'BlocksBlocksTestimonialsLayout' }
+        | { __typename: 'BlocksBlocksTestimonialsLayout', accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null }
         | { __typename?: 'BlocksBlocksTimelineLayout' }
        | null> | null } | null } | null };
 
@@ -14259,6 +14263,13 @@ export const PageDocument = new TypedDocumentString(`
                 }
               }
             }
+          }
+        }
+        ... on BlocksBlocksTestimonialsLayout {
+          __typename
+          accentHeading {
+            accent
+            main
           }
         }
         ... on BlocksBlocksFaqLayout {

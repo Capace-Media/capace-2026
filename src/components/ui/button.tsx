@@ -21,7 +21,7 @@ const buttonVariants = cva(
         secondaryAccent:
           "bg-background shadow-[0_0_0px_4px_rgba(0,0,0,1),0_0_0px_5px_rgba(45,45,45,1)] text-accent border border-border/15 hover:bg-accent hover:text-background aria-expanded:bg-secondary aria-expanded:text-secondary-foreground",
         ghost:
-          "hover:bg-muted/20 hover:text-foreground dark:hover:bg-muted/50 aria-expanded:bg-muted aria-expanded:text-foreground",
+          "hover:bg-muted hover:border-transparent border border-muted rounded-full p-2 hover:text-foreground dark:hover:bg-muted/50 aria-expanded:bg-muted aria-expanded:text-foreground",
         destructive:
           "bg-destructive/10 hover:bg-destructive/20 focus-visible:ring-destructive/10 dark:focus-visible:ring-destructive/40 dark:bg-destructive/20 text-destructive focus-visible:border-destructive/40 dark:hover:bg-destructive/30",
         link: "text-primary underline-offset-4 hover:underline",
