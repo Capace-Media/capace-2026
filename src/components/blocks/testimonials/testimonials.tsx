@@ -43,7 +43,7 @@ export default function Testimonials(props: Props) {
         {props.data!.map((testimonial, index) => (
           <CarouselItem
             key={index}
-            className="basis-full pl-6 ease-in-out sm:basis-1/2 md:basis-1/3"
+            className="basis-full pl-6 ease-in-out md:basis-1/3"
           >
             <TestimonialCard
               index={index}

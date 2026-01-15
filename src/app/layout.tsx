@@ -31,7 +31,9 @@ export default function RootLayout({
     <html lang="en" className={cn(poppins.className, caveat.variable)}>
       <body className="mx-auto flex min-h-screen max-w-400 flex-col">
         <Header />
-        <main className="flex-1">{children}</main>
+        <main className="bg-background z-1 flex-1 rounded-bl-[100px] transition-all duration-300">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>
