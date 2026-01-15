@@ -3,7 +3,7 @@ import CasesGrid from "./cases-grid";
 import CollaboratorsBannerWrapper from "./collaborators-banner/collaborators-banner-wrapper";
 import Faq from "./faq";
 import MediaAndText from "./media-and-text";
-import Testimonials from "./testimonials";
+import TestimonialsWrapper from "./testimonials/testimonials-wrapper";
 export const blockComponents = {
   BlocksBlocksMediaAndTextLayout: MediaAndText,
   BlocksBlocksAnimatedCardsLayout: AnimatedCards,
@@ -16,6 +16,6 @@ export const blockComponents = {
   BlocksBlocksImageBannerLayout: null,
   BlocksBlocksLatestNewsGridLayout: null,
   BlocksBlocksServicesCardsLayout: null,
-  BlocksBlocksTestimonialsLayout: Testimonials,
+  BlocksBlocksTestimonialsLayout: TestimonialsWrapper,
   BlocksBlocksTimelineLayout: null,
 };
