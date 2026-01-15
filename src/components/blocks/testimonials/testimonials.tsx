@@ -85,11 +85,11 @@ const CarouselPositionIndicator = (props: CarouselPositionIndicatorProps) => {
 
 function getProfileImage(index: number): string {
   const imageSources = [
-    "/misc/profile-1.svg",
-    "/misc/profile-2.svg",
-    "/misc/profile-3.svg",
-    "/misc/profile-4.svg",
-    "/misc/profile-5.svg",
+    "/icons/profile-1.svg",
+    "/icons/profile-2.svg",
+    "/icons/profile-3.svg",
+    "/icons/profile-4.svg",
+    "/icons/profile-5.svg",
   ];
   return imageSources[index % imageSources.length] as string;
 }

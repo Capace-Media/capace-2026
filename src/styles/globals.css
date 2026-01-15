@@ -147,6 +147,9 @@
   .section {
     @apply px-4 py-20 lg:px-20;
   }
+  .frosted {
+    @apply border border-white/10 bg-black/20 shadow-sm backdrop-blur-md;
+  }
 }
 
 @layer utilities {

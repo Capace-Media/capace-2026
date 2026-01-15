@@ -19,7 +19,10 @@ export default function Hero(props: Props) {
 const HeroLarge = (data: Props) => {
   const heroData = data.data?.large;
   return (
-    <section aria-label="Herosektion" className="relative h-170 w-full">
+    <section
+      aria-label="Herosektion"
+      className="relative h-170 w-full lg:h-200"
+    >
       <Image
         className="w-full origin-bottom scale-y-70 object-fill object-bottom md:scale-y-100 md:object-cover md:object-center"
         priority
@@ -29,14 +32,14 @@ const HeroLarge = (data: Props) => {
         fill
         aria-hidden="true"
       />
-      <div className="section relative flex h-full flex-col items-center justify-center gap-6 pt-40">
+      <div className="section relative flex h-full flex-col items-center justify-center gap-6">
         <h1 className="text-center text-5xl leading-14 font-bold">
           <span className="drop-shadow-lg">{heroData?.heading}</span>
           <span className="text-accent drop-shadow-lg">
             {heroData?.headingAccent}
           </span>
         </h1>
-        <div className="text-center font-normal drop-shadow-lg sm:mb-0">
+        <div className="mb-8 text-center font-normal drop-shadow-lg">
           {parse(heroData?.subheading || "")}
         </div>
         <ExternalOrInternalLink

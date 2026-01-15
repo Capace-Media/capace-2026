@@ -34,7 +34,7 @@ export const CollaboratorImage = (props: Props) => {
         aria-hidden="true"
       >
         <Image
-          src={"/misc/diamond.svg"}
+          src={"/icons/diamond.svg"}
           alt=""
           width={20}
           height={20}

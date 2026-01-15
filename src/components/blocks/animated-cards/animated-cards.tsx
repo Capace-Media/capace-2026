@@ -14,7 +14,7 @@ interface Props {
 
 export default function AnimatedCards(props: Props) {
   return (
-    <section className="flex flex-col items-center">
+    <section className="flex flex-col items-center px-4 md:px-0">
       <HeadingWithAccent
         accentedHeading={props.data.accentHeading?.accent || ""}
         mainHeading={props.data.accentHeading?.main || ""}
