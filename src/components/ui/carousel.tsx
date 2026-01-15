@@ -190,10 +190,7 @@ function CarouselPrevious({
       variant={variant}
       size={size}
       className={cn(
-        "absolute flex aspect-square h-13! w-10! touch-manipulation items-center justify-center rounded-full",
-        orientation === "horizontal"
-          ? "bottom-0 left-1/2 -translate-x-full translate-y-full"
-          : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
+        "flex aspect-square h-13 w-13 touch-manipulation items-center justify-center rounded-full",
         className,
       )}
       disabled={!canScrollPrev}
@@ -220,10 +217,7 @@ function CarouselNext({
       variant={variant}
       size={size}
       className={cn(
-        "absolute flex aspect-square h-13! w-10! touch-manipulation items-center justify-center rounded-full",
-        orientation === "horizontal"
-          ? "right-1/2 bottom-0 translate-x-full translate-y-full"
-          : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
+        "flex aspect-square h-13 w-13 touch-manipulation items-center justify-center rounded-full",
         className,
       )}
       disabled={!canScrollNext}
