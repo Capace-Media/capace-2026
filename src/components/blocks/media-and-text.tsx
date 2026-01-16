@@ -3,6 +3,7 @@ import parse from "html-react-parser";
 import Image from "next/image";
 import HeadingWithAccent from "../shared/heading-with-accent";
 import ExternalOrInternalLink from "../shared/external-or-internal-link";
+import ParallaxImage from "../shared/parallax-image";
 
 interface Props {
   data: Extract<
@@ -29,11 +30,9 @@ export default function MediaAndText(props: Props) {
         />
       </div>
       <div className="relative order-2 col-span-1 row-span-3 flex lg:order-0">
-        <Image
+        <ParallaxImage
           src={image?.mediaItemUrl || ""}
           alt={image?.altText || "Dekorativ bild"}
-          fill
-          className="object-cover"
         />
       </div>
       <div className="prose prose-invert italic-accent order-3 flex flex-col">

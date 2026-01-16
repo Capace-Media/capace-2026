@@ -29,18 +29,9 @@ export default function AnimatedCardsDesktop(props: Props) {
         scrollTrigger: {
           pin: true,
           start: "center center",
-          end: `${cards.length * 450}px top`,
+          end: `${cards.length * 370}px top`,
           trigger: container.current,
           pinSpacing: true,
-          //   onLeave: (self) => {
-          //     self.kill();
-
-          //     ScrollTrigger.create({
-          //       pin: false,
-          //     });
-
-          //     ScrollTrigger.refresh();
-          //   },
         },
       });
 
