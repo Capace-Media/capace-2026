@@ -29,9 +29,17 @@ export default function AnimatedCardsWrapper(props: Props) {
         scrollTrigger: {
           pin: true,
           start: "center center",
-          end: `${cards.length * 400}px top`,
+          end: `${cards.length * 450}px top`,
           trigger: container.current,
-          markers: true,
+          onLeave: (self) => {
+            self.kill();
+
+            ScrollTrigger.create({
+              pin: false,
+            });
+
+            ScrollTrigger.refresh();
+          },
         },
       });
 
@@ -39,21 +47,19 @@ export default function AnimatedCardsWrapper(props: Props) {
         gsap.fromTo(
           card,
           {
-            scale: 0.8,
-            y: 50,
+            x: -100,
             opacity: 0,
           },
           {
-            scale: 1,
-            y: 0,
+            x: 0,
             opacity: 1,
             duration: 0.6,
             ease: "back.out(1.7)",
             scrollTrigger: {
               trigger: card,
-              start: () => `top+=${i * 300}px 30%`,
+              start: () => `top+=${i * 400}px 35%`,
               toggleActions: "play none none none",
-              // markers: true,
+              once: true,
             },
           },
         );
