@@ -1,9 +1,9 @@
+"use client";
 import Card from "@/components/shared/card";
 import type {
   BlocksBlocksCards,
   ReusableFieldsButton_Fields,
 } from "@/graphql/graphql";
-import { motion } from "motion/react";
 
 interface Props {
   card: BlocksBlocksCards;
@@ -13,10 +13,7 @@ interface Props {
 
 export function AnimatedCard(props: Props) {
   return (
-    <motion.div
-      style={{ zIndex: props.zIndex }}
-      // initial={{ x: props.index === 0 ? 0 : -20 * props.index }}
-    >
+    <div style={{ zIndex: props.zIndex }} className="animated-card">
       <Card
         index={props.index}
         imgSrc={props.card?.card?.image?.node.mediaItemUrl || ""}
@@ -26,6 +23,6 @@ export function AnimatedCard(props: Props) {
         numbered
         buttonProps={props.card.card?.button as ReusableFieldsButton_Fields}
       />
-    </motion.div>
+    </div>
   );
 }

@@ -1,4 +1,4 @@
-import AnimatedCards from "./animated-cards/animated-cards";
+import AnimatedCardsWrapper from "./animated-cards/animated-cards-wrapper";
 import CasesGrid from "./cases-grid";
 import CollaboratorsBannerWrapper from "./collaborators-banner/collaborators-banner-wrapper";
 import Faq from "./faq";
@@ -6,7 +6,7 @@ import MediaAndText from "./media-and-text";
 import TestimonialsWrapper from "./testimonials/testimonials-wrapper";
 export const blockComponents = {
   BlocksBlocksMediaAndTextLayout: MediaAndText,
-  BlocksBlocksAnimatedCardsLayout: AnimatedCards,
+  BlocksBlocksAnimatedCardsLayout: AnimatedCardsWrapper,
   BlocksBlocksCardsAndTextLayout: null,
   BlocksBlocksCaseCardGridLayout: CasesGrid,
   BlocksBlocksCollaboratorsBannerLayout: CollaboratorsBannerWrapper,
