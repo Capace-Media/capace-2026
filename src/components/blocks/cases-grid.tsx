@@ -70,7 +70,7 @@ export default function CasesGrid(props: Props) {
                     </Button>
                   </div>
                 </div>
-                <div className="flex flex-col-reverse justify-between gap-2 sm:flex-row">
+                <div className="flex flex-col-reverse justify-between gap-4 sm:flex-row">
                   <h3 className="flex items-center gap-3 text-lg font-bold">
                     <span
                       className="bg-accent h-3 w-3 rounded-full"
@@ -84,7 +84,7 @@ export default function CasesGrid(props: Props) {
                       <Link
                         href={`tjanster/${category.slug}`}
                         key={index}
-                        className="border-muted text-muted-foreground hover:border-accent rounded-full border p-2 px-4 text-base transition-colors duration-300 hover:text-white hover:no-underline sm:text-xs"
+                        className="border-muted text-muted-foreground hover:border-accent rounded-full border p-2 px-4 text-xs transition-colors duration-300 hover:text-white hover:no-underline"
                       >
                         {category.name}
                       </Link>

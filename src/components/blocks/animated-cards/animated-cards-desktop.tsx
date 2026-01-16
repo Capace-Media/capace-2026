@@ -31,15 +31,16 @@ export default function AnimatedCardsDesktop(props: Props) {
           start: "center center",
           end: `${cards.length * 450}px top`,
           trigger: container.current,
-          onLeave: (self) => {
-            self.kill();
+          pinSpacing: true,
+          //   onLeave: (self) => {
+          //     self.kill();
 
-            ScrollTrigger.create({
-              pin: false,
-            });
+          //     ScrollTrigger.create({
+          //       pin: false,
+          //     });
 
-            ScrollTrigger.refresh();
-          },
+          //     ScrollTrigger.refresh();
+          //   },
         },
       });
 
@@ -58,8 +59,7 @@ export default function AnimatedCardsDesktop(props: Props) {
             scrollTrigger: {
               trigger: card,
               start: () => `top+=${i * 400}px 35%`,
-              toggleActions: "play none none none",
-              once: true,
+              toggleActions: "play none none reverse",
             },
           },
         );

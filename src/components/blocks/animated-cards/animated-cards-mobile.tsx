@@ -29,7 +29,7 @@ export default function AnimatedCardsMobile(props: Props) {
         scrollTrigger: {
           pin: true,
           start: "top top",
-          end: `${cards.length * 500}px top`,
+          end: `${cards.length * 400}px top`,
           trigger: container.current,
           //   markers: true,
         },
@@ -52,7 +52,7 @@ export default function AnimatedCardsMobile(props: Props) {
             ease: "back.out(1.6)",
             scrollTrigger: {
               trigger: card,
-              start: () => `top+=${i * 400}px 35%`,
+              start: () => `top+=${i * 400}px center`,
               toggleActions: "play none none reverse",
             },
           },

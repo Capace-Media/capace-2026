@@ -15,7 +15,7 @@ export default async function CollaboratorsBannerWrapper() {
   if (!data) return null;
 
   return (
-    <div className="0 flex w-full gap-2">
+    <div className="flex w-full gap-2">
       <CollaboratorsBanner items={data} />
     </div>
   );
