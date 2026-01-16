@@ -38,7 +38,9 @@ export default function Card(props: Props) {
         )}
       </div>
       <div className="flex flex-1 flex-col items-center gap-6">
-        <h3 className="text-2xl font-medium">{props.title}</h3>
+        <h3 className="line-clamp-2 min-h-16 text-center text-2xl font-medium">
+          {props.title}
+        </h3>
         <p className="text-muted-foreground text-center text-sm font-light">
           {props.textContent}
         </p>

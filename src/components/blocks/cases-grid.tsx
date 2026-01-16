@@ -98,9 +98,11 @@ export default function CasesGrid(props: Props) {
             );
           })}
         </div>
-        <Button withArrow variant={"secondaryAccent"}>
-          Se fler kundprojekt
-        </Button>
+        <div className="py-12">
+          <Button withArrow variant={"secondaryAccent"}>
+            Se fler kundprojekt
+          </Button>
+        </div>
       </section>
     </>
   );
