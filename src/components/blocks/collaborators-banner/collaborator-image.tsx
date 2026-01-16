@@ -29,8 +29,8 @@ export const CollaboratorImage = (props: Props) => {
           fill
         />
       </a>
-      <div className="flex aspect-square w-15 items-center justify-center">
-        <div className="relative h-4 w-4 sm:h-6 sm:w-6" aria-hidden="true">
+      <div className="flex aspect-square w-15 items-center justify-center lg:w-40">
+        <div className="relative h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true">
           <Image
             src={"/icons/diamond.svg"}
             fill

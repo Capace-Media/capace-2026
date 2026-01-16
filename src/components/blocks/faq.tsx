@@ -6,6 +6,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import HeadingWithAccent from "../shared/heading-with-accent";
+import Image from "next/image";
 
 interface Props {
   data: Extract<
@@ -18,7 +19,7 @@ interface Props {
 
 export default function Faq(props: Props) {
   return (
-    <section className="section flex flex-col items-center">
+    <section className="section relative flex flex-col items-center">
       <HeadingWithAccent
         accentedHeading={props.data.accentHeading?.accent || ""}
         mainHeading={props.data.accentHeading?.main || ""}

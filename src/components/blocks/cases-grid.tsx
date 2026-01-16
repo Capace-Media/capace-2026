@@ -1,8 +1,13 @@
+"use client";
 import type { PageQuery } from "@/graphql/graphql";
 import HeadingWithAccent from "../shared/heading-with-accent";
 import Image from "next/image";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 interface Props {
   data: Extract<
@@ -14,10 +19,27 @@ interface Props {
 }
 
 export default function CasesGrid(props: Props) {
+  useGSAP(() => {
+    const targets = gsap.utils.toArray(".case-card");
+    gsap.fromTo(
+      targets,
+      { opacity: 0 },
+      {
+        opacity: 1,
+        duration: 1,
+        stagger: 0.1,
+        scrollTrigger: {
+          trigger: ".cases-container",
+          start: "top center",
+        },
+      },
+    );
+  });
+
   return (
     <>
       <section
-        className="section flex flex-col items-center"
+        className="section cases-container flex flex-col items-center"
         aria-labelledby="cases-heading"
       >
         <div id="cases-heading">
@@ -30,7 +52,10 @@ export default function CasesGrid(props: Props) {
           {props.data.cases?.nodes.map((item, index) => {
             if (item.__typename !== "Case") return null;
             return (
-              <article key={index} className="flex flex-1 flex-col gap-4">
+              <article
+                key={index}
+                className="case-card flex flex-1 flex-col gap-4"
+              >
                 <div className="relative aspect-[1.3] h-auto w-full">
                   <Image
                     src={item.caseContent?.heroImage?.node.mediaItemUrl || ""}
