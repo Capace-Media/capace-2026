@@ -11,13 +11,9 @@ interface Props {
   zIndex: number;
 }
 
-export function AnimatedCard(props: Props) {
+export function AnimatedCardMobile(props: Props) {
   return (
-    <div style={{ zIndex: props.zIndex }} className="animated-card relative">
-      {props.index !== 0 && (
-        //Extra div för överlappande effekt
-        <div className="bg-background border-muted absolute top-0 left-0 hidden h-full w-10 -translate-x-1/2 border-t border-b lg:flex" />
-      )}
+    <div className="animated-card col-start-1 row-start-1 flex w-full justify-center">
       <Card
         index={props.index}
         imgSrc={props.card?.card?.image?.node.mediaItemUrl || ""}
