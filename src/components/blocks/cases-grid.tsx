@@ -39,7 +39,7 @@ export default function CasesGrid(props: Props) {
   return (
     <>
       <section
-        className="section cases-container flex flex-col items-center"
+        className="section cases-container relative flex flex-col items-center"
         aria-labelledby="cases-heading"
       >
         <div id="cases-heading">
@@ -125,6 +125,19 @@ export default function CasesGrid(props: Props) {
         </div>
         <div className="py-12">
           <Button withArrow>Se fler kundprojekt</Button>
+        </div>
+        <div
+          aria-hidden
+          className="absolute right-0 bottom-0 ml-auto aspect-square w-60 translate-x-[25%] md:w-80"
+        >
+          <Image
+            src={"/stickers/stickers-capace.webp"}
+            alt={""}
+            aria-hidden
+            fill
+            sizes="20vw"
+            className="object-contain"
+          />
         </div>
       </section>
     </>

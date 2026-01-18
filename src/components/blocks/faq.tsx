@@ -19,11 +19,24 @@ interface Props {
 
 export default function Faq(props: Props) {
   return (
-    <section className="section relative flex flex-col items-center">
+    <section className="section relative flex flex-col items-center pb-0!">
       <HeadingWithAccent
         accentedHeading={props.data.accentHeading?.accent || ""}
         mainHeading={props.data.accentHeading?.main || ""}
       />
+      <div
+        aria-hidden
+        className="relative top-0 left-0 mr-auto aspect-video w-50 -translate-x-[25%] lg:absolute lg:w-70 lg:translate-x-[40%]"
+      >
+        <Image
+          src={"/stickers/sticker-deadline.webp"}
+          alt={""}
+          aria-hidden
+          fill
+          sizes="20vw"
+          className="object-contain"
+        />
+      </div>
       <Accordion multiple={false} className="mx-auto w-full max-w-200">
         {props.data?.questions?.nodes.map((question, index) => {
           if (question.__typename !== "Faq") {
@@ -56,6 +69,19 @@ export default function Faq(props: Props) {
           );
         })}
       </Accordion>
+      <div
+        aria-hidden
+        className="relative right-0 bottom-0 ml-auto aspect-video w-60 md:w-100"
+      >
+        <Image
+          src={"/stickers/sticker-capace.webp"}
+          alt={""}
+          aria-hidden
+          fill
+          sizes="20vw"
+          className="object-contain"
+        />
+      </div>
     </section>
   );
 }

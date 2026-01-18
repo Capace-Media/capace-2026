@@ -150,9 +150,6 @@ const TestimonialCard = (props: TestimonialCardProps) => {
             {props.companyName}
           </p>
         </div>
-        index: {props.index}
-        current: {props.current}
-        total: {props.totalAmountOfCards}
         <p className="px-1 text-center text-sm">{props.textContent}</p>
       </div>
     </div>
