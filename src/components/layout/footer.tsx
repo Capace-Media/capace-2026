@@ -6,7 +6,7 @@ export default async function Footer() {
   const data = await getFooterData();
   return (
     <footer className="bg-accent text-background bottom-0 z-0 px-4 py-10 text-sm md:px-20 lg:sticky">
-      <div className="bg-accent absolute top-0 left-0 h-100 w-full -translate-y-full" />
+      <div className="bg-accent absolute top-0 left-0 h-50 w-full -translate-y-full" />
       <div className="flex flex-col gap-2">
         <h3 className="text-8xl font-bold text-white">{data?.heading}</h3>
         <div className="flex flex-col lg:flex-row">

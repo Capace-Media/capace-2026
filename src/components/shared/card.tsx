@@ -45,7 +45,10 @@ export default function Card(props: Props) {
           {props.textContent}
         </p>
         {props.buttonProps?.label && props.buttonProps?.url && (
-          <ExternalOrInternalLink buttonProps={props.buttonProps} />
+          <ExternalOrInternalLink
+            buttonProps={props.buttonProps}
+            variant="secondary"
+          />
         )}
       </div>
     </div>

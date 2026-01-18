@@ -41,6 +41,7 @@ export default function MediaAndText(props: Props) {
       <div className="order-4 flex justify-center py-10 lg:justify-start">
         {button?.url && button.label && (
           <ExternalOrInternalLink
+            variant="secondary"
             buttonProps={button as ReusableFieldsButton_Fields}
           />
         )}

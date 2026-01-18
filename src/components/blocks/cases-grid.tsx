@@ -87,7 +87,7 @@ export default function CasesGrid(props: Props) {
                     </div>
                     <Button
                       withArrow
-                      variant={"secondaryAccent"}
+                      variant={"default"}
                       className="w-[170]!"
                       aria-label={`Läs mer om ${item.title}`}
                     >
@@ -124,9 +124,7 @@ export default function CasesGrid(props: Props) {
           })}
         </div>
         <div className="py-12">
-          <Button withArrow variant={"secondaryAccent"}>
-            Se fler kundprojekt
-          </Button>
+          <Button withArrow>Se fler kundprojekt</Button>
         </div>
       </section>
     </>

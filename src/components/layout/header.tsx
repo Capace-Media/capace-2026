@@ -34,7 +34,7 @@ export default function Header() {
           </div>
         </div>
         <div className="flex max-w-[1/3] flex-1 justify-end">
-          <Button withArrow variant={"secondaryAccent"} size={"sm"}>
+          <Button withArrow variant={"secondary"} size={"default"}>
             Knapptext
           </Button>
         </div>

@@ -4,9 +4,13 @@ import { Button } from "../ui/button";
 
 interface Props {
   buttonProps: ReusableFieldsButton_Fields;
+  variant?: "default" | "secondary";
 }
 
-export default function ExternalOrInternalLink({ buttonProps }: Props) {
+export default function ExternalOrInternalLink({
+  buttonProps,
+  variant = "default",
+}: Props) {
   const isExternal = buttonProps.url?.is_internal === false;
   const urlOrSlug = isExternal
     ? buttonProps.url?.externalLink || "#"
@@ -15,7 +19,8 @@ export default function ExternalOrInternalLink({ buttonProps }: Props) {
   return (
     <Button
       withArrow
-      variant={"secondaryAccent"}
+      size={"default"}
+      variant={variant}
       nativeButton={false}
       render={
         isExternal ? (

@@ -26,14 +26,14 @@ const HeroLarge = (data: Props) => {
       <Image
         className="w-full origin-bottom scale-y-70 object-fill object-bottom md:scale-y-100 md:object-cover md:object-center"
         priority
-        src={"/hero.png"}
+        src={"/hero.webp"}
         alt=""
         sizes="100vw"
         fill
         aria-hidden="true"
       />
       <div className="section relative flex h-full flex-col items-center justify-center gap-6">
-        <h1 className="text-center text-5xl leading-14 font-bold">
+        <h1 className="text-center text-6xl leading-14 font-bold">
           <span className="drop-shadow-lg">{heroData?.heading}</span>
           <span className="text-accent drop-shadow-lg">
             {heroData?.headingAccent}
