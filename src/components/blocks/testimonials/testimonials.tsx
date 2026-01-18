@@ -11,6 +11,7 @@ import {
 import { Minus } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { cn } from "@/lib/utils";
 
 interface Props {
   data: Awaited<ReturnType<typeof getTestimonials>>;
@@ -46,7 +47,9 @@ export default function Testimonials(props: Props) {
             className="basis-full pl-6 ease-in-out md:basis-1/3"
           >
             <TestimonialCard
+              totalAmountOfCards={props.data?.length || 0}
               index={index}
+              current={current}
               author={testimonial.testimonialContent?.author || ""}
               authorTitle={testimonial.testimonialContent?.authorTitle || ""}
               companyName={testimonial.testimonialContent?.companyName || ""}
@@ -100,10 +103,32 @@ interface TestimonialCardProps {
   authorTitle: string;
   companyName: string;
   textContent: string;
+  current: number;
+  totalAmountOfCards: number;
 }
 const TestimonialCard = (props: TestimonialCardProps) => {
+  const isPrevious = props.current === props.index + 2;
+  const isNext = props.current === props.index;
+  const isCurrent = props.current === props.index + 1;
+  const isNextOnLastCard =
+    props.current === props.totalAmountOfCards && props.index === 0;
+  const isPreviousOnFirstCard =
+    props.current === 1 && props.index === props.totalAmountOfCards - 1;
   return (
-    <div className="border-accent flex h-80 items-center justify-center rounded-2xl border-4">
+    <div
+      className={cn(
+        "border-accent flex h-80 translate-y-5 items-center justify-center rounded-2xl border-4 opacity-100 transition-all duration-500",
+        (isPrevious || isPreviousOnFirstCard) && "-rotate-5",
+        (isNext || isNextOnLastCard) && "rotate-5",
+        isCurrent && "translate-y-0",
+        !isNext &&
+          !isPrevious &&
+          !isCurrent &&
+          !isPreviousOnFirstCard &&
+          !isNextOnLastCard &&
+          "opacity-0",
+      )}
+    >
       <div className="border-muted flex h-[93%] w-[93%] flex-col items-center gap-4 rounded-lg border">
         <div className="relative h-1/4 w-full">
           <Image
@@ -125,6 +150,9 @@ const TestimonialCard = (props: TestimonialCardProps) => {
             {props.companyName}
           </p>
         </div>
+        index: {props.index}
+        current: {props.current}
+        total: {props.totalAmountOfCards}
         <p className="px-1 text-center text-sm">{props.textContent}</p>
       </div>
     </div>
