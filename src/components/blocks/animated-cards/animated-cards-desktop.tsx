@@ -62,9 +62,9 @@ export default function AnimatedCardsDesktop(props: Props) {
           start: () => `top+=${i * 400}px 35%`,
           end: () => `top+=${i * 400 + 400}px 35%`,
           onEnter: () => setActiveCardIndex(i),
-          onLeave: () => setActiveCardIndex(null),
           onEnterBack: () => setActiveCardIndex(i),
           onLeaveBack: () => setActiveCardIndex(null),
+          markers: true,
         });
       });
     },
@@ -87,7 +87,7 @@ export default function AnimatedCardsDesktop(props: Props) {
             card={card as BlocksBlocksCards}
             index={index}
             zIndex={props.data.cards?.length! - index}
-            isActive={activeCardIndex === index}
+            isInactive={(activeCardIndex || 0) > index}
           />
         ))}
       </div>

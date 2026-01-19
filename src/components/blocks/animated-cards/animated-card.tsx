@@ -10,7 +10,7 @@ interface Props {
   card: BlocksBlocksCards;
   index: number;
   zIndex: number;
-  isActive: boolean;
+  isInactive: boolean;
 }
 
 export function AnimatedCard(props: Props) {
@@ -20,7 +20,7 @@ export function AnimatedCard(props: Props) {
         //Extra div för överlappande effekt
         <div
           className={cn(
-            props.isActive ? "bg-accent" : "bg-background",
+            props.isInactive ? "bg-background" : "bg-accent",
             "border-muted absolute top-0 left-0 hidden h-full w-10 -translate-x-1/2 border-t border-b transition-all duration-400 lg:flex",
           )}
         />
@@ -33,7 +33,8 @@ export function AnimatedCard(props: Props) {
         textContent={props.card?.card?.textContent || ""}
         numbered
         buttonProps={props.card.card?.button as ReusableFieldsButton_Fields}
-        isActive={props.isActive}
+        isInactive={props.isInactive}
+        isAnimated
       />
     </div>
   );
