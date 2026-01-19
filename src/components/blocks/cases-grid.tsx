@@ -7,6 +7,7 @@ import Link from "next/link";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ArticleCard from "../shared/article-card";
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 interface Props {
@@ -52,50 +53,17 @@ export default function CasesGrid(props: Props) {
           {props.data.cases?.nodes.map((item, index) => {
             if (item.__typename !== "Case") return null;
             return (
-              <article
+              <ArticleCard
                 key={index}
-                className="case-card flex flex-1 flex-col gap-4"
+                imgSrc={item.caseContent?.heroImage?.node.mediaItemUrl || ""}
+                altText={
+                  item.caseContent?.heroImage?.node.altText || item.title || ""
+                }
+                buttonLabel={"Läs mer"}
+                buttonLink={`/kundcase/${item.slug}` || "/kundcase"}
+                ariaLabel={`Läs mer om ${item.title}`}
               >
-                <div className="relative aspect-[1.3] h-auto w-full">
-                  <Image
-                    src={item.caseContent?.heroImage?.node.mediaItemUrl || ""}
-                    alt={
-                      item.caseContent?.heroImage?.node.altText ||
-                      item.title ||
-                      ""
-                    }
-                    className="rounded-[36px] object-cover"
-                    fill
-                  />
-
-                  <div className="absolute right-0 bottom-0 flex items-center justify-center rounded-tl-[36px] bg-black pt-4 pr-1 pl-4">
-                    <div className="absolute top-0 right-0 h-6 w-6 -translate-y-full lg:h-8 lg:w-8">
-                      <Image
-                        src={"/misc/rounded-image-corner.svg"}
-                        fill
-                        alt=""
-                        aria-hidden="true"
-                      />
-                    </div>
-                    <div className="absolute bottom-0 left-0 h-6 w-6 -translate-x-full lg:h-8 lg:w-8">
-                      <Image
-                        src={"/misc/rounded-image-corner.svg"}
-                        fill
-                        alt=""
-                        aria-hidden="true"
-                      />
-                    </div>
-                    <Button
-                      withArrow
-                      variant={"default"}
-                      className="w-[170]!"
-                      aria-label={`Läs mer om ${item.title}`}
-                    >
-                      Läs mer
-                    </Button>
-                  </div>
-                </div>
-                <div className="flex flex-col-reverse justify-between gap-4 sm:flex-row">
+                <ArticleCard.Header>
                   <h3 className="flex items-center gap-3 text-lg font-bold">
                     <span
                       className="bg-accent h-3 w-3 rounded-full"
@@ -115,11 +83,11 @@ export default function CasesGrid(props: Props) {
                       </Link>
                     ))}
                   </div>
-                </div>
-                <p className="text-muted-foreground text-sm">
+                </ArticleCard.Header>
+                <ArticleCard.Footer>
                   {item.caseContent?.shortDescription}
-                </p>
-              </article>
+                </ArticleCard.Footer>
+              </ArticleCard>
             );
           })}
         </div>
@@ -128,7 +96,7 @@ export default function CasesGrid(props: Props) {
         </div>
         <div
           aria-hidden
-          className="absolute right-0 bottom-0 ml-auto aspect-square w-60 translate-x-[25%] md:w-80"
+          className="absolute right-0 bottom-0 ml-auto hidden aspect-square w-60 translate-x-[25%] md:block md:w-80"
         >
           <Image
             src={"/stickers/stickers-capace.webp"}

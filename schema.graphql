@@ -582,6 +582,10 @@ interface BlocksBlocksImageBannerLayout_Fields implements AcfFieldGroup & AcfFie
 The &quot;BlocksBlocksLatestNewsGridLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
 """
 type BlocksBlocksLatestNewsGridLayout implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksLatestNewsGridLayout_Fields & BlocksBlocks_Layout {
+  """
+  A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space.
+  """
+  accentHeading: BlocksBlocksAccentHeading
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
 }
@@ -590,6 +594,10 @@ type BlocksBlocksLatestNewsGridLayout implements AcfFieldGroup & AcfFieldGroupFi
 Interface representing fields of the ACF &quot;BlocksBlocksLatestNewsGridLayout&quot; Field Group
 """
 interface BlocksBlocksLatestNewsGridLayout_Fields implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocks_Layout {
+  """
+  A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space.
+  """
+  accentHeading: BlocksBlocksAccentHeading
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
 }
@@ -7772,7 +7780,7 @@ enum PluginStatusEnum {
 """
 A chronological content entry typically used for blog posts, news articles, or similar date-based content.
 """
-type Post implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & NodeWithTrackbacks & Previewable & UniformResourceIdentifiable & WithAcfBlocks & WithAcfReusableFields {
+type Post implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & NodeWithTrackbacks & Previewable & UniformResourceIdentifiable & WithAcfBlocks {
   """The ancestors of the content node."""
   ancestors(
     """
@@ -7977,8 +7985,6 @@ type Post implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node 
   previewRevisionDatabaseId: Int
   """Whether the object is a node in the preview state"""
   previewRevisionId: ID
-  """Fields of the ReusableFields ACF Field Group"""
-  reusableFields: ReusableFields
   """
   If the current node is a revision, this field exposes the node this is a revision of. Returns null if the node is not a revision of another node.
   """
@@ -15906,14 +15912,6 @@ Provides access to fields of the &quot;PageContent&quot; ACF Field Group via the
 interface WithAcfPageContent {
   """Fields of the PageContent ACF Field Group"""
   pageContent: PageContent
-}
-
-"""
-Provides access to fields of the &quot;ReusableFields&quot; ACF Field Group via the &quot;reusableFields&quot; field
-"""
-interface WithAcfReusableFields {
-  """Fields of the ReusableFields ACF Field Group"""
-  reusableFields: ReusableFields
 }
 
 """

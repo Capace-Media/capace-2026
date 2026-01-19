@@ -2,6 +2,7 @@ import type { PageQuery, ReusableFieldsButton_Fields } from "@/graphql/graphql";
 import Image from "next/image";
 import parse from "html-react-parser";
 import ExternalOrInternalLink from "../shared/external-or-internal-link";
+import HeadingWithAccent from "../shared/heading-with-accent";
 interface Props {
   data: NonNullable<PageQuery["page"]>["pageContent"];
 }
@@ -33,7 +34,7 @@ const HeroLarge = (data: Props) => {
         aria-hidden="true"
       />
       <div className="section relative flex h-full flex-col items-center justify-center gap-6">
-        <h1 className="text-center text-6xl leading-14 font-bold">
+        <h1 className="text-center text-5xl leading-14 font-bold md:text-6xl">
           <span className="drop-shadow-lg">{heroData?.heading}</span>
           <span className="text-accent drop-shadow-lg">
             {heroData?.headingAccent}
@@ -51,5 +52,9 @@ const HeroLarge = (data: Props) => {
 };
 
 const HeroMedium = (data: Props) => {
-  return <div>medium</div>;
+  return (
+    <div className="section pt-40">
+      <HeadingWithAccent accentedHeading={""} mainHeading={""} />
+    </div>
+  );
 };

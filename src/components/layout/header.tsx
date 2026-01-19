@@ -49,7 +49,7 @@ export default function Header() {
             </li>
             <li>
               <Link
-                href={"/Kundcase"}
+                href={"/kundcase"}
                 className="hover:text-accent p-3 no-underline! transition-all duration-300"
               >
                 Kundcase
