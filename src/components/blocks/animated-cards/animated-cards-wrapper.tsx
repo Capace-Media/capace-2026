@@ -20,10 +20,10 @@ interface Props {
 export default function AnimatedCardsWrapper(props: Props) {
   return (
     <section className="flex flex-col items-center px-4 py-12 md:px-0">
-      <div className="hidden md:flex">
+      <div className="hidden lg:flex">
         <AnimatedCardsDesktop data={props.data} />
       </div>
-      <div className="md:hidden">
+      <div className="lg:hidden">
         <AnimatedCardsMobile data={props.data} />
       </div>
     </section>

@@ -65,9 +65,9 @@ export default function Header() {
             <Image
               src={"/logotypes/capace-media.svg"}
               alt="Logotyp för Capace Media Group AB"
-              width={110}
+              width={100}
               height={40}
-              className="h-auto w-auto"
+              className="h-[80%] w-auto"
             />
           </Link>
         </div>
