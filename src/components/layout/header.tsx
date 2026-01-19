@@ -1,11 +1,30 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import MobileMenu from "./mobile-menu";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap } from "gsap";
+gsap.registerPlugin(ScrollTrigger, gsap);
 
 export default function Header() {
+  useGSAP(() => {
+    gsap.to(".fade-on-scroll", {
+      opacity: 0,
+      scrollTrigger: {
+        trigger: ".fade-on-scroll",
+        start: "top top",
+        end: "500px",
+        scrub: true,
+      },
+    });
+  });
   return (
     <header className="fixed z-100 flex h-30 w-full max-w-400 items-center justify-between gap-6 px-8 text-sm lg:px-24">
+      <div className="fade-on-scroll absolute bottom-0 left-33 text-neutral-400 uppercase opacity-100">
+        Digitalbyrå / webbyrå Malmö
+      </div>
       <div className="ml-auto md:hidden">
         <MobileMenu />
       </div>
