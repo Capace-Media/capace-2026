@@ -1,4 +1,4 @@
-import Footer from "@/components/layout/footer";
+import Footer from "@/components/layout/footer/footer";
 import Header from "@/components/layout/header";
 import "@/styles/globals.css";
 
