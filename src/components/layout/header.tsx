@@ -67,6 +67,7 @@ export default function Header() {
               alt="Logotyp för Capace Media Group AB"
               width={110}
               height={40}
+              className="h-auto w-auto"
             />
           </Link>
         </div>

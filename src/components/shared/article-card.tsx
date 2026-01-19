@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 export default function ArticleCard(props: ImageProps) {
   return (
-    <article className="case-card flex flex-col gap-4">
+    <article className={cn("case-card flex flex-col gap-4", props.className)}>
       <ImageAndButton
         imgSrc={props.imgSrc}
         altText={props.altText}
@@ -29,7 +29,9 @@ function Footer({
   className?: string;
 }) {
   return (
-    <p className={cn("text-muted-foreground text-sm", className)}>{children}</p>
+    <div className={cn("text-muted-foreground text-sm", className)}>
+      {children}
+    </div>
   );
 }
 
@@ -59,6 +61,7 @@ interface ImageProps {
   buttonLink: string;
   ariaLabel: string;
   children?: React.ReactNode;
+  className?: string;
 }
 function ImageAndButton(props: ImageProps) {
   return (
@@ -87,9 +90,11 @@ function ImageAndButton(props: ImageProps) {
             aria-hidden="true"
           />
         </div>
-        <Link href={props.buttonLink} className="no-underline!">
+        <Link
+          href={props.buttonLink}
+          className="no-underline! hover:cursor-pointer"
+        >
           <Button
-            nativeButton={false}
             withArrow
             variant={"default"}
             className="w-[170]!"

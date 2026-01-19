@@ -171,6 +171,8 @@ export default async function Footer() {
                 alt={image.altText || ""}
                 width={100}
                 height={100}
+                className="h-auto w-auto"
+                sizes="(min-width: 768px) 10vw, 25vw"
               />
             ))}
           </div>

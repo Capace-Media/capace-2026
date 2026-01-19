@@ -34,6 +34,7 @@ export default function Card(props: Props) {
             alt={props.altText}
             width={90}
             height={90}
+            className="h-auto w-auto"
           />
         )}
       </div>

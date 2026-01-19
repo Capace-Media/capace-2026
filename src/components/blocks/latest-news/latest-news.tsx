@@ -30,11 +30,10 @@ export default function LatestNews(props: Props) {
       },
     );
   });
-  console.log("news data:", props.data);
 
   return (
     <>
-      <div className="grid w-full grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
+      <div className="news-container grid w-full grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
         {props.data?.map((item, index) => {
           let date;
           if (item.date) {
@@ -42,6 +41,7 @@ export default function LatestNews(props: Props) {
           }
           return (
             <ArticleCard
+              className="news-card"
               key={index}
               imgSrc={item.postContent?.heroImage?.node.mediaItemUrl || ""}
               altText={
