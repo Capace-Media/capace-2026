@@ -40,11 +40,11 @@ export default function Testimonials(props: Props) {
       className="w-full max-w-3xl"
       opts={{ loop: true }}
     >
-      <CarouselContent className="-ml-4">
+      <CarouselContent className="-ml-10">
         {props.data!.map((testimonial, index) => (
           <CarouselItem
             key={index}
-            className="basis-full pl-6 ease-in-out md:basis-1/3"
+            className="basis-full pl-12 ease-in-out md:basis-1/3"
           >
             <TestimonialCard
               totalAmountOfCards={props.data?.length || 0}
@@ -108,7 +108,16 @@ interface TestimonialCardProps {
 }
 const TestimonialCard = (props: TestimonialCardProps) => {
   const isPrevious = props.current === props.index + 2;
+  const isPrevPrev =
+    props.index === props.current - 3 ||
+    (props.current === 1 && props.index === props.totalAmountOfCards - 2) ||
+    (props.current === 2 && props.index === props.totalAmountOfCards - 1);
+
   const isNext = props.current === props.index;
+  const isNextNext =
+    props.index === props.current + 1 ||
+    (props.index === 1 && props.current === props.totalAmountOfCards) ||
+    (props.index === 0 && props.current === props.totalAmountOfCards - 1);
   const isCurrent = props.current === props.index + 1;
   const isNextOnLastCard =
     props.current === props.totalAmountOfCards && props.index === 0;
@@ -119,6 +128,8 @@ const TestimonialCard = (props: TestimonialCardProps) => {
       className={cn(
         "border-accent flex h-80 translate-y-5 items-center justify-center rounded-2xl border-4 opacity-100 transition-all duration-500",
         (isPrevious || isPreviousOnFirstCard) && "-rotate-5",
+        isPrevPrev && "translate-y-20 -rotate-20",
+        isNextNext && "translate-y-20 rotate-20",
         (isNext || isNextOnLastCard) && "rotate-5",
         isCurrent && "translate-y-0",
         !isNext &&
@@ -149,6 +160,9 @@ const TestimonialCard = (props: TestimonialCardProps) => {
           <p className="text-accent text-sm font-bold uppercase">
             {props.companyName}
           </p>
+          <p>current:{props.current}</p>
+          <p>index:{props.index}</p>
+          <p>total:{props.totalAmountOfCards}</p>
         </div>
         <p className="px-1 text-center text-sm">{props.textContent}</p>
       </div>
