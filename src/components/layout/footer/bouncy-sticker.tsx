@@ -28,7 +28,7 @@ export default function BouncySticker(props: StickerProps) {
     if (!stickerRef.current) return;
 
     const tl = gsap.timeline();
-    const yValue = gsap.utils.random(-30, 30);
+    const yValue = gsap.utils.random(-20, 20);
     const rotationValue = gsap.utils.random(-15, 15);
 
     tl.to(stickerRef.current, {

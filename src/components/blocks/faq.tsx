@@ -33,7 +33,7 @@ export default function Faq(props: Props) {
           alt={""}
           aria-hidden
           fill
-          sizes="20vw"
+          sizes="(min-width: 768px) 20vw, 50vw"
           className="object-contain"
         />
       </div>
@@ -78,7 +78,7 @@ export default function Faq(props: Props) {
           alt={""}
           aria-hidden
           fill
-          sizes="20vw"
+          sizes="(min-width: 768px) 20vw, 50vw"
           className="object-contain"
         />
       </div>
