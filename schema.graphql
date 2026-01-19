@@ -7780,7 +7780,7 @@ enum PluginStatusEnum {
 """
 A chronological content entry typically used for blog posts, news articles, or similar date-based content.
 """
-type Post implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & NodeWithTrackbacks & Previewable & UniformResourceIdentifiable & WithAcfBlocks {
+type Post implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & NodeWithTrackbacks & Previewable & UniformResourceIdentifiable & WithAcfBlocks & WithAcfPostContent {
   """The ancestors of the content node."""
   ancestors(
     """
@@ -7960,6 +7960,8 @@ type Post implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node 
   pingStatus: String
   """URLs that have been pinged."""
   pinged: [String]
+  """Fields of the PostContent ACF Field Group"""
+  postContent: PostContent
   """Connection between the Post type and the postFormat type"""
   postFormats(
     """
@@ -8131,6 +8133,72 @@ interface PostConnectionPageInfo implements PageInfo & WPPageInfo {
   hasPreviousPage: Boolean!
   """When paginating backwards, the cursor to continue."""
   startCursor: String
+}
+
+"""
+The &quot;PostContent&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type PostContent implements AcfFieldGroup & AcfFieldGroupFields & Blocks_Fields & PostContent_Fields {
+  """
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;PostContent&quot; Field Group
+  """
+  author(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+  ): AcfContentNodeConnection
+  """
+  Field of the &quot;flexible_content&quot; Field Type added to the schema as part of the &quot;Blocks&quot; Field Group
+  """
+  blocks: [BlocksBlocks_Layout]
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;PostContent&quot; Field Group
+  """
+  heroImage: AcfMediaItemConnectionEdge
+}
+
+"""
+Interface representing fields of the ACF &quot;PostContent&quot; Field Group
+"""
+interface PostContent_Fields implements AcfFieldGroup & AcfFieldGroupFields & Blocks_Fields {
+  """
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;PostContent&quot; Field Group
+  """
+  author(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+  ): AcfContentNodeConnection
+  """
+  Field of the &quot;flexible_content&quot; Field Type added to the schema as part of the &quot;Blocks&quot; Field Group
+  """
+  blocks: [BlocksBlocks_Layout]
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;PostContent&quot; Field Group
+  """
+  heroImage: AcfMediaItemConnectionEdge
 }
 
 """
@@ -15912,6 +15980,14 @@ Provides access to fields of the &quot;PageContent&quot; ACF Field Group via the
 interface WithAcfPageContent {
   """Fields of the PageContent ACF Field Group"""
   pageContent: PageContent
+}
+
+"""
+Provides access to fields of the &quot;PostContent&quot; ACF Field Group via the &quot;postContent&quot; field
+"""
+interface WithAcfPostContent {
+  """Fields of the PostContent ACF Field Group"""
+  postContent: PostContent
 }
 
 """

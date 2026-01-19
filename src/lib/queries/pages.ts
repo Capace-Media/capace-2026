@@ -6,6 +6,11 @@ export const PageQuery = graphql(`
       title
       slug
       pageContent {
+        medium {
+          heading_accent
+          heading_main
+          text
+        }
         large {
           heading
           headingAccent
@@ -170,6 +175,13 @@ export const PageQuery = graphql(`
                 textContent
                 title
               }
+            }
+          }
+          ... on BlocksBlocksLatestNewsGridLayout {
+            __typename
+            accentHeading {
+              accent
+              main
             }
           }
         }

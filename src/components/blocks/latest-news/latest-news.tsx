@@ -1,22 +1,16 @@
 "use client";
-import type { PageQuery } from "@/graphql/graphql";
-import HeadingWithAccent from "../../shared/heading-with-accent";
-import Image from "next/image";
 import { Button } from "../../ui/button";
-import Link from "next/link";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ArticleCard from "../../shared/article-card";
+import dayjs from "dayjs";
+import "dayjs/locale/sv";
+import type { getLatestNewsPreviews } from "@/lib/fetchers/news";
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 interface Props {
-  data: Extract<
-    NonNullable<
-      NonNullable<NonNullable<PageQuery["page"]>["blocks"]>["blocks"]
-    >[number],
-    { __typename: "BlocksBlocksCaseCardGridLayout" }
-  >;
+  data: Awaited<ReturnType<typeof getLatestNewsPreviews>>;
 }
 
 export default function LatestNews(props: Props) {
@@ -36,66 +30,48 @@ export default function LatestNews(props: Props) {
       },
     );
   });
+  console.log("news data:", props.data);
 
   return (
     <>
-      <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
-        {props.data.cases?.nodes.map((item, index) => {
-          if (item.__typename !== "Case") return null;
+      <div className="grid w-full grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
+        {props.data?.map((item, index) => {
+          let date;
+          if (item.date) {
+            date = new Date(item.date?.toString());
+          }
           return (
             <ArticleCard
               key={index}
-              imgSrc={item.caseContent?.heroImage?.node.mediaItemUrl || ""}
+              imgSrc={item.postContent?.heroImage?.node.mediaItemUrl || ""}
               altText={
-                item.caseContent?.heroImage?.node.altText || item.title || ""
+                item.postContent?.heroImage?.node.altText || item.title || ""
               }
-              buttonLabel={"Läs mer"}
-              buttonLink={`/kundcase/${item.slug}` || "/kundcase"}
-              ariaLabel={`Läs mer om ${item.title}`}
+              buttonLabel={"Läs inlägg"}
+              buttonLink={`/nyheter/${item.slug}` || "/nyheter"}
+              ariaLabel={`Läs blogginlägget: ${item.title}`}
             >
               <ArticleCard.Header>
-                <h3 className="flex items-center gap-3 text-lg font-bold">
-                  <span
-                    className="bg-accent h-3 w-3 rounded-full"
-                    aria-hidden="true"
-                  ></span>
+                <h3 className="flex items-center gap-3 text-lg font-medium">
                   {item.title}
                 </h3>
-                <div className="flex gap-2">
-                  {item.casesCategories?.nodes.map((category, index) => (
-                    //TODO Fixa länk
-                    <Link
-                      href={`tjanster/${category.slug}`}
-                      key={index}
-                      className="border-muted text-muted-foreground hover:border-accent rounded-full border p-2 px-4 text-xs transition-colors duration-300 hover:text-white hover:no-underline"
-                    >
-                      {category.name}
-                    </Link>
-                  ))}
-                </div>
               </ArticleCard.Header>
               <ArticleCard.Footer>
-                {item.caseContent?.shortDescription}
+                <div className="flex items-center justify-between">
+                  {date && (
+                    <p className="text-accent">
+                      {dayjs(date).format("DD MMMM YYYY")}
+                    </p>
+                  )}
+                  <span className="text-muted-foreground">Lästid: X min</span>
+                </div>
               </ArticleCard.Footer>
             </ArticleCard>
           );
         })}
       </div>
       <div className="py-12">
-        <Button withArrow>Se fler kundprojekt</Button>
-      </div>
-      <div
-        aria-hidden
-        className="absolute right-0 bottom-0 ml-auto aspect-square w-60 translate-x-[25%] md:w-80"
-      >
-        <Image
-          src={"/stickers/stickers-capace.webp"}
-          alt={""}
-          aria-hidden
-          fill
-          sizes="20vw"
-          className="object-contain"
-        />
+        <Button withArrow>Läs alla nyheter</Button>
       </div>
     </>
   );

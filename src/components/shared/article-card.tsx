@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 export default function ArticleCard(props: ImageProps) {
   return (
-    <article className="case-card flex flex-1 flex-col gap-4">
+    <article className="case-card flex flex-col gap-4">
       <ImageAndButton
         imgSrc={props.imgSrc}
         altText={props.altText}
@@ -87,15 +87,17 @@ function ImageAndButton(props: ImageProps) {
             aria-hidden="true"
           />
         </div>
-        <Button
-          nativeButton={false}
-          withArrow
-          variant={"default"}
-          className="w-[170]!"
-          aria-label={props.ariaLabel}
-        >
-          <Link href={props.buttonLink}>Läs mer</Link>
-        </Button>
+        <Link href={props.buttonLink} className="no-underline!">
+          <Button
+            nativeButton={false}
+            withArrow
+            variant={"default"}
+            className="w-[170]!"
+            aria-label={props.ariaLabel}
+          >
+            {props.buttonLabel}
+          </Button>
+        </Link>
       </div>
     </div>
   );

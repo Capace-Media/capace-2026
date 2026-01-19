@@ -8,7 +8,7 @@ interface Props {
 }
 export default function Hero(props: Props) {
   if (!props.data) return null;
-  const isLarge = props.data.large;
+  const isLarge = props.data.large?.heading;
 
   if (isLarge) {
     return <HeroLarge data={props.data} />;
@@ -52,9 +52,17 @@ const HeroLarge = (data: Props) => {
 };
 
 const HeroMedium = (data: Props) => {
+  const heroData = data.data?.medium;
   return (
-    <div className="section pt-40">
-      <HeadingWithAccent accentedHeading={""} mainHeading={""} />
+    <div className="section flex w-full flex-col items-center justify-center pt-40">
+      <HeadingWithAccent
+        textAlign="center"
+        accentedHeading={heroData?.heading_accent || ""}
+        mainHeading={heroData?.heading_main || ""}
+      />
+      <p className="text-muted-foreground prose text-center">
+        {data.data?.medium?.text}
+      </p>
     </div>
   );
 };

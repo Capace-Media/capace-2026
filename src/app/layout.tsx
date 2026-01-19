@@ -6,6 +6,10 @@ import { type Metadata } from "next";
 import { Poppins, Caveat } from "next/font/google";
 import { cn } from "@/lib/utils";
 
+import dayjs from "dayjs";
+import "dayjs/locale/sv";
+dayjs.locale("sv");
+
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["200", "300", "400", "500", "600", "700"],

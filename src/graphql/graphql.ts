@@ -6756,7 +6756,7 @@ export enum PluginStatusEnum {
 }
 
 /** A chronological content entry typically used for blog posts, news articles, or similar date-based content. */
-export type Post = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & NodeWithTrackbacks & Previewable & UniformResourceIdentifiable & WithAcfBlocks & {
+export type Post = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & NodeWithTrackbacks & Previewable & UniformResourceIdentifiable & WithAcfBlocks & WithAcfPostContent & {
   __typename?: 'Post';
   /**
    * The ancestors of the content node.
@@ -6852,6 +6852,8 @@ export type Post = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & 
   pingStatus?: Maybe<Scalars['String']['output']>;
   /** URLs that have been pinged. */
   pinged?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  /** Fields of the PostContent ACF Field Group */
+  postContent?: Maybe<PostContent>;
   /** Connection between the Post type and the postFormat type */
   postFormats?: Maybe<PostToPostFormatConnection>;
   /**
@@ -7040,6 +7042,55 @@ export type PostConnectionPageInfo = {
   hasPreviousPage: Scalars['Boolean']['output'];
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']['output']>;
+};
+
+/** The &quot;PostContent&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
+export type PostContent = AcfFieldGroup & AcfFieldGroupFields & Blocks_Fields & PostContent_Fields & {
+  __typename?: 'PostContent';
+  /** Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;PostContent&quot; Field Group */
+  author?: Maybe<AcfContentNodeConnection>;
+  /** Field of the &quot;flexible_content&quot; Field Type added to the schema as part of the &quot;Blocks&quot; Field Group */
+  blocks?: Maybe<Array<Maybe<BlocksBlocks_Layout>>>;
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;PostContent&quot; Field Group */
+  heroImage?: Maybe<AcfMediaItemConnectionEdge>;
+};
+
+
+/** The &quot;PostContent&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
+export type PostContentAuthorArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** Interface representing fields of the ACF &quot;PostContent&quot; Field Group */
+export type PostContent_Fields = {
+  /** Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;PostContent&quot; Field Group */
+  author?: Maybe<AcfContentNodeConnection>;
+  /** Field of the &quot;flexible_content&quot; Field Type added to the schema as part of the &quot;Blocks&quot; Field Group */
+  blocks?: Maybe<Array<Maybe<BlocksBlocks_Layout>>>;
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;PostContent&quot; Field Group */
+  heroImage?: Maybe<AcfMediaItemConnectionEdge>;
+};
+
+
+/** Interface representing fields of the ACF &quot;PostContent&quot; Field Group */
+export type PostContent_FieldsAuthorArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** A standardized classification system for content presentation styles. These formats can be used to display content differently based on type, such as &quot;standard&quot;, &quot;gallery&quot;, &quot;video&quot;, etc. */
@@ -13977,6 +14028,12 @@ export type WithAcfPageContent = {
   pageContent?: Maybe<PageContent>;
 };
 
+/** Provides access to fields of the &quot;PostContent&quot; ACF Field Group via the &quot;postContent&quot; field */
+export type WithAcfPostContent = {
+  /** Fields of the PostContent ACF Field Group */
+  postContent?: Maybe<PostContent>;
+};
+
 /** Provides access to fields of the &quot;ServiceContent&quot; ACF Field Group via the &quot;serviceContent&quot; field */
 export type WithAcfServiceContent = {
   /** Fields of the ServiceContent ACF Field Group */
@@ -14010,12 +14067,17 @@ export type FooterQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type FooterQuery = { __typename?: 'RootQuery', footer?: { __typename?: 'Footer', footerContent?: { __typename?: 'FooterContent', address?: string | null, email?: string | null, heading?: string | null, telephone?: string | null, textContent?: string | null, socials?: { __typename?: 'FooterContentSocials', facebook?: string | null, instagram?: string | null, linkedin?: string | null, threads?: string | null, tiktok?: string | null, x?: string | null } | null, certifications?: { __typename?: 'AcfMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', altText?: string | null, id: string, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null }> } | null } | null } | null };
 
+export type LatestNewsPreviewsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type LatestNewsPreviewsQuery = { __typename?: 'RootQuery', posts?: { __typename?: 'RootQueryToPostConnection', nodes: Array<{ __typename?: 'Post', date?: string | null, title?: string | null, slug?: string | null, postContent?: { __typename?: 'PostContent', heroImage?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null } } | null } | null }> } | null };
+
 export type PageQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['ID']['input']>;
 }>;
 
 
-export type PageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page', title?: string | null, slug?: string | null, pageContent?: { __typename?: 'PageContent', large?: { __typename?: 'PageContentLarge', heading?: string | null, headingAccent?: string | null, subheading?: string | null, heroImage?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null, button?: { __typename?: 'PageContentLargeButton', ariaLabel?: string | null, label?: string | null, url?: { __typename?: 'ReusableFieldsButtonUrl', externalLink?: string | null, is_internal?: boolean | null, internalLink?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
+export type PageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page', title?: string | null, slug?: string | null, pageContent?: { __typename?: 'PageContent', medium?: { __typename?: 'PageContentMedium', heading_accent?: string | null, heading_main?: string | null, text?: string | null } | null, large?: { __typename?: 'PageContentLarge', heading?: string | null, headingAccent?: string | null, subheading?: string | null, heroImage?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null, button?: { __typename?: 'PageContentLargeButton', ariaLabel?: string | null, label?: string | null, url?: { __typename?: 'ReusableFieldsButtonUrl', externalLink?: string | null, is_internal?: boolean | null, internalLink?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
                 | { __typename?: 'Case', slug?: string | null }
                 | { __typename?: 'Employee', slug?: string | null }
                 | { __typename?: 'Faq', slug?: string | null }
@@ -14060,7 +14122,7 @@ export type PageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page'
               | { __typename?: 'Testimonial' }
             > } | null }
         | { __typename?: 'BlocksBlocksImageBannerLayout' }
-        | { __typename?: 'BlocksBlocksLatestNewsGridLayout' }
+        | { __typename: 'BlocksBlocksLatestNewsGridLayout', accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null }
         | { __typename: 'BlocksBlocksMediaAndTextLayout', mediaAndText?: { __typename?: 'BlocksBlocksMediaAndText', textContent?: string | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null, button?: { __typename: 'BlocksBlocksMediaAndTextButton', ariaLabel?: string | null, label?: string | null, url?: { __typename?: 'ReusableFieldsButtonUrl', externalLink?: string | null, internalLink?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
                     | { __typename?: 'Case', slug?: string | null }
                     | { __typename?: 'Employee', slug?: string | null }
@@ -14152,12 +14214,40 @@ export const FooterDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<FooterQuery, FooterQueryVariables>;
+export const LatestNewsPreviewsDocument = new TypedDocumentString(`
+    query LatestNewsPreviews {
+  posts(first: 3) {
+    nodes {
+      date
+      title
+      slug
+      postContent {
+        heroImage {
+          node {
+            altText
+            mediaItemUrl
+            mediaDetails {
+              width
+              height
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<LatestNewsPreviewsQuery, LatestNewsPreviewsQueryVariables>;
 export const PageDocument = new TypedDocumentString(`
     query Page($slug: ID = "hem") {
   page(id: $slug, idType: URI) {
     title
     slug
     pageContent {
+      medium {
+        heading_accent
+        heading_main
+        text
+      }
       large {
         heading
         headingAccent
@@ -14322,6 +14412,13 @@ export const PageDocument = new TypedDocumentString(`
               textContent
               title
             }
+          }
+        }
+        ... on BlocksBlocksLatestNewsGridLayout {
+          __typename
+          accentHeading {
+            accent
+            main
           }
         }
       }
