@@ -2,7 +2,7 @@
 import type { BlocksBlocksCards, PageQuery } from "@/graphql/graphql";
 import HeadingWithAccent from "../../shared/heading-with-accent";
 import { AnimatedCard } from "./animated-card";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -20,6 +20,7 @@ interface Props {
 
 export default function AnimatedCardsDesktop(props: Props) {
   const container = useRef<HTMLElement>(null);
+  const [activeCardIndex, setActiveCardIndex] = useState<number | null>(null);
 
   useGSAP(
     () => {
@@ -54,6 +55,17 @@ export default function AnimatedCardsDesktop(props: Props) {
             },
           },
         );
+
+        // Track active state
+        ScrollTrigger.create({
+          trigger: card,
+          start: () => `top+=${i * 400}px 35%`,
+          end: () => `top+=${i * 400 + 400}px 35%`,
+          onEnter: () => setActiveCardIndex(i),
+          onLeave: () => setActiveCardIndex(null),
+          onEnterBack: () => setActiveCardIndex(i),
+          onLeaveBack: () => setActiveCardIndex(null),
+        });
       });
     },
     { scope: container },
@@ -75,6 +87,7 @@ export default function AnimatedCardsDesktop(props: Props) {
             card={card as BlocksBlocksCards}
             index={index}
             zIndex={props.data.cards?.length! - index}
+            isActive={activeCardIndex === index}
           />
         ))}
       </div>
