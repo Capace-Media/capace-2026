@@ -13,29 +13,47 @@ export default function Header() {
         <nav className="max-w-[1/3] flex-1">
           <ul className="frosted flex h-12 justify-evenly gap-10 rounded-full p-3 whitespace-nowrap">
             <li>
-              <Link href={"/tjanster"}>Våra tjänster</Link>
+              <Link
+                href={"/tjanster"}
+                className="hover:text-accent p-3 no-underline! transition-all duration-300"
+              >
+                Våra tjänster
+              </Link>
             </li>
             <li>
-              <Link href={"/om-oss"}>Våra tjänster</Link>
+              <Link
+                href={"/om-oss"}
+                className="hover:text-accent p-3 no-underline! transition-all duration-300"
+              >
+                Om Capace
+              </Link>
             </li>
             <li>
-              <Link href={"/Kundcase"}>Kundcase</Link>
+              <Link
+                href={"/Kundcase"}
+                className="hover:text-accent p-3 no-underline! transition-all duration-300"
+              >
+                Kundcase
+              </Link>
             </li>
           </ul>
         </nav>
         <div className="flex max-w-[1/3] flex-1 justify-center">
-          <div className="frosted flex h-12 min-w-40 items-center justify-center rounded-full px-8 py-1">
+          <Link
+            className="frosted flex h-12 min-w-40 items-center justify-center rounded-full px-8 py-1 transition-all duration-300 hover:border-white/20"
+            href={"/"}
+          >
             <Image
               src={"/logotypes/capace-media.svg"}
               alt="Logotyp för Capace Media Group AB"
               width={110}
               height={40}
             />
-          </div>
+          </Link>
         </div>
         <div className="flex max-w-[1/3] flex-1 justify-end">
           <Button withArrow variant={"secondary"} size={"default"}>
-            Knapptext
+            Be om offert
           </Button>
         </div>
       </div>

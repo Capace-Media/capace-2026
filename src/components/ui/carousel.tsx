@@ -190,14 +190,14 @@ function CarouselPrevious({
       variant={variant}
       size={size}
       className={cn(
-        "flex aspect-square h-13 w-13 touch-manipulation items-center justify-center rounded-full",
+        "flex aspect-square h-13 w-13 rotate-180 touch-manipulation items-center justify-center rounded-full",
         className,
       )}
       disabled={!canScrollPrev}
       onClick={scrollPrev}
       {...props}
     >
-      <ArrowLeft className="text-accent size-9" />
+      <ArrowRight className="text-accent size-9" />
       <span className="sr-only">Previous slide</span>
     </Button>
   );

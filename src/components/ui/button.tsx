@@ -67,7 +67,8 @@ function Button({
       <div
         className={cn(
           size === "sm" ? (withArrow ? "py-6 pr-1 pl-5" : "px-3") : "",
-          size === "default" ? (withArrow ? "py-1 pr-1 pl-5" : "px-3") : "",
+          size === "default" ? (withArrow ? "py-1 pr-1 pl-5" : "px-3") : "px-0",
+          variant === "ghost" && "border-transparent!",
           "border-muted group-hover:border-accent flex w-full items-center justify-between gap-6 rounded-full border transition-colors duration-400",
         )}
       >
