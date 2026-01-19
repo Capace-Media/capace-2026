@@ -40,11 +40,11 @@ export default function Testimonials(props: Props) {
       className="w-full max-w-3xl"
       opts={{ loop: true }}
     >
-      <CarouselContent className="-ml-10">
+      <CarouselContent className="ml-0 md:-ml-50">
         {props.data!.map((testimonial, index) => (
           <CarouselItem
             key={index}
-            className="basis-full pl-12 ease-in-out md:basis-1/3"
+            className="basis-full pl-6 ease-in-out md:basis-1/3 md:pl-32"
           >
             <TestimonialCard
               totalAmountOfCards={props.data?.length || 0}
@@ -108,6 +108,9 @@ interface TestimonialCardProps {
 }
 const TestimonialCard = (props: TestimonialCardProps) => {
   const isPrevious = props.current === props.index + 2;
+  // Some logic to check which card is next in line, next next in line and so on.
+  // This is used to create a "fan" effect. Due to how to caraousel is setup whith
+  // infinite scroll we have to check for a lot of edge cases...
   const isPrevPrev =
     props.index === props.current - 3 ||
     (props.current === 1 && props.index === props.totalAmountOfCards - 2) ||
@@ -126,7 +129,7 @@ const TestimonialCard = (props: TestimonialCardProps) => {
   return (
     <div
       className={cn(
-        "border-accent flex h-80 translate-y-5 items-center justify-center rounded-2xl border-4 opacity-100 transition-all duration-500",
+        "border-accent flex h-90 w-70 translate-y-5 items-center justify-center rounded-2xl border-4 opacity-100 transition-all duration-500",
         (isPrevious || isPreviousOnFirstCard) && "-rotate-5",
         isPrevPrev && "translate-y-20 -rotate-20",
         isNextNext && "translate-y-20 rotate-20",
@@ -141,7 +144,7 @@ const TestimonialCard = (props: TestimonialCardProps) => {
       )}
     >
       <div className="border-muted flex h-[93%] w-[93%] flex-col items-center gap-4 rounded-lg border">
-        <div className="relative h-1/4 w-full">
+        <div className="relative h-1/4 min-h-1/4 w-full">
           <Image
             src={getProfileImage(props.index)}
             alt={""}
@@ -160,9 +163,6 @@ const TestimonialCard = (props: TestimonialCardProps) => {
           <p className="text-accent text-sm font-bold uppercase">
             {props.companyName}
           </p>
-          <p>current:{props.current}</p>
-          <p>index:{props.index}</p>
-          <p>total:{props.totalAmountOfCards}</p>
         </div>
         <p className="px-1 text-center text-sm">{props.textContent}</p>
       </div>
