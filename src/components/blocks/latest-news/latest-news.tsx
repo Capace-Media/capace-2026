@@ -25,7 +25,7 @@ export default function LatestNews(props: Props) {
         stagger: 0.1,
         scrollTrigger: {
           trigger: ".news-container",
-          start: "top center",
+          start: "top 80%",
         },
       },
     );

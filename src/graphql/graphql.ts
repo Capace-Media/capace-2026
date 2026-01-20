@@ -14057,6 +14057,11 @@ export type WritingSettings = {
   useSmilies?: Maybe<Scalars['Boolean']['output']>;
 };
 
+export type CasesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CasesQuery = { __typename?: 'RootQuery', cases?: { __typename?: 'RootQueryToCaseConnection', nodes: Array<{ __typename: 'Case', slug?: string | null, title?: string | null, id: string, caseContent?: { __typename?: 'CaseContent', shortDescription?: string | null, heroImage?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null } | null, casesCategories?: { __typename?: 'CaseToCaseCategoryConnection', nodes: Array<{ __typename?: 'CaseCategory', slug?: string | null, name?: string | null }> } | null }> } | null };
+
 export type CollaboratorsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -14161,6 +14166,37 @@ export class TypedDocumentString<TResult, TVariables>
   }
 }
 
+export const CasesDocument = new TypedDocumentString(`
+    query Cases {
+  cases(where: {orderby: {field: MENU_ORDER, order: ASC}}) {
+    nodes {
+      __typename
+      caseContent {
+        shortDescription
+        heroImage {
+          node {
+            altText
+            mediaItemUrl
+            mediaDetails {
+              height
+              width
+            }
+          }
+        }
+      }
+      slug
+      title
+      id
+      casesCategories {
+        nodes {
+          slug
+          name
+        }
+      }
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<CasesQuery, CasesQueryVariables>;
 export const CollaboratorsDocument = new TypedDocumentString(`
     query Collaborators {
   collaborators {

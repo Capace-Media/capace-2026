@@ -1,5 +1,5 @@
 import AnimatedCardsWrapper from "./animated-cards/animated-cards-wrapper";
-import CasesGrid from "./cases-grid";
+import CasesGridWrapper from "./cases/cases-grid-wrapper";
 import CollaboratorsBannerWrapper from "./collaborators-banner/collaborators-banner-wrapper";
 import Faq from "./faq";
 import LatestNewsWrapper from "./latest-news/latest-news-wrapper";
@@ -9,7 +9,7 @@ export const blockComponents = {
   BlocksBlocksMediaAndTextLayout: MediaAndText,
   BlocksBlocksAnimatedCardsLayout: AnimatedCardsWrapper,
   BlocksBlocksCardsAndTextLayout: null,
-  BlocksBlocksCaseCardGridLayout: CasesGrid,
+  BlocksBlocksCaseCardGridLayout: CasesGridWrapper,
   BlocksBlocksCollaboratorsBannerLayout: CollaboratorsBannerWrapper,
   BlocksBlocksContactFormLayout: null,
   BlocksBlocksEmployeesLayout: null,

@@ -29,7 +29,7 @@ const buttonVariants = cva(
           "gap-1.5 p-1 h-fit has-data-[icon=inline-end]:pr-2.5 has-data-[icon=inline-start]:pl-2.5",
         xs: "h-6 gap-1 px-2.5 text-xs has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2 [&_svg:not([class*='size-'])]:size-3",
         sm: "h-8 gap-1 p-3 text-sm has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
-        lg: "h-10 gap-1.5 px-4 has-data-[icon=inline-end]:pr-3 has-data-[icon=inline-start]:pl-3",
+        lg: "h-fit gap-1.5 p-1 has-data-[icon=inline-end]:pr-3 has-data-[icon=inline-start]:pl-3",
         icon: "size-9",
         "icon-xs": "size-6 [&_svg:not([class*='size-'])]:size-3",
         "icon-sm": "size-8",
@@ -48,9 +48,13 @@ function Button({
   variant = "default",
   size = "default",
   withArrow = false,
+  animatedText = true,
   ...props
 }: ButtonPrimitive.Props &
-  VariantProps<typeof buttonVariants> & { withArrow?: boolean }) {
+  VariantProps<typeof buttonVariants> & {
+    withArrow?: boolean;
+    animatedText?: boolean;
+  }) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -68,11 +72,17 @@ function Button({
         className={cn(
           size === "sm" ? (withArrow ? "py-6 pr-1 pl-5" : "px-3") : "",
           size === "default" ? (withArrow ? "py-1 pr-1 pl-5" : "px-3") : "px-0",
+          size === "lg" && "p-6",
           variant === "ghost" && "border-transparent!",
           "border-muted group-hover:border-accent flex w-full items-center justify-between gap-6 rounded-full border transition-colors duration-400",
         )}
       >
-        <div className="transition-transform duration-600 group-hover:translate-x-1">
+        <div
+          className={cn(
+            "transition-transform duration-600",
+            animatedText && "group-hover:translate-x-1",
+          )}
+        >
           {props.children}
         </div>
         {withArrow && (
