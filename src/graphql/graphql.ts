@@ -14057,6 +14057,62 @@ export type WritingSettings = {
   useSmilies?: Maybe<Scalars['Boolean']['output']>;
 };
 
+export type CaseQueryVariables = Exact<{
+  slug: Scalars['ID']['input'];
+}>;
+
+
+export type CaseQuery = { __typename?: 'RootQuery', case?: { __typename?: 'Case', title?: string | null, slug?: string | null, casesCategories?: { __typename?: 'CaseToCaseCategoryConnection', nodes: Array<{ __typename?: 'CaseCategory', name?: string | null, slug?: string | null }> } | null, blocks?: { __typename?: 'Blocks', blocks?: Array<
+        | { __typename: 'BlocksBlocksAnimatedCardsLayout', accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null, cards?: Array<{ __typename?: 'BlocksBlocksCards', card?: { __typename?: 'BlocksBlocksCardsCard', textContent?: string | null, title?: string | null, button?: { __typename?: 'ReusableFieldsCardButton', ariaLabel?: string | null, label?: string | null, url?: { __typename?: 'ReusableFieldsButtonUrl', externalLink?: string | null, is_internal?: boolean | null, internalLink?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
+                      | { __typename?: 'Case', slug?: string | null }
+                      | { __typename?: 'Employee', slug?: string | null }
+                      | { __typename?: 'Faq', slug?: string | null }
+                      | { __typename?: 'MediaItem', slug?: string | null }
+                      | { __typename?: 'Page', slug?: string | null }
+                      | { __typename?: 'Post', slug?: string | null }
+                      | { __typename?: 'Service', slug?: string | null }
+                      | { __typename?: 'Testimonial', slug?: string | null }
+                    > } | null } | null } | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null } } | null } | null } | null> | null }
+        | { __typename?: 'BlocksBlocksCardsAndTextLayout' }
+        | { __typename: 'BlocksBlocksCaseCardGridLayout', accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null, cases?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
+              | { __typename: 'Case', id: string, title?: string | null, slug?: string | null, caseContent?: { __typename?: 'CaseContent', shortDescription?: string | null, heroImage?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null } | null, casesCategories?: { __typename?: 'CaseToCaseCategoryConnection', nodes: Array<{ __typename?: 'CaseCategory', slug?: string | null, name?: string | null }> } | null }
+              | { __typename?: 'Employee' }
+              | { __typename?: 'Faq' }
+              | { __typename?: 'MediaItem' }
+              | { __typename?: 'Page' }
+              | { __typename?: 'Post' }
+              | { __typename?: 'Service' }
+              | { __typename?: 'Testimonial' }
+            > } | null }
+        | { __typename: 'BlocksBlocksCollaboratorsBannerLayout' }
+        | { __typename?: 'BlocksBlocksContactFormLayout' }
+        | { __typename?: 'BlocksBlocksEmployeesLayout' }
+        | { __typename: 'BlocksBlocksFaqLayout', accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null, questions?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
+              | { __typename?: 'Case' }
+              | { __typename?: 'Employee' }
+              | { __typename: 'Faq', id: string, title?: string | null, faqContent?: { __typename?: 'FaqContent', answer?: string | null, longAnswer?: string | null } | null }
+              | { __typename?: 'MediaItem' }
+              | { __typename?: 'Page' }
+              | { __typename?: 'Post' }
+              | { __typename?: 'Service' }
+              | { __typename?: 'Testimonial' }
+            > } | null }
+        | { __typename?: 'BlocksBlocksImageBannerLayout' }
+        | { __typename: 'BlocksBlocksLatestNewsGridLayout', accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null }
+        | { __typename: 'BlocksBlocksMediaAndTextLayout', mediaAndText?: { __typename?: 'BlocksBlocksMediaAndText', textContent?: string | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null, button?: { __typename: 'BlocksBlocksMediaAndTextButton', ariaLabel?: string | null, label?: string | null, url?: { __typename?: 'ReusableFieldsButtonUrl', externalLink?: string | null, internalLink?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
+                    | { __typename?: 'Case', slug?: string | null }
+                    | { __typename?: 'Employee', slug?: string | null }
+                    | { __typename?: 'Faq', slug?: string | null }
+                    | { __typename?: 'MediaItem', slug?: string | null }
+                    | { __typename?: 'Page', slug?: string | null }
+                    | { __typename?: 'Post', slug?: string | null }
+                    | { __typename?: 'Service', slug?: string | null }
+                    | { __typename?: 'Testimonial', slug?: string | null }
+                  > } | null } | null } | null, accentHeading?: { __typename?: 'BlocksBlocksMediaAndTextAccentHeading', accent?: string | null, main?: string | null } | null } | null }
+        | { __typename: 'BlocksBlocksTestimonialsLayout', accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null }
+        | { __typename?: 'BlocksBlocksTimelineLayout' }
+       | null> | null } | null, caseContent?: { __typename?: 'CaseContent', shortDescription?: string | null, heroImage?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null } | null } | null };
+
 export type CasesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -14166,6 +14222,179 @@ export class TypedDocumentString<TResult, TVariables>
   }
 }
 
+export const CaseDocument = new TypedDocumentString(`
+    query Case($slug: ID!) {
+  case(id: $slug, idType: URI) {
+    title
+    slug
+    casesCategories {
+      nodes {
+        name
+        slug
+      }
+    }
+    blocks {
+      blocks {
+        ... on BlocksBlocksMediaAndTextLayout {
+          __typename
+          mediaAndText {
+            image {
+              node {
+                altText
+                mediaItemUrl
+                mediaDetails {
+                  height
+                  width
+                }
+              }
+            }
+            button {
+              ariaLabel
+              __typename
+              label
+              url {
+                externalLink
+                internalLink {
+                  nodes {
+                    slug
+                  }
+                }
+              }
+            }
+            accentHeading {
+              accent
+              main
+            }
+            textContent
+          }
+        }
+        ... on BlocksBlocksCollaboratorsBannerLayout {
+          __typename
+        }
+        ... on BlocksBlocksCaseCardGridLayout {
+          __typename
+          accentHeading {
+            accent
+            main
+          }
+          cases {
+            nodes {
+              ... on Case {
+                __typename
+                id
+                title
+                slug
+                caseContent {
+                  shortDescription
+                  heroImage {
+                    node {
+                      altText
+                      mediaItemUrl
+                      mediaDetails {
+                        height
+                        width
+                      }
+                    }
+                  }
+                }
+                casesCategories {
+                  nodes {
+                    slug
+                    name
+                  }
+                }
+              }
+            }
+          }
+        }
+        ... on BlocksBlocksTestimonialsLayout {
+          __typename
+          accentHeading {
+            accent
+            main
+          }
+        }
+        ... on BlocksBlocksFaqLayout {
+          __typename
+          accentHeading {
+            accent
+            main
+          }
+          questions {
+            nodes {
+              ... on Faq {
+                id
+                __typename
+                faqContent {
+                  answer
+                  longAnswer
+                }
+                title
+              }
+            }
+          }
+        }
+        ... on BlocksBlocksAnimatedCardsLayout {
+          __typename
+          accentHeading {
+            accent
+            main
+          }
+          cards {
+            card {
+              button {
+                ariaLabel
+                label
+                url {
+                  externalLink
+                  internalLink {
+                    nodes {
+                      slug
+                    }
+                  }
+                  is_internal
+                }
+              }
+              image {
+                node {
+                  altText
+                  mediaItemUrl
+                  mediaDetails {
+                    width
+                    height
+                  }
+                }
+              }
+              textContent
+              title
+            }
+          }
+        }
+        ... on BlocksBlocksLatestNewsGridLayout {
+          __typename
+          accentHeading {
+            accent
+            main
+          }
+        }
+      }
+    }
+    caseContent {
+      heroImage {
+        node {
+          altText
+          mediaItemUrl
+          mediaDetails {
+            height
+            width
+          }
+        }
+      }
+      shortDescription
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<CaseQuery, CaseQueryVariables>;
 export const CasesDocument = new TypedDocumentString(`
     query Cases {
   cases(where: {orderby: {field: MENU_ORDER, order: ASC}}) {

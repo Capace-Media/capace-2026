@@ -37,7 +37,7 @@ export default function ParallaxImage(props: Props) {
   });
 
   return (
-    <div ref={container} className="parallax w-full overflow-hidden">
+    <div ref={container} className="parallax h-full w-full overflow-hidden">
       <div className="parallax w-fill relative h-[120%]">
         <Image src={props.src} alt={props.alt} className="object-cover" fill />
       </div>

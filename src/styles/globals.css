@@ -150,6 +150,9 @@
   .frosted {
     @apply border border-white/10 bg-black/20 shadow-sm backdrop-blur-md;
   }
+  li {
+    @apply marker:text-accent!;
+  }
 }
 
 @layer utilities {

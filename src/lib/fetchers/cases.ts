@@ -1,5 +1,5 @@
 import { execute } from "@/graphql/execute";
-import { CasesQuery } from "../queries/cases";
+import { CaseQuery, CasesQuery } from "../queries/cases";
 
 export async function getCaseSlugs() {
   // const slugs = (await execute(AllCaseSlugsQuery, "force-cache")).cases?.nodes;
@@ -11,7 +11,7 @@ export async function getCasePreviews() {
 }
 
 export async function getCase(slug: string) {
-  // return (await execute(CaseQuery, "force-cache", { slug })).case?.caseContent;
+  return (await execute(CaseQuery, "force-cache", { slug })).case;
 }
 
 export async function getCases() {

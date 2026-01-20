@@ -30,7 +30,7 @@ export default function AllCasesGrid(props: Props) {
         );
 
   return (
-    <div className="relative flex flex-col items-center gap-8">
+    <div className="relative flex flex-col items-center gap-18">
       <CaseFilters />
       <CasesGrid data={filteredData?.slice(0, 4)} />
       <div className="border-accent flex w-full flex-col items-center justify-center gap-6 rounded-[36px] border-3 p-6 md:w-[80%] md:p-8">
