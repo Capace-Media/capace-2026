@@ -15,6 +15,8 @@ interface Props {
 }
 
 export default function CasesGrid(props: Props) {
+  console.log("case data:", props.data);
+
   return (
     <div className="grid w-full grid-cols-1 gap-12 lg:grid-cols-2">
       {props.data?.map((item, index) => {
