@@ -47,7 +47,7 @@ export default function AnimatedCardsDesktop(props: Props) {
             x: 0,
             opacity: 1,
             duration: 0.6,
-            ease: "back.out(1.7)",
+            ease: "power2.out",
             scrollTrigger: {
               trigger: card,
               start: () => `top+=${i * 400}px 35%`,
@@ -64,7 +64,6 @@ export default function AnimatedCardsDesktop(props: Props) {
           onEnter: () => setActiveCardIndex(i),
           onEnterBack: () => setActiveCardIndex(i),
           onLeaveBack: () => setActiveCardIndex(null),
-          markers: true,
         });
       });
     },

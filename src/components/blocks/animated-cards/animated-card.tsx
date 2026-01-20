@@ -22,6 +22,7 @@ export function AnimatedCard(props: Props) {
           className={cn(
             props.isInactive ? "bg-background" : "bg-accent",
             "border-muted absolute top-0 left-0 hidden h-full w-10 -translate-x-1/2 border-t border-b transition-all duration-400 lg:flex",
+            "noscript:bg-background",
           )}
         />
       )}

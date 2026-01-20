@@ -8,10 +8,15 @@ import {
 } from "@/components/ui/sheet";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function MobileMenu() {
+  const [isOpen, setIsOpen] = useState(false);
+  const close = () => {
+    setIsOpen(false);
+  };
   return (
-    <Sheet>
+    <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger className={"z-300"}>
         <Image
           src={"/icons/hamburger.svg"}
@@ -29,13 +34,30 @@ export default function MobileMenu() {
         </SheetHeader>
         <nav className="w-full">
           <ul className="flex w-full flex-col">
-            <NavLink href="/tjanster">Våra tjänster</NavLink>
-            <NavLink href="/kundcase">Kundcase</NavLink>
-            <NavLink href="/offert">Offert</NavLink>
-            <NavLink href="/nyheter">Nyheter</NavLink>
-            <NavLink href="/kontakt">Kontakta oss</NavLink>
-            <NavLink href="/om-oss">Om oss</NavLink>
-            <NavLink href="/karriar">Karriär</NavLink>
+            <NavLink close={close} href="/">
+              Hem
+            </NavLink>
+            <NavLink close={close} href="/tjanster">
+              Våra tjänster
+            </NavLink>
+            <NavLink href="/kundcase" close={close}>
+              Kundcase
+            </NavLink>
+            <NavLink href="/offert" close={close}>
+              Offert
+            </NavLink>
+            <NavLink href="/nyheter" close={close}>
+              Nyheter
+            </NavLink>
+            <NavLink href="/kontakt" close={close}>
+              Kontakta oss
+            </NavLink>
+            <NavLink href="/om-oss" close={close}>
+              Om oss
+            </NavLink>
+            <NavLink href="/karriar" close={close}>
+              Karriär
+            </NavLink>
           </ul>
         </nav>
       </SheetContent>
@@ -45,15 +67,21 @@ export default function MobileMenu() {
 
 const NavLink = ({
   children,
+  close,
   href,
 }: {
   href: string;
+  close: () => void;
   children: React.ReactNode;
 }) => {
   return (
     <li className="navlink flex w-full items-center gap-4 text-xl">
       <span className="bg-accent inline-block h-2 w-2 rounded-full" />
-      <Link href={href} className="h-full w-full cursor-pointer py-6">
+      <Link
+        href={href}
+        className="h-full w-full cursor-pointer py-5"
+        onClick={close}
+      >
         {children}
       </Link>
     </li>

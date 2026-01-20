@@ -9,6 +9,7 @@ interface Props {
   card: BlocksBlocksCards;
   index: number;
   zIndex: number;
+  isInactive: boolean;
 }
 
 export function AnimatedCardMobile(props: Props) {
@@ -22,6 +23,8 @@ export function AnimatedCardMobile(props: Props) {
         textContent={props.card?.card?.textContent || ""}
         numbered
         buttonProps={props.card.card?.button as ReusableFieldsButton_Fields}
+        isAnimated
+        isInactive={props.isInactive}
       />
     </div>
   );

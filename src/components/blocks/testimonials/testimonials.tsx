@@ -40,21 +40,31 @@ export default function Testimonials(props: Props) {
       className="w-full max-w-3xl"
       opts={{ loop: true }}
     >
-      <CarouselContent className="ml-0 md:-ml-50">
+      <CarouselContent className="-ml-1">
         {props.data!.map((testimonial, index) => (
           <CarouselItem
             key={index}
-            className="basis-full pl-6 ease-in-out md:basis-1/3 md:pl-32"
+            className="pl-1 ease-in-out sm:basis-1/2 lg:basis-1/2"
           >
-            <TestimonialCard
-              totalAmountOfCards={props.data?.length || 0}
-              index={index}
-              current={current}
-              author={testimonial.testimonialContent?.author || ""}
-              authorTitle={testimonial.testimonialContent?.authorTitle || ""}
-              companyName={testimonial.testimonialContent?.companyName || ""}
-              textContent={testimonial.testimonialContent?.textContent || ""}
-            />
+            <div className="p-1">
+              <div className="flex aspect-square items-center justify-center p-6">
+                <TestimonialCard
+                  totalAmountOfCards={props.data?.length || 0}
+                  index={index}
+                  current={current}
+                  author={testimonial.testimonialContent?.author || ""}
+                  authorTitle={
+                    testimonial.testimonialContent?.authorTitle || ""
+                  }
+                  companyName={
+                    testimonial.testimonialContent?.companyName || ""
+                  }
+                  textContent={
+                    testimonial.testimonialContent?.textContent || ""
+                  }
+                />
+              </div>
+            </div>
           </CarouselItem>
         ))}
       </CarouselContent>

@@ -23,6 +23,7 @@ export default function Card(props: Props) {
         "border-muted justify-between-4 flex h-full max-w-100 flex-col items-center rounded-xl border px-8 pt-4 pb-20 transition-colors duration-400",
         props.isInactive && "bg-background",
         props.withBorder && "border-accent",
+        "noscript:bg-background",
       )}
     >
       <div className="flex h-40 w-full flex-col items-center justify-center">
@@ -31,6 +32,7 @@ export default function Card(props: Props) {
             className={cn(
               props.isInactive ? "text-accent" : "text-background",
               "items-center justify-center rounded-full p-4 text-base font-bold",
+              "noscript:text-accent",
             )}
           >
             {(props.index + 1).toString().padStart(2, "0")}
@@ -52,6 +54,7 @@ export default function Card(props: Props) {
           className={cn(
             props.isInactive ? "text-foreground" : "text-background",
             "line-clamp-2 min-h-16 text-center text-2xl font-medium",
+            "noscript:text-foreground",
           )}
         >
           {props.title}
@@ -60,6 +63,7 @@ export default function Card(props: Props) {
           className={cn(
             props.isInactive ? "text-muted-foreground" : "text-background",
             "text-center text-sm font-light",
+            "noscript:text-muted-foreground",
           )}
         >
           {props.textContent}

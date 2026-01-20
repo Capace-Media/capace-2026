@@ -163,17 +163,18 @@ export default async function Footer() {
               )}
             </ul>
           </div>
-          <div className="flex flex-1 flex-wrap items-center justify-center gap-4 pb-10 lg:items-end">
+          <div className="grid grid-cols-2 items-center gap-4 pb-10 sm:grid-cols-4">
             {data?.certifications?.nodes.map((image) => (
-              <Image
-                key={image.id}
-                src={image.mediaItemUrl || ""}
-                alt={image.altText || ""}
-                width={100}
-                height={100}
-                className="h-auto w-auto"
-                sizes="(min-width: 768px) 10vw, 25vw"
-              />
+              <div key={image.id} className="flex items-center justify-center">
+                <Image
+                  src={image.mediaItemUrl || ""}
+                  alt={image.altText || ""}
+                  width={100}
+                  height={100}
+                  className="h-auto w-auto"
+                  sizes="(min-width: 768px) 10vw, 25vw"
+                />
+              </div>
             ))}
           </div>
         </div>

@@ -75,7 +75,7 @@ function SheetContent({
               />
             }
           >
-            <ArrowRight className="text-accent size-10" />
+            <ArrowRight className="text-accent size-7" />
             <span className="sr-only">Close</span>
           </SheetPrimitive.Close>
         )}
