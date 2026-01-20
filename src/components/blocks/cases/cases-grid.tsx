@@ -1,38 +1,23 @@
 "use client";
+import type { PageQuery } from "@/graphql/graphql";
 import Link from "next/link";
-import { gsap } from "gsap";
-import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ArticleCard from "../../shared/article-card";
-gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 interface Props {
-  data: any;
+  data?: NonNullable<
+    Extract<
+      NonNullable<
+        NonNullable<NonNullable<PageQuery["page"]>["blocks"]>["blocks"]
+      >[number],
+      { __typename: "BlocksBlocksCaseCardGridLayout" }
+    >["cases"]
+  >["nodes"];
 }
 
 export default function CasesGrid(props: Props) {
-  useGSAP(() => {
-    const targets = gsap.utils.toArray(".case-card");
-    gsap.fromTo(
-      targets,
-      { opacity: 0 },
-      {
-        opacity: 1,
-        duration: 1,
-        stagger: 0.1,
-        scrollTrigger: {
-          trigger: ".cases-container",
-          start: "top center",
-        },
-      },
-    );
-  });
-
   return (
-    <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
-      {props.data.map((item: any, index: number) => {
-        console.log("item is:", item);
-
+    <div className="grid w-full grid-cols-1 gap-12 lg:grid-cols-2">
+      {props.data?.map((item, index) => {
         if (item.__typename !== "Case") return null;
 
         return (

@@ -1,6 +1,5 @@
 import Blocks from "@/components/blocks/blocks";
 import AllCasesGridWrapper from "@/components/blocks/cases/all-cases-wrapper";
-import TestimonialsWrapper from "@/components/blocks/testimonials/testimonials-wrapper";
 import Hero from "@/components/layout/hero";
 import { getPage } from "@/lib/fetchers/pages";
 import { notFound } from "next/navigation";

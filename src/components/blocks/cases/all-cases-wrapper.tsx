@@ -4,6 +4,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import CasesGrid from "./cases-grid";
 import { Button } from "@/components/ui/button";
 import { getCases } from "@/lib/fetchers/cases";
+import HeadingWithAccent from "@/components/shared/heading-with-accent";
+import Link from "next/link";
+import CaseFilters from "./case-filters";
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export default async function AllCasesGridWrapper() {
@@ -12,31 +15,28 @@ export default async function AllCasesGridWrapper() {
 
   return (
     <section
-      className="section cases-container relative flex flex-col items-center"
+      className="section cases-container relative flex flex-col items-center gap-12"
       aria-labelledby="cases-heading"
     >
-      <div className="flex items-center gap-4">
-        <FilterButton>Alla</FilterButton>
-        <FilterButton>Marknadsföring</FilterButton>
-        <FilterButton>Webb</FilterButton>
-        <FilterButton>Design</FilterButton>
+      <CaseFilters />
+      <CasesGrid data={data?.nodes.slice(0, 4)} />
+      <div className="border-accent flex w-full flex-col items-center justify-center gap-6 rounded-[36px] border-3 p-6 md:w-[80%] md:p-8">
+        <HeadingWithAccent
+          noBottomMargin
+          accentedHeading={"dags att boka möte"}
+          mainHeading={"Kanske är det din tur nu?"}
+        />
+        <p className="text-center">
+          Från idé till verklighet. Vi gör skillnad där andra stannar.
+          <br /> Vi är redan igång - är du redo att göra något stort?
+        </p>
+        <Link href={"/kontakt"} className="no-underline!">
+          <Button withArrow variant={"secondary"}>
+            Boka möte
+          </Button>
+        </Link>
       </div>
-      <CasesGrid data={data?.nodes} />
-      <Button withArrow>Se fler case</Button>
+      <CasesGrid data={data?.nodes.slice(4)} />
     </section>
   );
 }
-
-const FilterButton = ({
-  children,
-  filterString,
-}: {
-  children: React.ReactNode;
-  filterString?: string;
-}) => {
-  return (
-    <Button animatedText={false} size={"lg"}>
-      {children}
-    </Button>
-  );
-};
