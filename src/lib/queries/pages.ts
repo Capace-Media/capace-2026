@@ -73,6 +73,7 @@ export const PageQuery = graphql(`
                 main
               }
               textContent
+              imagePlacement
             }
           }
           ... on BlocksBlocksCollaboratorsBannerLayout {

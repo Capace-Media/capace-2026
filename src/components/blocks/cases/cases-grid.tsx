@@ -6,6 +6,7 @@ import ArticleCard from "../../shared/article-card";
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import CategoryButtons from "@/components/shared/category-buttons";
 
 interface Props {
   data?: NonNullable<
@@ -68,18 +69,11 @@ export default function CasesGrid({ data }: Props) {
                   />
                   {item.title}
                 </h3>
-
-                <div className="flex gap-2">
-                  {item.casesCategories?.nodes.map((category, index) => (
-                    <Link
-                      href={`tjanster/${category.slug}`}
-                      key={index}
-                      className="border-muted text-muted-foreground hover:border-accent rounded-full border p-2 px-4 text-xs transition-colors duration-300 hover:text-white hover:no-underline"
-                    >
-                      {category.name}
-                    </Link>
-                  ))}
-                </div>
+                <CategoryButtons
+                  categories={item.casesCategories?.nodes.map((c) => {
+                    return { name: c.name, slug: c.slug };
+                  })}
+                />
               </ArticleCard.Header>
 
               <ArticleCard.Footer>

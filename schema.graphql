@@ -621,6 +621,10 @@ type BlocksBlocksMediaAndText implements AcfFieldGroup & AcfFieldGroupFields & B
   """
   image: AcfMediaItemConnectionEdge
   """
+  Field of the &quot;true_false&quot; Field Type added to the schema as part of the &quot;BlocksBlocksMediaAndText&quot; Field Group
+  """
+  imagePlacement: Boolean
+  """
   Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksMediaAndText&quot; Field Group
   """
   textContent: String
@@ -733,9 +737,61 @@ interface BlocksBlocksMediaAndText_Fields implements AcfFieldGroup & AcfFieldGro
   """
   image: AcfMediaItemConnectionEdge
   """
+  Field of the &quot;true_false&quot; Field Type added to the schema as part of the &quot;BlocksBlocksMediaAndText&quot; Field Group
+  """
+  imagePlacement: Boolean
+  """
   Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksMediaAndText&quot; Field Group
   """
   textContent: String
+}
+
+"""
+The &quot;BlocksBlocksQuoteLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type BlocksBlocksQuoteLayout implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksQuoteLayout_Fields & BlocksBlocks_Layout {
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BlocksBlocksQuoteLayout&quot; Field Group
+  """
+  author: String
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BlocksBlocksQuoteLayout&quot; Field Group
+  """
+  authorTitle: String
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BlocksBlocksQuoteLayout&quot; Field Group
+  """
+  companyName: String
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BlocksBlocksQuoteLayout&quot; Field Group
+  """
+  quote: String
+}
+
+"""
+Interface representing fields of the ACF &quot;BlocksBlocksQuoteLayout&quot; Field Group
+"""
+interface BlocksBlocksQuoteLayout_Fields implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocks_Layout {
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BlocksBlocksQuoteLayout&quot; Field Group
+  """
+  author: String
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BlocksBlocksQuoteLayout&quot; Field Group
+  """
+  authorTitle: String
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BlocksBlocksQuoteLayout&quot; Field Group
+  """
+  companyName: String
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BlocksBlocksQuoteLayout&quot; Field Group
+  """
+  quote: String
 }
 
 """
@@ -1399,6 +1455,10 @@ type CaseContent implements AcfFieldGroup & AcfFieldGroupFields & Blocks_Fields 
   Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;CaseContent&quot; Field Group
   """
   shortDescription: String
+  """
+  Field of the &quot;url&quot; Field Type added to the schema as part of the &quot;CaseContent&quot; Field Group
+  """
+  url: String
 }
 
 """
@@ -1419,6 +1479,10 @@ interface CaseContent_Fields implements AcfFieldGroup & AcfFieldGroupFields & Bl
   Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;CaseContent&quot; Field Group
   """
   shortDescription: String
+  """
+  Field of the &quot;url&quot; Field Type added to the schema as part of the &quot;CaseContent&quot; Field Group
+  """
+  url: String
 }
 
 """

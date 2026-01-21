@@ -8,7 +8,7 @@ import Image from "next/image";
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 interface Props {
-  src: string;
+  src: string | undefined | null;
   alt: string;
 }
 
@@ -39,7 +39,12 @@ export default function ParallaxImage(props: Props) {
   return (
     <div ref={container} className="parallax h-full w-full overflow-hidden">
       <div className="parallax w-fill relative h-[120%]">
-        <Image src={props.src} alt={props.alt} className="object-cover" fill />
+        <Image
+          src={props.src || "/misc/no-image.svg"}
+          alt={props.alt}
+          className="object-cover"
+          fill
+        />
       </div>
     </div>
   );

@@ -60,6 +60,7 @@ export const CaseQuery = graphql(`
                 main
               }
               textContent
+              imagePlacement
             }
           }
           ... on BlocksBlocksCollaboratorsBannerLayout {
@@ -175,6 +176,7 @@ export const CaseQuery = graphql(`
       }
 
       caseContent {
+        url
         heroImage {
           node {
             altText

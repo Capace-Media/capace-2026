@@ -29,13 +29,13 @@ export default function ExternalOrInternalLink({
             rel="noopener noreferrer nofollow"
             target="_blank"
             aria-label={buttonProps.ariaLabel || undefined}
-            className="hover:no-underline"
+            className="no-underline!"
           />
         ) : (
           <Link
             href={urlOrSlug}
             aria-label={buttonProps.ariaLabel || undefined}
-            className="hover:no-underline"
+            className="no-underline!"
           />
         )
       }
