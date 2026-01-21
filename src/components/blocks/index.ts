@@ -5,6 +5,7 @@ import Faq from "./faq";
 import ImageBanner from "./image-banner";
 import LatestNewsWrapper from "./latest-news/latest-news-wrapper";
 import MediaAndText from "./media-and-text";
+import Quote from "./quote";
 import TestimonialsWrapper from "./testimonials/testimonials-wrapper";
 export const blockComponents = {
   BlocksBlocksMediaAndTextLayout: MediaAndText,
@@ -20,4 +21,5 @@ export const blockComponents = {
   BlocksBlocksServicesCardsLayout: null,
   BlocksBlocksTestimonialsLayout: TestimonialsWrapper,
   BlocksBlocksTimelineLayout: null,
+  BlocksBlocksQuoteLayout: Quote,
 };

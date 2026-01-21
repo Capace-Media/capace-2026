@@ -19,9 +19,9 @@ export default async function Page(props: Props) {
     .replace(/[\/]$/gm, "");
 
   return (
-    <div className="flex flex-col items-center gap-8">
+    <div className="flex flex-col items-center gap-0">
       <section className="section">
-        <div className="mt-30 h-120 w-full overflow-hidden rounded-[36px]">
+        <div className="mt-30 h-130 w-full overflow-hidden rounded-[36px]">
           <ParallaxImage
             src={data.caseContent?.heroImage?.node.mediaItemUrl || ""}
             alt={data.caseContent?.heroImage?.node.altText || ""}
@@ -34,7 +34,7 @@ export default async function Page(props: Props) {
             })}
           />
           <a
-            className="text-primary cursor-pointer text-sm"
+            className="text-primary duration:300 cursor-pointer text-sm transition-all"
             href={data.caseContent?.url || "#"}
             target="_blank"
             rel="nofollow noopener norefferer"

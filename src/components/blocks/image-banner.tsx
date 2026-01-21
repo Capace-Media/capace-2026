@@ -1,13 +1,27 @@
-import type { PageQuery } from "@/graphql/graphql";
+import { type FragmentType, useFragment } from "@/graphql/fragment-masking";
+import { BlocksFragment } from "@/lib/queries/fragments";
+import Image from "next/image";
 
 interface Props {
-  data: Extract<
-    NonNullable<
-      NonNullable<NonNullable<PageQuery["page"]>["blocks"]>["blocks"]
-    >[number],
-    { __typename: "BlocksBlocksImageBannerLayout" }
-  >;
+  data: FragmentType<typeof BlocksFragment>;
 }
-export default function ImageBanner() {
-  return <div>hej</div>;
+export default function ImageBanner(props: Props) {
+  const data = useFragment(BlocksFragment, props.data);
+
+  if (data.__typename !== "BlocksBlocksImageBannerLayout") return null;
+
+  return (
+    <section className="section gap-0 md:flex-row">
+      {data.images?.nodes.map((image, index) => (
+        <div className="relative min-h-64 flex-1 md:min-h-100" key={index}>
+          <Image
+            src={image.mediaItemUrl || "/misc/no-image.svg"}
+            alt={image.altText || ""}
+            fill
+            className="object-cover"
+          />
+        </div>
+      ))}
+    </section>
+  );
 }

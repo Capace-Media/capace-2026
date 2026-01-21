@@ -14106,55 +14106,58 @@ export type CaseQueryVariables = Exact<{
 
 
 export type CaseQuery = { __typename?: 'RootQuery', case?: { __typename?: 'Case', title?: string | null, slug?: string | null, casesCategories?: { __typename?: 'CaseToCaseCategoryConnection', nodes: Array<{ __typename?: 'CaseCategory', name?: string | null, slug?: string | null }> } | null, blocks?: { __typename?: 'Blocks', blocks?: Array<
-        | { __typename: 'BlocksBlocksAnimatedCardsLayout', accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null, cards?: Array<{ __typename?: 'BlocksBlocksCards', card?: { __typename?: 'BlocksBlocksCardsCard', textContent?: string | null, title?: string | null, button?: { __typename?: 'ReusableFieldsCardButton', ariaLabel?: string | null, label?: string | null, url?: { __typename?: 'ReusableFieldsButtonUrl', externalLink?: string | null, is_internal?: boolean | null, internalLink?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
-                      | { __typename?: 'Case', slug?: string | null }
-                      | { __typename?: 'Employee', slug?: string | null }
-                      | { __typename?: 'Faq', slug?: string | null }
-                      | { __typename?: 'MediaItem', slug?: string | null }
-                      | { __typename?: 'Page', slug?: string | null }
-                      | { __typename?: 'Post', slug?: string | null }
-                      | { __typename?: 'Service', slug?: string | null }
-                      | { __typename?: 'Testimonial', slug?: string | null }
-                    > } | null } | null } | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null } } | null } | null } | null> | null }
-        | { __typename?: 'BlocksBlocksCardsAndTextLayout' }
-        | { __typename: 'BlocksBlocksCaseCardGridLayout', accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null, cases?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
-              | { __typename: 'Case', id: string, title?: string | null, slug?: string | null, caseContent?: { __typename?: 'CaseContent', shortDescription?: string | null, heroImage?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null } | null, casesCategories?: { __typename?: 'CaseToCaseCategoryConnection', nodes: Array<{ __typename?: 'CaseCategory', slug?: string | null, name?: string | null }> } | null }
-              | { __typename?: 'Employee' }
-              | { __typename?: 'Faq' }
-              | { __typename?: 'MediaItem' }
-              | { __typename?: 'Page' }
-              | { __typename?: 'Post' }
-              | { __typename?: 'Service' }
-              | { __typename?: 'Testimonial' }
-            > } | null }
-        | { __typename: 'BlocksBlocksCollaboratorsBannerLayout' }
-        | { __typename?: 'BlocksBlocksContactFormLayout' }
-        | { __typename?: 'BlocksBlocksEmployeesLayout' }
-        | { __typename: 'BlocksBlocksFaqLayout', accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null, questions?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
-              | { __typename?: 'Case' }
-              | { __typename?: 'Employee' }
-              | { __typename: 'Faq', id: string, title?: string | null, faqContent?: { __typename?: 'FaqContent', answer?: string | null, longAnswer?: string | null } | null }
-              | { __typename?: 'MediaItem' }
-              | { __typename?: 'Page' }
-              | { __typename?: 'Post' }
-              | { __typename?: 'Service' }
-              | { __typename?: 'Testimonial' }
-            > } | null }
-        | { __typename?: 'BlocksBlocksImageBannerLayout' }
-        | { __typename: 'BlocksBlocksLatestNewsGridLayout', accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null }
-        | { __typename: 'BlocksBlocksMediaAndTextLayout', mediaAndText?: { __typename?: 'BlocksBlocksMediaAndText', textContent?: string | null, imagePlacement?: boolean | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null, button?: { __typename: 'BlocksBlocksMediaAndTextButton', ariaLabel?: string | null, label?: string | null, url?: { __typename?: 'ReusableFieldsButtonUrl', externalLink?: string | null, internalLink?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
-                    | { __typename?: 'Case', slug?: string | null }
-                    | { __typename?: 'Employee', slug?: string | null }
-                    | { __typename?: 'Faq', slug?: string | null }
-                    | { __typename?: 'MediaItem', slug?: string | null }
-                    | { __typename?: 'Page', slug?: string | null }
-                    | { __typename?: 'Post', slug?: string | null }
-                    | { __typename?: 'Service', slug?: string | null }
-                    | { __typename?: 'Testimonial', slug?: string | null }
-                  > } | null } | null } | null, accentHeading?: { __typename?: 'BlocksBlocksMediaAndTextAccentHeading', accent?: string | null, main?: string | null } | null } | null }
-        | { __typename?: 'BlocksBlocksQuoteLayout' }
-        | { __typename: 'BlocksBlocksTestimonialsLayout', accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null }
-        | { __typename?: 'BlocksBlocksTimelineLayout' }
+        | (
+          { __typename?: 'BlocksBlocksAnimatedCardsLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksAnimatedCardsLayout_Fragment': BlocksFragment_BlocksBlocksAnimatedCardsLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksCardsAndTextLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksCardsAndTextLayout_Fragment': BlocksFragment_BlocksBlocksCardsAndTextLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksCaseCardGridLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksCaseCardGridLayout_Fragment': BlocksFragment_BlocksBlocksCaseCardGridLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksCollaboratorsBannerLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksCollaboratorsBannerLayout_Fragment': BlocksFragment_BlocksBlocksCollaboratorsBannerLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksContactFormLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksContactFormLayout_Fragment': BlocksFragment_BlocksBlocksContactFormLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksEmployeesLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksEmployeesLayout_Fragment': BlocksFragment_BlocksBlocksEmployeesLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksFaqLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksFaqLayout_Fragment': BlocksFragment_BlocksBlocksFaqLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksImageBannerLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksImageBannerLayout_Fragment': BlocksFragment_BlocksBlocksImageBannerLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksLatestNewsGridLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksLatestNewsGridLayout_Fragment': BlocksFragment_BlocksBlocksLatestNewsGridLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksMediaAndTextLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksMediaAndTextLayout_Fragment': BlocksFragment_BlocksBlocksMediaAndTextLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksQuoteLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksQuoteLayout_Fragment': BlocksFragment_BlocksBlocksQuoteLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksTestimonialsLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksTestimonialsLayout_Fragment': BlocksFragment_BlocksBlocksTestimonialsLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksTimelineLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksTimelineLayout_Fragment': BlocksFragment_BlocksBlocksTimelineLayout_Fragment } }
+        )
        | null> | null } | null, caseContent?: { __typename?: 'CaseContent', url?: string | null, shortDescription?: string | null, heroImage?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null } | null } | null };
 
 export type CasesQueryVariables = Exact<{ [key: string]: never; }>;
@@ -14171,6 +14174,84 @@ export type FooterQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type FooterQuery = { __typename?: 'RootQuery', footer?: { __typename?: 'Footer', footerContent?: { __typename?: 'FooterContent', address?: string | null, email?: string | null, heading?: string | null, telephone?: string | null, textContent?: string | null, socials?: { __typename?: 'FooterContentSocials', facebook?: string | null, instagram?: string | null, linkedin?: string | null, threads?: string | null, tiktok?: string | null, x?: string | null } | null, certifications?: { __typename?: 'AcfMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', altText?: string | null, id: string, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null }> } | null } | null } | null };
+
+type BlocksFragment_BlocksBlocksAnimatedCardsLayout_Fragment = { __typename: 'BlocksBlocksAnimatedCardsLayout', accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null, cards?: Array<{ __typename?: 'BlocksBlocksCards', card?: { __typename?: 'BlocksBlocksCardsCard', textContent?: string | null, title?: string | null, button?: { __typename?: 'ReusableFieldsCardButton', ariaLabel?: string | null, label?: string | null, url?: { __typename?: 'ReusableFieldsButtonUrl', externalLink?: string | null, is_internal?: boolean | null, internalLink?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
+              | { __typename?: 'Case', slug?: string | null }
+              | { __typename?: 'Employee', slug?: string | null }
+              | { __typename?: 'Faq', slug?: string | null }
+              | { __typename?: 'MediaItem', slug?: string | null }
+              | { __typename?: 'Page', slug?: string | null }
+              | { __typename?: 'Post', slug?: string | null }
+              | { __typename?: 'Service', slug?: string | null }
+              | { __typename?: 'Testimonial', slug?: string | null }
+            > } | null } | null } | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null } } | null } | null } | null> | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksAnimatedCardsLayout_Fragment' };
+
+type BlocksFragment_BlocksBlocksCardsAndTextLayout_Fragment = { __typename?: 'BlocksBlocksCardsAndTextLayout' } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksCardsAndTextLayout_Fragment' };
+
+type BlocksFragment_BlocksBlocksCaseCardGridLayout_Fragment = { __typename: 'BlocksBlocksCaseCardGridLayout', accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null, cases?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
+      | { __typename: 'Case', id: string, title?: string | null, slug?: string | null, caseContent?: { __typename?: 'CaseContent', shortDescription?: string | null, heroImage?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null } | null, casesCategories?: { __typename?: 'CaseToCaseCategoryConnection', nodes: Array<{ __typename?: 'CaseCategory', slug?: string | null, name?: string | null }> } | null }
+      | { __typename?: 'Employee' }
+      | { __typename?: 'Faq' }
+      | { __typename?: 'MediaItem' }
+      | { __typename?: 'Page' }
+      | { __typename?: 'Post' }
+      | { __typename?: 'Service' }
+      | { __typename?: 'Testimonial' }
+    > } | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksCaseCardGridLayout_Fragment' };
+
+type BlocksFragment_BlocksBlocksCollaboratorsBannerLayout_Fragment = { __typename: 'BlocksBlocksCollaboratorsBannerLayout' } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksCollaboratorsBannerLayout_Fragment' };
+
+type BlocksFragment_BlocksBlocksContactFormLayout_Fragment = { __typename?: 'BlocksBlocksContactFormLayout' } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksContactFormLayout_Fragment' };
+
+type BlocksFragment_BlocksBlocksEmployeesLayout_Fragment = { __typename?: 'BlocksBlocksEmployeesLayout' } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksEmployeesLayout_Fragment' };
+
+type BlocksFragment_BlocksBlocksFaqLayout_Fragment = { __typename: 'BlocksBlocksFaqLayout', accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null, questions?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
+      | { __typename?: 'Case' }
+      | { __typename?: 'Employee' }
+      | { __typename: 'Faq', id: string, title?: string | null, faqContent?: { __typename?: 'FaqContent', answer?: string | null, longAnswer?: string | null } | null }
+      | { __typename?: 'MediaItem' }
+      | { __typename?: 'Page' }
+      | { __typename?: 'Post' }
+      | { __typename?: 'Service' }
+      | { __typename?: 'Testimonial' }
+    > } | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksFaqLayout_Fragment' };
+
+type BlocksFragment_BlocksBlocksImageBannerLayout_Fragment = { __typename: 'BlocksBlocksImageBannerLayout', images?: { __typename?: 'AcfMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null }> } | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksImageBannerLayout_Fragment' };
+
+type BlocksFragment_BlocksBlocksLatestNewsGridLayout_Fragment = { __typename: 'BlocksBlocksLatestNewsGridLayout', accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksLatestNewsGridLayout_Fragment' };
+
+type BlocksFragment_BlocksBlocksMediaAndTextLayout_Fragment = { __typename: 'BlocksBlocksMediaAndTextLayout', mediaAndText?: { __typename?: 'BlocksBlocksMediaAndText', textContent?: string | null, imagePlacement?: boolean | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null, button?: { __typename: 'BlocksBlocksMediaAndTextButton', ariaLabel?: string | null, label?: string | null, url?: { __typename?: 'ReusableFieldsButtonUrl', externalLink?: string | null, internalLink?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
+            | { __typename?: 'Case', slug?: string | null }
+            | { __typename?: 'Employee', slug?: string | null }
+            | { __typename?: 'Faq', slug?: string | null }
+            | { __typename?: 'MediaItem', slug?: string | null }
+            | { __typename?: 'Page', slug?: string | null }
+            | { __typename?: 'Post', slug?: string | null }
+            | { __typename?: 'Service', slug?: string | null }
+            | { __typename?: 'Testimonial', slug?: string | null }
+          > } | null } | null } | null, accentHeading?: { __typename?: 'BlocksBlocksMediaAndTextAccentHeading', accent?: string | null, main?: string | null } | null } | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksMediaAndTextLayout_Fragment' };
+
+type BlocksFragment_BlocksBlocksQuoteLayout_Fragment = { __typename: 'BlocksBlocksQuoteLayout', author?: string | null, authorTitle?: string | null, companyName?: string | null, quote?: string | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksQuoteLayout_Fragment' };
+
+type BlocksFragment_BlocksBlocksTestimonialsLayout_Fragment = { __typename: 'BlocksBlocksTestimonialsLayout', accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksTestimonialsLayout_Fragment' };
+
+type BlocksFragment_BlocksBlocksTimelineLayout_Fragment = { __typename?: 'BlocksBlocksTimelineLayout' } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksTimelineLayout_Fragment' };
+
+export type BlocksFragmentFragment =
+  | BlocksFragment_BlocksBlocksAnimatedCardsLayout_Fragment
+  | BlocksFragment_BlocksBlocksCardsAndTextLayout_Fragment
+  | BlocksFragment_BlocksBlocksCaseCardGridLayout_Fragment
+  | BlocksFragment_BlocksBlocksCollaboratorsBannerLayout_Fragment
+  | BlocksFragment_BlocksBlocksContactFormLayout_Fragment
+  | BlocksFragment_BlocksBlocksEmployeesLayout_Fragment
+  | BlocksFragment_BlocksBlocksFaqLayout_Fragment
+  | BlocksFragment_BlocksBlocksImageBannerLayout_Fragment
+  | BlocksFragment_BlocksBlocksLatestNewsGridLayout_Fragment
+  | BlocksFragment_BlocksBlocksMediaAndTextLayout_Fragment
+  | BlocksFragment_BlocksBlocksQuoteLayout_Fragment
+  | BlocksFragment_BlocksBlocksTestimonialsLayout_Fragment
+  | BlocksFragment_BlocksBlocksTimelineLayout_Fragment
+;
 
 export type LatestNewsPreviewsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -14192,55 +14273,58 @@ export type PageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page'
                 | { __typename?: 'Service', slug?: string | null }
                 | { __typename?: 'Testimonial', slug?: string | null }
               > } | null } | null } | null } | null } | null, blocks?: { __typename?: 'Blocks', blocks?: Array<
-        | { __typename: 'BlocksBlocksAnimatedCardsLayout', accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null, cards?: Array<{ __typename?: 'BlocksBlocksCards', card?: { __typename?: 'BlocksBlocksCardsCard', textContent?: string | null, title?: string | null, button?: { __typename?: 'ReusableFieldsCardButton', ariaLabel?: string | null, label?: string | null, url?: { __typename?: 'ReusableFieldsButtonUrl', externalLink?: string | null, is_internal?: boolean | null, internalLink?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
-                      | { __typename?: 'Case', slug?: string | null }
-                      | { __typename?: 'Employee', slug?: string | null }
-                      | { __typename?: 'Faq', slug?: string | null }
-                      | { __typename?: 'MediaItem', slug?: string | null }
-                      | { __typename?: 'Page', slug?: string | null }
-                      | { __typename?: 'Post', slug?: string | null }
-                      | { __typename?: 'Service', slug?: string | null }
-                      | { __typename?: 'Testimonial', slug?: string | null }
-                    > } | null } | null } | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null } } | null } | null } | null> | null }
-        | { __typename?: 'BlocksBlocksCardsAndTextLayout' }
-        | { __typename: 'BlocksBlocksCaseCardGridLayout', accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null, cases?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
-              | { __typename: 'Case', id: string, title?: string | null, slug?: string | null, caseContent?: { __typename?: 'CaseContent', shortDescription?: string | null, heroImage?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null } | null, casesCategories?: { __typename?: 'CaseToCaseCategoryConnection', nodes: Array<{ __typename?: 'CaseCategory', slug?: string | null, name?: string | null }> } | null }
-              | { __typename?: 'Employee' }
-              | { __typename?: 'Faq' }
-              | { __typename?: 'MediaItem' }
-              | { __typename?: 'Page' }
-              | { __typename?: 'Post' }
-              | { __typename?: 'Service' }
-              | { __typename?: 'Testimonial' }
-            > } | null }
-        | { __typename: 'BlocksBlocksCollaboratorsBannerLayout' }
-        | { __typename?: 'BlocksBlocksContactFormLayout' }
-        | { __typename?: 'BlocksBlocksEmployeesLayout' }
-        | { __typename: 'BlocksBlocksFaqLayout', accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null, questions?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
-              | { __typename?: 'Case' }
-              | { __typename?: 'Employee' }
-              | { __typename: 'Faq', id: string, title?: string | null, faqContent?: { __typename?: 'FaqContent', answer?: string | null, longAnswer?: string | null } | null }
-              | { __typename?: 'MediaItem' }
-              | { __typename?: 'Page' }
-              | { __typename?: 'Post' }
-              | { __typename?: 'Service' }
-              | { __typename?: 'Testimonial' }
-            > } | null }
-        | { __typename?: 'BlocksBlocksImageBannerLayout' }
-        | { __typename: 'BlocksBlocksLatestNewsGridLayout', accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null }
-        | { __typename: 'BlocksBlocksMediaAndTextLayout', mediaAndText?: { __typename?: 'BlocksBlocksMediaAndText', textContent?: string | null, imagePlacement?: boolean | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null, button?: { __typename: 'BlocksBlocksMediaAndTextButton', ariaLabel?: string | null, label?: string | null, url?: { __typename?: 'ReusableFieldsButtonUrl', externalLink?: string | null, internalLink?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
-                    | { __typename?: 'Case', slug?: string | null }
-                    | { __typename?: 'Employee', slug?: string | null }
-                    | { __typename?: 'Faq', slug?: string | null }
-                    | { __typename?: 'MediaItem', slug?: string | null }
-                    | { __typename?: 'Page', slug?: string | null }
-                    | { __typename?: 'Post', slug?: string | null }
-                    | { __typename?: 'Service', slug?: string | null }
-                    | { __typename?: 'Testimonial', slug?: string | null }
-                  > } | null } | null } | null, accentHeading?: { __typename?: 'BlocksBlocksMediaAndTextAccentHeading', accent?: string | null, main?: string | null } | null } | null }
-        | { __typename?: 'BlocksBlocksQuoteLayout' }
-        | { __typename: 'BlocksBlocksTestimonialsLayout', accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null }
-        | { __typename?: 'BlocksBlocksTimelineLayout' }
+        | (
+          { __typename?: 'BlocksBlocksAnimatedCardsLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksAnimatedCardsLayout_Fragment': BlocksFragment_BlocksBlocksAnimatedCardsLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksCardsAndTextLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksCardsAndTextLayout_Fragment': BlocksFragment_BlocksBlocksCardsAndTextLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksCaseCardGridLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksCaseCardGridLayout_Fragment': BlocksFragment_BlocksBlocksCaseCardGridLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksCollaboratorsBannerLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksCollaboratorsBannerLayout_Fragment': BlocksFragment_BlocksBlocksCollaboratorsBannerLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksContactFormLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksContactFormLayout_Fragment': BlocksFragment_BlocksBlocksContactFormLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksEmployeesLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksEmployeesLayout_Fragment': BlocksFragment_BlocksBlocksEmployeesLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksFaqLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksFaqLayout_Fragment': BlocksFragment_BlocksBlocksFaqLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksImageBannerLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksImageBannerLayout_Fragment': BlocksFragment_BlocksBlocksImageBannerLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksLatestNewsGridLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksLatestNewsGridLayout_Fragment': BlocksFragment_BlocksBlocksLatestNewsGridLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksMediaAndTextLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksMediaAndTextLayout_Fragment': BlocksFragment_BlocksBlocksMediaAndTextLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksQuoteLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksQuoteLayout_Fragment': BlocksFragment_BlocksBlocksQuoteLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksTestimonialsLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksTestimonialsLayout_Fragment': BlocksFragment_BlocksBlocksTestimonialsLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksTimelineLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksTimelineLayout_Fragment': BlocksFragment_BlocksBlocksTimelineLayout_Fragment } }
+        )
        | null> | null } | null } | null };
 
 export type TestimonialsQueryVariables = Exact<{ [key: string]: never; }>;
@@ -14266,7 +14350,173 @@ export class TypedDocumentString<TResult, TVariables>
     return this.value;
   }
 }
-
+export const BlocksFragmentFragmentDoc = new TypedDocumentString(`
+    fragment BlocksFragment on BlocksBlocks_Layout {
+  ... on BlocksBlocksMediaAndTextLayout {
+    __typename
+    mediaAndText {
+      image {
+        node {
+          altText
+          mediaItemUrl
+          mediaDetails {
+            height
+            width
+          }
+        }
+      }
+      button {
+        ariaLabel
+        __typename
+        label
+        url {
+          externalLink
+          internalLink {
+            nodes {
+              slug
+            }
+          }
+        }
+      }
+      accentHeading {
+        accent
+        main
+      }
+      textContent
+      imagePlacement
+    }
+  }
+  ... on BlocksBlocksQuoteLayout {
+    __typename
+    author
+    authorTitle
+    companyName
+    quote
+  }
+  ... on BlocksBlocksCollaboratorsBannerLayout {
+    __typename
+  }
+  ... on BlocksBlocksImageBannerLayout {
+    __typename
+    images {
+      nodes {
+        altText
+        mediaItemUrl
+        mediaDetails {
+          width
+          height
+        }
+      }
+    }
+  }
+  ... on BlocksBlocksCaseCardGridLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+    cases {
+      nodes {
+        ... on Case {
+          __typename
+          id
+          title
+          slug
+          caseContent {
+            shortDescription
+            heroImage {
+              node {
+                altText
+                mediaItemUrl
+                mediaDetails {
+                  height
+                  width
+                }
+              }
+            }
+          }
+          casesCategories {
+            nodes {
+              slug
+              name
+            }
+          }
+        }
+      }
+    }
+  }
+  ... on BlocksBlocksTestimonialsLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+  }
+  ... on BlocksBlocksFaqLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+    questions {
+      nodes {
+        ... on Faq {
+          id
+          __typename
+          faqContent {
+            answer
+            longAnswer
+          }
+          title
+        }
+      }
+    }
+  }
+  ... on BlocksBlocksAnimatedCardsLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+    cards {
+      card {
+        button {
+          ariaLabel
+          label
+          url {
+            externalLink
+            internalLink {
+              nodes {
+                slug
+              }
+            }
+            is_internal
+          }
+        }
+        image {
+          node {
+            altText
+            mediaItemUrl
+            mediaDetails {
+              width
+              height
+            }
+          }
+        }
+        textContent
+        title
+      }
+    }
+  }
+  ... on BlocksBlocksLatestNewsGridLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+  }
+}
+    `, {"fragmentName":"BlocksFragment"}) as unknown as TypedDocumentString<BlocksFragmentFragment, unknown>;
 export const CaseDocument = new TypedDocumentString(`
     query Case($slug: ID!) {
   case(id: $slug, idType: URI) {
@@ -14280,149 +14530,7 @@ export const CaseDocument = new TypedDocumentString(`
     }
     blocks {
       blocks {
-        ... on BlocksBlocksMediaAndTextLayout {
-          __typename
-          mediaAndText {
-            image {
-              node {
-                altText
-                mediaItemUrl
-                mediaDetails {
-                  height
-                  width
-                }
-              }
-            }
-            button {
-              ariaLabel
-              __typename
-              label
-              url {
-                externalLink
-                internalLink {
-                  nodes {
-                    slug
-                  }
-                }
-              }
-            }
-            accentHeading {
-              accent
-              main
-            }
-            textContent
-            imagePlacement
-          }
-        }
-        ... on BlocksBlocksCollaboratorsBannerLayout {
-          __typename
-        }
-        ... on BlocksBlocksCaseCardGridLayout {
-          __typename
-          accentHeading {
-            accent
-            main
-          }
-          cases {
-            nodes {
-              ... on Case {
-                __typename
-                id
-                title
-                slug
-                caseContent {
-                  shortDescription
-                  heroImage {
-                    node {
-                      altText
-                      mediaItemUrl
-                      mediaDetails {
-                        height
-                        width
-                      }
-                    }
-                  }
-                }
-                casesCategories {
-                  nodes {
-                    slug
-                    name
-                  }
-                }
-              }
-            }
-          }
-        }
-        ... on BlocksBlocksTestimonialsLayout {
-          __typename
-          accentHeading {
-            accent
-            main
-          }
-        }
-        ... on BlocksBlocksFaqLayout {
-          __typename
-          accentHeading {
-            accent
-            main
-          }
-          questions {
-            nodes {
-              ... on Faq {
-                id
-                __typename
-                faqContent {
-                  answer
-                  longAnswer
-                }
-                title
-              }
-            }
-          }
-        }
-        ... on BlocksBlocksAnimatedCardsLayout {
-          __typename
-          accentHeading {
-            accent
-            main
-          }
-          cards {
-            card {
-              button {
-                ariaLabel
-                label
-                url {
-                  externalLink
-                  internalLink {
-                    nodes {
-                      slug
-                    }
-                  }
-                  is_internal
-                }
-              }
-              image {
-                node {
-                  altText
-                  mediaItemUrl
-                  mediaDetails {
-                    width
-                    height
-                  }
-                }
-              }
-              textContent
-              title
-            }
-          }
-        }
-        ... on BlocksBlocksLatestNewsGridLayout {
-          __typename
-          accentHeading {
-            accent
-            main
-          }
-        }
+        ...BlocksFragment
       }
     }
     caseContent {
@@ -14441,7 +14549,171 @@ export const CaseDocument = new TypedDocumentString(`
     }
   }
 }
-    `) as unknown as TypedDocumentString<CaseQuery, CaseQueryVariables>;
+    fragment BlocksFragment on BlocksBlocks_Layout {
+  ... on BlocksBlocksMediaAndTextLayout {
+    __typename
+    mediaAndText {
+      image {
+        node {
+          altText
+          mediaItemUrl
+          mediaDetails {
+            height
+            width
+          }
+        }
+      }
+      button {
+        ariaLabel
+        __typename
+        label
+        url {
+          externalLink
+          internalLink {
+            nodes {
+              slug
+            }
+          }
+        }
+      }
+      accentHeading {
+        accent
+        main
+      }
+      textContent
+      imagePlacement
+    }
+  }
+  ... on BlocksBlocksQuoteLayout {
+    __typename
+    author
+    authorTitle
+    companyName
+    quote
+  }
+  ... on BlocksBlocksCollaboratorsBannerLayout {
+    __typename
+  }
+  ... on BlocksBlocksImageBannerLayout {
+    __typename
+    images {
+      nodes {
+        altText
+        mediaItemUrl
+        mediaDetails {
+          width
+          height
+        }
+      }
+    }
+  }
+  ... on BlocksBlocksCaseCardGridLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+    cases {
+      nodes {
+        ... on Case {
+          __typename
+          id
+          title
+          slug
+          caseContent {
+            shortDescription
+            heroImage {
+              node {
+                altText
+                mediaItemUrl
+                mediaDetails {
+                  height
+                  width
+                }
+              }
+            }
+          }
+          casesCategories {
+            nodes {
+              slug
+              name
+            }
+          }
+        }
+      }
+    }
+  }
+  ... on BlocksBlocksTestimonialsLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+  }
+  ... on BlocksBlocksFaqLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+    questions {
+      nodes {
+        ... on Faq {
+          id
+          __typename
+          faqContent {
+            answer
+            longAnswer
+          }
+          title
+        }
+      }
+    }
+  }
+  ... on BlocksBlocksAnimatedCardsLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+    cards {
+      card {
+        button {
+          ariaLabel
+          label
+          url {
+            externalLink
+            internalLink {
+              nodes {
+                slug
+              }
+            }
+            is_internal
+          }
+        }
+        image {
+          node {
+            altText
+            mediaItemUrl
+            mediaDetails {
+              width
+              height
+            }
+          }
+        }
+        textContent
+        title
+      }
+    }
+  }
+  ... on BlocksBlocksLatestNewsGridLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+  }
+}`) as unknown as TypedDocumentString<CaseQuery, CaseQueryVariables>;
 export const CasesDocument = new TypedDocumentString(`
     query Cases {
   cases(where: {orderby: {field: MENU_ORDER, order: ASC}}) {
@@ -14591,10 +14863,85 @@ export const PageDocument = new TypedDocumentString(`
     }
     blocks {
       blocks {
-        ... on BlocksBlocksMediaAndTextLayout {
+        ...BlocksFragment
+      }
+    }
+  }
+}
+    fragment BlocksFragment on BlocksBlocks_Layout {
+  ... on BlocksBlocksMediaAndTextLayout {
+    __typename
+    mediaAndText {
+      image {
+        node {
+          altText
+          mediaItemUrl
+          mediaDetails {
+            height
+            width
+          }
+        }
+      }
+      button {
+        ariaLabel
+        __typename
+        label
+        url {
+          externalLink
+          internalLink {
+            nodes {
+              slug
+            }
+          }
+        }
+      }
+      accentHeading {
+        accent
+        main
+      }
+      textContent
+      imagePlacement
+    }
+  }
+  ... on BlocksBlocksQuoteLayout {
+    __typename
+    author
+    authorTitle
+    companyName
+    quote
+  }
+  ... on BlocksBlocksCollaboratorsBannerLayout {
+    __typename
+  }
+  ... on BlocksBlocksImageBannerLayout {
+    __typename
+    images {
+      nodes {
+        altText
+        mediaItemUrl
+        mediaDetails {
+          width
+          height
+        }
+      }
+    }
+  }
+  ... on BlocksBlocksCaseCardGridLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+    cases {
+      nodes {
+        ... on Case {
           __typename
-          mediaAndText {
-            image {
+          id
+          title
+          slug
+          caseContent {
+            shortDescription
+            heroImage {
               node {
                 altText
                 mediaItemUrl
@@ -14604,141 +14951,88 @@ export const PageDocument = new TypedDocumentString(`
                 }
               }
             }
-            button {
-              ariaLabel
-              __typename
-              label
-              url {
-                externalLink
-                internalLink {
-                  nodes {
-                    slug
-                  }
-                }
-              }
-            }
-            accentHeading {
-              accent
-              main
-            }
-            textContent
-            imagePlacement
           }
-        }
-        ... on BlocksBlocksCollaboratorsBannerLayout {
-          __typename
-        }
-        ... on BlocksBlocksCaseCardGridLayout {
-          __typename
-          accentHeading {
-            accent
-            main
-          }
-          cases {
+          casesCategories {
             nodes {
-              ... on Case {
-                __typename
-                id
-                title
-                slug
-                caseContent {
-                  shortDescription
-                  heroImage {
-                    node {
-                      altText
-                      mediaItemUrl
-                      mediaDetails {
-                        height
-                        width
-                      }
-                    }
-                  }
-                }
-                casesCategories {
-                  nodes {
-                    slug
-                    name
-                  }
-                }
-              }
+              slug
+              name
             }
-          }
-        }
-        ... on BlocksBlocksTestimonialsLayout {
-          __typename
-          accentHeading {
-            accent
-            main
-          }
-        }
-        ... on BlocksBlocksFaqLayout {
-          __typename
-          accentHeading {
-            accent
-            main
-          }
-          questions {
-            nodes {
-              ... on Faq {
-                id
-                __typename
-                faqContent {
-                  answer
-                  longAnswer
-                }
-                title
-              }
-            }
-          }
-        }
-        ... on BlocksBlocksAnimatedCardsLayout {
-          __typename
-          accentHeading {
-            accent
-            main
-          }
-          cards {
-            card {
-              button {
-                ariaLabel
-                label
-                url {
-                  externalLink
-                  internalLink {
-                    nodes {
-                      slug
-                    }
-                  }
-                  is_internal
-                }
-              }
-              image {
-                node {
-                  altText
-                  mediaItemUrl
-                  mediaDetails {
-                    width
-                    height
-                  }
-                }
-              }
-              textContent
-              title
-            }
-          }
-        }
-        ... on BlocksBlocksLatestNewsGridLayout {
-          __typename
-          accentHeading {
-            accent
-            main
           }
         }
       }
     }
   }
-}
-    `) as unknown as TypedDocumentString<PageQuery, PageQueryVariables>;
+  ... on BlocksBlocksTestimonialsLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+  }
+  ... on BlocksBlocksFaqLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+    questions {
+      nodes {
+        ... on Faq {
+          id
+          __typename
+          faqContent {
+            answer
+            longAnswer
+          }
+          title
+        }
+      }
+    }
+  }
+  ... on BlocksBlocksAnimatedCardsLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+    cards {
+      card {
+        button {
+          ariaLabel
+          label
+          url {
+            externalLink
+            internalLink {
+              nodes {
+                slug
+              }
+            }
+            is_internal
+          }
+        }
+        image {
+          node {
+            altText
+            mediaItemUrl
+            mediaDetails {
+              width
+              height
+            }
+          }
+        }
+        textContent
+        title
+      }
+    }
+  }
+  ... on BlocksBlocksLatestNewsGridLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+  }
+}`) as unknown as TypedDocumentString<PageQuery, PageQueryVariables>;
 export const TestimonialsDocument = new TypedDocumentString(`
     query Testimonials {
   testimonials {

@@ -1,4 +1,6 @@
-import type { PageQuery, ReusableFieldsButton_Fields } from "@/graphql/graphql";
+import type { ReusableFieldsButton_Fields } from "@/graphql/graphql";
+import { type FragmentType, useFragment } from "@/graphql/fragment-masking";
+import { BlocksFragment } from "@/lib/queries/fragments";
 import parse from "html-react-parser";
 import Image from "next/image";
 import HeadingWithAccent from "../shared/heading-with-accent";
@@ -7,19 +9,18 @@ import ParallaxImage from "../shared/parallax-image";
 import { cn } from "@/lib/utils";
 
 interface Props {
-  data: Extract<
-    NonNullable<
-      NonNullable<NonNullable<PageQuery["page"]>["blocks"]>["blocks"]
-    >[number],
-    { __typename: "BlocksBlocksMediaAndTextLayout" }
-  >;
+  data: FragmentType<typeof BlocksFragment>;
 }
 
 export default function MediaAndText(props: Props) {
-  const data = props.data.mediaAndText;
-  const image = props.data.mediaAndText?.image?.node;
-  const button = props.data.mediaAndText?.button;
-  const imageOnRightSide = props.data.mediaAndText?.imagePlacement;
+  const block = useFragment(BlocksFragment, props.data);
+
+  if (block.__typename !== "BlocksBlocksMediaAndTextLayout") return null;
+
+  const data = block.mediaAndText;
+  const image = block.mediaAndText?.image?.node;
+  const button = block.mediaAndText?.button;
+  const imageOnRightSide = block.mediaAndText?.imagePlacement;
 
   return (
     <section className="section grid grid-cols-1 grid-rows-3 gap-6 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-12">

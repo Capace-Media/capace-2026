@@ -1,5 +1,7 @@
 "use client";
-import type { BlocksBlocksCards, PageQuery } from "@/graphql/graphql";
+import type { BlocksBlocksCards } from "@/graphql/graphql";
+import { type FragmentType, useFragment } from "@/graphql/fragment-masking";
+import { BlocksFragment } from "@/lib/queries/fragments";
 import HeadingWithAccent from "../../shared/heading-with-accent";
 import { useRef, useState } from "react";
 import { gsap } from "gsap";
@@ -10,15 +12,14 @@ import { AnimatedCardMobile } from "./animated-card-mobile";
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 interface Props {
-  data: Extract<
-    NonNullable<
-      NonNullable<NonNullable<PageQuery["page"]>["blocks"]>["blocks"]
-    >[number],
-    { __typename: "BlocksBlocksAnimatedCardsLayout" }
-  >;
+  data: FragmentType<typeof BlocksFragment>;
 }
 
 export default function AnimatedCardsMobile(props: Props) {
+  const block = useFragment(BlocksFragment, props.data);
+
+  if (block.__typename !== "BlocksBlocksAnimatedCardsLayout") return null;
+
   const container = useRef<HTMLElement>(null);
   const [activeCardIndex, setActiveCardIndex] = useState<number | null>(null);
 
@@ -76,16 +77,16 @@ export default function AnimatedCardsMobile(props: Props) {
       className="flex w-screen flex-col items-center px-4 py-12 md:px-0"
     >
       <HeadingWithAccent
-        accentedHeading={props.data.accentHeading?.accent || ""}
-        mainHeading={props.data.accentHeading?.main || ""}
+        accentedHeading={block.accentHeading?.accent || ""}
+        mainHeading={block.accentHeading?.main || ""}
       />
       <div className="grid grid-cols-1 grid-rows-1">
-        {props.data.cards?.map((card, index) => (
+        {block.cards?.map((card, index) => (
           <AnimatedCardMobile
             key={index}
             card={card as BlocksBlocksCards}
             index={index}
-            zIndex={props.data.cards?.length! - index}
+            zIndex={block.cards?.length! - index}
             isInactive={(activeCardIndex || 0) > index}
           />
         ))}

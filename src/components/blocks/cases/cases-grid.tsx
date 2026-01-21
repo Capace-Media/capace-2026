@@ -1,6 +1,6 @@
 "use client";
 
-import type { PageQuery } from "@/graphql/graphql";
+import type { BlocksFragmentFragment } from "@/graphql/graphql";
 import Link from "next/link";
 import ArticleCard from "../../shared/article-card";
 import { useRef } from "react";
@@ -11,9 +11,7 @@ import CategoryButtons from "@/components/shared/category-buttons";
 interface Props {
   data?: NonNullable<
     Extract<
-      NonNullable<
-        NonNullable<NonNullable<PageQuery["page"]>["blocks"]>["blocks"]
-      >[number],
+      BlocksFragmentFragment,
       { __typename: "BlocksBlocksCaseCardGridLayout" }
     >["cases"]
   >["nodes"];

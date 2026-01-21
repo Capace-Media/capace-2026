@@ -1,4 +1,5 @@
-import type { PageQuery } from "@/graphql/graphql";
+import { type FragmentType, useFragment } from "@/graphql/fragment-masking";
+import { BlocksFragment } from "@/lib/queries/fragments";
 import {
   Accordion,
   AccordionContent,
@@ -9,20 +10,19 @@ import HeadingWithAccent from "../shared/heading-with-accent";
 import Image from "next/image";
 
 interface Props {
-  data: Extract<
-    NonNullable<
-      NonNullable<NonNullable<PageQuery["page"]>["blocks"]>["blocks"]
-    >[number],
-    { __typename: "BlocksBlocksFaqLayout" }
-  >;
+  data: FragmentType<typeof BlocksFragment>;
 }
 
 export default function Faq(props: Props) {
+  const block = useFragment(BlocksFragment, props.data);
+
+  if (block.__typename !== "BlocksBlocksFaqLayout") return null;
+
   return (
     <section className="section relative flex flex-col items-center pb-0!">
       <HeadingWithAccent
-        accentedHeading={props.data.accentHeading?.accent || ""}
-        mainHeading={props.data.accentHeading?.main || ""}
+        accentedHeading={block.accentHeading?.accent || ""}
+        mainHeading={block.accentHeading?.main || ""}
       />
       <div
         aria-hidden
@@ -38,7 +38,7 @@ export default function Faq(props: Props) {
         />
       </div>
       <Accordion multiple={false} className="mx-auto w-full max-w-200">
-        {props.data?.questions?.nodes.map((question, index) => {
+        {block?.questions?.nodes.map((question, index) => {
           if (question.__typename !== "Faq") {
             return;
           }

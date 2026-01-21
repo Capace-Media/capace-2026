@@ -1,5 +1,6 @@
 "use client";
-import type { PageQuery } from "@/graphql/graphql";
+import { type FragmentType, useFragment } from "@/graphql/fragment-masking";
+import { BlocksFragment } from "@/lib/queries/fragments";
 import HeadingWithAccent from "../../shared/heading-with-accent";
 import Image from "next/image";
 import { Button } from "../../ui/button";
@@ -10,15 +11,14 @@ import CasesGrid from "./cases-grid";
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 interface Props {
-  data: Extract<
-    NonNullable<
-      NonNullable<NonNullable<PageQuery["page"]>["blocks"]>["blocks"]
-    >[number],
-    { __typename: "BlocksBlocksCaseCardGridLayout" }
-  >;
+  data: FragmentType<typeof BlocksFragment>;
 }
 
 export default function CasesGridWrapper(props: Props) {
+  const block = useFragment(BlocksFragment, props.data);
+
+  if (block.__typename !== "BlocksBlocksCaseCardGridLayout") return null;
+
   return (
     <section
       className="section cases-container relative flex flex-col items-center"
@@ -26,11 +26,11 @@ export default function CasesGridWrapper(props: Props) {
     >
       <div id="cases-heading">
         <HeadingWithAccent
-          accentedHeading={props.data.accentHeading?.accent || ""}
-          mainHeading={props.data.accentHeading?.main || ""}
+          accentedHeading={block.accentHeading?.accent || ""}
+          mainHeading={block.accentHeading?.main || ""}
         />
       </div>
-      <CasesGrid data={props.data.cases?.nodes} />
+      <CasesGrid data={block.cases?.nodes} />
       <div className="py-12">
         <Button withArrow>Se fler kundprojekt</Button>
       </div>
