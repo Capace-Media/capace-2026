@@ -1,8 +1,11 @@
 import Blocks from "@/components/blocks/blocks";
+import CasesCarouselWrapper from "@/components/blocks/cases-carousel/cases-carousel-wrapper";
 import CategoryButtons from "@/components/shared/category-buttons";
 import ParallaxImage from "@/components/shared/parallax-image";
+import { Button } from "@/components/ui/button";
 import { getCase } from "@/lib/fetchers/cases";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -44,6 +47,29 @@ export default async function Page(props: Props) {
         </div>
       </section>
       <Blocks blocks={data.blocks?.blocks} />
+      <CasesCarouselWrapper />
+      <section className="section relative items-center pb-70">
+        <h3 className="text-2xl font-medium">
+          Redo att ta ditt projekt till nästa nivå?
+        </h3>
+        <p className="prose prose-invert text-center">
+          Vi är här för att göra det möjligt. Kontakta oss idag och låt oss
+          skapa något fantastiskt tillsammans!
+        </p>
+        <Button withArrow>Kontakta oss</Button>
+        <div
+          className="absolute right-0 hidden aspect-auto h-80 w-80 translate-x-[15%] lg:block"
+          aria-hidden
+        >
+          <Image
+            src={"/stickers/sticker-group.webp"}
+            fill
+            className="object-contain"
+            alt={""}
+            sizes="20vw"
+          />
+        </div>
+      </section>
     </div>
   );
 }

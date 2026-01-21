@@ -5,7 +5,9 @@ import { cn } from "@/lib/utils";
 
 export default function ArticleCard(props: ImageProps) {
   return (
-    <article className={cn("case-card flex flex-col gap-4", props.className)}>
+    <article
+      className={cn("case-card flex flex-1 flex-col gap-4", props.className)}
+    >
       <ImageAndButton
         imgSrc={props.imgSrc}
         altText={props.altText}

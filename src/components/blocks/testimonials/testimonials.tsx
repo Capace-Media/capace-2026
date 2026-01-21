@@ -12,6 +12,7 @@ import { Minus } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import CarouselPositionIndicator from "@/components/shared/carousel-position-indicator";
 
 interface Props {
   data: Awaited<ReturnType<typeof getTestimonials>>;
@@ -76,25 +77,6 @@ export default function Testimonials(props: Props) {
     </Carousel>
   );
 }
-
-interface CarouselPositionIndicatorProps {
-  currentIndex: number;
-  totalLenght: number;
-}
-const CarouselPositionIndicator = (props: CarouselPositionIndicatorProps) => {
-  return (
-    <div className="flex justify-center gap-2 py-5">
-      {Array.from({ length: props.totalLenght }).map((_, index) => (
-        <div
-          key={index}
-          className={`h-1.5 w-1.5 rounded-full transition-all duration-300 ${
-            index + 1 === props.currentIndex ? "bg-accent w-8" : "bg-muted"
-          }`}
-        />
-      ))}
-    </div>
-  );
-};
 
 function getProfileImage(index: number): string {
   const imageSources = [
