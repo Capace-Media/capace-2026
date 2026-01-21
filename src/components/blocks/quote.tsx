@@ -27,7 +27,7 @@ export default function Quote(props: Props) {
             <Minus aria-hidden="true" />
             {data.author}, {data.authorTitle}
           </cite>
-          <p className="text-primary italic">{data.companyName}</p>
+          <p className="text-primary uppercase italic">{data.companyName}</p>
         </footer>
       </blockquote>
     </section>

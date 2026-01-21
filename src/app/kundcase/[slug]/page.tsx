@@ -32,12 +32,14 @@ export default async function Page(props: Props) {
         </div>
         <div className="flex w-full items-center justify-between">
           <CategoryButtons
+            className="gap-4"
+            size="lg"
             categories={data.casesCategories?.nodes.map((c) => {
               return { name: c.name, slug: c.slug };
             })}
           />
           <a
-            className="text-primary duration:300 cursor-pointer text-sm transition-all"
+            className="text-primary duration:300 cursor-pointer text-base transition-all"
             href={data.caseContent?.url || "#"}
             target="_blank"
             rel="nofollow noopener norefferer"
@@ -45,6 +47,15 @@ export default async function Page(props: Props) {
             {formattedUrl}
           </a>
         </div>
+      </section>
+      <section className="section">
+        <h1 className="mr-auto text-6xl font-bold">{data.title}</h1>
+        <p className="prose prose-invert font-medium">
+          {data.caseContent?.description}
+        </p>
+        <p className="prose prose-invert">
+          {data.caseContent?.descriptionContinued}
+        </p>
       </section>
       <Blocks blocks={data.blocks?.blocks} />
       <CasesCarouselWrapper />
