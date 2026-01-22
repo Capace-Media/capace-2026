@@ -1,0 +1,21 @@
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+
+export default function Page() {
+  return (
+    <section className="section no-hero h-screen items-center justify-center">
+      <h1 className="text-primary text-4xl font-bold">
+        Tack för ditt meddelande!
+      </h1>
+      <p className="prose prose-invert text-center">
+        Vi återkommer inom kort! Lite mer text här. Lorem, ipsum dolor sit amet
+        consectetur adipisicing elit. Sint, laboriosam! Dolores tenetur sint
+        illo assumenda quas quae ipsa distinctio dolorem, repudiandae incidunt
+        molestiae velit, doloribus voluptates. Aut itaque dolore quidem.
+      </p>
+      <Button withArrow>
+        <Link href={"/kundcase"}>Utforska våra projekt</Link>
+      </Button>
+    </section>
+  );
+}

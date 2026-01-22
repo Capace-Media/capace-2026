@@ -1,0 +1,96 @@
+"use client";
+import type { BlocksBlocksCards } from "@/graphql/graphql";
+import { type FragmentType, useFragment } from "@/graphql/fragment-masking";
+import { BlocksFragment } from "@/lib/queries/fragments";
+import HeadingWithAccent from "../../shared/heading-with-accent";
+import { useRef, useState } from "react";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { AnimatedCardMobile } from "./animated-card-mobile";
+
+gsap.registerPlugin(useGSAP, ScrollTrigger);
+
+interface Props {
+  data: FragmentType<typeof BlocksFragment>;
+}
+
+export default function AnimatedCardsMobile(props: Props) {
+  const block = useFragment(BlocksFragment, props.data);
+
+  if (block.__typename !== "BlocksBlocksAnimatedCardsLayout") return null;
+
+  const container = useRef<HTMLElement>(null);
+  const [activeCardIndex, setActiveCardIndex] = useState<number | null>(null);
+
+  useGSAP(
+    () => {
+      const cards = gsap.utils.toArray<HTMLElement>(".animated-card");
+
+      gsap.to(container, {
+        scrollTrigger: {
+          pin: true,
+          start: "top top",
+          end: `${cards.length * 400}px top`,
+          trigger: container.current,
+          //   markers: true,
+        },
+      });
+
+      cards.forEach((card, i) => {
+        if (i === 0) return;
+        gsap.fromTo(
+          card,
+          {
+            y: 200,
+            opacity: 0,
+          },
+          {
+            y: `${0 + i * 5}px`,
+            opacity: 1,
+            duration: 0.5,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: card,
+              start: () => `top+=${i * 400}px center`,
+              toggleActions: "play none none reverse",
+            },
+          },
+        );
+        // Track active state
+        ScrollTrigger.create({
+          trigger: card,
+          start: () => `top+=${i * 400}px 35%`,
+          end: () => `top+=${i * 400 + 400}px 35%`,
+          onEnter: () => setActiveCardIndex(i),
+          onEnterBack: () => setActiveCardIndex(i),
+          onLeaveBack: () => setActiveCardIndex(null),
+        });
+      });
+    },
+    { scope: container },
+  );
+
+  return (
+    <section
+      ref={container}
+      className="flex w-screen flex-col items-center px-4 py-12 md:px-0"
+    >
+      <HeadingWithAccent
+        accentedHeading={block.accentHeading?.accent || ""}
+        mainHeading={block.accentHeading?.main || ""}
+      />
+      <div className="grid grid-cols-1 grid-rows-1">
+        {block.cards?.map((card, index) => (
+          <AnimatedCardMobile
+            key={index}
+            card={card as BlocksBlocksCards}
+            index={index}
+            zIndex={block.cards?.length! - index}
+            isInactive={(activeCardIndex || 0) > index}
+          />
+        ))}
+      </div>
+    </section>
+  );
+}
