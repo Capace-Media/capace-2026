@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { type DocumentTypeDecoration } from '@graphql-typed-document-node/core';
+import { DocumentTypeDecoration } from '@graphql-typed-document-node/core';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = T | null | undefined;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -6469,6 +6469,8 @@ export type PageContent = AcfFieldGroup & AcfFieldGroupFields & PageContent_Fiel
   large?: Maybe<PageContentLarge>;
   /** Suitable for sub pages. */
   medium?: Maybe<PageContentMedium>;
+  /** Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;PageContent&quot; Field Group */
+  small?: Maybe<PageContentSmall>;
 };
 
 /** The &quot;PageContentLarge&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
@@ -6572,6 +6574,29 @@ export type PageContentMedium_Fields = {
   text?: Maybe<Scalars['String']['output']>;
 };
 
+/** The &quot;PageContentSmall&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
+export type PageContentSmall = AcfFieldGroup & AcfFieldGroupFields & PageContentSmall_Fields & {
+  __typename?: 'PageContentSmall';
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;PageContentSmall&quot; Field Group */
+  heroImage?: Maybe<AcfMediaItemConnectionEdge>;
+};
+
+/** Interface representing fields of the ACF &quot;PageContentSmall&quot; Field Group */
+export type PageContentSmall_Fields = {
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;PageContentSmall&quot; Field Group */
+  heroImage?: Maybe<AcfMediaItemConnectionEdge>;
+};
+
 /** Interface representing fields of the ACF &quot;PageContent&quot; Field Group */
 export type PageContent_Fields = {
   /**
@@ -6585,6 +6610,8 @@ export type PageContent_Fields = {
   large?: Maybe<PageContentLarge>;
   /** Suitable for sub pages. */
   medium?: Maybe<PageContentMedium>;
+  /** Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;PageContent&quot; Field Group */
+  small?: Maybe<PageContentSmall>;
 };
 
 /** Identifier types for retrieving a specific Page. Specifies which unique attribute is used to find an exact Page. */
@@ -11368,7 +11395,7 @@ export type SendPasswordResetEmailPayload = {
 };
 
 /** The service type */
-export type Service = ContentNode & DatabaseIdentifier & HierarchicalContentNode & HierarchicalNode & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithPageAttributes & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfBlocks & WithAcfServiceContent & {
+export type Service = ContentNode & DatabaseIdentifier & HierarchicalContentNode & HierarchicalNode & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithPageAttributes & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfBlocks & WithAcfPageContent & WithAcfServiceContent & {
   __typename?: 'Service';
   /** Returns ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root). */
   ancestors?: Maybe<HierarchicalContentNodeToContentNodeAncestorsConnection>;
@@ -11434,6 +11461,8 @@ export type Service = ContentNode & DatabaseIdentifier & HierarchicalContentNode
   modified?: Maybe<Scalars['String']['output']>;
   /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
   modifiedGmt?: Maybe<Scalars['String']['output']>;
+  /** Fields of the PageContent ACF Field Group */
+  pageContent?: Maybe<PageContent>;
   /** The parent of the node. The parent object can be of various types */
   parent?: Maybe<HierarchicalContentNodeToParentContentNodeConnectionEdge>;
   /** Database id of the parent node */
@@ -11550,8 +11579,6 @@ export type ServiceConnectionPageInfo = {
 /** The &quot;ServiceContent&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
 export type ServiceContent = AcfFieldGroup & AcfFieldGroupFields & ServiceContent_Fields & {
   __typename?: 'ServiceContent';
-  /** Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;ServiceContent&quot; Field Group */
-  description?: Maybe<Scalars['String']['output']>;
   /**
    * The name of the field group
    * @deprecated Use __typename instead
@@ -11565,8 +11592,6 @@ export type ServiceContent = AcfFieldGroup & AcfFieldGroupFields & ServiceConten
 
 /** Interface representing fields of the ACF &quot;ServiceContent&quot; Field Group */
 export type ServiceContent_Fields = {
-  /** Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;ServiceContent&quot; Field Group */
-  description?: Maybe<Scalars['String']['output']>;
   /**
    * The name of the field group
    * @deprecated Use __typename instead
@@ -14413,7 +14438,73 @@ export type QueryQueryVariables = Exact<{
 }>;
 
 
-export type QueryQuery = { __typename?: 'RootQuery', service?: { __typename?: 'Service', id: string, title?: string | null, slug?: string | null, serviceContent?: { __typename?: 'ServiceContent', description?: string | null, shortDescription?: string | null, icon?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null } | null } | null };
+export type QueryQuery = { __typename?: 'RootQuery', service?: { __typename?: 'Service', id: string, title?: string | null, slug?: string | null, pageContent?: { __typename?: 'PageContent', heroSize?: Array<string | null> | null, large?: { __typename?: 'PageContentLarge', heading?: string | null, headingAccent?: string | null, subheading?: string | null, button?: { __typename?: 'PageContentLargeButton', ariaLabel?: string | null, label?: string | null, url?: { __typename?: 'ReusableFieldsButtonUrl', externalLink?: string | null, is_internal?: boolean | null, internalLink?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
+                | { __typename?: 'Case', slug?: string | null }
+                | { __typename?: 'Employee', slug?: string | null }
+                | { __typename?: 'Faq', slug?: string | null }
+                | { __typename?: 'MediaItem', slug?: string | null }
+                | { __typename?: 'Page', slug?: string | null }
+                | { __typename?: 'Post', slug?: string | null }
+                | { __typename?: 'Service', slug?: string | null }
+                | { __typename?: 'Testimonial', slug?: string | null }
+              > } | null } | null } | null, heroImage?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null } } | null } | null, medium?: { __typename?: 'PageContentMedium', heading_accent?: string | null, heading_main?: string | null, text?: string | null } | null } | null, blocks?: { __typename?: 'Blocks', blocks?: Array<
+        | (
+          { __typename?: 'BlocksBlocksAnimatedCardsLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksAnimatedCardsLayout_Fragment': BlocksFragment_BlocksBlocksAnimatedCardsLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksCardsAndTextLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksCardsAndTextLayout_Fragment': BlocksFragment_BlocksBlocksCardsAndTextLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksCaseCardGridLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksCaseCardGridLayout_Fragment': BlocksFragment_BlocksBlocksCaseCardGridLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksCollaboratorsBannerLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksCollaboratorsBannerLayout_Fragment': BlocksFragment_BlocksBlocksCollaboratorsBannerLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksContactFormLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksContactFormLayout_Fragment': BlocksFragment_BlocksBlocksContactFormLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksEmployeesLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksEmployeesLayout_Fragment': BlocksFragment_BlocksBlocksEmployeesLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksFaqLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksFaqLayout_Fragment': BlocksFragment_BlocksBlocksFaqLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksImageBannerLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksImageBannerLayout_Fragment': BlocksFragment_BlocksBlocksImageBannerLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksLatestNewsGridLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksLatestNewsGridLayout_Fragment': BlocksFragment_BlocksBlocksLatestNewsGridLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksMediaAndTextLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksMediaAndTextLayout_Fragment': BlocksFragment_BlocksBlocksMediaAndTextLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksQuoteLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksQuoteLayout_Fragment': BlocksFragment_BlocksBlocksQuoteLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksServiceCardsLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksServiceCardsLayout_Fragment': BlocksFragment_BlocksBlocksServiceCardsLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksTestimonialsLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksTestimonialsLayout_Fragment': BlocksFragment_BlocksBlocksTestimonialsLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksTimelineLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksTimelineLayout_Fragment': BlocksFragment_BlocksBlocksTimelineLayout_Fragment } }
+        )
+       | null> | null } | null, serviceContent?: { __typename?: 'ServiceContent', shortDescription?: string | null, icon?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null } | null } | null };
 
 export type TestimonialsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -15237,8 +15328,48 @@ export const QueryDocument = new TypedDocumentString(`
     id
     title
     slug
+    pageContent {
+      heroSize
+      large {
+        button {
+          ariaLabel
+          label
+          url {
+            externalLink
+            internalLink {
+              nodes {
+                slug
+              }
+            }
+            is_internal
+          }
+        }
+        heading
+        headingAccent
+        heroImage {
+          node {
+            altText
+            mediaItemUrl
+            mediaDetails {
+              width
+              height
+            }
+          }
+        }
+        subheading
+      }
+      medium {
+        heading_accent
+        heading_main
+        text
+      }
+    }
+    blocks {
+      blocks {
+        ...BlocksFragment
+      }
+    }
     serviceContent {
-      description
       shortDescription
       icon {
         node {
@@ -15253,7 +15384,207 @@ export const QueryDocument = new TypedDocumentString(`
     }
   }
 }
-    `) as unknown as TypedDocumentString<QueryQuery, QueryQueryVariables>;
+    fragment BlocksFragment on BlocksBlocks_Layout {
+  ... on BlocksBlocksMediaAndTextLayout {
+    __typename
+    mediaAndText {
+      image {
+        node {
+          altText
+          mediaItemUrl
+          mediaDetails {
+            height
+            width
+          }
+        }
+      }
+      button {
+        ariaLabel
+        __typename
+        label
+        url {
+          externalLink
+          internalLink {
+            nodes {
+              slug
+            }
+          }
+        }
+      }
+      accentHeading {
+        accent
+        main
+      }
+      textContent
+      imagePlacement
+    }
+  }
+  ... on BlocksBlocksServiceCardsLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+    description
+    service {
+      nodes {
+        ... on Service {
+          __typename
+          id
+          title
+          slug
+          serviceContent {
+            icon {
+              node {
+                altText
+                mediaItemUrl
+                mediaDetails {
+                  width
+                  height
+                }
+              }
+            }
+            shortDescription
+          }
+        }
+      }
+    }
+  }
+  ... on BlocksBlocksQuoteLayout {
+    __typename
+    author
+    authorTitle
+    companyName
+    quote
+  }
+  ... on BlocksBlocksContactFormLayout {
+    __typename
+  }
+  ... on BlocksBlocksCollaboratorsBannerLayout {
+    __typename
+  }
+  ... on BlocksBlocksImageBannerLayout {
+    __typename
+    fullWidth
+    images {
+      nodes {
+        altText
+        mediaItemUrl
+        mediaDetails {
+          width
+          height
+        }
+      }
+    }
+  }
+  ... on BlocksBlocksCaseCardGridLayout {
+    __typename
+    compact
+    accentHeading {
+      accent
+      main
+    }
+    cases {
+      nodes {
+        ... on Case {
+          __typename
+          id
+          title
+          slug
+          caseContent {
+            shortDescription
+            heroImage {
+              node {
+                altText
+                mediaItemUrl
+                mediaDetails {
+                  height
+                  width
+                }
+              }
+            }
+          }
+          casesCategories {
+            nodes {
+              slug
+              name
+            }
+          }
+        }
+      }
+    }
+  }
+  ... on BlocksBlocksTestimonialsLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+  }
+  ... on BlocksBlocksFaqLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+    questions {
+      nodes {
+        ... on Faq {
+          id
+          __typename
+          faqContent {
+            answer
+            longAnswer
+          }
+          title
+        }
+      }
+    }
+  }
+  ... on BlocksBlocksAnimatedCardsLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+    cards {
+      card {
+        button {
+          ariaLabel
+          label
+          url {
+            externalLink
+            internalLink {
+              nodes {
+                slug
+              }
+            }
+            is_internal
+          }
+        }
+        image {
+          node {
+            altText
+            mediaItemUrl
+            mediaDetails {
+              width
+              height
+            }
+          }
+        }
+        textContent
+        title
+      }
+    }
+  }
+  ... on BlocksBlocksLatestNewsGridLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+  }
+}`) as unknown as TypedDocumentString<QueryQuery, QueryQueryVariables>;
 export const TestimonialsDocument = new TypedDocumentString(`
     query Testimonials {
   testimonials {

@@ -7,7 +7,7 @@ export default async function Page() {
   const data = await getPage("/tjanster");
   if (!data) notFound();
   return (
-    <section className="section">
+    <section>
       <Hero data={data.pageContent} />
       <Blocks blocks={data.blocks?.blocks} />
     </section>

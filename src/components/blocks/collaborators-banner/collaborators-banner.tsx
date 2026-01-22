@@ -4,6 +4,8 @@ import type { getCollaborators } from "@/lib/fetchers/collaborators";
 import { animate } from "motion";
 import { CollaboratorImage } from "./collaborator-image";
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 interface Props {
   items: Awaited<ReturnType<typeof getCollaborators>>;
@@ -12,10 +14,12 @@ interface Props {
 export default function CollaboratorsBanner(props: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const animationRef = useRef<any>(null);
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
 
   const [width, setWidth] = useState(0);
 
-  const BASE_SPEED = 50;
+  const BASE_SPEED = 40;
   const SLOW_SPEED = 0.2;
 
   useEffect(() => {
@@ -53,7 +57,12 @@ export default function CollaboratorsBanner(props: Props) {
   if (!props.items) return null;
 
   return (
-    <div className="border-b-muted border-t-muted my-14 overflow-hidden border-t border-b">
+    <div
+      className={cn(
+        "border-b-muted border-t-muted my-14 overflow-hidden border-t border-b",
+        !isHomePage && "my-4 border-transparent",
+      )}
+    >
       <div ref={ref} className="flex">
         {/* Två listor för att skapa infinityeffekt */}
         {props.items.map((item, i) => (

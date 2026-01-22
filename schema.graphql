@@ -7483,6 +7483,10 @@ type PageContent implements AcfFieldGroup & AcfFieldGroupFields & PageContent_Fi
   large: PageContentLarge
   """Suitable for sub pages."""
   medium: PageContentMedium
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;PageContent&quot; Field Group
+  """
+  small: PageContentSmall
 }
 
 """
@@ -7606,6 +7610,30 @@ interface PageContentMedium_Fields implements AcfFieldGroup & AcfFieldGroupField
 }
 
 """
+The &quot;PageContentSmall&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type PageContentSmall implements AcfFieldGroup & AcfFieldGroupFields & PageContentSmall_Fields {
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;PageContentSmall&quot; Field Group
+  """
+  heroImage: AcfMediaItemConnectionEdge
+}
+
+"""
+Interface representing fields of the ACF &quot;PageContentSmall&quot; Field Group
+"""
+interface PageContentSmall_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;PageContentSmall&quot; Field Group
+  """
+  heroImage: AcfMediaItemConnectionEdge
+}
+
+"""
 Interface representing fields of the ACF &quot;PageContent&quot; Field Group
 """
 interface PageContent_Fields implements AcfFieldGroup & AcfFieldGroupFields {
@@ -7617,6 +7645,10 @@ interface PageContent_Fields implements AcfFieldGroup & AcfFieldGroupFields {
   large: PageContentLarge
   """Suitable for sub pages."""
   medium: PageContentMedium
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;PageContent&quot; Field Group
+  """
+  small: PageContentSmall
 }
 
 """
@@ -12919,7 +12951,7 @@ type SendPasswordResetEmailPayload {
 }
 
 """The service type"""
-type Service implements ContentNode & DatabaseIdentifier & HierarchicalContentNode & HierarchicalNode & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithPageAttributes & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfBlocks & WithAcfServiceContent {
+type Service implements ContentNode & DatabaseIdentifier & HierarchicalContentNode & HierarchicalNode & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithPageAttributes & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfBlocks & WithAcfPageContent & WithAcfServiceContent {
   """
   Returns ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root).
   """
@@ -13063,6 +13095,8 @@ type Service implements ContentNode & DatabaseIdentifier & HierarchicalContentNo
   The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT.
   """
   modifiedGmt: String
+  """Fields of the PageContent ACF Field Group"""
+  pageContent: PageContent
   """The parent of the node. The parent object can be of various types"""
   parent: HierarchicalContentNodeToParentContentNodeConnectionEdge
   """Database id of the parent node"""
@@ -13144,10 +13178,6 @@ interface ServiceConnectionPageInfo implements PageInfo & WPPageInfo {
 The &quot;ServiceContent&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
 """
 type ServiceContent implements AcfFieldGroup & AcfFieldGroupFields & ServiceContent_Fields {
-  """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;ServiceContent&quot; Field Group
-  """
-  description: String
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
   """
@@ -13164,10 +13194,6 @@ type ServiceContent implements AcfFieldGroup & AcfFieldGroupFields & ServiceCont
 Interface representing fields of the ACF &quot;ServiceContent&quot; Field Group
 """
 interface ServiceContent_Fields implements AcfFieldGroup & AcfFieldGroupFields {
-  """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;ServiceContent&quot; Field Group
-  """
-  description: String
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
   """
