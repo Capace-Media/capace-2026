@@ -36,6 +36,36 @@ export const BlocksFragment = graphql(`
         imagePlacement
       }
     }
+    ... on BlocksBlocksServiceCardsLayout {
+      __typename
+      accentHeading {
+        accent
+        main
+      }
+      description
+      service {
+        nodes {
+          ... on Service {
+            __typename
+            id
+            title
+            serviceContent {
+              icon {
+                node {
+                  altText
+                  mediaItemUrl
+                  mediaDetails {
+                    width
+                    height
+                  }
+                }
+              }
+              shortDescription
+            }
+          }
+        }
+      }
+    }
     ... on BlocksBlocksQuoteLayout {
       __typename
       author
@@ -48,6 +78,7 @@ export const BlocksFragment = graphql(`
     }
     ... on BlocksBlocksImageBannerLayout {
       __typename
+      fullWidth
       images {
         nodes {
           altText

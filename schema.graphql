@@ -538,6 +538,10 @@ The &quot;BlocksBlocksImageBannerLayout&quot; Field Group. Added to the Schema b
 type BlocksBlocksImageBannerLayout implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksImageBannerLayout_Fields & BlocksBlocks_Layout {
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  When checked the banner will span the entire width of the page, without the section padding on the sides.
+  """
+  fullWidth: Boolean
   """Choose 1-3 images - will be shown as a banner across the page."""
   images(
     """
@@ -561,6 +565,10 @@ Interface representing fields of the ACF &quot;BlocksBlocksImageBannerLayout&quo
 interface BlocksBlocksImageBannerLayout_Fields implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocks_Layout {
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  When checked the banner will span the entire width of the page, without the section padding on the sides.
+  """
+  fullWidth: Boolean
   """Choose 1-3 images - will be shown as a banner across the page."""
   images(
     """
@@ -792,6 +800,72 @@ interface BlocksBlocksQuoteLayout_Fields implements AcfFieldGroup & AcfFieldGrou
   Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BlocksBlocksQuoteLayout&quot; Field Group
   """
   quote: String
+}
+
+"""
+The &quot;BlocksBlocksServiceCardsLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type BlocksBlocksServiceCardsLayout implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksServiceCardsLayout_Fields & BlocksBlocks_Layout {
+  """
+  A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space.
+  """
+  accentHeading: BlocksBlocksAccentHeading
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BlocksBlocksServiceCardsLayout&quot; Field Group
+  """
+  description: String
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;BlocksBlocksServiceCardsLayout&quot; Field Group
+  """
+  service(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+  ): AcfContentNodeConnection
+}
+
+"""
+Interface representing fields of the ACF &quot;BlocksBlocksServiceCardsLayout&quot; Field Group
+"""
+interface BlocksBlocksServiceCardsLayout_Fields implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocks_Layout {
+  """
+  A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space.
+  """
+  accentHeading: BlocksBlocksAccentHeading
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BlocksBlocksServiceCardsLayout&quot; Field Group
+  """
+  description: String
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;BlocksBlocksServiceCardsLayout&quot; Field Group
+  """
+  service(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+  ): AcfContentNodeConnection
 }
 
 """
@@ -13066,6 +13140,10 @@ interface ServiceConnectionPageInfo implements PageInfo & WPPageInfo {
 The &quot;ServiceContent&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
 """
 type ServiceContent implements AcfFieldGroup & AcfFieldGroupFields & ServiceContent_Fields {
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;ServiceContent&quot; Field Group
+  """
+  description: String
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
   """
@@ -13078,16 +13156,16 @@ type ServiceContent implements AcfFieldGroup & AcfFieldGroupFields & ServiceCont
   A short description ~ 1 sentence. Will be displayed on the service cards.
   """
   shortDescription: String
-  """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;ServiceContent&quot; Field Group
-  """
-  textContent: String
 }
 
 """
 Interface representing fields of the ACF &quot;ServiceContent&quot; Field Group
 """
 interface ServiceContent_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;ServiceContent&quot; Field Group
+  """
+  description: String
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
   """
@@ -13100,10 +13178,6 @@ interface ServiceContent_Fields implements AcfFieldGroup & AcfFieldGroupFields {
   A short description ~ 1 sentence. Will be displayed on the service cards.
   """
   shortDescription: String
-  """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;ServiceContent&quot; Field Group
-  """
-  textContent: String
 }
 
 """

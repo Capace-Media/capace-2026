@@ -1,80 +1,82 @@
-import Image from "next/image";
-import ExternalOrInternalLink from "./external-or-internal-link";
 import { cn } from "@/lib/utils";
-import type { ReusableFieldsButton_Fields } from "@/graphql/graphql";
+import Image from "next/image";
 
-interface Props {
-  index: number;
-  imgSrc: string;
-  altText: string;
-  title: string;
-  textContent: string;
-  withBorder?: boolean;
-  numbered?: boolean;
-  buttonProps?: ReusableFieldsButton_Fields;
-  isInactive?: boolean;
-  isAnimated?: boolean;
-}
-export default function Card(props: Props) {
+export default function Card({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
   return (
     <div
       className={cn(
-        props.isAnimated ? "bg-accent" : "bg-background",
-        "border-muted justify-between-4 flex h-full max-w-100 flex-col items-center rounded-xl border px-8 pt-4 pb-20 transition-colors duration-400",
-        props.isInactive && "bg-background",
-        props.withBorder && "border-accent",
-        "noscript:bg-background",
+        "border-primary rounded-capace h-full max-w-100 min-w-80 border-3 p-3",
+        className,
       )}
     >
-      <div className="flex h-40 w-full flex-col items-center justify-center">
-        {props.numbered && (
-          <div
-            className={cn(
-              props.isInactive ? "text-accent" : "text-background",
-              "items-center justify-center rounded-full p-4 text-base font-bold",
-              "noscript:text-accent",
-            )}
-          >
-            {(props.index + 1).toString().padStart(2, "0")}
-          </div>
-        )}
+      <div className="border-muted rounded-capace-inner border p-4 pb-8">
+        {" "}
+        {children}
+      </div>
+    </div>
+  );
+}
 
-        {props.imgSrc && (
-          <Image
-            src={props.imgSrc}
-            alt={props.altText}
-            width={90}
-            height={90}
-            className="h-auto w-auto"
-          />
-        )}
-      </div>
-      <div className="flex flex-1 flex-col items-center gap-6">
-        <h3
-          className={cn(
-            props.isInactive ? "text-foreground" : "text-background",
-            "line-clamp-2 min-h-16 text-center text-2xl font-medium",
-            "noscript:text-foreground",
-          )}
-        >
-          {props.title}
-        </h3>
-        <p
-          className={cn(
-            props.isInactive ? "text-muted-foreground" : "text-background",
-            "text-center text-sm font-light",
-            "noscript:text-muted-foreground",
-          )}
-        >
-          {props.textContent}
-        </p>
-        {props.buttonProps?.label && props.buttonProps?.url && (
-          <ExternalOrInternalLink
-            buttonProps={props.buttonProps}
-            variant="secondary"
-          />
-        )}
-      </div>
+Card.Header = Header;
+Card.Body = Body;
+Card.Icon = Icon;
+Card.Number = Number;
+Card.Title = Title;
+Card.TextContent = TextContent;
+
+function Header({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex w-full flex-col items-center justify-center">
+      {children}
+    </div>
+  );
+}
+
+function Number({ number }: { number: number }) {
+  return (
+    <div className="items-center justify-center rounded-full p-4 text-base font-bold">
+      {number.toString().padStart(2, "0")}
+    </div>
+  );
+}
+
+function Body({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex flex-1 flex-col items-center gap-6">{children}</div>
+  );
+}
+
+function Title({ children }: { children: React.ReactNode }) {
+  return (
+    <h3 className="line-clamp-2 text-center text-xl font-medium">{children}</h3>
+  );
+}
+
+function TextContent({ children }: { children: React.ReactNode }) {
+  return <p className="text-center text-sm font-light">{children}</p>;
+}
+
+function Icon({
+  src,
+  altText,
+}: {
+  src: string | undefined | null;
+  altText: string | undefined | null;
+}) {
+  return (
+    <div className="relative aspect-square h-30 w-30" aria-hidden>
+      <Image
+        src={src || "/misc/no-image.svg"}
+        alt={altText || ""}
+        fill
+        className="h-auto w-auto object-contain"
+      />
     </div>
   );
 }

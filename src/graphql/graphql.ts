@@ -490,6 +490,8 @@ export type BlocksBlocksImageBannerLayout = AcfFieldGroup & AcfFieldGroupFields 
    * @deprecated Use __typename instead
    */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
+  /** When checked the banner will span the entire width of the page, without the section padding on the sides. */
+  fullWidth?: Maybe<Scalars['Boolean']['output']>;
   /** Choose 1-3 images - will be shown as a banner across the page. */
   images?: Maybe<AcfMediaItemConnection>;
 };
@@ -510,6 +512,8 @@ export type BlocksBlocksImageBannerLayout_Fields = {
    * @deprecated Use __typename instead
    */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
+  /** When checked the banner will span the entire width of the page, without the section padding on the sides. */
+  fullWidth?: Maybe<Scalars['Boolean']['output']>;
   /** Choose 1-3 images - will be shown as a banner across the page. */
   images?: Maybe<AcfMediaItemConnection>;
 };
@@ -699,6 +703,55 @@ export type BlocksBlocksQuoteLayout_Fields = {
   fieldGroupName?: Maybe<Scalars['String']['output']>;
   /** Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BlocksBlocksQuoteLayout&quot; Field Group */
   quote?: Maybe<Scalars['String']['output']>;
+};
+
+/** The &quot;BlocksBlocksServiceCardsLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
+export type BlocksBlocksServiceCardsLayout = AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksServiceCardsLayout_Fields & BlocksBlocks_Layout & {
+  __typename?: 'BlocksBlocksServiceCardsLayout';
+  /** A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space. */
+  accentHeading?: Maybe<BlocksBlocksAccentHeading>;
+  /** Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BlocksBlocksServiceCardsLayout&quot; Field Group */
+  description?: Maybe<Scalars['String']['output']>;
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;BlocksBlocksServiceCardsLayout&quot; Field Group */
+  service?: Maybe<AcfContentNodeConnection>;
+};
+
+
+/** The &quot;BlocksBlocksServiceCardsLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
+export type BlocksBlocksServiceCardsLayoutServiceArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** Interface representing fields of the ACF &quot;BlocksBlocksServiceCardsLayout&quot; Field Group */
+export type BlocksBlocksServiceCardsLayout_Fields = {
+  /** A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space. */
+  accentHeading?: Maybe<BlocksBlocksAccentHeading>;
+  /** Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BlocksBlocksServiceCardsLayout&quot; Field Group */
+  description?: Maybe<Scalars['String']['output']>;
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;BlocksBlocksServiceCardsLayout&quot; Field Group */
+  service?: Maybe<AcfContentNodeConnection>;
+};
+
+
+/** Interface representing fields of the ACF &quot;BlocksBlocksServiceCardsLayout&quot; Field Group */
+export type BlocksBlocksServiceCardsLayout_FieldsServiceArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** The &quot;BlocksBlocksTestimonialsLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
@@ -11493,6 +11546,8 @@ export type ServiceConnectionPageInfo = {
 /** The &quot;ServiceContent&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
 export type ServiceContent = AcfFieldGroup & AcfFieldGroupFields & ServiceContent_Fields & {
   __typename?: 'ServiceContent';
+  /** Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;ServiceContent&quot; Field Group */
+  description?: Maybe<Scalars['String']['output']>;
   /**
    * The name of the field group
    * @deprecated Use __typename instead
@@ -11504,12 +11559,12 @@ export type ServiceContent = AcfFieldGroup & AcfFieldGroupFields & ServiceConten
   image?: Maybe<AcfMediaItemConnectionEdge>;
   /** A short description ~ 1 sentence. Will be displayed on the service cards. */
   shortDescription?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;ServiceContent&quot; Field Group */
-  textContent?: Maybe<Scalars['String']['output']>;
 };
 
 /** Interface representing fields of the ACF &quot;ServiceContent&quot; Field Group */
 export type ServiceContent_Fields = {
+  /** Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;ServiceContent&quot; Field Group */
+  description?: Maybe<Scalars['String']['output']>;
   /**
    * The name of the field group
    * @deprecated Use __typename instead
@@ -11521,8 +11576,6 @@ export type ServiceContent_Fields = {
   image?: Maybe<AcfMediaItemConnectionEdge>;
   /** A short description ~ 1 sentence. Will be displayed on the service cards. */
   shortDescription?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;ServiceContent&quot; Field Group */
-  textContent?: Maybe<Scalars['String']['output']>;
 };
 
 /** Identifier types for retrieving a specific Service. Specifies which unique attribute is used to find an exact Service. */
@@ -14159,6 +14212,10 @@ export type CaseQuery = { __typename?: 'RootQuery', case?: { __typename?: 'Case'
           & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksQuoteLayout_Fragment': BlocksFragment_BlocksBlocksQuoteLayout_Fragment } }
         )
         | (
+          { __typename?: 'BlocksBlocksServiceCardsLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksServiceCardsLayout_Fragment': BlocksFragment_BlocksBlocksServiceCardsLayout_Fragment } }
+        )
+        | (
           { __typename?: 'BlocksBlocksTestimonialsLayout' }
           & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksTestimonialsLayout_Fragment': BlocksFragment_BlocksBlocksTestimonialsLayout_Fragment } }
         )
@@ -14224,7 +14281,7 @@ type BlocksFragment_BlocksBlocksFaqLayout_Fragment = { __typename: 'BlocksBlocks
       | { __typename?: 'Testimonial' }
     > } | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksFaqLayout_Fragment' };
 
-type BlocksFragment_BlocksBlocksImageBannerLayout_Fragment = { __typename: 'BlocksBlocksImageBannerLayout', images?: { __typename?: 'AcfMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null }> } | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksImageBannerLayout_Fragment' };
+type BlocksFragment_BlocksBlocksImageBannerLayout_Fragment = { __typename: 'BlocksBlocksImageBannerLayout', fullWidth?: boolean | null, images?: { __typename?: 'AcfMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null }> } | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksImageBannerLayout_Fragment' };
 
 type BlocksFragment_BlocksBlocksLatestNewsGridLayout_Fragment = { __typename: 'BlocksBlocksLatestNewsGridLayout', accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksLatestNewsGridLayout_Fragment' };
 
@@ -14240,6 +14297,17 @@ type BlocksFragment_BlocksBlocksMediaAndTextLayout_Fragment = { __typename: 'Blo
           > } | null } | null } | null, accentHeading?: { __typename?: 'BlocksBlocksMediaAndTextAccentHeading', accent?: string | null, main?: string | null } | null } | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksMediaAndTextLayout_Fragment' };
 
 type BlocksFragment_BlocksBlocksQuoteLayout_Fragment = { __typename: 'BlocksBlocksQuoteLayout', author?: string | null, authorTitle?: string | null, companyName?: string | null, quote?: string | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksQuoteLayout_Fragment' };
+
+type BlocksFragment_BlocksBlocksServiceCardsLayout_Fragment = { __typename: 'BlocksBlocksServiceCardsLayout', description?: string | null, accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null, service?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
+      | { __typename?: 'Case' }
+      | { __typename?: 'Employee' }
+      | { __typename?: 'Faq' }
+      | { __typename?: 'MediaItem' }
+      | { __typename?: 'Page' }
+      | { __typename?: 'Post' }
+      | { __typename: 'Service', id: string, title?: string | null, serviceContent?: { __typename?: 'ServiceContent', shortDescription?: string | null, icon?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null } } | null } | null }
+      | { __typename?: 'Testimonial' }
+    > } | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksServiceCardsLayout_Fragment' };
 
 type BlocksFragment_BlocksBlocksTestimonialsLayout_Fragment = { __typename: 'BlocksBlocksTestimonialsLayout', accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksTestimonialsLayout_Fragment' };
 
@@ -14257,6 +14325,7 @@ export type BlocksFragmentFragment =
   | BlocksFragment_BlocksBlocksLatestNewsGridLayout_Fragment
   | BlocksFragment_BlocksBlocksMediaAndTextLayout_Fragment
   | BlocksFragment_BlocksBlocksQuoteLayout_Fragment
+  | BlocksFragment_BlocksBlocksServiceCardsLayout_Fragment
   | BlocksFragment_BlocksBlocksTestimonialsLayout_Fragment
   | BlocksFragment_BlocksBlocksTimelineLayout_Fragment
 ;
@@ -14326,6 +14395,10 @@ export type PageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page'
           & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksQuoteLayout_Fragment': BlocksFragment_BlocksBlocksQuoteLayout_Fragment } }
         )
         | (
+          { __typename?: 'BlocksBlocksServiceCardsLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksServiceCardsLayout_Fragment': BlocksFragment_BlocksBlocksServiceCardsLayout_Fragment } }
+        )
+        | (
           { __typename?: 'BlocksBlocksTestimonialsLayout' }
           & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksTestimonialsLayout_Fragment': BlocksFragment_BlocksBlocksTestimonialsLayout_Fragment } }
         )
@@ -14334,6 +14407,13 @@ export type PageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page'
           & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksTimelineLayout_Fragment': BlocksFragment_BlocksBlocksTimelineLayout_Fragment } }
         )
        | null> | null } | null } | null };
+
+export type QueryQueryVariables = Exact<{
+  slug: Scalars['ID']['input'];
+}>;
+
+
+export type QueryQuery = { __typename?: 'RootQuery', service?: { __typename?: 'Service', id: string, title?: string | null, serviceContent?: { __typename?: 'ServiceContent', description?: string | null, shortDescription?: string | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null, altText?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null, icon?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null } | null } | null };
 
 export type TestimonialsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -14394,6 +14474,36 @@ export const BlocksFragmentFragmentDoc = new TypedDocumentString(`
       imagePlacement
     }
   }
+  ... on BlocksBlocksServiceCardsLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+    description
+    service {
+      nodes {
+        ... on Service {
+          __typename
+          id
+          title
+          serviceContent {
+            icon {
+              node {
+                altText
+                mediaItemUrl
+                mediaDetails {
+                  width
+                  height
+                }
+              }
+            }
+            shortDescription
+          }
+        }
+      }
+    }
+  }
   ... on BlocksBlocksQuoteLayout {
     __typename
     author
@@ -14406,6 +14516,7 @@ export const BlocksFragmentFragmentDoc = new TypedDocumentString(`
   }
   ... on BlocksBlocksImageBannerLayout {
     __typename
+    fullWidth
     images {
       nodes {
         altText
@@ -14594,6 +14705,36 @@ export const CaseDocument = new TypedDocumentString(`
       imagePlacement
     }
   }
+  ... on BlocksBlocksServiceCardsLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+    description
+    service {
+      nodes {
+        ... on Service {
+          __typename
+          id
+          title
+          serviceContent {
+            icon {
+              node {
+                altText
+                mediaItemUrl
+                mediaDetails {
+                  width
+                  height
+                }
+              }
+            }
+            shortDescription
+          }
+        }
+      }
+    }
+  }
   ... on BlocksBlocksQuoteLayout {
     __typename
     author
@@ -14606,6 +14747,7 @@ export const CaseDocument = new TypedDocumentString(`
   }
   ... on BlocksBlocksImageBannerLayout {
     __typename
+    fullWidth
     images {
       nodes {
         altText
@@ -14913,6 +15055,36 @@ export const PageDocument = new TypedDocumentString(`
       imagePlacement
     }
   }
+  ... on BlocksBlocksServiceCardsLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+    description
+    service {
+      nodes {
+        ... on Service {
+          __typename
+          id
+          title
+          serviceContent {
+            icon {
+              node {
+                altText
+                mediaItemUrl
+                mediaDetails {
+                  width
+                  height
+                }
+              }
+            }
+            shortDescription
+          }
+        }
+      }
+    }
+  }
   ... on BlocksBlocksQuoteLayout {
     __typename
     author
@@ -14925,6 +15097,7 @@ export const PageDocument = new TypedDocumentString(`
   }
   ... on BlocksBlocksImageBannerLayout {
     __typename
+    fullWidth
     images {
       nodes {
         altText
@@ -15043,6 +15216,38 @@ export const PageDocument = new TypedDocumentString(`
     }
   }
 }`) as unknown as TypedDocumentString<PageQuery, PageQueryVariables>;
+export const QueryDocument = new TypedDocumentString(`
+    query Query($slug: ID!) {
+  service(id: $slug, idType: URI) {
+    id
+    title
+    serviceContent {
+      description
+      shortDescription
+      image {
+        node {
+          mediaItemUrl
+          mediaDetails {
+            height
+            width
+          }
+          altText
+        }
+      }
+      icon {
+        node {
+          altText
+          mediaItemUrl
+          mediaDetails {
+            height
+            width
+          }
+        }
+      }
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<QueryQuery, QueryQueryVariables>;
 export const TestimonialsDocument = new TypedDocumentString(`
     query Testimonials {
   testimonials {

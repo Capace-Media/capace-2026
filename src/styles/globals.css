@@ -170,6 +170,12 @@
     text-decoration: underline;
     color: white;
   }
+  .rounded-capace {
+    @apply rounded-[30px];
+  }
+  .rounded-capace-inner {
+    @apply rounded-2xl;
+  }
 }
 
 @utility prose {

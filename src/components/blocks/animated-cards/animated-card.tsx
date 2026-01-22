@@ -1,10 +1,10 @@
 "use client";
-import Card from "@/components/shared/card";
 import type {
   BlocksBlocksCards,
   ReusableFieldsButton_Fields,
 } from "@/graphql/graphql";
 import { cn } from "@/lib/utils";
+import BaseCard from "./base-card";
 
 interface Props {
   card: BlocksBlocksCards;
@@ -26,7 +26,7 @@ export function AnimatedCard(props: Props) {
           )}
         />
       )}
-      <Card
+      <BaseCard
         index={props.index}
         imgSrc={props.card?.card?.image?.node.mediaItemUrl || ""}
         altText={props.card?.card?.image?.node.altText || "Dekorativ bild"}
