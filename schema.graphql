@@ -347,6 +347,8 @@ type BlocksBlocksCaseCardGridLayout implements AcfFieldGroup & AcfFieldGroupFiel
     """The number of items to return before the referenced "before" cursor"""
     last: Int
   ): AcfContentNodeConnection
+  """When checked, only 3 cases will be displayed with minimalistic look."""
+  compact: Boolean
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
 }
@@ -376,6 +378,8 @@ interface BlocksBlocksCaseCardGridLayout_Fields implements AcfFieldGroup & AcfFi
     """The number of items to return before the referenced "before" cursor"""
     last: Int
   ): AcfContentNodeConnection
+  """When checked, only 3 cases will be displayed with minimalistic look."""
+  compact: Boolean
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
 }
@@ -478,16 +482,58 @@ interface BlocksBlocksEmployeesLayout_Fields implements AcfFieldGroup & AcfField
 The &quot;BlocksBlocksFaqLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
 """
 type BlocksBlocksFaqLayout implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksFaqLayout_Fields & BlocksBlocks_Layout {
+  """
+  A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space.
+  """
+  accentHeading: BlocksBlocksAccentHeading
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;BlocksBlocksFaqLayout&quot; Field Group
+  """
+  questions(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+  ): AcfContentNodeConnection
 }
 
 """
 Interface representing fields of the ACF &quot;BlocksBlocksFaqLayout&quot; Field Group
 """
 interface BlocksBlocksFaqLayout_Fields implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocks_Layout {
+  """
+  A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space.
+  """
+  accentHeading: BlocksBlocksAccentHeading
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;BlocksBlocksFaqLayout&quot; Field Group
+  """
+  questions(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+  ): AcfContentNodeConnection
 }
 
 """
@@ -496,6 +542,10 @@ The &quot;BlocksBlocksImageBannerLayout&quot; Field Group. Added to the Schema b
 type BlocksBlocksImageBannerLayout implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksImageBannerLayout_Fields & BlocksBlocks_Layout {
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  When checked the banner will span the entire width of the page, without the section padding on the sides.
+  """
+  fullWidth: Boolean
   """Choose 1-3 images - will be shown as a banner across the page."""
   images(
     """
@@ -519,6 +569,10 @@ Interface representing fields of the ACF &quot;BlocksBlocksImageBannerLayout&quo
 interface BlocksBlocksImageBannerLayout_Fields implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocks_Layout {
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  When checked the banner will span the entire width of the page, without the section padding on the sides.
+  """
+  fullWidth: Boolean
   """Choose 1-3 images - will be shown as a banner across the page."""
   images(
     """
@@ -540,6 +594,10 @@ interface BlocksBlocksImageBannerLayout_Fields implements AcfFieldGroup & AcfFie
 The &quot;BlocksBlocksLatestNewsGridLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
 """
 type BlocksBlocksLatestNewsGridLayout implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksLatestNewsGridLayout_Fields & BlocksBlocks_Layout {
+  """
+  A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space.
+  """
+  accentHeading: BlocksBlocksAccentHeading
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
 }
@@ -548,6 +606,10 @@ type BlocksBlocksLatestNewsGridLayout implements AcfFieldGroup & AcfFieldGroupFi
 Interface representing fields of the ACF &quot;BlocksBlocksLatestNewsGridLayout&quot; Field Group
 """
 interface BlocksBlocksLatestNewsGridLayout_Fields implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocks_Layout {
+  """
+  A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space.
+  """
+  accentHeading: BlocksBlocksAccentHeading
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
 }
@@ -570,6 +632,10 @@ type BlocksBlocksMediaAndText implements AcfFieldGroup & AcfFieldGroupFields & B
   Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;BlocksBlocksMediaAndText&quot; Field Group
   """
   image: AcfMediaItemConnectionEdge
+  """
+  Field of the &quot;true_false&quot; Field Type added to the schema as part of the &quot;BlocksBlocksMediaAndText&quot; Field Group
+  """
+  imagePlacement: Boolean
   """
   Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksMediaAndText&quot; Field Group
   """
@@ -683,15 +749,137 @@ interface BlocksBlocksMediaAndText_Fields implements AcfFieldGroup & AcfFieldGro
   """
   image: AcfMediaItemConnectionEdge
   """
+  Field of the &quot;true_false&quot; Field Type added to the schema as part of the &quot;BlocksBlocksMediaAndText&quot; Field Group
+  """
+  imagePlacement: Boolean
+  """
   Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksMediaAndText&quot; Field Group
   """
   textContent: String
 }
 
 """
+The &quot;BlocksBlocksQuoteLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type BlocksBlocksQuoteLayout implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksQuoteLayout_Fields & BlocksBlocks_Layout {
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BlocksBlocksQuoteLayout&quot; Field Group
+  """
+  author: String
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BlocksBlocksQuoteLayout&quot; Field Group
+  """
+  authorTitle: String
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BlocksBlocksQuoteLayout&quot; Field Group
+  """
+  companyName: String
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BlocksBlocksQuoteLayout&quot; Field Group
+  """
+  quote: String
+}
+
+"""
+Interface representing fields of the ACF &quot;BlocksBlocksQuoteLayout&quot; Field Group
+"""
+interface BlocksBlocksQuoteLayout_Fields implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocks_Layout {
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BlocksBlocksQuoteLayout&quot; Field Group
+  """
+  author: String
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BlocksBlocksQuoteLayout&quot; Field Group
+  """
+  authorTitle: String
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BlocksBlocksQuoteLayout&quot; Field Group
+  """
+  companyName: String
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BlocksBlocksQuoteLayout&quot; Field Group
+  """
+  quote: String
+}
+
+"""
+The &quot;BlocksBlocksServiceCardsLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type BlocksBlocksServiceCardsLayout implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksServiceCardsLayout_Fields & BlocksBlocks_Layout {
+  """
+  A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space.
+  """
+  accentHeading: BlocksBlocksAccentHeading
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BlocksBlocksServiceCardsLayout&quot; Field Group
+  """
+  description: String
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;BlocksBlocksServiceCardsLayout&quot; Field Group
+  """
+  service(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+  ): AcfContentNodeConnection
+}
+
+"""
+Interface representing fields of the ACF &quot;BlocksBlocksServiceCardsLayout&quot; Field Group
+"""
+interface BlocksBlocksServiceCardsLayout_Fields implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocks_Layout {
+  """
+  A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space.
+  """
+  accentHeading: BlocksBlocksAccentHeading
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BlocksBlocksServiceCardsLayout&quot; Field Group
+  """
+  description: String
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;BlocksBlocksServiceCardsLayout&quot; Field Group
+  """
+  service(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+  ): AcfContentNodeConnection
+}
+
+"""
 The &quot;BlocksBlocksTestimonialsLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
 """
 type BlocksBlocksTestimonialsLayout implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksTestimonialsLayout_Fields & BlocksBlocks_Layout {
+  """
+  A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space.
+  """
+  accentHeading: BlocksBlocksAccentHeading
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
 }
@@ -700,6 +888,10 @@ type BlocksBlocksTestimonialsLayout implements AcfFieldGroup & AcfFieldGroupFiel
 Interface representing fields of the ACF &quot;BlocksBlocksTestimonialsLayout&quot; Field Group
 """
 interface BlocksBlocksTestimonialsLayout_Fields implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocks_Layout {
+  """
+  A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space.
+  """
+  accentHeading: BlocksBlocksAccentHeading
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
 }
@@ -741,7 +933,7 @@ interface Blocks_Fields implements AcfFieldGroup & AcfFieldGroupFields {
 }
 
 """The case type"""
-type Case implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfBlocks {
+type Case implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfBlocks & WithAcfCaseContent {
   """The ancestors of the content node."""
   ancestors(
     """
@@ -759,6 +951,8 @@ type Case implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node 
   ): CaseToCaseConnection @deprecated(reason: "This content type is not hierarchical and typically will not have ancestors")
   """Fields of the Blocks ACF Field Group"""
   blocks: Blocks
+  """Fields of the CaseContent ACF Field Group"""
+  caseContent: CaseContent
   """The id field matches the WP_Post-&gt;ID field."""
   caseId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
   """Connection between the Case type and the caseCategory type"""
@@ -1319,6 +1513,62 @@ interface CaseConnectionPageInfo implements PageInfo & WPPageInfo {
   hasPreviousPage: Boolean!
   """When paginating backwards, the cursor to continue."""
   startCursor: String
+}
+
+"""
+The &quot;CaseContent&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type CaseContent implements AcfFieldGroup & AcfFieldGroupFields & Blocks_Fields & CaseContent_Fields {
+  """
+  Field of the &quot;flexible_content&quot; Field Type added to the schema as part of the &quot;Blocks&quot; Field Group
+  """
+  blocks: [BlocksBlocks_Layout]
+  """This will be the first text shown on the case page"""
+  description: String
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;CaseContent&quot; Field Group
+  """
+  descriptionContinued: String
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;CaseContent&quot; Field Group
+  """
+  heroImage: AcfMediaItemConnectionEdge
+  """This will be displayed on preview cards"""
+  shortDescription: String
+  """
+  Field of the &quot;url&quot; Field Type added to the schema as part of the &quot;CaseContent&quot; Field Group
+  """
+  url: String
+}
+
+"""
+Interface representing fields of the ACF &quot;CaseContent&quot; Field Group
+"""
+interface CaseContent_Fields implements AcfFieldGroup & AcfFieldGroupFields & Blocks_Fields {
+  """
+  Field of the &quot;flexible_content&quot; Field Type added to the schema as part of the &quot;Blocks&quot; Field Group
+  """
+  blocks: [BlocksBlocks_Layout]
+  """This will be the first text shown on the case page"""
+  description: String
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;CaseContent&quot; Field Group
+  """
+  descriptionContinued: String
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;CaseContent&quot; Field Group
+  """
+  heroImage: AcfMediaItemConnectionEdge
+  """This will be displayed on preview cards"""
+  shortDescription: String
+  """
+  Field of the &quot;url&quot; Field Type added to the schema as part of the &quot;CaseContent&quot; Field Group
+  """
+  url: String
 }
 
 """
@@ -3679,6 +3929,8 @@ input CreateServiceInput {
   A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types.
   """
   menuOrder: Int
+  """The ID of the parent object"""
+  parentId: ID
   """The password used to protect the content of the object"""
   password: String
   """The slug of the object"""
@@ -7678,7 +7930,7 @@ enum PluginStatusEnum {
 """
 A chronological content entry typically used for blog posts, news articles, or similar date-based content.
 """
-type Post implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & NodeWithTrackbacks & Previewable & UniformResourceIdentifiable & WithAcfBlocks & WithAcfReusableFields {
+type Post implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & NodeWithTrackbacks & Previewable & UniformResourceIdentifiable & WithAcfBlocks & WithAcfPostContent {
   """The ancestors of the content node."""
   ancestors(
     """
@@ -7858,6 +8110,8 @@ type Post implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node 
   pingStatus: String
   """URLs that have been pinged."""
   pinged: [String]
+  """Fields of the PostContent ACF Field Group"""
+  postContent: PostContent
   """Connection between the Post type and the postFormat type"""
   postFormats(
     """
@@ -7883,8 +8137,6 @@ type Post implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node 
   previewRevisionDatabaseId: Int
   """Whether the object is a node in the preview state"""
   previewRevisionId: ID
-  """Fields of the ReusableFields ACF Field Group"""
-  reusableFields: ReusableFields
   """
   If the current node is a revision, this field exposes the node this is a revision of. Returns null if the node is not a revision of another node.
   """
@@ -8031,6 +8283,72 @@ interface PostConnectionPageInfo implements PageInfo & WPPageInfo {
   hasPreviousPage: Boolean!
   """When paginating backwards, the cursor to continue."""
   startCursor: String
+}
+
+"""
+The &quot;PostContent&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type PostContent implements AcfFieldGroup & AcfFieldGroupFields & Blocks_Fields & PostContent_Fields {
+  """
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;PostContent&quot; Field Group
+  """
+  author(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+  ): AcfContentNodeConnection
+  """
+  Field of the &quot;flexible_content&quot; Field Type added to the schema as part of the &quot;Blocks&quot; Field Group
+  """
+  blocks: [BlocksBlocks_Layout]
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;PostContent&quot; Field Group
+  """
+  heroImage: AcfMediaItemConnectionEdge
+}
+
+"""
+Interface representing fields of the ACF &quot;PostContent&quot; Field Group
+"""
+interface PostContent_Fields implements AcfFieldGroup & AcfFieldGroupFields & Blocks_Fields {
+  """
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;PostContent&quot; Field Group
+  """
+  author(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+  ): AcfContentNodeConnection
+  """
+  Field of the &quot;flexible_content&quot; Field Type added to the schema as part of the &quot;Blocks&quot; Field Group
+  """
+  blocks: [BlocksBlocks_Layout]
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;PostContent&quot; Field Group
+  """
+  heroImage: AcfMediaItemConnectionEdge
 }
 
 """
@@ -8515,6 +8833,8 @@ enum PostStatusEnum {
   ACF_DISABLED
   """Automatically saved content that has not been manually saved"""
   AUTO_DRAFT
+  """Objects with the dp-rewrite-republish status"""
+  DP_REWRITE_REPUBLISH
   """Content that is saved but not yet published or visible to the public"""
   DRAFT
   """Objects with the future status"""
@@ -10529,10 +10849,6 @@ type RootQuery implements WithAcfOptionsPageCollaborators & WithAcfOptionsPageFo
     id: ID
     """Get the service by its database ID"""
     serviceId: Int
-    """
-    Get the service by its slug (only available for non-hierarchical types)
-    """
-    slug: String
     """Get the service by its uri"""
     uri: String
   ): Service @deprecated(reason: "Deprecated in favor of using the single entry point for this type with ID and IDType fields. For example, instead of postBy( id: &quot;&quot; ), use post(id: &quot;&quot; idType: &quot;&quot;)")
@@ -12603,8 +12919,10 @@ type SendPasswordResetEmailPayload {
 }
 
 """The service type"""
-type Service implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfBlocks & WithAcfServiceContent {
-  """The ancestors of the content node."""
+type Service implements ContentNode & DatabaseIdentifier & HierarchicalContentNode & HierarchicalNode & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithPageAttributes & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfBlocks & WithAcfServiceContent {
+  """
+  Returns ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root).
+  """
   ancestors(
     """
     Cursor used along with the "first" argument to reference where in the dataset to get data
@@ -12618,9 +12936,30 @@ type Service implements ContentNode & DatabaseIdentifier & MenuItemLinkable & No
     first: Int
     """The number of items to return before the referenced "before" cursor"""
     last: Int
-  ): ServiceToServiceConnection @deprecated(reason: "This content type is not hierarchical and typically will not have ancestors")
+    """Arguments for filtering the connection"""
+    where: HierarchicalContentNodeToContentNodeAncestorsConnectionWhereArgs
+  ): HierarchicalContentNodeToContentNodeAncestorsConnection
   """Fields of the Blocks ACF Field Group"""
   blocks: Blocks
+  """
+  Connection between the HierarchicalContentNode type and the ContentNode type
+  """
+  children(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+    """Arguments for filtering the connection"""
+    where: HierarchicalContentNodeToContentNodeChildrenConnectionWhereArgs
+  ): HierarchicalContentNodeToContentNodeChildrenConnection
   """The content of the post."""
   content(
     """Format of the field output"""
@@ -12713,6 +13052,10 @@ type Service implements ContentNode & DatabaseIdentifier & MenuItemLinkable & No
   """The permalink of the post"""
   link: String
   """
+  A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types.
+  """
+  menuOrder: Int
+  """
   The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time.
   """
   modified: String
@@ -12720,8 +13063,12 @@ type Service implements ContentNode & DatabaseIdentifier & MenuItemLinkable & No
   The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT.
   """
   modifiedGmt: String
-  """The parent of the content node."""
-  parent: ServiceToParentConnectionEdge @deprecated(reason: "This content type is not hierarchical and typically will not have a parent")
+  """The parent of the node. The parent object can be of various types"""
+  parent: HierarchicalContentNodeToParentContentNodeConnectionEdge
+  """Database id of the parent node"""
+  parentDatabaseId: Int
+  """The globally unique identifier of the parent node."""
+  parentId: ID
   """The password for the service object."""
   password: String
   """Connection between the service type and the service type"""
@@ -12740,7 +13087,7 @@ type Service implements ContentNode & DatabaseIdentifier & MenuItemLinkable & No
   slug: String
   """The current status of the object"""
   status: String
-  """The template assigned to the node"""
+  """The template assigned to a node of content"""
   template: ContentTemplate
   """
   The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made.
@@ -12797,6 +13144,10 @@ interface ServiceConnectionPageInfo implements PageInfo & WPPageInfo {
 The &quot;ServiceContent&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
 """
 type ServiceContent implements AcfFieldGroup & AcfFieldGroupFields & ServiceContent_Fields {
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;ServiceContent&quot; Field Group
+  """
+  description: String
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
   """
@@ -12809,16 +13160,16 @@ type ServiceContent implements AcfFieldGroup & AcfFieldGroupFields & ServiceCont
   A short description ~ 1 sentence. Will be displayed on the service cards.
   """
   shortDescription: String
-  """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;ServiceContent&quot; Field Group
-  """
-  textContent: String
 }
 
 """
 Interface representing fields of the ACF &quot;ServiceContent&quot; Field Group
 """
 interface ServiceContent_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;ServiceContent&quot; Field Group
+  """
+  description: String
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
   """
@@ -12831,10 +13182,6 @@ interface ServiceContent_Fields implements AcfFieldGroup & AcfFieldGroupFields {
   A short description ~ 1 sentence. Will be displayed on the service cards.
   """
   shortDescription: String
-  """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;ServiceContent&quot; Field Group
-  """
-  textContent: String
 }
 
 """
@@ -12845,22 +13192,8 @@ enum ServiceIdType {
   DATABASE_ID
   """Identify a resource by the (hashed) Global ID."""
   ID
-  """
-  Identify a resource by the slug. Available to non-hierarchcial Types where the slug is a unique identifier.
-  """
-  SLUG
   """Identify a resource by the URI."""
   URI
-}
-
-"""Connection between the service type and the service type"""
-type ServiceToParentConnectionEdge implements Edge & OneToOneConnection & ServiceConnectionEdge {
-  """
-  Opaque reference to the nodes position in the connection. Value can be used with pagination args.
-  """
-  cursor: String
-  """The node of the connection, without the edges"""
-  node: Service! @deprecated(reason: "This content type is not hierarchical and typically will not have a parent")
 }
 
 """Connection between the service type and the service type"""
@@ -12871,38 +13204,6 @@ type ServiceToPreviewConnectionEdge implements Edge & OneToOneConnection & Servi
   cursor: String
   """The node of the connection, without the edges"""
   node: Service!
-}
-
-"""Connection between the service type and the service type"""
-type ServiceToServiceConnection implements Connection & ServiceConnection {
-  """Edges for the ServiceToServiceConnection connection"""
-  edges: [ServiceToServiceConnectionEdge!]!
-  """The nodes of the connection, without the edges"""
-  nodes: [Service!]!
-  """Information about pagination in a connection."""
-  pageInfo: ServiceToServiceConnectionPageInfo!
-}
-
-"""An edge in a connection"""
-type ServiceToServiceConnectionEdge implements Edge & ServiceConnectionEdge {
-  """A cursor for use in pagination"""
-  cursor: String @deprecated(reason: "This content type is not hierarchical and typically will not have ancestors")
-  """The item at the end of the edge"""
-  node: Service! @deprecated(reason: "This content type is not hierarchical and typically will not have ancestors")
-}
-
-"""
-Pagination metadata specific to &quot;ServiceToServiceConnection&quot; collections. Provides cursors and flags for navigating through sets of ServiceToServiceConnection Nodes.
-"""
-type ServiceToServiceConnectionPageInfo implements PageInfo & ServiceConnectionPageInfo & WPPageInfo {
-  """When paginating forwards, the cursor to continue."""
-  endCursor: String
-  """When paginating forwards, are there more items?"""
-  hasNextPage: Boolean!
-  """When paginating backwards, are there more items?"""
-  hasPreviousPage: Boolean!
-  """When paginating backwards, the cursor to continue."""
-  startCursor: String
 }
 
 """All of the registered settings"""
@@ -14574,6 +14875,8 @@ input UpdateServiceInput {
   A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types.
   """
   menuOrder: Int
+  """The ID of the parent object"""
+  parentId: ID
   """The password used to protect the content of the object"""
   password: String
   """The slug of the object"""
@@ -15772,6 +16075,14 @@ interface WithAcfBlocks {
 }
 
 """
+Provides access to fields of the &quot;CaseContent&quot; ACF Field Group via the &quot;caseContent&quot; field
+"""
+interface WithAcfCaseContent {
+  """Fields of the CaseContent ACF Field Group"""
+  caseContent: CaseContent
+}
+
+"""
 Provides access to fields of the &quot;CollaboratorContent&quot; ACF Field Group via the &quot;collaboratorContent&quot; field
 """
 interface WithAcfCollaboratorContent {
@@ -15822,11 +16133,11 @@ interface WithAcfPageContent {
 }
 
 """
-Provides access to fields of the &quot;ReusableFields&quot; ACF Field Group via the &quot;reusableFields&quot; field
+Provides access to fields of the &quot;PostContent&quot; ACF Field Group via the &quot;postContent&quot; field
 """
-interface WithAcfReusableFields {
-  """Fields of the ReusableFields ACF Field Group"""
-  reusableFields: ReusableFields
+interface WithAcfPostContent {
+  """Fields of the PostContent ACF Field Group"""
+  postContent: PostContent
 }
 
 """

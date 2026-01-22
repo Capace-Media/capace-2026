@@ -1,17 +1,37 @@
 import { getFooterData } from "@/lib/fetchers/footer";
 import Image from "next/image";
 import Link from "next/link";
+import BouncySticker from "./bouncy-sticker";
 
 export default async function Footer() {
   const data = await getFooterData();
   return (
-    <footer className="bg-accent text-background relative px-4 py-10 text-sm md:px-20">
-      <div className="absolute top-0 left-0 h-14 w-14 -translate-y-full lg:h-40 lg:w-40">
-        <Image src={"/misc/footer-corner.svg"} fill alt="" aria-hidden="true" />
-      </div>
+    <footer className="bg-accent text-background overflow bottom-0 z-0 px-4 py-10 text-sm md:px-20 lg:sticky">
+      <div className="bg-accent absolute top-0 left-0 h-30 w-full -translate-y-full" />
       <div className="flex flex-col gap-2">
-        <h3 className="text-8xl font-bold text-white">{data?.heading}</h3>
-        <div className="flex flex-col lg:flex-row">
+        <div aria-hidden className="relative w-fit">
+          <h3 className="text-[120px] leading-25 font-bold text-white md:leading-50">
+            {data?.heading}
+          </h3>
+          <BouncySticker
+            className={"top-1/2 left-full -translate-x-[20%] -translate-y-1/2"}
+            imgSrc={"/stickers/sticker-small-hemsidor.webp"}
+          />
+          <BouncySticker
+            className={"top-0 left-1/2 -translate-y-[30%]"}
+            imgSrc={"/stickers/sticker-small-marketing.webp"}
+          />
+          <BouncySticker
+            className={"top-0 left-0 translate-x-[20%] -translate-y-[30%]"}
+            imgSrc={"/stickers/sticker-small-design.webp"}
+          />
+          <BouncySticker
+            className={"-bottom-5 left-1/2 -translate-x-1/2"}
+            imgSrc={"/stickers/sticker-small-ehandel.webp"}
+          />
+        </div>
+
+        <div className="mt-5 flex flex-col lg:flex-row">
           <div className="flex flex-2 flex-col gap-6 pb-6 md:min-w-150">
             <p className="prose text-sm">{data?.textContent}</p>
             <ul className="flex flex-col gap-6 text-sm font-bold lg:flex-row lg:gap-12 [&>li]:flex [&>li]:items-center [&>li]:gap-2 [&>li]:before:block [&>li]:before:size-2 [&>li]:before:rounded-full [&>li]:before:bg-white [&>li]:hover:text-white">
@@ -143,15 +163,18 @@ export default async function Footer() {
               )}
             </ul>
           </div>
-          <div className="flex flex-1 flex-wrap items-center justify-center gap-4 pb-10 lg:items-end">
+          <div className="grid grid-cols-2 items-center gap-4 pb-10 sm:grid-cols-4">
             {data?.certifications?.nodes.map((image) => (
-              <Image
-                key={image.id}
-                src={image.mediaItemUrl || ""}
-                alt={image.altText || ""}
-                width={100}
-                height={100}
-              />
+              <div key={image.id} className="flex items-center justify-center">
+                <Image
+                  src={image.mediaItemUrl || ""}
+                  alt={image.altText || ""}
+                  width={100}
+                  height={100}
+                  className="h-auto w-auto"
+                  sizes="(min-width: 768px) 10vw, 25vw"
+                />
+              </div>
             ))}
           </div>
         </div>

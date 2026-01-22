@@ -1,4 +1,5 @@
 import { graphql } from "@/graphql/gql";
+import { BlocksFragment } from "./fragments";
 
 export const PageQuery = graphql(`
   query Page($slug: ID = "hem") {
@@ -6,6 +7,11 @@ export const PageQuery = graphql(`
       title
       slug
       pageContent {
+        medium {
+          heading_accent
+          heading_main
+          text
+        }
         large {
           heading
           headingAccent
@@ -37,78 +43,7 @@ export const PageQuery = graphql(`
       }
       blocks {
         blocks {
-          ... on BlocksBlocksMediaAndTextLayout {
-            __typename
-            mediaAndText {
-              image {
-                node {
-                  altText
-                  mediaItemUrl
-                  mediaDetails {
-                    height
-                    width
-                  }
-                }
-              }
-              button {
-                ariaLabel
-                __typename
-                label
-                url {
-                  externalLink
-                  internalLink {
-                    nodes {
-                      slug
-                    }
-                  }
-                }
-              }
-              accentHeading {
-                accent
-                main
-              }
-              textContent
-            }
-          }
-          ... on BlocksBlocksCollaboratorsBannerLayout {
-            __typename
-          }
-          ... on BlocksBlocksAnimatedCardsLayout {
-            __typename
-            accentHeading {
-              accent
-              main
-            }
-            cards {
-              card {
-                button {
-                  ariaLabel
-                  label
-                  url {
-                    externalLink
-                    internalLink {
-                      nodes {
-                        slug
-                      }
-                    }
-                    is_internal
-                  }
-                }
-                image {
-                  node {
-                    altText
-                    mediaItemUrl
-                    mediaDetails {
-                      width
-                      height
-                    }
-                  }
-                }
-                textContent
-                title
-              }
-            }
-          }
+          ...BlocksFragment
         }
       }
     }

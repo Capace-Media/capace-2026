@@ -19,7 +19,7 @@ export const CollaboratorImage = (props: Props) => {
         onMouseEnter={props.slowDownSpeed}
         onMouseLeave={props.resetSpeed}
         rel="noopener noreferrer nofollow"
-        className="relative block aspect-square w-40"
+        className="relative block aspect-square w-25 lg:w-40"
         aria-label={props.altText || "Kund"}
       >
         <Image
@@ -29,17 +29,15 @@ export const CollaboratorImage = (props: Props) => {
           fill
         />
       </a>
-      <div
-        className="flex aspect-square w-30 items-center justify-center"
-        aria-hidden="true"
-      >
-        <Image
-          src={"/misc/diamond.svg"}
-          alt=""
-          width={20}
-          height={20}
-          className="object-contain"
-        />
+      <div className="flex aspect-square w-15 items-center justify-center lg:w-40">
+        <div className="relative h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true">
+          <Image
+            src={"/icons/diamond.svg"}
+            fill
+            alt=""
+            className="object-contain"
+          />
+        </div>
       </div>
     </div>
   );

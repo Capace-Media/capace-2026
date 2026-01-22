@@ -1,18 +1,27 @@
-import AnimatedCards from "./animated-cards/animated-cards";
+import AnimatedCardsWrapper from "./animated-cards/animated-cards-wrapper";
+import CasesGridWrapper from "./cases/cases-grid-wrapper";
 import CollaboratorsBannerWrapper from "./collaborators-banner/collaborators-banner-wrapper";
+import Faq from "./faq";
+import ImageBanner from "./image-banner";
+import LatestNewsWrapper from "./latest-news/latest-news-wrapper";
 import MediaAndText from "./media-and-text";
+import Quote from "./quote";
+import ServiceCards from "./service-cards";
+import TestimonialsWrapper from "./testimonials/testimonials-wrapper";
 export const blockComponents = {
   BlocksBlocksMediaAndTextLayout: MediaAndText,
-  BlocksBlocksAnimatedCardsLayout: AnimatedCards,
+  BlocksBlocksAnimatedCardsLayout: AnimatedCardsWrapper,
   BlocksBlocksCardsAndTextLayout: null,
-  BlocksBlocksCaseCardGridLayout: null,
+  BlocksBlocksCaseCardGridLayout: CasesGridWrapper,
   BlocksBlocksCollaboratorsBannerLayout: CollaboratorsBannerWrapper,
   BlocksBlocksContactFormLayout: null,
   BlocksBlocksEmployeesLayout: null,
-  BlocksBlocksFaqLayout: null,
-  BlocksBlocksImageBannerLayout: null,
-  BlocksBlocksLatestNewsGridLayout: null,
+  BlocksBlocksFaqLayout: Faq,
+  BlocksBlocksImageBannerLayout: ImageBanner,
+  BlocksBlocksLatestNewsGridLayout: LatestNewsWrapper,
   BlocksBlocksServicesCardsLayout: null,
-  BlocksBlocksTestimonialsLayout: null,
+  BlocksBlocksTestimonialsLayout: TestimonialsWrapper,
   BlocksBlocksTimelineLayout: null,
+  BlocksBlocksQuoteLayout: Quote,
+  BlocksBlocksServiceCardsLayout: ServiceCards,
 };
