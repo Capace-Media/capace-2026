@@ -161,7 +161,7 @@
     color: var(--accent);
     font-style: normal;
   }
-  button > * a {
+  a {
     text-decoration: none !important;
   }
 

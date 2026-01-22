@@ -4,6 +4,7 @@ import { BlocksFragment } from "@/lib/queries/fragments";
 import HeadingWithAccent from "../shared/heading-with-accent";
 import Card from "../shared/card";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
 interface Props {
   data: FragmentType<typeof BlocksFragment>;
@@ -20,15 +21,15 @@ export default function ServiceCards(props: Props) {
         mainHeading={data.accentHeading?.main || ""}
         noBottomMargin
       />
-      <p className="prose prose-invert text-muted-foreground text-center">
+      <p className="prose prose-invert text-muted-foreground flex-wrap text-center">
         {data.description}
       </p>
-      <div className="flex flex-row gap-6">
+      <div className="flex min-h-110 w-full flex-wrap justify-center gap-6">
         {data.service?.nodes.map((s, index) => {
           if (s.__typename !== "Service") return;
 
           return (
-            <Card key={index} className="max-w-40">
+            <Card key={index} className="h-110 max-w-75 min-w-40">
               <Card.Header>
                 <Card.Icon
                   src={s.serviceContent?.icon?.node.mediaItemUrl}
@@ -40,8 +41,12 @@ export default function ServiceCards(props: Props) {
                 <Card.TextContent>
                   {s.serviceContent?.shortDescription}
                 </Card.TextContent>
-                <Button withArrow>Läs mer</Button>
               </Card.Body>
+              <Card.Footer>
+                <Link href={`/tjanster/${s.slug}`}>
+                  <Button withArrow>Läs mer</Button>
+                </Link>
+              </Card.Footer>
             </Card>
           );
         })}

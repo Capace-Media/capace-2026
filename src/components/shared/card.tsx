@@ -9,17 +9,16 @@ export default function Card({
   className?: string;
 }) {
   return (
-    <div
+    <article
       className={cn(
-        "border-primary rounded-capace h-full max-w-100 min-w-80 border-3 p-3",
+        "border-primary rounded-capace h-full border-3 p-3",
         className,
       )}
     >
-      <div className="border-muted rounded-capace-inner border p-4 pb-8">
-        {" "}
+      <div className="border-muted rounded-capace-inner flex h-full flex-col border p-4 pb-8">
         {children}
       </div>
-    </div>
+    </article>
   );
 }
 
@@ -29,12 +28,21 @@ Card.Icon = Icon;
 Card.Number = Number;
 Card.Title = Title;
 Card.TextContent = TextContent;
+Card.Footer = Footer;
 
 function Header({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex w-full flex-col items-center justify-center">
+    <header className="flex w-full flex-col items-center justify-center">
       {children}
-    </div>
+    </header>
+  );
+}
+
+function Footer({ children }: { children: React.ReactNode }) {
+  return (
+    <footer className="mt-auto flex w-full flex-col items-center justify-center">
+      {children}
+    </footer>
   );
 }
 
@@ -48,7 +56,7 @@ function Number({ number }: { number: number }) {
 
 function Body({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex flex-1 flex-col items-center gap-6">{children}</div>
+    <main className="flex flex-1 flex-col items-center gap-6">{children}</main>
   );
 }
 
