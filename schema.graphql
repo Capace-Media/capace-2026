@@ -13154,8 +13154,6 @@ type ServiceContent implements AcfFieldGroup & AcfFieldGroupFields & ServiceCont
   An icon representing the service. Will be displayed on the service cards.
   """
   icon: AcfMediaItemConnectionEdge
-  """Hero image"""
-  image: AcfMediaItemConnectionEdge
   """
   A short description ~ 1 sentence. Will be displayed on the service cards.
   """
@@ -13176,8 +13174,6 @@ interface ServiceContent_Fields implements AcfFieldGroup & AcfFieldGroupFields {
   An icon representing the service. Will be displayed on the service cards.
   """
   icon: AcfMediaItemConnectionEdge
-  """Hero image"""
-  image: AcfMediaItemConnectionEdge
   """
   A short description ~ 1 sentence. Will be displayed on the service cards.
   """

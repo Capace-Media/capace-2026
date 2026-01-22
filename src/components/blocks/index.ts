@@ -1,3 +1,4 @@
+import ContactFormWrapper from "../shared/contact-form-wrapper";
 import AnimatedCardsWrapper from "./animated-cards/animated-cards-wrapper";
 import CasesGridWrapper from "./cases/cases-grid-wrapper";
 import CollaboratorsBannerWrapper from "./collaborators-banner/collaborators-banner-wrapper";
@@ -14,12 +15,11 @@ export const blockComponents = {
   BlocksBlocksCardsAndTextLayout: null,
   BlocksBlocksCaseCardGridLayout: CasesGridWrapper,
   BlocksBlocksCollaboratorsBannerLayout: CollaboratorsBannerWrapper,
-  BlocksBlocksContactFormLayout: null,
+  BlocksBlocksContactFormLayout: ContactFormWrapper,
   BlocksBlocksEmployeesLayout: null,
   BlocksBlocksFaqLayout: Faq,
   BlocksBlocksImageBannerLayout: ImageBanner,
   BlocksBlocksLatestNewsGridLayout: LatestNewsWrapper,
-  BlocksBlocksServicesCardsLayout: null,
   BlocksBlocksTestimonialsLayout: TestimonialsWrapper,
   BlocksBlocksTimelineLayout: null,
   BlocksBlocksQuoteLayout: Quote,
