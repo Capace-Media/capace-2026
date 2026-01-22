@@ -1,5 +1,6 @@
 import Blocks from "@/components/blocks/blocks";
 import Hero from "@/components/layout/hero";
+import ContactFormWrapper from "@/components/shared/contact-form-wrapper";
 import { getPage } from "@/lib/fetchers/pages";
 
 export default async function Page(props: PageProps<"/tjanster/[category]">) {
@@ -12,6 +13,7 @@ export default async function Page(props: PageProps<"/tjanster/[category]">) {
     <div>
       <Hero data={data?.pageContent} />
       <Blocks blocks={data?.blocks?.blocks} />
+      <ContactFormWrapper />
     </div>
   );
 }
