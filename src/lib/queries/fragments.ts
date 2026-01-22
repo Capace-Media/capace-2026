@@ -92,6 +92,7 @@ export const BlocksFragment = graphql(`
     }
     ... on BlocksBlocksCaseCardGridLayout {
       __typename
+      compact
       accentHeading {
         accent
         main

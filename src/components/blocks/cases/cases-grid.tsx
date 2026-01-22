@@ -7,8 +7,10 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import CategoryButtons from "@/components/shared/category-buttons";
+import { cn } from "@/lib/utils";
 
 interface Props {
+  compact?: boolean;
   data?: NonNullable<
     Extract<
       BlocksFragmentFragment,
@@ -17,7 +19,7 @@ interface Props {
   >["nodes"];
 }
 
-export default function CasesGrid({ data }: Props) {
+export default function CasesGrid({ data, compact }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
@@ -43,7 +45,10 @@ export default function CasesGrid({ data }: Props) {
   return (
     <div
       ref={containerRef}
-      className="grid w-full grid-cols-1 gap-12 lg:grid-cols-2"
+      className={cn(
+        "grid w-full grid-cols-1 gap-12 lg:grid-cols-2",
+        compact && "md:grid-cols-2 lg:grid-cols-3",
+      )}
     >
       {data?.map((item, index) => {
         if (item.__typename !== "Case") return null;
@@ -67,16 +72,19 @@ export default function CasesGrid({ data }: Props) {
                   />
                   {item.title}
                 </h3>
-                <CategoryButtons
-                  categories={item.casesCategories?.nodes.map((c) => {
-                    return { name: c.name, slug: c.slug };
-                  })}
-                />
+                {!compact && (
+                  <CategoryButtons
+                    categories={item.casesCategories?.nodes.map((c) => {
+                      return { name: c.name, slug: c.slug };
+                    })}
+                  />
+                )}
               </ArticleCard.Header>
-
-              <ArticleCard.Footer>
-                {item.caseContent?.shortDescription}
-              </ArticleCard.Footer>
+              {!compact && (
+                <ArticleCard.Footer>
+                  {item.caseContent?.shortDescription}
+                </ArticleCard.Footer>
+              )}
             </ArticleCard>
           </div>
         );

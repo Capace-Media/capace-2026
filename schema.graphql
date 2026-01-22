@@ -347,6 +347,8 @@ type BlocksBlocksCaseCardGridLayout implements AcfFieldGroup & AcfFieldGroupFiel
     """The number of items to return before the referenced "before" cursor"""
     last: Int
   ): AcfContentNodeConnection
+  """When checked, only 3 cases will be displayed with minimalistic look."""
+  compact: Boolean
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
 }
@@ -376,6 +378,8 @@ interface BlocksBlocksCaseCardGridLayout_Fields implements AcfFieldGroup & AcfFi
     """The number of items to return before the referenced "before" cursor"""
     last: Int
   ): AcfContentNodeConnection
+  """When checked, only 3 cases will be displayed with minimalistic look."""
+  compact: Boolean
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
 }

@@ -18,10 +18,7 @@ export default function ImageBanner(props: Props) {
     >
       {data.images?.nodes.map((image, index) => (
         <div
-          className={cn(
-            "relative min-h-64 flex-1 md:min-h-120",
-            data.fullWidth && "md:min-h-90",
-          )}
+          className={cn("relative min-h-64 flex-1 md:min-h-120")}
           key={index}
         >
           <ParallaxImage

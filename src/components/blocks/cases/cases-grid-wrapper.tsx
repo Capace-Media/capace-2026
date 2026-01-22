@@ -30,23 +30,25 @@ export default function CasesGridWrapper(props: Props) {
           mainHeading={block.accentHeading?.main || ""}
         />
       </div>
-      <CasesGrid data={block.cases?.nodes} />
+      <CasesGrid data={block.cases?.nodes} compact={!!block.compact} />
       <div className="py-12">
         <Button withArrow>Se fler kundprojekt</Button>
       </div>
-      <div
-        aria-hidden
-        className="absolute right-0 bottom-0 ml-auto hidden aspect-square w-60 translate-x-[25%] md:block md:w-80"
-      >
-        <Image
-          src={"/stickers/stickers-capace.webp"}
-          alt={""}
+      {!block.compact && (
+        <div
           aria-hidden
-          fill
-          sizes="20vw"
-          className="object-contain"
-        />
-      </div>
+          className="absolute right-0 bottom-0 ml-auto hidden aspect-square w-60 translate-x-[25%] md:block md:w-80"
+        >
+          <Image
+            src={"/stickers/stickers-capace.webp"}
+            alt={""}
+            aria-hidden
+            fill
+            sizes="20vw"
+            className="object-contain"
+          />
+        </div>
+      )}
     </section>
   );
 }
