@@ -20,19 +20,10 @@ export const ServicePageQuery = graphql(`
     service(id: $slug, idType: URI) {
       id
       title
+      slug
       serviceContent {
         description
         shortDescription
-        image {
-          node {
-            mediaItemUrl
-            mediaDetails {
-              height
-              width
-            }
-            altText
-          }
-        }
         icon {
           node {
             altText

@@ -49,6 +49,7 @@ export const BlocksFragment = graphql(`
             __typename
             id
             title
+            slug
             serviceContent {
               icon {
                 node {
@@ -72,6 +73,9 @@ export const BlocksFragment = graphql(`
       authorTitle
       companyName
       quote
+    }
+    ... on BlocksBlocksContactFormLayout {
+      __typename
     }
     ... on BlocksBlocksCollaboratorsBannerLayout {
       __typename
