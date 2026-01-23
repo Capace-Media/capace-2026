@@ -4728,7 +4728,7 @@ type EmployeeContent implements AcfFieldGroup & AcfFieldGroupFields & EmployeeCo
   """
   textContent: String
   """E.g. Developer"""
-  title: String
+  workTitle: String
 }
 
 """
@@ -4754,7 +4754,7 @@ interface EmployeeContent_Fields implements AcfFieldGroup & AcfFieldGroupFields 
   """
   textContent: String
   """E.g. Developer"""
-  title: String
+  workTitle: String
 }
 
 """

@@ -1,5 +1,5 @@
 /* eslint-disable */
-import {type  DocumentTypeDecoration } from '@graphql-typed-document-node/core';
+import { DocumentTypeDecoration } from '@graphql-typed-document-node/core';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = T | null | undefined;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -4060,7 +4060,7 @@ export type EmployeeContent = AcfFieldGroup & AcfFieldGroupFields & EmployeeCont
   /** Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;EmployeeContent&quot; Field Group */
   textContent?: Maybe<Scalars['String']['output']>;
   /** E.g. Developer */
-  title?: Maybe<Scalars['String']['output']>;
+  workTitle?: Maybe<Scalars['String']['output']>;
 };
 
 /** Interface representing fields of the ACF &quot;EmployeeContent&quot; Field Group */
@@ -4081,7 +4081,7 @@ export type EmployeeContent_Fields = {
   /** Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;EmployeeContent&quot; Field Group */
   textContent?: Maybe<Scalars['String']['output']>;
   /** E.g. Developer */
-  title?: Maybe<Scalars['String']['output']>;
+  workTitle?: Maybe<Scalars['String']['output']>;
 };
 
 /** Identifier types for retrieving a specific Employee. Specifies which unique attribute is used to find an exact Employee. */
@@ -14306,7 +14306,16 @@ type BlocksFragment_BlocksBlocksCollaboratorsBannerLayout_Fragment = { __typenam
 
 type BlocksFragment_BlocksBlocksContactFormLayout_Fragment = { __typename: 'BlocksBlocksContactFormLayout' } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksContactFormLayout_Fragment' };
 
-type BlocksFragment_BlocksBlocksEmployeesLayout_Fragment = { __typename?: 'BlocksBlocksEmployeesLayout' } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksEmployeesLayout_Fragment' };
+type BlocksFragment_BlocksBlocksEmployeesLayout_Fragment = { __typename: 'BlocksBlocksEmployeesLayout', textContent?: string | null, accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null, employees?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
+      | { __typename?: 'Case' }
+      | { __typename: 'Employee', title?: string | null, employeeContent?: { __typename?: 'EmployeeContent', email?: string | null, employmentType?: Array<string | null> | null, quote?: string | null, textContent?: string | null, workTitle?: string | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null } } | null } | null }
+      | { __typename?: 'Faq' }
+      | { __typename?: 'MediaItem' }
+      | { __typename?: 'Page' }
+      | { __typename?: 'Post' }
+      | { __typename?: 'Service' }
+      | { __typename?: 'Testimonial' }
+    > } | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksEmployeesLayout_Fragment' };
 
 type BlocksFragment_BlocksBlocksFaqLayout_Fragment = { __typename: 'BlocksBlocksFaqLayout', accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null, questions?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
       | { __typename?: 'Case' }
@@ -14681,6 +14690,35 @@ export const BlocksFragmentFragmentDoc = new TypedDocumentString(`
       main
     }
   }
+  ... on BlocksBlocksEmployeesLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+    employees {
+      nodes {
+        ... on Employee {
+          __typename
+          title
+          employeeContent {
+            email
+            employmentType
+            quote
+            textContent
+            workTitle
+            image {
+              node {
+                altText
+                mediaItemUrl
+              }
+            }
+          }
+        }
+      }
+    }
+    textContent
+  }
   ... on BlocksBlocksFaqLayout {
     __typename
     accentHeading {
@@ -14950,6 +14988,35 @@ export const CaseDocument = new TypedDocumentString(`
       accent
       main
     }
+  }
+  ... on BlocksBlocksEmployeesLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+    employees {
+      nodes {
+        ... on Employee {
+          __typename
+          title
+          employeeContent {
+            email
+            employmentType
+            quote
+            textContent
+            workTitle
+            image {
+              node {
+                altText
+                mediaItemUrl
+              }
+            }
+          }
+        }
+      }
+    }
+    textContent
   }
   ... on BlocksBlocksFaqLayout {
     __typename
@@ -15348,6 +15415,35 @@ export const PageDocument = new TypedDocumentString(`
       main
     }
   }
+  ... on BlocksBlocksEmployeesLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+    employees {
+      nodes {
+        ... on Employee {
+          __typename
+          title
+          employeeContent {
+            email
+            employmentType
+            quote
+            textContent
+            workTitle
+            image {
+              node {
+                altText
+                mediaItemUrl
+              }
+            }
+          }
+        }
+      }
+    }
+    textContent
+  }
   ... on BlocksBlocksFaqLayout {
     __typename
     accentHeading {
@@ -15652,6 +15748,35 @@ export const QueryDocument = new TypedDocumentString(`
       accent
       main
     }
+  }
+  ... on BlocksBlocksEmployeesLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+    employees {
+      nodes {
+        ... on Employee {
+          __typename
+          title
+          employeeContent {
+            email
+            employmentType
+            quote
+            textContent
+            workTitle
+            image {
+              node {
+                altText
+                mediaItemUrl
+              }
+            }
+          }
+        }
+      }
+    }
+    textContent
   }
   ... on BlocksBlocksFaqLayout {
     __typename

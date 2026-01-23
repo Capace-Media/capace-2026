@@ -3,6 +3,7 @@ import AnimatedCardsWrapper from "./animated-cards/animated-cards-wrapper";
 import CardsAndText from "./cards-and-text";
 import CasesGridWrapper from "./cases/cases-grid-wrapper";
 import CollaboratorsBannerWrapper from "./collaborators-banner/collaborators-banner-wrapper";
+import Employees from "./employees";
 import Faq from "./faq";
 import ImageBanner from "./image-banner";
 import LatestNewsWrapper from "./latest-news/latest-news-wrapper";
@@ -17,7 +18,7 @@ export const blockComponents = {
   BlocksBlocksCaseCardGridLayout: CasesGridWrapper,
   BlocksBlocksCollaboratorsBannerLayout: CollaboratorsBannerWrapper,
   BlocksBlocksContactFormLayout: ContactFormWrapper,
-  BlocksBlocksEmployeesLayout: null,
+  BlocksBlocksEmployeesLayout: Employees,
   BlocksBlocksFaqLayout: Faq,
   BlocksBlocksImageBannerLayout: ImageBanner,
   BlocksBlocksLatestNewsGridLayout: LatestNewsWrapper,

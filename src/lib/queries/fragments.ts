@@ -139,6 +139,35 @@ export const BlocksFragment = graphql(`
         main
       }
     }
+    ... on BlocksBlocksEmployeesLayout {
+      __typename
+      accentHeading {
+        accent
+        main
+      }
+      employees {
+        nodes {
+          ... on Employee {
+            __typename
+            title
+            employeeContent {
+              email
+              employmentType
+              quote
+              textContent
+              workTitle
+              image {
+                node {
+                  altText
+                  mediaItemUrl
+                }
+              }
+            }
+          }
+        }
+      }
+      textContent
+    }
     ... on BlocksBlocksFaqLayout {
       __typename
       accentHeading {
