@@ -1,7 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
-import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
+import ButtonLink from "./link";
 
 export default function ArticleCard(props: ImageProps) {
   return (
@@ -92,19 +91,7 @@ function ImageAndButton(props: ImageProps) {
             aria-hidden="true"
           />
         </div>
-        <Link
-          href={props.buttonLink}
-          className="no-underline! hover:cursor-pointer"
-        >
-          <Button
-            withArrow
-            variant={"default"}
-            className="w-[170]!"
-            aria-label={props.ariaLabel}
-          >
-            {props.buttonLabel}
-          </Button>
-        </Link>
+        <ButtonLink href={props.buttonLink}>{props.buttonLabel}</ButtonLink>
       </div>
     </div>
   );
