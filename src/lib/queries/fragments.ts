@@ -159,6 +159,38 @@ export const BlocksFragment = graphql(`
         }
       }
     }
+    ... on BlocksBlocksCardsAndTextLayout {
+      __typename
+      accentHeading {
+        accent
+        main
+      }
+      textContent
+      cards {
+        card {
+          textContent
+          title
+          button {
+            ariaLabel
+            label
+            url {
+              externalLink
+              internalLink {
+                nodes {
+                  slug
+                }
+              }
+            }
+          }
+          image {
+            node {
+              mediaItemUrl
+              altText
+            }
+          }
+        }
+      }
+    }
     ... on BlocksBlocksAnimatedCardsLayout {
       __typename
       textContent

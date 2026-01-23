@@ -55,6 +55,7 @@ export default function AnimatedCardsDesktop(props: Props) {
               trigger: card,
               start: () => `top+=${i * 400}px 35%`,
               toggleActions: "play none none reverse",
+              invalidateOnRefresh: true,
             },
           },
         );

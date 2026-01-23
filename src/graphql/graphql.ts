@@ -14280,7 +14280,16 @@ type BlocksFragment_BlocksBlocksAnimatedCardsLayout_Fragment = { __typename: 'Bl
               | { __typename?: 'Testimonial', slug?: string | null }
             > } | null } | null } | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null } } | null } | null } | null> | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksAnimatedCardsLayout_Fragment' };
 
-type BlocksFragment_BlocksBlocksCardsAndTextLayout_Fragment = { __typename?: 'BlocksBlocksCardsAndTextLayout' } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksCardsAndTextLayout_Fragment' };
+type BlocksFragment_BlocksBlocksCardsAndTextLayout_Fragment = { __typename: 'BlocksBlocksCardsAndTextLayout', textContent?: string | null, accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null, cards?: Array<{ __typename?: 'BlocksBlocksCards', card?: { __typename?: 'BlocksBlocksCardsCard', textContent?: string | null, title?: string | null, button?: { __typename?: 'ReusableFieldsCardButton', ariaLabel?: string | null, label?: string | null, url?: { __typename?: 'ReusableFieldsButtonUrl', externalLink?: string | null, internalLink?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
+              | { __typename?: 'Case', slug?: string | null }
+              | { __typename?: 'Employee', slug?: string | null }
+              | { __typename?: 'Faq', slug?: string | null }
+              | { __typename?: 'MediaItem', slug?: string | null }
+              | { __typename?: 'Page', slug?: string | null }
+              | { __typename?: 'Post', slug?: string | null }
+              | { __typename?: 'Service', slug?: string | null }
+              | { __typename?: 'Testimonial', slug?: string | null }
+            > } | null } | null } | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null, altText?: string | null } } | null } | null } | null> | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksCardsAndTextLayout_Fragment' };
 
 type BlocksFragment_BlocksBlocksCaseCardGridLayout_Fragment = { __typename: 'BlocksBlocksCaseCardGridLayout', compact?: boolean | null, accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null, cases?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
       | { __typename: 'Case', id: string, title?: string | null, slug?: string | null, caseContent?: { __typename?: 'CaseContent', shortDescription?: string | null, heroImage?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null } | null, casesCategories?: { __typename?: 'CaseToCaseCategoryConnection', nodes: Array<{ __typename?: 'CaseCategory', slug?: string | null, name?: string | null }> } | null }
@@ -14692,6 +14701,38 @@ export const BlocksFragmentFragmentDoc = new TypedDocumentString(`
       }
     }
   }
+  ... on BlocksBlocksCardsAndTextLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+    textContent
+    cards {
+      card {
+        textContent
+        title
+        button {
+          ariaLabel
+          label
+          url {
+            externalLink
+            internalLink {
+              nodes {
+                slug
+              }
+            }
+          }
+        }
+        image {
+          node {
+            mediaItemUrl
+            altText
+          }
+        }
+      }
+    }
+  }
   ... on BlocksBlocksAnimatedCardsLayout {
     __typename
     textContent
@@ -14926,6 +14967,38 @@ export const CaseDocument = new TypedDocumentString(`
             longAnswer
           }
           title
+        }
+      }
+    }
+  }
+  ... on BlocksBlocksCardsAndTextLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+    textContent
+    cards {
+      card {
+        textContent
+        title
+        button {
+          ariaLabel
+          label
+          url {
+            externalLink
+            internalLink {
+              nodes {
+                slug
+              }
+            }
+          }
+        }
+        image {
+          node {
+            mediaItemUrl
+            altText
+          }
         }
       }
     }
@@ -15295,6 +15368,38 @@ export const PageDocument = new TypedDocumentString(`
       }
     }
   }
+  ... on BlocksBlocksCardsAndTextLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+    textContent
+    cards {
+      card {
+        textContent
+        title
+        button {
+          ariaLabel
+          label
+          url {
+            externalLink
+            internalLink {
+              nodes {
+                slug
+              }
+            }
+          }
+        }
+        image {
+          node {
+            mediaItemUrl
+            altText
+          }
+        }
+      }
+    }
+  }
   ... on BlocksBlocksAnimatedCardsLayout {
     __typename
     textContent
@@ -15564,6 +15669,38 @@ export const QueryDocument = new TypedDocumentString(`
             longAnswer
           }
           title
+        }
+      }
+    }
+  }
+  ... on BlocksBlocksCardsAndTextLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+    textContent
+    cards {
+      card {
+        textContent
+        title
+        button {
+          ariaLabel
+          label
+          url {
+            externalLink
+            internalLink {
+              nodes {
+                slug
+              }
+            }
+          }
+        }
+        image {
+          node {
+            mediaItemUrl
+            altText
+          }
         }
       }
     }

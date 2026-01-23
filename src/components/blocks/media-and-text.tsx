@@ -50,6 +50,7 @@ export default function MediaAndText(props: Props) {
           <ParallaxImage
             src={image?.mediaItemUrl}
             alt={image?.altText || "Dekorativ bild"}
+            sizes="(max-width: 768px)100vw, 50vw"
           />
         )}
       </div>
