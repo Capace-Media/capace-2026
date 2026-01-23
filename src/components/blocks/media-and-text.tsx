@@ -56,7 +56,7 @@ export default function MediaAndText(props: Props) {
       </div>
       <div
         className={cn(
-          "prose prose-invert italic-accent order-3 flex flex-col",
+          "prose prose-invert italic-accent list-capace order-3 flex flex-col",
           !image?.mediaItemUrl && button?.label && "my-12!",
         )}
       >

@@ -150,10 +150,10 @@
   .frosted {
     @apply border border-white/10 bg-black/20 shadow-sm backdrop-blur-md;
   }
-  li {
+  .list-capace > * li {
     @apply marker:text-transparent!;
   }
-  li::before {
+  .list-capace > * li ::before {
     content: "";
     display: inline-block;
     width: 0.6rem;

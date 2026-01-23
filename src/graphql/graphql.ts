@@ -14308,7 +14308,7 @@ type BlocksFragment_BlocksBlocksContactFormLayout_Fragment = { __typename: 'Bloc
 
 type BlocksFragment_BlocksBlocksEmployeesLayout_Fragment = { __typename: 'BlocksBlocksEmployeesLayout', textContent?: string | null, accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null, employees?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
       | { __typename?: 'Case' }
-      | { __typename: 'Employee', title?: string | null, employeeContent?: { __typename?: 'EmployeeContent', email?: string | null, employmentType?: Array<string | null> | null, quote?: string | null, textContent?: string | null, workTitle?: string | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null } } | null } | null }
+      | { __typename: 'Employee', title?: string | null, slug?: string | null, employeeContent?: { __typename?: 'EmployeeContent', email?: string | null, employmentType?: Array<string | null> | null, quote?: string | null, textContent?: string | null, workTitle?: string | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null } } | null } | null }
       | { __typename?: 'Faq' }
       | { __typename?: 'MediaItem' }
       | { __typename?: 'Page' }
@@ -14701,6 +14701,7 @@ export const BlocksFragmentFragmentDoc = new TypedDocumentString(`
         ... on Employee {
           __typename
           title
+          slug
           employeeContent {
             email
             employmentType
@@ -15000,6 +15001,7 @@ export const CaseDocument = new TypedDocumentString(`
         ... on Employee {
           __typename
           title
+          slug
           employeeContent {
             email
             employmentType
@@ -15426,6 +15428,7 @@ export const PageDocument = new TypedDocumentString(`
         ... on Employee {
           __typename
           title
+          slug
           employeeContent {
             email
             employmentType
@@ -15760,6 +15763,7 @@ export const QueryDocument = new TypedDocumentString(`
         ... on Employee {
           __typename
           title
+          slug
           employeeContent {
             email
             employmentType

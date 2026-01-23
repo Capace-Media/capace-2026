@@ -5,6 +5,7 @@ interface Props {
   mainHeading: string;
   textAlign?: "left" | "center";
   noBottomMargin?: boolean;
+  className?: string;
 }
 export default function HeadingWithAccent(props: Props) {
   return (
@@ -12,6 +13,7 @@ export default function HeadingWithAccent(props: Props) {
       className={cn(
         "flex flex-col items-center lg:items-start",
         props.noBottomMargin ? "" : "mb-12",
+        props.className,
       )}
     >
       <h3

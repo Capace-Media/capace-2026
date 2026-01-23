@@ -30,7 +30,7 @@ export default function Header() {
       </div>
       <div className="hidden w-full md:flex">
         <nav className="max-w-[1/3] flex-1">
-          <ul className="frosted flex h-12 justify-evenly gap-10 rounded-full p-3 whitespace-nowrap">
+          <ul className="frosted flex h-12 list-none justify-evenly gap-10 rounded-full p-3 whitespace-nowrap">
             <li>
               <Link
                 href={"/tjanster"}

@@ -2,26 +2,27 @@ import Image from "next/image";
 import { useFragment, type FragmentType } from "@/graphql";
 import { BlocksFragment } from "@/lib/queries/fragments";
 import HeadingWithAccent from "../shared/heading-with-accent";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 interface Props {
   data: FragmentType<typeof BlocksFragment>;
 }
+
 export default function Employees(props: Props) {
   const data = useFragment(BlocksFragment, props.data);
   if (data.__typename !== "BlocksBlocksEmployeesLayout") return null;
 
-  const fullTimeEmployees = data.employees?.nodes.filter((e) => {
-    if (e.__typename !== "Employee") return;
-    return e.employeeContent?.employmentType?.includes("fulltime");
-  });
+  const allEmployees =
+    data.employees?.nodes.filter((e) => e.__typename === "Employee") ?? [];
 
-  const interns = data.employees?.nodes.filter((e) => {
-    if (e.__typename !== "Employee") return;
-    return e.employeeContent?.employmentType?.includes("intern");
-  });
+  const fullTimeEmployees = allEmployees.filter((e) =>
+    e.employeeContent?.employmentType?.includes("fulltime"),
+  );
 
-  console.log("interns:", interns);
-  console.log("fulltime:", fullTimeEmployees);
+  const interns = allEmployees.filter((e) =>
+    e.employeeContent?.employmentType?.includes("intern"),
+  );
 
   return (
     <section className="section items-center">
@@ -33,7 +34,19 @@ export default function Employees(props: Props) {
       <p className="prose prose-invert mb-12 text-center">{data.textContent}</p>
       <EmployeeGrid employees={fullTimeEmployees} />
 
-      <div className="bg-muted h-0.5 w-full" />
+      {/* <div className="bg-muted h-0.5 w-full" /> */}
+      <div className="flex w-full items-center">
+        <div className="bg-muted h-0.5 w-full" />
+        {/* <div className="text-primary font-caveat mx-6 text-4xl">
+          Praktikanter
+        </div> */}
+        <HeadingWithAccent
+          className="mx-6"
+          accentedHeading={"våra"}
+          mainHeading={"Praktikanter"}
+        />
+        <div className="bg-muted h-0.5 w-full" />
+      </div>
       <EmployeeGrid employees={interns} />
     </section>
   );
@@ -44,10 +57,12 @@ interface EmployeeGridProps {
 }
 
 const EmployeeGrid = (props: EmployeeGridProps) => {
+  if (!props.employees?.length) return null;
+
   return (
     <div className="grid w-full grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
-      {props.employees?.map((e, index) => {
-        if (e.__typename !== "Employee") return;
+      {props.employees.map((e, index) => {
+        if (e.__typename !== "Employee") return null;
         return (
           <EmployeeCard
             key={index}
@@ -56,6 +71,7 @@ const EmployeeGrid = (props: EmployeeGridProps) => {
             email={e.employeeContent?.email}
             imgSrc={e.employeeContent?.image?.node.mediaItemUrl}
             employmentType={e.employeeContent?.employmentType}
+            slug={e.slug}
           />
         );
       })}
@@ -69,24 +85,31 @@ interface EmployeeCardProps {
   email: string | undefined | null;
   imgSrc: string | undefined | null;
   employmentType: (string | null)[] | null | undefined;
+  slug: string | undefined | null;
 }
 
 const EmployeeCard = (props: EmployeeCardProps) => {
   return (
     <article className="flex flex-col items-center gap-3">
-      <div className="relative aspect-square h-auto w-full overflow-hidden rounded-full">
+      <Link
+        href={`/om-oss/${props.slug}`}
+        className="group relative aspect-square h-auto w-full overflow-hidden rounded-full"
+      >
         <Image
           src={props.imgSrc || "/misc/no-profile-photo.webp"}
           alt={`Bild på ${props.name}`}
           fill
-          className="object-cover"
-          sizes="20vw"
+          className={cn(
+            "object-cover transition-all duration-500 group-hover:scale-105",
+            props.imgSrc && "group-hover:brightness-120",
+          )}
+          sizes="(max-wdith: 768px)100vw, 40vw"
         />
-      </div>
+      </Link>
 
       <p className="text-primary text-sm uppercase">{props.workTitle}</p>
       <p className="text-lg font-semibold">{props.name}</p>
-      <p className="text-muted-foreground flex items-center gap-2 text-xs">
+      <div className="text-muted-foreground flex items-center gap-2 text-xs">
         <div className="relative h-3 w-3">
           <Image
             src={"/icons/envelope.svg"}
@@ -96,7 +119,7 @@ const EmployeeCard = (props: EmployeeCardProps) => {
           />
         </div>
         {props.email && <a href={`mailto:${props.email}`}>{props.email}</a>}
-      </p>
+      </div>
     </article>
   );
 };

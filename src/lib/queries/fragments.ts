@@ -150,6 +150,7 @@ export const BlocksFragment = graphql(`
           ... on Employee {
             __typename
             title
+            slug
             employeeContent {
               email
               employmentType
