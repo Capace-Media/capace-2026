@@ -57,7 +57,7 @@ function Header({
 }
 
 interface ImageProps {
-  imgSrc: string;
+  imgSrc: string | null | undefined;
   altText: string;
   buttonLabel: string;
   buttonLink: string;
@@ -69,7 +69,7 @@ function ImageAndButton(props: ImageProps) {
   return (
     <div className="relative aspect-[1.3] h-auto w-full">
       <Image
-        src={props.imgSrc}
+        src={props.imgSrc || "/misc/no-image.svg"}
         alt={props.altText}
         className="rounded-[36px] object-cover"
         fill

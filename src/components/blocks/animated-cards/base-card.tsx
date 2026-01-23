@@ -5,7 +5,7 @@ import ExternalOrInternalLink from "@/components/shared/external-or-internal-lin
 
 interface Props {
   index: number;
-  imgSrc: string;
+  imgSrc: string | null | undefined;
   altText: string;
   title: string;
   textContent: string;
@@ -32,11 +32,14 @@ export default function BaseCard(props: Props) {
           <div
             className={cn(
               isInactive ? "text-accent" : "text-background",
-              "items-center justify-center rounded-full p-4 text-base font-bold",
+              "flex aspect-square! items-center justify-center rounded-full p-4 text-base font-bold",
               "noscript:text-accent",
+              !props.imgSrc && "bg-background text-primary text-3xl",
+              !props.imgSrc && isInactive && "text-background bg-primary",
             )}
           >
-            {(props.index + 1).toString().padStart(2, "0")}
+            {props.imgSrc && (props.index + 1).toString().padStart(2, "0")}
+            {!props.imgSrc && props.index + 1}
           </div>
         )}
 

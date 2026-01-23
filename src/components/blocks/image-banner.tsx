@@ -21,10 +21,7 @@ export default function ImageBanner(props: Props) {
           className={cn("relative min-h-64 flex-1 md:min-h-120")}
           key={index}
         >
-          <ParallaxImage
-            src={image.mediaItemUrl || "/misc/no-image.svg"}
-            alt={image.altText || ""}
-          />
+          <ParallaxImage src={image.mediaItemUrl} alt={image.altText || ""} />
           {/* <Image
             src={image.mediaItemUrl || "/misc/no-image.svg"}
             alt={image.altText || ""}

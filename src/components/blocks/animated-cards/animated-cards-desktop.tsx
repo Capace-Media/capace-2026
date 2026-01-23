@@ -1,4 +1,5 @@
 "use client";
+import parse from "html-react-parser";
 import type { BlocksBlocksCards } from "@/graphql/graphql";
 import { type FragmentType, useFragment } from "@/graphql/fragment-masking";
 import { BlocksFragment } from "@/lib/queries/fragments";
@@ -34,6 +35,7 @@ export default function AnimatedCardsDesktop(props: Props) {
           end: `${cards.length * 370}px top`,
           trigger: container.current,
           pinSpacing: true,
+          invalidateOnRefresh: true,
         },
       });
 
@@ -80,6 +82,11 @@ export default function AnimatedCardsDesktop(props: Props) {
         accentedHeading={block.accentHeading?.accent || ""}
         mainHeading={block.accentHeading?.main || ""}
       />
+      {block.textContent && (
+        <div className="prose prose-invert italic-accent pb-12 text-center">
+          {parse(block.textContent)}
+        </div>
+      )}
       <div className="flex flex-row">
         {block.cards?.map((card, index) => (
           <AnimatedCard

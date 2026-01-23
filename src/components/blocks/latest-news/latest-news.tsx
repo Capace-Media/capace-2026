@@ -42,7 +42,7 @@ export default function LatestNews(props: Props) {
           return (
             <div key={index} className="news-card">
               <ArticleCard
-                imgSrc={item.postContent?.heroImage?.node.mediaItemUrl || ""}
+                imgSrc={item.postContent?.heroImage?.node.mediaItemUrl}
                 altText={
                   item.postContent?.heroImage?.node.altText || item.title || ""
                 }

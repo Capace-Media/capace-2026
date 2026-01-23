@@ -56,6 +56,14 @@ export const ServicePageQuery = graphql(`
           heading_main
           text
         }
+        small {
+          heroImage {
+            node {
+              altText
+              mediaItemUrl
+            }
+          }
+        }
       }
       blocks {
         blocks {

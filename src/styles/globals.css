@@ -151,7 +151,19 @@
     @apply border border-white/10 bg-black/20 shadow-sm backdrop-blur-md;
   }
   li {
-    @apply marker:text-accent!;
+    @apply marker:text-transparent!;
+  }
+  li::before {
+    content: "";
+    display: inline-block;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 100%;
+    background-color: var(--primary);
+    margin-right: 1rem;
+  }
+  h1 {
+    @apply text-4xl font-bold;
   }
 }
 
@@ -181,6 +193,15 @@
   }
   .no-hero {
     @apply pt-40;
+  }
+  .orange-dot::after {
+    content: "";
+    display: inline-block;
+    background-color: var(--primary);
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-left: 2px;
+    border-radius: 100%;
   }
 }
 

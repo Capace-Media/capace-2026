@@ -194,6 +194,10 @@ type BlocksBlocksAnimatedCardsLayout implements AcfFieldGroup & AcfFieldGroupFie
   cards: [BlocksBlocksCards]
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksAnimatedCardsLayout&quot; Field Group
+  """
+  textContent: String
 }
 
 """
@@ -208,6 +212,10 @@ interface BlocksBlocksAnimatedCardsLayout_Fields implements AcfFieldGroup & AcfF
   cards: [BlocksBlocksCards]
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksAnimatedCardsLayout&quot; Field Group
+  """
+  textContent: String
 }
 
 """

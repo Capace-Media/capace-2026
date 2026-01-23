@@ -1,23 +1,67 @@
+"use client";
 import type { PageQuery, ReusableFieldsButton_Fields } from "@/graphql/graphql";
 import Image from "next/image";
 import parse from "html-react-parser";
 import ExternalOrInternalLink from "../shared/external-or-internal-link";
 import HeadingWithAccent from "../shared/heading-with-accent";
+import { useGSAP } from "@gsap/react";
+import { gsap } from "gsap";
+import { SplitText } from "gsap/SplitText";
+import { useRef } from "react";
+
+gsap.registerPlugin(SplitText);
+
 interface Props {
   data: NonNullable<PageQuery["page"]>["pageContent"];
 }
 export default function Hero(props: Props) {
   if (!props.data) return null;
-  const isLarge = props.data.large?.heading;
-
-  if (isLarge) {
-    return <HeroLarge data={props.data} />;
+  let size;
+  if (props.data.large?.heroImage) {
+    size = "large";
+  } else if (props.data.medium?.text) {
+    size = "medium";
   } else {
-    return <HeroMedium data={props.data} />;
+    size = "small";
+  }
+
+  switch (size) {
+    case "large":
+      return <HeroLarge data={props.data} />;
+    case "medium":
+      return <HeroMedium data={props.data} />;
+    case "small":
+      return <HeroSmall data={props.data} />;
+    default:
+      return null;
   }
 }
 
 const HeroLarge = (data: Props) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  useGSAP(
+    () => {
+      let split = SplitText.create("#animated-text", { type: "words, chars" });
+
+      gsap.fromTo(
+        split.chars,
+        {
+          x: -2,
+          autoAlpha: 0,
+        },
+        {
+          autoAlpha: 1,
+          x: 0,
+          stagger: 0.05,
+          delay: 1,
+          duration: 4,
+          ease: "elastic.out",
+        },
+      );
+    },
+    { scope: containerRef },
+  );
+
   const heroData = data.data?.large;
   return (
     <section
@@ -33,10 +77,13 @@ const HeroLarge = (data: Props) => {
         fill
         aria-hidden="true"
       />
-      <div className="section relative flex h-full flex-col items-center justify-center gap-6">
+      <div
+        ref={containerRef}
+        className="section relative flex h-full flex-col items-center justify-center gap-6"
+      >
         <h1 className="text-center text-5xl leading-14 font-bold md:text-6xl">
           <span className="drop-shadow-lg">{heroData?.heading}</span>
-          <span className="text-accent drop-shadow-lg">
+          <span id="animated-text" className="text-accent drop-shadow-lg">
             {heroData?.headingAccent}
           </span>
         </h1>
@@ -63,6 +110,27 @@ const HeroMedium = (data: Props) => {
       <p className="text-muted-foreground prose text-center">
         {data.data?.medium?.text}
       </p>
+    </div>
+  );
+};
+
+const HeroSmall = (data: Props) => {
+  const heroData = data.data?.small;
+  return (
+    <div
+      className="section flex w-full flex-col items-center justify-center pt-40"
+      aria-hidden
+    >
+      <div className="relative h-100 w-full">
+        <Image
+          fill
+          className="object-cover"
+          src={heroData?.heroImage?.node.mediaItemUrl || "/misc/no-image.svg"}
+          alt={""}
+          sizes="100vw"
+          priority
+        />
+      </div>
     </div>
   );
 };

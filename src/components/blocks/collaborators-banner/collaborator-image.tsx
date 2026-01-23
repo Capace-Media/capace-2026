@@ -2,7 +2,7 @@
 import Image from "next/image";
 
 interface Props {
-  imgSrc: string;
+  imgSrc: string | undefined | null;
   url: string;
   altText: string;
   slowDownSpeed: () => void;
@@ -23,7 +23,7 @@ export const CollaboratorImage = (props: Props) => {
         aria-label={props.altText || "Kund"}
       >
         <Image
-          src={props.imgSrc}
+          src={props.imgSrc || "/misc/no-image.svg"}
           alt={props.altText}
           className="object-contain"
           fill

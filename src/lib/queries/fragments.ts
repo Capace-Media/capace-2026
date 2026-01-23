@@ -50,6 +50,7 @@ export const BlocksFragment = graphql(`
             id
             title
             slug
+            uri
             serviceContent {
               icon {
                 node {
@@ -160,6 +161,7 @@ export const BlocksFragment = graphql(`
     }
     ... on BlocksBlocksAnimatedCardsLayout {
       __typename
+      textContent
       accentHeading {
         accent
         main

@@ -56,7 +56,7 @@ export default function CasesGrid({ data, compact }: Props) {
         return (
           <div key={item.slug ?? index} className="case-card invisible">
             <ArticleCard
-              imgSrc={item.caseContent?.heroImage?.node.mediaItemUrl || ""}
+              imgSrc={item.caseContent?.heroImage?.node.mediaItemUrl}
               altText={
                 item.caseContent?.heroImage?.node.altText || item.title || ""
               }

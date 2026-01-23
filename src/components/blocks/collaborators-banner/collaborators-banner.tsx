@@ -70,7 +70,7 @@ export default function CollaboratorsBanner(props: Props) {
             key={`first-${i}`}
             slowDownSpeed={slowDownSpeed}
             resetSpeed={resetSpeed}
-            imgSrc={item?.image?.node.mediaItemUrl || ""}
+            imgSrc={item?.image?.node.mediaItemUrl}
             url={item?.url || ""}
             altText={item?.image?.node.altText || ""}
           />
@@ -80,7 +80,7 @@ export default function CollaboratorsBanner(props: Props) {
             key={`second-${i}`}
             slowDownSpeed={slowDownSpeed}
             resetSpeed={resetSpeed}
-            imgSrc={item?.image?.node.mediaItemUrl || ""}
+            imgSrc={item?.image?.node.mediaItemUrl}
             url={item?.url || ""}
             altText={item?.image?.node.altText || ""}
           />

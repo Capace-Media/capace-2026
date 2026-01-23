@@ -28,7 +28,7 @@ export function AnimatedCard(props: Props) {
       )}
       <BaseCard
         index={props.index}
-        imgSrc={props.card?.card?.image?.node.mediaItemUrl || ""}
+        imgSrc={props.card?.card?.image?.node.mediaItemUrl}
         altText={props.card?.card?.image?.node.altText || "Dekorativ bild"}
         title={props.card?.card?.title || ""}
         textContent={props.card?.card?.textContent || ""}

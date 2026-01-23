@@ -46,10 +46,7 @@ export default function CasesCarousel(props: Props) {
             <div className="p-1">
               <div className="flex aspect-square items-center justify-center p-6">
                 <ArticleCard
-                  imgSrc={
-                    c.caseContent?.heroImage?.node.mediaItemUrl ||
-                    "/misc/no-image.svg"
-                  }
+                  imgSrc={c.caseContent?.heroImage?.node.mediaItemUrl}
                   altText={c.caseContent?.heroImage?.node.altText || ""}
                   buttonLabel={"Läs mer"}
                   buttonLink={`/kundcase/${c.slug}`}

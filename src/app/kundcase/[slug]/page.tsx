@@ -26,7 +26,7 @@ export default async function Page(props: Props) {
       <section className="section">
         <div className="mt-30 h-130 w-full overflow-hidden rounded-[36px]">
           <ParallaxImage
-            src={data.caseContent?.heroImage?.node.mediaItemUrl || ""}
+            src={data.caseContent?.heroImage?.node.mediaItemUrl}
             alt={data.caseContent?.heroImage?.node.altText || ""}
           />
         </div>

@@ -7,6 +7,14 @@ export const PageQuery = graphql(`
       title
       slug
       pageContent {
+        small {
+          heroImage {
+            node {
+              altText
+              mediaItemUrl
+            }
+          }
+        }
         medium {
           heading_accent
           heading_main

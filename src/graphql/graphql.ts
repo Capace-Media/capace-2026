@@ -201,6 +201,8 @@ export type BlocksBlocksAnimatedCardsLayout = AcfFieldGroup & AcfFieldGroupField
    * @deprecated Use __typename instead
    */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksAnimatedCardsLayout&quot; Field Group */
+  textContent?: Maybe<Scalars['String']['output']>;
 };
 
 /** Interface representing fields of the ACF &quot;BlocksBlocksAnimatedCardsLayout&quot; Field Group */
@@ -214,6 +216,8 @@ export type BlocksBlocksAnimatedCardsLayout_Fields = {
    * @deprecated Use __typename instead
    */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksAnimatedCardsLayout&quot; Field Group */
+  textContent?: Maybe<Scalars['String']['output']>;
 };
 
 /** The &quot;BlocksBlocksCards&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
@@ -14265,7 +14269,7 @@ export type FooterQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type FooterQuery = { __typename?: 'RootQuery', footer?: { __typename?: 'Footer', footerContent?: { __typename?: 'FooterContent', address?: string | null, email?: string | null, heading?: string | null, telephone?: string | null, textContent?: string | null, socials?: { __typename?: 'FooterContentSocials', facebook?: string | null, instagram?: string | null, linkedin?: string | null, threads?: string | null, tiktok?: string | null, x?: string | null } | null, certifications?: { __typename?: 'AcfMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', altText?: string | null, id: string, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null }> } | null } | null } | null };
 
-type BlocksFragment_BlocksBlocksAnimatedCardsLayout_Fragment = { __typename: 'BlocksBlocksAnimatedCardsLayout', accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null, cards?: Array<{ __typename?: 'BlocksBlocksCards', card?: { __typename?: 'BlocksBlocksCardsCard', textContent?: string | null, title?: string | null, button?: { __typename?: 'ReusableFieldsCardButton', ariaLabel?: string | null, label?: string | null, url?: { __typename?: 'ReusableFieldsButtonUrl', externalLink?: string | null, is_internal?: boolean | null, internalLink?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
+type BlocksFragment_BlocksBlocksAnimatedCardsLayout_Fragment = { __typename: 'BlocksBlocksAnimatedCardsLayout', textContent?: string | null, accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null, cards?: Array<{ __typename?: 'BlocksBlocksCards', card?: { __typename?: 'BlocksBlocksCardsCard', textContent?: string | null, title?: string | null, button?: { __typename?: 'ReusableFieldsCardButton', ariaLabel?: string | null, label?: string | null, url?: { __typename?: 'ReusableFieldsButtonUrl', externalLink?: string | null, is_internal?: boolean | null, internalLink?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
               | { __typename?: 'Case', slug?: string | null }
               | { __typename?: 'Employee', slug?: string | null }
               | { __typename?: 'Faq', slug?: string | null }
@@ -14330,7 +14334,7 @@ type BlocksFragment_BlocksBlocksServiceCardsLayout_Fragment = { __typename: 'Blo
       | { __typename?: 'MediaItem' }
       | { __typename?: 'Page' }
       | { __typename?: 'Post' }
-      | { __typename: 'Service', id: string, title?: string | null, slug?: string | null, serviceContent?: { __typename?: 'ServiceContent', shortDescription?: string | null, icon?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null } } | null } | null }
+      | { __typename: 'Service', id: string, title?: string | null, slug?: string | null, uri?: string | null, serviceContent?: { __typename?: 'ServiceContent', shortDescription?: string | null, icon?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null } } | null } | null }
       | { __typename?: 'Testimonial' }
     > } | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksServiceCardsLayout_Fragment' };
 
@@ -14365,7 +14369,7 @@ export type PageQueryVariables = Exact<{
 }>;
 
 
-export type PageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page', title?: string | null, slug?: string | null, pageContent?: { __typename?: 'PageContent', medium?: { __typename?: 'PageContentMedium', heading_accent?: string | null, heading_main?: string | null, text?: string | null } | null, large?: { __typename?: 'PageContentLarge', heading?: string | null, headingAccent?: string | null, subheading?: string | null, heroImage?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null, button?: { __typename?: 'PageContentLargeButton', ariaLabel?: string | null, label?: string | null, url?: { __typename?: 'ReusableFieldsButtonUrl', externalLink?: string | null, is_internal?: boolean | null, internalLink?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
+export type PageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page', title?: string | null, slug?: string | null, pageContent?: { __typename?: 'PageContent', small?: { __typename?: 'PageContentSmall', heroImage?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null } } | null } | null, medium?: { __typename?: 'PageContentMedium', heading_accent?: string | null, heading_main?: string | null, text?: string | null } | null, large?: { __typename?: 'PageContentLarge', heading?: string | null, headingAccent?: string | null, subheading?: string | null, heroImage?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null, button?: { __typename?: 'PageContentLargeButton', ariaLabel?: string | null, label?: string | null, url?: { __typename?: 'ReusableFieldsButtonUrl', externalLink?: string | null, is_internal?: boolean | null, internalLink?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
                 | { __typename?: 'Case', slug?: string | null }
                 | { __typename?: 'Employee', slug?: string | null }
                 | { __typename?: 'Faq', slug?: string | null }
@@ -14447,7 +14451,7 @@ export type QueryQuery = { __typename?: 'RootQuery', service?: { __typename?: 'S
                 | { __typename?: 'Post', slug?: string | null }
                 | { __typename?: 'Service', slug?: string | null }
                 | { __typename?: 'Testimonial', slug?: string | null }
-              > } | null } | null } | null, heroImage?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null } } | null } | null, medium?: { __typename?: 'PageContentMedium', heading_accent?: string | null, heading_main?: string | null, text?: string | null } | null } | null, blocks?: { __typename?: 'Blocks', blocks?: Array<
+              > } | null } | null } | null, heroImage?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null } } | null } | null, medium?: { __typename?: 'PageContentMedium', heading_accent?: string | null, heading_main?: string | null, text?: string | null } | null, small?: { __typename?: 'PageContentSmall', heroImage?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null } } | null } | null } | null, blocks?: { __typename?: 'Blocks', blocks?: Array<
         | (
           { __typename?: 'BlocksBlocksAnimatedCardsLayout' }
           & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksAnimatedCardsLayout_Fragment': BlocksFragment_BlocksBlocksAnimatedCardsLayout_Fragment } }
@@ -14579,6 +14583,7 @@ export const BlocksFragmentFragmentDoc = new TypedDocumentString(`
           id
           title
           slug
+          uri
           serviceContent {
             icon {
               node {
@@ -14689,6 +14694,7 @@ export const BlocksFragmentFragmentDoc = new TypedDocumentString(`
   }
   ... on BlocksBlocksAnimatedCardsLayout {
     __typename
+    textContent
     accentHeading {
       accent
       main
@@ -14815,6 +14821,7 @@ export const CaseDocument = new TypedDocumentString(`
           id
           title
           slug
+          uri
           serviceContent {
             icon {
               node {
@@ -14925,6 +14932,7 @@ export const CaseDocument = new TypedDocumentString(`
   }
   ... on BlocksBlocksAnimatedCardsLayout {
     __typename
+    textContent
     accentHeading {
       accent
       main
@@ -15080,6 +15088,14 @@ export const PageDocument = new TypedDocumentString(`
     title
     slug
     pageContent {
+      small {
+        heroImage {
+          node {
+            altText
+            mediaItemUrl
+          }
+        }
+      }
       medium {
         heading_accent
         heading_main
@@ -15170,6 +15186,7 @@ export const PageDocument = new TypedDocumentString(`
           id
           title
           slug
+          uri
           serviceContent {
             icon {
               node {
@@ -15280,6 +15297,7 @@ export const PageDocument = new TypedDocumentString(`
   }
   ... on BlocksBlocksAnimatedCardsLayout {
     __typename
+    textContent
     accentHeading {
       accent
       main
@@ -15363,6 +15381,14 @@ export const QueryDocument = new TypedDocumentString(`
         heading_main
         text
       }
+      small {
+        heroImage {
+          node {
+            altText
+            mediaItemUrl
+          }
+        }
+      }
     }
     blocks {
       blocks {
@@ -15433,6 +15459,7 @@ export const QueryDocument = new TypedDocumentString(`
           id
           title
           slug
+          uri
           serviceContent {
             icon {
               node {
@@ -15543,6 +15570,7 @@ export const QueryDocument = new TypedDocumentString(`
   }
   ... on BlocksBlocksAnimatedCardsLayout {
     __typename
+    textContent
     accentHeading {
       accent
       main

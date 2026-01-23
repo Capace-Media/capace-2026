@@ -33,7 +33,7 @@ export default function ExternalOrInternalLink({
           />
         ) : (
           <Link
-            href={urlOrSlug}
+            href={`/${urlOrSlug}`}
             aria-label={buttonProps.ariaLabel || undefined}
             className="no-underline!"
           />

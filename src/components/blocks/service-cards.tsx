@@ -47,7 +47,7 @@ export default function ServiceCards(props: Props) {
                 </Card.TextContent>
               </Card.Body>
               <Card.Footer>
-                <Link href={`/tjanster/${s.slug}`} tabIndex={-1}>
+                <Link href={s.uri || `/tjanster/${s.slug}`} tabIndex={-1}>
                   <Button withArrow>Läs mer</Button>
                 </Link>
               </Card.Footer>
