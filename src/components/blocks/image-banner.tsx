@@ -14,7 +14,7 @@ export default function ImageBanner(props: Props) {
 
   return (
     <section
-      className={cn("section gap-0 md:flex-row", data.fullWidth && "px-0 py-0")}
+      className={cn("section flex-row gap-0", data.fullWidth && "px-0 py-0")}
     >
       {data.images?.nodes.map((image, index) => (
         <div

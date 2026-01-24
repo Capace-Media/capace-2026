@@ -43,7 +43,9 @@
     "**/*.js",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
-    "src/app/om-oss/[employee]/page"
+    "src/app/om-oss/[employee]/page.tsx",
+    "src/app/om-oss/[employee]/page.tsx",
+    "src/app/om-oss/[employee]/page-test"
   ],
   "exclude": ["node_modules", "generated"]
 }

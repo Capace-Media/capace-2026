@@ -1,16 +1,12 @@
 import { getEmployeeBySlug } from "@/lib/fetchers/employees";
 import { notFound } from "next/navigation";
+import EmployeeModal from "../@modal/(.)[employee]/employee-modal";
 
 export default async function Page(props: PageProps<"/om-oss/[employee]">) {
   const { employee } = await props.params;
   const data = await getEmployeeBySlug(employee);
-  if (!data) notFound();
-  console.log("employee data:", data);
 
-  return (
-    <section className="section h-screen items-center border pt-40">
-      <h1>{data?.title}</h1>
-      Regular page
-    </section>
-  );
+  if (!data) notFound();
+
+  return <EmployeeModal data={data} />;
 }

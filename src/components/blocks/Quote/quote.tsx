@@ -4,7 +4,7 @@ import { Minus } from "lucide-react";
 
 interface Props {
   quote: string | undefined | null;
-  author: string | undefined | null;
+  author?: string | undefined | null;
   authorTitle?: string | undefined | null;
   companyName?: string | undefined | null;
   className?: string;
@@ -24,10 +24,12 @@ export default function Quote(props: Props) {
           <p className="prose-invert prose text-center">{props.quote}</p>
         </div>
         <footer className="flex flex-col items-end">
-          <cite className="flex items-center gap-4 font-bold not-italic">
-            <Minus aria-hidden="true" />
-            {props.author}, {props.authorTitle}
-          </cite>
+          {props.author && (
+            <cite className="flex items-center gap-4 font-bold not-italic">
+              <Minus aria-hidden="true" />
+              {props.author}, {props.authorTitle}
+            </cite>
+          )}
           <p className="text-primary uppercase italic">{props.companyName}</p>
         </footer>
       </blockquote>

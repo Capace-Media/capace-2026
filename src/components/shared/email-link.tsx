@@ -8,7 +8,7 @@ export default function EmailLink(props: Props) {
   return (
     <div
       className={cn(
-        "text-muted-foreground flex items-center gap-2 text-xs",
+        "text-muted-foreground flex items-center gap-2 text-sm",
         props.className,
       )}
     >

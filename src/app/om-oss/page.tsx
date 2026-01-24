@@ -16,7 +16,7 @@ export default async function Page() {
     <div>
       <Hero data={data.pageContent} />
       <Blocks blocks={data.blocks?.blocks} />
-      <section className="section mb-40 items-center">
+      <section className="section relative mb-40 items-center overflow-hidden">
         <h2 className="text-3xl font-bold">Vill du bli en del av Capace?</h2>
         <p className="prose prose-invert text-center">
           På Capace Media handlar det om att växa och skapa tillsammans. Vi

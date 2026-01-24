@@ -184,6 +184,11 @@
   .prose b {
     color: white !important;
   }
+
+  .prose i,
+  .prose em {
+    color: var(--primary);
+  }
   a:hover {
     text-decoration: underline;
     color: white;
@@ -205,6 +210,9 @@
     height: 0.5rem;
     margin-left: 2px;
     border-radius: 100%;
+  }
+  .end-section {
+    @apply pb-40;
   }
 }
 
