@@ -4,6 +4,7 @@ import { BlocksFragment } from "@/lib/queries/fragments";
 import HeadingWithAccent from "../shared/heading-with-accent";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import EmailLink from "../shared/email-link";
 
 interface Props {
   data: FragmentType<typeof BlocksFragment>;
@@ -34,16 +35,13 @@ export default function Employees(props: Props) {
       <p className="prose prose-invert mb-12 text-center">{data.textContent}</p>
       <EmployeeGrid employees={fullTimeEmployees} />
 
-      {/* <div className="bg-muted h-0.5 w-full" /> */}
       <div className="flex w-full items-center">
         <div className="bg-muted h-0.5 w-full" />
-        {/* <div className="text-primary font-caveat mx-6 text-4xl">
-          Praktikanter
-        </div> */}
         <HeadingWithAccent
           className="mx-6"
           accentedHeading={"våra"}
           mainHeading={"Praktikanter"}
+          noBottomMargin
         />
         <div className="bg-muted h-0.5 w-full" />
       </div>
@@ -93,6 +91,7 @@ const EmployeeCard = (props: EmployeeCardProps) => {
     <article className="flex flex-col items-center gap-3">
       <Link
         href={`/om-oss/${props.slug}`}
+        scroll={false}
         className="group relative aspect-square h-auto w-full overflow-hidden rounded-full"
       >
         <Image
@@ -109,17 +108,7 @@ const EmployeeCard = (props: EmployeeCardProps) => {
 
       <p className="text-primary text-sm uppercase">{props.workTitle}</p>
       <p className="text-lg font-semibold">{props.name}</p>
-      <div className="text-muted-foreground flex items-center gap-2 text-xs">
-        <div className="relative h-3 w-3">
-          <Image
-            src={"/icons/envelope.svg"}
-            alt={""}
-            fill
-            className="object-contain"
-          />
-        </div>
-        {props.email && <a href={`mailto:${props.email}`}>{props.email}</a>}
-      </div>
+      {props.email && <EmailLink email={props.email} />}
     </article>
   );
 };

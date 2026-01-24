@@ -8,7 +8,7 @@ import Faq from "./faq";
 import ImageBanner from "./image-banner";
 import LatestNewsWrapper from "./latest-news/latest-news-wrapper";
 import MediaAndText from "./media-and-text";
-import Quote from "./quote";
+import QuoteWrapper from "./Quote/quote-wrapper";
 import ServiceCards from "./service-cards";
 import TestimonialsWrapper from "./testimonials/testimonials-wrapper";
 export const blockComponents = {
@@ -24,6 +24,6 @@ export const blockComponents = {
   BlocksBlocksLatestNewsGridLayout: LatestNewsWrapper,
   BlocksBlocksTestimonialsLayout: TestimonialsWrapper,
   BlocksBlocksTimelineLayout: null,
-  BlocksBlocksQuoteLayout: Quote,
+  BlocksBlocksQuoteLayout: QuoteWrapper,
   BlocksBlocksServiceCardsLayout: ServiceCards,
 };

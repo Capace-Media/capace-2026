@@ -1,17 +1,18 @@
 "use client";
-import { useFragment, type FragmentType } from "@/graphql";
-import { BlocksFragment } from "@/lib/queries/fragments";
+import { cn } from "@/lib/utils";
 import { Minus } from "lucide-react";
 
 interface Props {
-  data: FragmentType<typeof BlocksFragment>;
+  quote: string | undefined | null;
+  author: string | undefined | null;
+  authorTitle?: string | undefined | null;
+  companyName?: string | undefined | null;
+  className?: string;
 }
 
 export default function Quote(props: Props) {
-  const data = useFragment(BlocksFragment, props.data);
-  if (data.__typename !== "BlocksBlocksQuoteLayout") return null;
   return (
-    <section className="section items-center py-20">
+    <section className={cn("section items-center py-20", props.className)}>
       <blockquote className="flex flex-col gap-8">
         <div className="flex">
           <span
@@ -20,14 +21,14 @@ export default function Quote(props: Props) {
           >
             “
           </span>
-          <p className="prose-invert prose text-center">{data.quote}</p>
+          <p className="prose-invert prose text-center">{props.quote}</p>
         </div>
         <footer className="flex flex-col items-end">
           <cite className="flex items-center gap-4 font-bold not-italic">
             <Minus aria-hidden="true" />
-            {data.author}, {data.authorTitle}
+            {props.author}, {props.authorTitle}
           </cite>
-          <p className="text-primary uppercase italic">{data.companyName}</p>
+          <p className="text-primary uppercase italic">{props.companyName}</p>
         </footer>
       </blockquote>
     </section>
