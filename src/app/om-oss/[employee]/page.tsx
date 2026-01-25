@@ -1,6 +1,8 @@
+import parse from "html-react-parser";
 import Quote from "@/components/blocks/Quote/quote";
 import EmailLink from "@/components/shared/email-link";
 import ParallaxImage from "@/components/shared/parallax-image";
+import TelephoneLink from "@/components/shared/telephone-link";
 import { getEmployeeBySlug } from "@/lib/fetchers/employees";
 import { notFound } from "next/navigation";
 
@@ -24,16 +26,25 @@ export default async function Page(props: PageProps<"/om-oss/[employee]">) {
           alt={data.employeeContent?.image?.node.altText || ""}
         />
       </div>
-      {data.employeeContent?.email && (
-        <EmailLink email={data.employeeContent?.email} />
-      )}
+      <div className="flex flex-col items-center gap-2">
+        {data.employeeContent?.email && (
+          <EmailLink email={data.employeeContent?.email} />
+        )}
+        {data.employeeContent?.telephone && (
+          <TelephoneLink phoneNumber={data.employeeContent.telephone} />
+        )}
+      </div>
       {data.employeeContent?.quote && (
         <Quote
           quote={data.employeeContent.quote}
           className="max-w-xl pt-10 pb-0 font-bold"
         />
       )}
-      <p className="prose prose-invert">{data.employeeContent?.textContent}</p>
+      {data.employeeContent?.textContent && (
+        <div className="prose prose-invert">
+          {parse(data.employeeContent.textContent)}
+        </div>
+      )}
     </section>
   );
 }

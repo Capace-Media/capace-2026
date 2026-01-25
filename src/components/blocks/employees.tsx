@@ -5,6 +5,7 @@ import HeadingWithAccent from "../shared/heading-with-accent";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import EmailLink from "../shared/email-link";
+import TelephoneLink from "../shared/telephone-link";
 
 interface Props {
   data: FragmentType<typeof BlocksFragment>;
@@ -70,6 +71,7 @@ const EmployeeGrid = (props: EmployeeGridProps) => {
             imgSrc={e.employeeContent?.image?.node.mediaItemUrl}
             employmentType={e.employeeContent?.employmentType}
             slug={e.slug}
+            telephone={e.employeeContent?.telephone}
           />
         );
       })}
@@ -84,6 +86,7 @@ interface EmployeeCardProps {
   imgSrc: string | undefined | null;
   employmentType: (string | null)[] | null | undefined;
   slug: string | undefined | null;
+  telephone: string | undefined | null;
 }
 
 const EmployeeCard = (props: EmployeeCardProps) => {
@@ -109,6 +112,7 @@ const EmployeeCard = (props: EmployeeCardProps) => {
       <p className="text-primary text-sm uppercase">{props.workTitle}</p>
       <p className="text-lg font-semibold">{props.name}</p>
       {props.email && <EmailLink email={props.email} />}
+      {props.telephone && <TelephoneLink phoneNumber={props.telephone} />}
     </article>
   );
 };

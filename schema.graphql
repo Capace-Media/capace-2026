@@ -4724,7 +4724,11 @@ type EmployeeContent implements AcfFieldGroup & AcfFieldGroupFields & EmployeeCo
   """
   quote: String
   """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;EmployeeContent&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;EmployeeContent&quot; Field Group
+  """
+  telephone: String
+  """
+  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;EmployeeContent&quot; Field Group
   """
   textContent: String
   """E.g. Developer"""
@@ -4750,7 +4754,11 @@ interface EmployeeContent_Fields implements AcfFieldGroup & AcfFieldGroupFields 
   """
   quote: String
   """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;EmployeeContent&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;EmployeeContent&quot; Field Group
+  """
+  telephone: String
+  """
+  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;EmployeeContent&quot; Field Group
   """
   textContent: String
   """E.g. Developer"""

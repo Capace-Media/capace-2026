@@ -8,6 +8,7 @@ export const EmployeesQuery = graphql(`
         employeeContent {
           email
           employmentType
+          telephone
           image {
             node {
               mediaItemUrl
@@ -30,6 +31,7 @@ export const EmployeeBySlugQuery = graphql(`
       employeeContent {
         email
         employmentType
+        telephone
         image {
           node {
             mediaItemUrl

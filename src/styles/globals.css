@@ -180,6 +180,10 @@
     text-decoration: none !important;
   }
 
+  .prose-invert {
+    color: var(--color-muted-foreground) !important;
+  }
+
   .prose strong,
   .prose b {
     color: white !important;
@@ -188,6 +192,7 @@
   .prose i,
   .prose em {
     color: var(--primary);
+    font-style: normal;
   }
   a:hover {
     text-decoration: underline;

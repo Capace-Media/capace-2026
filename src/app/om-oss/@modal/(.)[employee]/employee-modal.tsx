@@ -8,6 +8,7 @@ import Quote from "@/components/blocks/Quote/quote";
 import EmailLink from "@/components/shared/email-link";
 import { X } from "lucide-react";
 import parse from "html-react-parser";
+import TelephoneLink from "@/components/shared/telephone-link";
 
 interface Props {
   data: Awaited<ReturnType<typeof getEmployeeBySlug>>;
@@ -71,7 +72,7 @@ export default function EmployeeModal({ data }: Props) {
           )}
           {data.employeeContent?.quote && (
             <Quote
-              className="col-span-1 row-start-2 my-0 px-6 pb-0"
+              className="col-span-1 row-start-2 my-0 px-6 pb-0 font-medium"
               quote={data.employeeContent.quote}
               author={data.title}
               authorTitle={data.employeeContent.workTitle}
@@ -91,6 +92,9 @@ export default function EmployeeModal({ data }: Props) {
               )}
               {data.employeeContent?.email && (
                 <EmailLink email={data.employeeContent.email} />
+              )}
+              {data.employeeContent?.telephone && (
+                <TelephoneLink phoneNumber={data.employeeContent.telephone} />
               )}
             </div>
           </header>

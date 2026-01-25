@@ -155,6 +155,7 @@ export const BlocksFragment = graphql(`
               email
               employmentType
               quote
+              telephone
               textContent
               workTitle
               image {

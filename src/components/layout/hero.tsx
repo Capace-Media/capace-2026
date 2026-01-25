@@ -53,7 +53,7 @@ const HeroLarge = (data: Props) => {
           autoAlpha: 1,
           x: 0,
           stagger: 0.05,
-          delay: 1,
+          delay: 0.5,
           duration: 4,
           ease: "elastic.out",
         },
