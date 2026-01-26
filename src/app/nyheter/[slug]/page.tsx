@@ -7,12 +7,12 @@ export default async function Page(props: PageProps<"/nyheter/[slug]">) {
   const { slug } = await props.params;
 
   const data = await getNewsPage(slug);
-  console.log("news page data:", data);
+  console.log("data:", data);
 
   return (
-    <section className="section end-section items-center">
+    <section className="end-section items-center">
       <Hero data={data?.pageContent} />
-      <div className="flex w-full items-start gap-6">
+      <div className="section flex w-full items-start gap-6">
         <div className="flex flex-col items-start">
           <p className="text-primary">Publiceringsdatum:</p>
           <p className="text-sm uppercase">

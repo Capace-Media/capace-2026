@@ -33,16 +33,19 @@ export default function MediaAndText(props: Props) {
       )}
     >
       <div className="order-1">
-        <HeadingWithAccent
-          noBottomMargin
-          textAlign="left"
-          accentedHeading={data?.accentHeading?.accent || ""}
-          mainHeading={data?.accentHeading?.main || ""}
-        />
+        {data?.accentHeading?.accent ||
+          (data?.accentHeading?.main && (
+            <HeadingWithAccent
+              noBottomMargin
+              textAlign="left"
+              accentedHeading={data?.accentHeading?.accent || ""}
+              mainHeading={data?.accentHeading?.main || ""}
+            />
+          ))}
       </div>
       <div
         className={cn(
-          "relative order-2 col-span-1 row-span-3 flex",
+          "relative order-2 col-span-1 row-span-3 flex max-h-140 min-h-100",
           imageOnRightSide ? "lg:order-1" : "lg:order-0",
         )}
       >

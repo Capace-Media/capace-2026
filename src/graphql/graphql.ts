@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { DocumentTypeDecoration } from '@graphql-typed-document-node/core';
+import {type DocumentTypeDecoration } from '@graphql-typed-document-node/core';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = T | null | undefined;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -218,6 +218,47 @@ export type BlocksBlocksAnimatedCardsLayout_Fields = {
   fieldGroupName?: Maybe<Scalars['String']['output']>;
   /** Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksAnimatedCardsLayout&quot; Field Group */
   textContent?: Maybe<Scalars['String']['output']>;
+};
+
+/** The &quot;BlocksBlocksAuthorLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
+export type BlocksBlocksAuthorLayout = AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksAuthorLayout_Fields & BlocksBlocks_Layout & {
+  __typename?: 'BlocksBlocksAuthorLayout';
+  /** Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;BlocksBlocksAuthorLayout&quot; Field Group */
+  employee?: Maybe<AcfContentNodeConnection>;
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** The &quot;BlocksBlocksAuthorLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
+export type BlocksBlocksAuthorLayoutEmployeeArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** Interface representing fields of the ACF &quot;BlocksBlocksAuthorLayout&quot; Field Group */
+export type BlocksBlocksAuthorLayout_Fields = {
+  /** Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;BlocksBlocksAuthorLayout&quot; Field Group */
+  employee?: Maybe<AcfContentNodeConnection>;
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Interface representing fields of the ACF &quot;BlocksBlocksAuthorLayout&quot; Field Group */
+export type BlocksBlocksAuthorLayout_FieldsEmployeeArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** The &quot;BlocksBlocksCards&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
@@ -14191,6 +14232,10 @@ export type CaseQuery = { __typename?: 'RootQuery', case?: { __typename?: 'Case'
           & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksAnimatedCardsLayout_Fragment': BlocksFragment_BlocksBlocksAnimatedCardsLayout_Fragment } }
         )
         | (
+          { __typename?: 'BlocksBlocksAuthorLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksAuthorLayout_Fragment': BlocksFragment_BlocksBlocksAuthorLayout_Fragment } }
+        )
+        | (
           { __typename?: 'BlocksBlocksCardsAndTextLayout' }
           & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksCardsAndTextLayout_Fragment': BlocksFragment_BlocksBlocksCardsAndTextLayout_Fragment } }
         )
@@ -14286,6 +14331,17 @@ type BlocksFragment_BlocksBlocksAnimatedCardsLayout_Fragment = { __typename: 'Bl
               | { __typename?: 'Testimonial', slug?: string | null }
             > } | null } | null } | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null } } | null } | null } | null> | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksAnimatedCardsLayout_Fragment' };
 
+type BlocksFragment_BlocksBlocksAuthorLayout_Fragment = { __typename: 'BlocksBlocksAuthorLayout', employee?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
+      | { __typename?: 'Case' }
+      | { __typename: 'Employee', title?: string | null, slug?: string | null, employeeContent?: { __typename?: 'EmployeeContent', email?: string | null, telephone?: string | null, workTitle?: string | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null } } | null } | null }
+      | { __typename?: 'Faq' }
+      | { __typename?: 'MediaItem' }
+      | { __typename?: 'Page' }
+      | { __typename?: 'Post' }
+      | { __typename?: 'Service' }
+      | { __typename?: 'Testimonial' }
+    > } | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksAuthorLayout_Fragment' };
+
 type BlocksFragment_BlocksBlocksCardsAndTextLayout_Fragment = { __typename: 'BlocksBlocksCardsAndTextLayout', textContent?: string | null, accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null, cards?: Array<{ __typename?: 'BlocksBlocksCards', card?: { __typename?: 'BlocksBlocksCardsCard', textContent?: string | null, title?: string | null, button?: { __typename?: 'ReusableFieldsCardButton', ariaLabel?: string | null, label?: string | null, url?: { __typename?: 'ReusableFieldsButtonUrl', externalLink?: string | null, internalLink?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
               | { __typename?: 'Case', slug?: string | null }
               | { __typename?: 'Employee', slug?: string | null }
@@ -14370,6 +14426,7 @@ type BlocksFragment_BlocksBlocksWysiwygLayout_Fragment = { __typename: 'BlocksBl
 
 export type BlocksFragmentFragment =
   | BlocksFragment_BlocksBlocksAnimatedCardsLayout_Fragment
+  | BlocksFragment_BlocksBlocksAuthorLayout_Fragment
   | BlocksFragment_BlocksBlocksCardsAndTextLayout_Fragment
   | BlocksFragment_BlocksBlocksCaseCardGridLayout_Fragment
   | BlocksFragment_BlocksBlocksCollaboratorsBannerLayout_Fragment
@@ -14414,6 +14471,10 @@ export type NewsBySlugQueryQuery = { __typename?: 'RootQuery', post?: { __typena
         | (
           { __typename?: 'BlocksBlocksAnimatedCardsLayout' }
           & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksAnimatedCardsLayout_Fragment': BlocksFragment_BlocksBlocksAnimatedCardsLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksAuthorLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksAuthorLayout_Fragment': BlocksFragment_BlocksBlocksAuthorLayout_Fragment } }
         )
         | (
           { __typename?: 'BlocksBlocksCardsAndTextLayout' }
@@ -14493,6 +14554,10 @@ export type PageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page'
           & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksAnimatedCardsLayout_Fragment': BlocksFragment_BlocksBlocksAnimatedCardsLayout_Fragment } }
         )
         | (
+          { __typename?: 'BlocksBlocksAuthorLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksAuthorLayout_Fragment': BlocksFragment_BlocksBlocksAuthorLayout_Fragment } }
+        )
+        | (
           { __typename?: 'BlocksBlocksCardsAndTextLayout' }
           & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksCardsAndTextLayout_Fragment': BlocksFragment_BlocksBlocksCardsAndTextLayout_Fragment } }
         )
@@ -14568,6 +14633,10 @@ export type QueryQuery = { __typename?: 'RootQuery', service?: { __typename?: 'S
         | (
           { __typename?: 'BlocksBlocksAnimatedCardsLayout' }
           & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksAnimatedCardsLayout_Fragment': BlocksFragment_BlocksBlocksAnimatedCardsLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksAuthorLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksAuthorLayout_Fragment': BlocksFragment_BlocksBlocksAuthorLayout_Fragment } }
         )
         | (
           { __typename?: 'BlocksBlocksCardsAndTextLayout' }
@@ -14797,6 +14866,29 @@ export const BlocksFragmentFragmentDoc = new TypedDocumentString(`
     newsAmount
     textContent
     __typename
+  }
+  ... on BlocksBlocksAuthorLayout {
+    __typename
+    employee {
+      nodes {
+        ... on Employee {
+          __typename
+          title
+          slug
+          employeeContent {
+            email
+            image {
+              node {
+                altText
+                mediaItemUrl
+              }
+            }
+            telephone
+            workTitle
+          }
+        }
+      }
+    }
   }
   ... on BlocksBlocksWysiwygLayout {
     __typename
@@ -15149,6 +15241,29 @@ export const CaseDocument = new TypedDocumentString(`
     newsAmount
     textContent
     __typename
+  }
+  ... on BlocksBlocksAuthorLayout {
+    __typename
+    employee {
+      nodes {
+        ... on Employee {
+          __typename
+          title
+          slug
+          employeeContent {
+            email
+            image {
+              node {
+                altText
+                mediaItemUrl
+              }
+            }
+            telephone
+            workTitle
+          }
+        }
+      }
+    }
   }
   ... on BlocksBlocksWysiwygLayout {
     __typename
@@ -15594,6 +15709,29 @@ export const NewsBySlugQueryDocument = new TypedDocumentString(`
     textContent
     __typename
   }
+  ... on BlocksBlocksAuthorLayout {
+    __typename
+    employee {
+      nodes {
+        ... on Employee {
+          __typename
+          title
+          slug
+          employeeContent {
+            email
+            image {
+              node {
+                altText
+                mediaItemUrl
+              }
+            }
+            telephone
+            workTitle
+          }
+        }
+      }
+    }
+  }
   ... on BlocksBlocksWysiwygLayout {
     __typename
     content
@@ -15926,6 +16064,29 @@ export const PageDocument = new TypedDocumentString(`
     newsAmount
     textContent
     __typename
+  }
+  ... on BlocksBlocksAuthorLayout {
+    __typename
+    employee {
+      nodes {
+        ... on Employee {
+          __typename
+          title
+          slug
+          employeeContent {
+            email
+            image {
+              node {
+                altText
+                mediaItemUrl
+              }
+            }
+            telephone
+            workTitle
+          }
+        }
+      }
+    }
   }
   ... on BlocksBlocksWysiwygLayout {
     __typename
@@ -16268,6 +16429,29 @@ export const QueryDocument = new TypedDocumentString(`
     newsAmount
     textContent
     __typename
+  }
+  ... on BlocksBlocksAuthorLayout {
+    __typename
+    employee {
+      nodes {
+        ... on Employee {
+          __typename
+          title
+          slug
+          employeeContent {
+            email
+            image {
+              node {
+                altText
+                mediaItemUrl
+              }
+            }
+            telephone
+            workTitle
+          }
+        }
+      }
+    }
   }
   ... on BlocksBlocksWysiwygLayout {
     __typename

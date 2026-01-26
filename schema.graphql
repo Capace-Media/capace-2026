@@ -219,6 +219,56 @@ interface BlocksBlocksAnimatedCardsLayout_Fields implements AcfFieldGroup & AcfF
 }
 
 """
+The &quot;BlocksBlocksAuthorLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type BlocksBlocksAuthorLayout implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksAuthorLayout_Fields & BlocksBlocks_Layout {
+  """
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;BlocksBlocksAuthorLayout&quot; Field Group
+  """
+  employee(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+  ): AcfContentNodeConnection
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+}
+
+"""
+Interface representing fields of the ACF &quot;BlocksBlocksAuthorLayout&quot; Field Group
+"""
+interface BlocksBlocksAuthorLayout_Fields implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocks_Layout {
+  """
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;BlocksBlocksAuthorLayout&quot; Field Group
+  """
+  employee(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+  ): AcfContentNodeConnection
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+}
+
+"""
 The &quot;BlocksBlocksCards&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
 """
 type BlocksBlocksCards implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksCards_Fields {

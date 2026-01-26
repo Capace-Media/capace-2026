@@ -9,8 +9,8 @@ export default function Wysiwyg(props: Props) {
 
   if (data.__typename !== "BlocksBlocksWysiwygLayout") return null;
   return (
-    <div className="section prose prose-invert">
+    <section className="section prose prose-invert prose-p:my-2 prose-headings:my-0 mx-auto max-w-200">
       {parse(data.content || "")}
-    </div>
+    </section>
   );
 }

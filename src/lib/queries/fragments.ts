@@ -148,6 +148,29 @@ export const BlocksFragment = graphql(`
       textContent
       __typename
     }
+    ... on BlocksBlocksAuthorLayout {
+      __typename
+      employee {
+        nodes {
+          ... on Employee {
+            __typename
+            title
+            slug
+            employeeContent {
+              email
+              image {
+                node {
+                  altText
+                  mediaItemUrl
+                }
+              }
+              telephone
+              workTitle
+            }
+          }
+        }
+      }
+    }
     ... on BlocksBlocksWysiwygLayout {
       __typename
       content

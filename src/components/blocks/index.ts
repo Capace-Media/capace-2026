@@ -1,5 +1,7 @@
 import ContactFormWrapper from "../shared/contact-form-wrapper";
 import AnimatedCardsWrapper from "./animated-cards/animated-cards-wrapper";
+import Author from "./author";
+import Authour from "./author";
 import CardsAndText from "./cards-and-text";
 import CasesGridWrapper from "./cases/cases-grid-wrapper";
 import CollaboratorsBannerWrapper from "./collaborators-banner/collaborators-banner-wrapper";
@@ -28,4 +30,5 @@ export const blockComponents = {
   BlocksBlocksServiceCardsLayout: ServiceCards,
   BlocksBlocksNewsLayout: NewsWrapper,
   BlocksBlocksWysiwygLayout: Wysiwyg,
+  BlocksBlocksAuthorLayout: Author,
 };

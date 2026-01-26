@@ -10,7 +10,6 @@ export default async function Page(
 
   const data = await getServicePage(service);
   if (!data) notFound();
-  console.log("data:::", data);
 
   return (
     <div className="">
