@@ -599,30 +599,6 @@ interface BlocksBlocksImageBannerLayout_Fields implements AcfFieldGroup & AcfFie
 }
 
 """
-The &quot;BlocksBlocksLatestNewsGridLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
-"""
-type BlocksBlocksLatestNewsGridLayout implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksLatestNewsGridLayout_Fields & BlocksBlocks_Layout {
-  """
-  A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space.
-  """
-  accentHeading: BlocksBlocksAccentHeading
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-}
-
-"""
-Interface representing fields of the ACF &quot;BlocksBlocksLatestNewsGridLayout&quot; Field Group
-"""
-interface BlocksBlocksLatestNewsGridLayout_Fields implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocks_Layout {
-  """
-  A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space.
-  """
-  accentHeading: BlocksBlocksAccentHeading
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-}
-
-"""
 The &quot;BlocksBlocksMediaAndText&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
 """
 type BlocksBlocksMediaAndText implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksMediaAndText_Fields {
@@ -958,6 +934,30 @@ type BlocksBlocksTimelineLayout implements AcfFieldGroup & AcfFieldGroupFields &
 Interface representing fields of the ACF &quot;BlocksBlocksTimelineLayout&quot; Field Group
 """
 interface BlocksBlocksTimelineLayout_Fields implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocks_Layout {
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+}
+
+"""
+The &quot;BlocksBlocksWysiwygLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type BlocksBlocksWysiwygLayout implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksWysiwygLayout_Fields & BlocksBlocks_Layout {
+  """
+  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksWysiwygLayout&quot; Field Group
+  """
+  content: String
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+}
+
+"""
+Interface representing fields of the ACF &quot;BlocksBlocksWysiwygLayout&quot; Field Group
+"""
+interface BlocksBlocksWysiwygLayout_Fields implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocks_Layout {
+  """
+  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksWysiwygLayout&quot; Field Group
+  """
+  content: String
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
 }
@@ -8020,7 +8020,7 @@ enum PluginStatusEnum {
 """
 A chronological content entry typically used for blog posts, news articles, or similar date-based content.
 """
-type Post implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & NodeWithTrackbacks & Previewable & UniformResourceIdentifiable & WithAcfBlocks & WithAcfPostContent {
+type Post implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & NodeWithTrackbacks & Previewable & UniformResourceIdentifiable & WithAcfBlocks & WithAcfPageContent {
   """The ancestors of the content node."""
   ancestors(
     """
@@ -8192,6 +8192,8 @@ type Post implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node 
   The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT.
   """
   modifiedGmt: String
+  """Fields of the PageContent ACF Field Group"""
+  pageContent: PageContent
   """The parent of the content node."""
   parent: PostToParentConnectionEdge @deprecated(reason: "This content type is not hierarchical and typically will not have a parent")
   """The password for the post object."""
@@ -8200,8 +8202,6 @@ type Post implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node 
   pingStatus: String
   """URLs that have been pinged."""
   pinged: [String]
-  """Fields of the PostContent ACF Field Group"""
-  postContent: PostContent
   """Connection between the Post type and the postFormat type"""
   postFormats(
     """
@@ -8373,72 +8373,6 @@ interface PostConnectionPageInfo implements PageInfo & WPPageInfo {
   hasPreviousPage: Boolean!
   """When paginating backwards, the cursor to continue."""
   startCursor: String
-}
-
-"""
-The &quot;PostContent&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
-"""
-type PostContent implements AcfFieldGroup & AcfFieldGroupFields & Blocks_Fields & PostContent_Fields {
-  """
-  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;PostContent&quot; Field Group
-  """
-  author(
-    """
-    Cursor used along with the "first" argument to reference where in the dataset to get data
-    """
-    after: String
-    """
-    Cursor used along with the "last" argument to reference where in the dataset to get data
-    """
-    before: String
-    """The number of items to return after the referenced "after" cursor"""
-    first: Int
-    """The number of items to return before the referenced "before" cursor"""
-    last: Int
-  ): AcfContentNodeConnection
-  """
-  Field of the &quot;flexible_content&quot; Field Type added to the schema as part of the &quot;Blocks&quot; Field Group
-  """
-  blocks: [BlocksBlocks_Layout]
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-  """
-  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;PostContent&quot; Field Group
-  """
-  heroImage: AcfMediaItemConnectionEdge
-}
-
-"""
-Interface representing fields of the ACF &quot;PostContent&quot; Field Group
-"""
-interface PostContent_Fields implements AcfFieldGroup & AcfFieldGroupFields & Blocks_Fields {
-  """
-  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;PostContent&quot; Field Group
-  """
-  author(
-    """
-    Cursor used along with the "first" argument to reference where in the dataset to get data
-    """
-    after: String
-    """
-    Cursor used along with the "last" argument to reference where in the dataset to get data
-    """
-    before: String
-    """The number of items to return after the referenced "after" cursor"""
-    first: Int
-    """The number of items to return before the referenced "before" cursor"""
-    last: Int
-  ): AcfContentNodeConnection
-  """
-  Field of the &quot;flexible_content&quot; Field Type added to the schema as part of the &quot;Blocks&quot; Field Group
-  """
-  blocks: [BlocksBlocks_Layout]
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-  """
-  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;PostContent&quot; Field Group
-  """
-  heroImage: AcfMediaItemConnectionEdge
 }
 
 """
@@ -16210,14 +16144,6 @@ Provides access to fields of the &quot;PageContent&quot; ACF Field Group via the
 interface WithAcfPageContent {
   """Fields of the PageContent ACF Field Group"""
   pageContent: PageContent
-}
-
-"""
-Provides access to fields of the &quot;PostContent&quot; ACF Field Group via the &quot;postContent&quot; field
-"""
-interface WithAcfPostContent {
-  """Fields of the PostContent ACF Field Group"""
-  postContent: PostContent
 }
 
 """

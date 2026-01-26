@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { getCase } from "@/lib/fetchers/cases";
 import { notFound } from "next/navigation";
 import Image from "next/image";
+import ParallaxHero from "@/components/layout/parallax-hero";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -24,12 +25,7 @@ export default async function Page(props: Props) {
   return (
     <div className="flex flex-col items-center gap-0">
       <section className="section">
-        <div className="mt-30 h-130 w-full overflow-hidden rounded-[36px]">
-          <ParallaxImage
-            src={data.caseContent?.heroImage?.node.mediaItemUrl}
-            alt={data.caseContent?.heroImage?.node.altText || ""}
-          />
-        </div>
+        <ParallaxHero src={data.caseContent?.heroImage?.node.mediaItemUrl} />
         <div className="flex w-full items-center justify-between">
           <CategoryButtons
             className="gap-4"

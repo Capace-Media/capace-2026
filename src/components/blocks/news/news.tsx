@@ -17,6 +17,7 @@ interface Props {
 export default function News(props: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [news, setNews] = useState(props.initialNews);
+  const animatedCountRef = useRef(0);
   const data = news?.nodes;
 
   useGSAP(
@@ -24,8 +25,11 @@ export default function News(props: Props) {
       const cards = gsap.utils.toArray<HTMLElement>(".case-card");
       if (cards.length === 0) return;
 
+      const newCards = cards.slice(animatedCountRef.current);
+      if (newCards.length === 0) return;
+
       gsap.fromTo(
-        cards,
+        newCards,
         { autoAlpha: 0, y: 20 },
         {
           autoAlpha: 1,
@@ -35,6 +39,8 @@ export default function News(props: Props) {
           ease: "power2.out",
         },
       );
+
+      animatedCountRef.current = cards.length;
     },
     { scope: containerRef, dependencies: [data] },
   );

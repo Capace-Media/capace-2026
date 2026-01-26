@@ -1,29 +1,5 @@
 import { graphql } from "@/graphql";
 
-export const LatestNewsPreviewsQuery = graphql(`
-  query LatestNewsPreviews {
-    posts(first: 3) {
-      nodes {
-        date
-        title
-        slug
-        postContent {
-          heroImage {
-            node {
-              altText
-              mediaItemUrl
-              mediaDetails {
-                width
-                height
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`);
-
 export const NewsQuery = graphql(`
   query NewsQuery($amount: Int!, $after: String) {
     posts(first: $amount, after: $after) {
@@ -35,19 +11,23 @@ export const NewsQuery = graphql(`
         date
         title
         slug
-        postContent {
-          heroImage {
-            node {
-              altText
-              mediaItemUrl
-              mediaDetails {
-                width
-                height
-              }
-            }
-          }
+        pageContent {
+          ...PageContentFragment
         }
       }
     }
   }
 `);
+
+// export const NewsBySlugQuery = graphql(`
+//   query NewsBySlugQuery($slug: ID!) {
+//     post(id: $slug, idType: URI) {
+//       title
+//       date
+//       slug
+//       pageContent {
+//         ...PageContentFragment
+//       }
+//     }
+//   }
+// `);

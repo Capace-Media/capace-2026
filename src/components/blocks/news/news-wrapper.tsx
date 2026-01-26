@@ -17,7 +17,13 @@ export default async function NewsWrapper(props: Props) {
   const block = useFragment(BlocksFragment, props.data);
   if (block.__typename !== "BlocksBlocksNewsLayout") return null;
   const showAllNews = block.newsAmount === "all";
-  const newsAmount = showAllNews ? 2 : 3;
+
+  const INITIAL_NEWS_AMOUNT_ALL = 9;
+  const INITIAL_NEWS_AMOUNT_LATEST = 3;
+
+  const newsAmount = showAllNews
+    ? INITIAL_NEWS_AMOUNT_ALL
+    : INITIAL_NEWS_AMOUNT_LATEST;
   const news = await getNews(newsAmount, null);
 
   return (

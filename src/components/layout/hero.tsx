@@ -8,18 +8,21 @@ import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { useRef } from "react";
+import { useFragment, type FragmentType } from "@/graphql/fragment-masking";
+import { PageContentFragment } from "@/lib/queries/fragments";
 
 gsap.registerPlugin(SplitText);
 
 interface Props {
-  data: NonNullable<PageQuery["page"]>["pageContent"];
+  data: FragmentType<typeof PageContentFragment>;
 }
 export default function Hero(props: Props) {
-  if (!props.data) return null;
+  const pageContent = useFragment(PageContentFragment, props.data);
+  if (!pageContent) return null;
   let size;
-  if (props.data.large?.heroImage) {
+  if (pageContent.large?.heroImage) {
     size = "large";
-  } else if (props.data.medium?.text) {
+  } else if (pageContent.medium?.text) {
     size = "medium";
   } else {
     size = "small";
@@ -27,17 +30,19 @@ export default function Hero(props: Props) {
 
   switch (size) {
     case "large":
-      return <HeroLarge data={props.data} />;
+      return <HeroLarge data={pageContent} />;
     case "medium":
-      return <HeroMedium data={props.data} />;
+      return <HeroMedium data={pageContent} />;
     case "small":
-      return <HeroSmall data={props.data} />;
+      return <HeroSmall data={pageContent} />;
     default:
       return null;
   }
 }
 
-const HeroLarge = (data: Props) => {
+const HeroLarge = (props: {
+  data: ReturnType<typeof useFragment<typeof PageContentFragment>>;
+}) => {
   const containerRef = useRef<HTMLDivElement>(null);
   useGSAP(
     () => {
@@ -62,7 +67,8 @@ const HeroLarge = (data: Props) => {
     { scope: containerRef },
   );
 
-  const heroData = data.data?.large;
+  const heroData = props.data?.large;
+
   return (
     <section
       aria-label="Herosektion"
@@ -98,8 +104,11 @@ const HeroLarge = (data: Props) => {
   );
 };
 
-const HeroMedium = (data: Props) => {
-  const heroData = data.data?.medium;
+const HeroMedium = (props: {
+  data: ReturnType<typeof useFragment<typeof PageContentFragment>>;
+}) => {
+  const heroData = props.data?.medium;
+
   return (
     <div className="section flex w-full flex-col items-center justify-center pt-40">
       <HeadingWithAccent
@@ -108,14 +117,17 @@ const HeroMedium = (data: Props) => {
         mainHeading={heroData?.heading_main || ""}
       />
       <p className="text-muted-foreground prose text-center">
-        {data.data?.medium?.text}
+        {heroData?.text}
       </p>
     </div>
   );
 };
 
-const HeroSmall = (data: Props) => {
-  const heroData = data.data?.small;
+const HeroSmall = (props: {
+  data: ReturnType<typeof useFragment<typeof PageContentFragment>>;
+}) => {
+  const heroData = props.data?.small;
+
   return (
     <div
       className="section flex w-full flex-col items-center justify-center pt-40"

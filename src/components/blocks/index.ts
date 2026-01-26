@@ -6,12 +6,12 @@ import CollaboratorsBannerWrapper from "./collaborators-banner/collaborators-ban
 import Employees from "./employees";
 import Faq from "./faq";
 import ImageBanner from "./image-banner";
-import LatestNewsWrapper from "./latest-news/latest-news-wrapper";
 import MediaAndText from "./media-and-text";
 import NewsWrapper from "./news/news-wrapper";
 import QuoteWrapper from "./Quote/quote-wrapper";
 import ServiceCards from "./service-cards";
 import TestimonialsWrapper from "./testimonials/testimonials-wrapper";
+import Wysiwyg from "./wysiwyg";
 export const blockComponents = {
   BlocksBlocksMediaAndTextLayout: MediaAndText,
   BlocksBlocksAnimatedCardsLayout: AnimatedCardsWrapper,
@@ -22,10 +22,10 @@ export const blockComponents = {
   BlocksBlocksEmployeesLayout: Employees,
   BlocksBlocksFaqLayout: Faq,
   BlocksBlocksImageBannerLayout: ImageBanner,
-  BlocksBlocksLatestNewsGridLayout: LatestNewsWrapper,
   BlocksBlocksTestimonialsLayout: TestimonialsWrapper,
   BlocksBlocksTimelineLayout: null,
   BlocksBlocksQuoteLayout: QuoteWrapper,
   BlocksBlocksServiceCardsLayout: ServiceCards,
   BlocksBlocksNewsLayout: NewsWrapper,
+  BlocksBlocksWYSIWYGLayout: Wysiwyg,
 };

@@ -268,11 +268,49 @@ export const BlocksFragment = graphql(`
         }
       }
     }
-    ... on BlocksBlocksLatestNewsGridLayout {
-      __typename
-      accentHeading {
-        accent
-        main
+  }
+`);
+export const PageContentFragment = graphql(`
+  fragment PageContentFragment on PageContent {
+    small {
+      heroImage {
+        node {
+          altText
+          mediaItemUrl
+        }
+      }
+    }
+    medium {
+      heading_accent
+      heading_main
+      text
+    }
+    large {
+      heading
+      headingAccent
+      subheading
+      heroImage {
+        node {
+          altText
+          mediaItemUrl
+          mediaDetails {
+            height
+            width
+          }
+        }
+      }
+      button {
+        ariaLabel
+        label
+        url {
+          externalLink
+          internalLink {
+            nodes {
+              slug
+            }
+          }
+          is_internal
+        }
       }
     }
   }
