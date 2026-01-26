@@ -11,7 +11,7 @@ export default async function Page() {
   if (!data) notFound();
   return (
     <>
-      <Hero data={data.pageContent!} />
+      <Hero data={data.pageContent} />
       <Blocks blocks={blocks} />
     </>
   );
