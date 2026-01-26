@@ -7,6 +7,14 @@ export default function Page() {
       <h1 className="text-primary text-center text-4xl font-bold">
         Hoppsan! Den sidan finns inte.
       </h1>
+      <div className="relative aspect-video h-auto w-60" aria-hidden>
+        <Image
+          src={"/stickers/sticker-404.webp"}
+          alt={""}
+          fill
+          className="object-contain"
+        />
+      </div>
       <p className="text-center text-lg">
         Sidan du söker kunde inte hittas. Försök gärna igen senare.
       </p>

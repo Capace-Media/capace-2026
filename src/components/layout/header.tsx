@@ -21,8 +21,8 @@ export default function Header() {
     });
   });
   return (
-    <header className="fixed z-100 flex h-30 w-full max-w-400 items-center justify-between gap-6 px-8 text-sm lg:px-24">
-      <div className="fade-on-scroll absolute bottom-0 left-33 text-neutral-400 uppercase opacity-100">
+    <header className="fixed z-100 flex h-30 w-full max-w-400 items-center justify-between gap-6 px-8 text-sm lg:px-8">
+      <div className="fade-on-scroll absolute bottom-0 left-10 text-neutral-400 uppercase opacity-100">
         Digitalbyrå / webbyrå Malmö
       </div>
       <div className="ml-auto md:hidden">
@@ -30,7 +30,7 @@ export default function Header() {
       </div>
       <div className="hidden w-full md:flex">
         <nav className="max-w-[1/3] flex-1">
-          <ul className="frosted flex h-12 list-none justify-evenly gap-10 rounded-full p-3 whitespace-nowrap">
+          <ul className="frosted flex h-12 list-none justify-evenly gap-2 rounded-full p-3 whitespace-nowrap">
             <li>
               <Link
                 href={"/tjanster"}
@@ -41,18 +41,27 @@ export default function Header() {
             </li>
             <li>
               <Link
-                href={"/om-oss"}
+                href={"/nyheter"}
                 className="hover:text-accent p-3 no-underline! transition-all duration-300"
               >
-                Om Capace
+                Nyheter
               </Link>
             </li>
+
             <li>
               <Link
                 href={"/kundcase"}
                 className="hover:text-accent p-3 no-underline! transition-all duration-300"
               >
                 Kundcase
+              </Link>
+            </li>
+            <li>
+              <Link
+                href={"/om-oss"}
+                className="hover:text-accent p-3 no-underline! transition-all duration-300"
+              >
+                Om Capace
               </Link>
             </li>
           </ul>

@@ -767,6 +767,48 @@ interface BlocksBlocksMediaAndText_Fields implements AcfFieldGroup & AcfFieldGro
 }
 
 """
+The &quot;BlocksBlocksNewsLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type BlocksBlocksNewsLayout implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksNewsLayout_Fields & BlocksBlocks_Layout {
+  """
+  A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space.
+  """
+  accentHeading: BlocksBlocksAccentHeading
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Latest - Show only latest 3 news. 
+  All - Show all news with a &quot;load more&quot; button at the bottom to show more news.
+  """
+  newsAmount: String
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BlocksBlocksNewsLayout&quot; Field Group
+  """
+  textContent: String
+}
+
+"""
+Interface representing fields of the ACF &quot;BlocksBlocksNewsLayout&quot; Field Group
+"""
+interface BlocksBlocksNewsLayout_Fields implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocks_Layout {
+  """
+  A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space.
+  """
+  accentHeading: BlocksBlocksAccentHeading
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Latest - Show only latest 3 news. 
+  All - Show all news with a &quot;load more&quot; button at the bottom to show more news.
+  """
+  newsAmount: String
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BlocksBlocksNewsLayout&quot; Field Group
+  """
+  textContent: String
+}
+
+"""
 The &quot;BlocksBlocksQuoteLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
 """
 type BlocksBlocksQuoteLayout implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksQuoteLayout_Fields & BlocksBlocks_Layout {

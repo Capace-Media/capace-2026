@@ -736,6 +736,46 @@ export type BlocksBlocksMediaAndText_Fields = {
   textContent?: Maybe<Scalars["String"]["output"]>;
 };
 
+/** The &quot;BlocksBlocksNewsLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
+export type BlocksBlocksNewsLayout = AcfFieldGroup &
+  AcfFieldGroupFields &
+  BlocksBlocksNewsLayout_Fields &
+  BlocksBlocks_Layout & {
+    __typename?: "BlocksBlocksNewsLayout";
+    /** A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space. */
+    accentHeading?: Maybe<BlocksBlocksAccentHeading>;
+    /**
+     * The name of the field group
+     * @deprecated Use __typename instead
+     */
+    fieldGroupName?: Maybe<Scalars["String"]["output"]>;
+    /**
+     * Latest - Show only latest 3 news.
+     * All - Show all news with a &quot;load more&quot; button at the bottom to show more news.
+     */
+    newsAmount?: Maybe<Scalars["String"]["output"]>;
+    /** Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BlocksBlocksNewsLayout&quot; Field Group */
+    textContent?: Maybe<Scalars["String"]["output"]>;
+  };
+
+/** Interface representing fields of the ACF &quot;BlocksBlocksNewsLayout&quot; Field Group */
+export type BlocksBlocksNewsLayout_Fields = {
+  /** A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space. */
+  accentHeading?: Maybe<BlocksBlocksAccentHeading>;
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars["String"]["output"]>;
+  /**
+   * Latest - Show only latest 3 news.
+   * All - Show all news with a &quot;load more&quot; button at the bottom to show more news.
+   */
+  newsAmount?: Maybe<Scalars["String"]["output"]>;
+  /** Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BlocksBlocksNewsLayout&quot; Field Group */
+  textContent?: Maybe<Scalars["String"]["output"]>;
+};
+
 /** The &quot;BlocksBlocksQuoteLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
 export type BlocksBlocksQuoteLayout = AcfFieldGroup &
   AcfFieldGroupFields &
@@ -14691,6 +14731,11 @@ export type CaseQuery = {
               BlocksFragment_BlocksBlocksMediaAndTextLayout_Fragment: BlocksFragment_BlocksBlocksMediaAndTextLayout_Fragment;
             };
           })
+        | ({ __typename?: "BlocksBlocksNewsLayout" } & {
+            " $fragmentRefs"?: {
+              BlocksFragment_BlocksBlocksNewsLayout_Fragment: BlocksFragment_BlocksBlocksNewsLayout_Fragment;
+            };
+          })
         | ({ __typename?: "BlocksBlocksQuoteLayout" } & {
             " $fragmentRefs"?: {
               BlocksFragment_BlocksBlocksQuoteLayout_Fragment: BlocksFragment_BlocksBlocksQuoteLayout_Fragment;
@@ -15237,6 +15282,17 @@ type BlocksFragment_BlocksBlocksMediaAndTextLayout_Fragment = {
   " $fragmentName"?: "BlocksFragment_BlocksBlocksMediaAndTextLayout_Fragment";
 };
 
+type BlocksFragment_BlocksBlocksNewsLayout_Fragment = {
+  __typename: "BlocksBlocksNewsLayout";
+  newsAmount?: string | null;
+  textContent?: string | null;
+  accentHeading?: {
+    __typename?: "BlocksBlocksAccentHeading";
+    accent?: string | null;
+    main?: string | null;
+  } | null;
+} & { " $fragmentName"?: "BlocksFragment_BlocksBlocksNewsLayout_Fragment" };
+
 type BlocksFragment_BlocksBlocksQuoteLayout_Fragment = {
   __typename: "BlocksBlocksQuoteLayout";
   author?: string | null;
@@ -15319,6 +15375,7 @@ export type BlocksFragmentFragment =
   | BlocksFragment_BlocksBlocksImageBannerLayout_Fragment
   | BlocksFragment_BlocksBlocksLatestNewsGridLayout_Fragment
   | BlocksFragment_BlocksBlocksMediaAndTextLayout_Fragment
+  | BlocksFragment_BlocksBlocksNewsLayout_Fragment
   | BlocksFragment_BlocksBlocksQuoteLayout_Fragment
   | BlocksFragment_BlocksBlocksServiceCardsLayout_Fragment
   | BlocksFragment_BlocksBlocksTestimonialsLayout_Fragment
@@ -15330,6 +15387,45 @@ export type LatestNewsPreviewsQuery = {
   __typename?: "RootQuery";
   posts?: {
     __typename?: "RootQueryToPostConnection";
+    nodes: Array<{
+      __typename?: "Post";
+      date?: string | null;
+      title?: string | null;
+      slug?: string | null;
+      postContent?: {
+        __typename?: "PostContent";
+        heroImage?: {
+          __typename?: "AcfMediaItemConnectionEdge";
+          node: {
+            __typename?: "MediaItem";
+            altText?: string | null;
+            mediaItemUrl?: string | null;
+            mediaDetails?: {
+              __typename?: "MediaDetails";
+              width?: number | null;
+              height?: number | null;
+            } | null;
+          };
+        } | null;
+      } | null;
+    }>;
+  } | null;
+};
+
+export type NewsQueryQueryVariables = Exact<{
+  amount: Scalars["Int"]["input"];
+  after?: InputMaybe<Scalars["String"]["input"]>;
+}>;
+
+export type NewsQueryQuery = {
+  __typename?: "RootQuery";
+  posts?: {
+    __typename?: "RootQueryToPostConnection";
+    pageInfo: {
+      __typename?: "RootQueryToPostConnectionPageInfo";
+      hasNextPage: boolean;
+      endCursor?: string | null;
+    };
     nodes: Array<{
       __typename?: "Post";
       date?: string | null;
@@ -15478,6 +15574,11 @@ export type PageQuery = {
         | ({ __typename?: "BlocksBlocksMediaAndTextLayout" } & {
             " $fragmentRefs"?: {
               BlocksFragment_BlocksBlocksMediaAndTextLayout_Fragment: BlocksFragment_BlocksBlocksMediaAndTextLayout_Fragment;
+            };
+          })
+        | ({ __typename?: "BlocksBlocksNewsLayout" } & {
+            " $fragmentRefs"?: {
+              BlocksFragment_BlocksBlocksNewsLayout_Fragment: BlocksFragment_BlocksBlocksNewsLayout_Fragment;
             };
           })
         | ({ __typename?: "BlocksBlocksQuoteLayout" } & {
@@ -15631,6 +15732,11 @@ export type QueryQuery = {
         | ({ __typename?: "BlocksBlocksMediaAndTextLayout" } & {
             " $fragmentRefs"?: {
               BlocksFragment_BlocksBlocksMediaAndTextLayout_Fragment: BlocksFragment_BlocksBlocksMediaAndTextLayout_Fragment;
+            };
+          })
+        | ({ __typename?: "BlocksBlocksNewsLayout" } & {
+            " $fragmentRefs"?: {
+              BlocksFragment_BlocksBlocksNewsLayout_Fragment: BlocksFragment_BlocksBlocksNewsLayout_Fragment;
             };
           })
         | ({ __typename?: "BlocksBlocksQuoteLayout" } & {
@@ -15854,6 +15960,15 @@ export const BlocksFragmentFragmentDoc = new TypedDocumentString(
       accent
       main
     }
+  }
+  ... on BlocksBlocksNewsLayout {
+    accentHeading {
+      accent
+      main
+    }
+    newsAmount
+    textContent
+    __typename
   }
   ... on BlocksBlocksEmployeesLayout {
     __typename
@@ -16158,6 +16273,15 @@ export const CaseDocument = new TypedDocumentString(`
       main
     }
   }
+  ... on BlocksBlocksNewsLayout {
+    accentHeading {
+      accent
+      main
+    }
+    newsAmount
+    textContent
+    __typename
+  }
   ... on BlocksBlocksEmployeesLayout {
     __typename
     accentHeading {
@@ -16446,6 +16570,36 @@ export const LatestNewsPreviewsDocument = new TypedDocumentString(`
   LatestNewsPreviewsQuery,
   LatestNewsPreviewsQueryVariables
 >;
+export const NewsQueryDocument = new TypedDocumentString(`
+    query NewsQuery($amount: Int!, $after: String) {
+  posts(first: $amount, after: $after) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    nodes {
+      date
+      title
+      slug
+      postContent {
+        heroImage {
+          node {
+            altText
+            mediaItemUrl
+            mediaDetails {
+              width
+              height
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<
+  NewsQueryQuery,
+  NewsQueryQueryVariables
+>;
 export const PageDocument = new TypedDocumentString(`
     query Page($slug: ID = "hem") {
   page(id: $slug, idType: URI) {
@@ -16638,6 +16792,15 @@ export const PageDocument = new TypedDocumentString(`
       accent
       main
     }
+  }
+  ... on BlocksBlocksNewsLayout {
+    accentHeading {
+      accent
+      main
+    }
+    newsAmount
+    textContent
+    __typename
   }
   ... on BlocksBlocksEmployeesLayout {
     __typename
@@ -16974,6 +17137,15 @@ export const QueryDocument = new TypedDocumentString(`
       accent
       main
     }
+  }
+  ... on BlocksBlocksNewsLayout {
+    accentHeading {
+      accent
+      main
+    }
+    newsAmount
+    textContent
+    __typename
   }
   ... on BlocksBlocksEmployeesLayout {
     __typename

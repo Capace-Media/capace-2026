@@ -23,3 +23,31 @@ export const LatestNewsPreviewsQuery = graphql(`
     }
   }
 `);
+
+export const NewsQuery = graphql(`
+  query NewsQuery($amount: Int!, $after: String) {
+    posts(first: $amount, after: $after) {
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      nodes {
+        date
+        title
+        slug
+        postContent {
+          heroImage {
+            node {
+              altText
+              mediaItemUrl
+              mediaDetails {
+                width
+                height
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`);
