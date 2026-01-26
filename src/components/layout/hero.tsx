@@ -8,7 +8,6 @@ import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { useRef } from "react";
-import ParallaxHero from "./parallax-hero";
 import ParallaxImage from "../shared/parallax-image";
 
 gsap.registerPlugin(SplitText);
@@ -21,7 +20,7 @@ export default function Hero(props: Props) {
   let size;
   if (props.data.large?.heroImage) {
     size = "large";
-  } else if (props.data.medium?.text) {
+  } else if (props.data.medium?.heading_main) {
     size = "medium";
   } else if (props.data.rounded) {
     size = "rounded";

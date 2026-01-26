@@ -1,5 +1,5 @@
 import parse from "html-react-parser";
-import Quote from "@/components/blocks/Quote/quote";
+import Quote from "@/components/blocks/quote/quote";
 import EmailLink from "@/components/shared/email-link";
 import ParallaxImage from "@/components/shared/parallax-image";
 import TelephoneLink from "@/components/shared/telephone-link";

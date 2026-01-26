@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import type { getEmployeeBySlug } from "@/lib/fetchers/employees";
-import Quote from "@/components/blocks/Quote/quote";
+import Quote from "@/components/blocks/quote/quote";
 import EmailLink from "@/components/shared/email-link";
 import { X } from "lucide-react";
 import parse from "html-react-parser";

@@ -181,11 +181,14 @@ export default async function Footer() {
         <div className="flex flex-col-reverse items-center justify-center gap-8 border-t-black py-2 lg:flex-row lg:justify-between lg:border-t-2">
           © {new Date().getFullYear()} - Capace Media Group AB
           <nav className="flex flex-wrap items-center justify-center gap-4">
+            <Link href={"/nyheter"}>Nyheter</Link>
+            <Link href={"/kontakt"}>Kontakt</Link>
             <Link href={"#"}>Lokalt</Link>
-            <Link href={"#"}>Integritetspolicy</Link>
-            <Link href={"#"}>Tillgänglighet</Link>
+            <Link href={"/ordlistor"}>Ordlistor</Link>
+            <Link href={"/integritetspolicy"}>Integritetspolicy</Link>
+            <Link href={"/tillganglighet"}>Tillgänglighet</Link>
             <Link href={"#"}>Cookies</Link>
-            <Link href={"#"}>Om hemsidan</Link>
+            <Link href={"/om-hemsidan"}>Om hemsidan</Link>
           </nav>
         </div>
       </div>
