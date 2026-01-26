@@ -25,6 +25,7 @@ export default function News(props: Props) {
       const cards = gsap.utils.toArray<HTMLElement>(".case-card");
       if (cards.length === 0) return;
 
+      // Only animate cards that haven't been animated yet
       const newCards = cards.slice(animatedCountRef.current);
       if (newCards.length === 0) return;
 
@@ -70,9 +71,9 @@ export default function News(props: Props) {
           return (
             <div key={item.slug ?? index} className="case-card invisible">
               <ArticleCard
-                imgSrc={item.postContent?.heroImage?.node.mediaItemUrl}
+                imgSrc={item.pageContent?.rounded?.node.mediaItemUrl}
                 altText={
-                  item.postContent?.heroImage?.node.altText || item.title || ""
+                  item.pageContent?.rounded?.node.altText || item.title || ""
                 }
                 buttonLabel={"Läs mer"}
                 buttonLink={`/nyheter/${item.slug}` || "/nyheter"}

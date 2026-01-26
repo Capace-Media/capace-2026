@@ -148,6 +148,10 @@ export const BlocksFragment = graphql(`
       textContent
       __typename
     }
+    ... on BlocksBlocksWysiwygLayout {
+      __typename
+      content
+    }
     ... on BlocksBlocksEmployeesLayout {
       __typename
       accentHeading {

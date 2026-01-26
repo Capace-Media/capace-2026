@@ -6,6 +6,11 @@ interface Props {
 }
 export default function Wysiwyg(props: Props) {
   const data = useFragment(BlocksFragment, props.data);
-  if (data.__typename !== "BlocksBlocksWYSIWYGLayout") return null;
-  return <div>{parse(props.data)}</div>;
+
+  if (data.__typename !== "BlocksBlocksWysiwygLayout") return null;
+  return (
+    <div className="section prose prose-invert">
+      {parse(data.content || "")}
+    </div>
+  );
 }

@@ -1,5 +1,4 @@
 import { graphql } from "@/graphql/gql";
-import { BlocksFragment, PageContentFragment } from "./fragments";
 
 export const PageQuery = graphql(`
   query Page($slug: ID = "hem") {
@@ -7,8 +6,55 @@ export const PageQuery = graphql(`
       title
       slug
       pageContent {
-        ...PageContentFragment
+        rounded {
+          node {
+            altText
+            mediaItemUrl
+          }
+        }
+        small {
+          heroImage {
+            node {
+              altText
+              mediaItemUrl
+            }
+          }
+        }
+        medium {
+          heading_accent
+          heading_main
+          text
+        }
+        large {
+          heading
+          headingAccent
+          subheading
+          heroImage {
+            node {
+              altText
+              mediaItemUrl
+              mediaDetails {
+                height
+                width
+              }
+            }
+          }
+          button {
+            ariaLabel
+            label
+            url {
+              externalLink
+              internalLink {
+                nodes {
+                  slug
+                }
+              }
+              is_internal
+            }
+          }
+        }
       }
+
       blocks {
         blocks {
           ...BlocksFragment

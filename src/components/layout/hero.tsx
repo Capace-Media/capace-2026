@@ -8,41 +8,42 @@ import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { useRef } from "react";
-import { useFragment, type FragmentType } from "@/graphql/fragment-masking";
-import { PageContentFragment } from "@/lib/queries/fragments";
+import ParallaxHero from "./parallax-hero";
+import ParallaxImage from "../shared/parallax-image";
 
 gsap.registerPlugin(SplitText);
 
 interface Props {
-  data: FragmentType<typeof PageContentFragment>;
+  data: NonNullable<PageQuery["page"]>["pageContent"];
 }
 export default function Hero(props: Props) {
-  const pageContent = useFragment(PageContentFragment, props.data);
-  if (!pageContent) return null;
+  if (!props.data) return null;
   let size;
-  if (pageContent.large?.heroImage) {
+  if (props.data.large?.heroImage) {
     size = "large";
-  } else if (pageContent.medium?.text) {
+  } else if (props.data.medium?.text) {
     size = "medium";
+  } else if (props.data.rounded) {
+    size = "rounded";
   } else {
     size = "small";
   }
 
   switch (size) {
     case "large":
-      return <HeroLarge data={pageContent} />;
+      return <HeroLarge data={props.data} />;
     case "medium":
-      return <HeroMedium data={pageContent} />;
+      return <HeroMedium data={props.data} />;
     case "small":
-      return <HeroSmall data={pageContent} />;
+      return <HeroSmall data={props.data} />;
+    case "rounded":
+      return <HeroRounded data={props.data} />;
     default:
       return null;
   }
 }
 
-const HeroLarge = (props: {
-  data: ReturnType<typeof useFragment<typeof PageContentFragment>>;
-}) => {
+const HeroLarge = (data: Props) => {
   const containerRef = useRef<HTMLDivElement>(null);
   useGSAP(
     () => {
@@ -67,8 +68,7 @@ const HeroLarge = (props: {
     { scope: containerRef },
   );
 
-  const heroData = props.data?.large;
-
+  const heroData = data.data?.large;
   return (
     <section
       aria-label="Herosektion"
@@ -104,11 +104,8 @@ const HeroLarge = (props: {
   );
 };
 
-const HeroMedium = (props: {
-  data: ReturnType<typeof useFragment<typeof PageContentFragment>>;
-}) => {
-  const heroData = props.data?.medium;
-
+const HeroMedium = (data: Props) => {
+  const heroData = data.data?.medium;
   return (
     <div className="section flex w-full flex-col items-center justify-center pt-40">
       <HeadingWithAccent
@@ -117,17 +114,14 @@ const HeroMedium = (props: {
         mainHeading={heroData?.heading_main || ""}
       />
       <p className="text-muted-foreground prose text-center">
-        {heroData?.text}
+        {data.data?.medium?.text}
       </p>
     </div>
   );
 };
 
-const HeroSmall = (props: {
-  data: ReturnType<typeof useFragment<typeof PageContentFragment>>;
-}) => {
-  const heroData = props.data?.small;
-
+const HeroSmall = (data: Props) => {
+  const heroData = data.data?.small;
   return (
     <div
       className="section flex w-full flex-col items-center justify-center pt-40"
@@ -143,6 +137,21 @@ const HeroSmall = (props: {
           priority
         />
       </div>
+    </div>
+  );
+};
+
+const HeroRounded = (data: Props) => {
+  const heroData = data.data?.rounded?.node;
+  return (
+    <div
+      className="mt-30 h-60 w-full overflow-hidden rounded-[36px] md:h-90 lg:h-130"
+      aria-hidden
+    >
+      <ParallaxImage
+        src={heroData?.mediaItemUrl || "/misc/no-image.svg"}
+        alt={""}
+      />
     </div>
   );
 };

@@ -12,22 +12,37 @@ export const NewsQuery = graphql(`
         title
         slug
         pageContent {
-          ...PageContentFragment
+          rounded {
+            node {
+              altText
+              mediaItemUrl
+            }
+          }
         }
       }
     }
   }
 `);
 
-// export const NewsBySlugQuery = graphql(`
-//   query NewsBySlugQuery($slug: ID!) {
-//     post(id: $slug, idType: URI) {
-//       title
-//       date
-//       slug
-//       pageContent {
-//         ...PageContentFragment
-//       }
-//     }
-//   }
-// `);
+export const NewsBySlugQuery = graphql(`
+  query NewsBySlugQuery($slug: ID!) {
+    post(id: $slug, idType: URI) {
+      title
+      date
+      slug
+      blocks {
+        blocks {
+          ...BlocksFragment
+        }
+      }
+      pageContent {
+        rounded {
+          node {
+            mediaItemUrl
+            altText
+          }
+        }
+      }
+    }
+  }
+`);

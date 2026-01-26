@@ -27,5 +27,5 @@ export const blockComponents = {
   BlocksBlocksQuoteLayout: QuoteWrapper,
   BlocksBlocksServiceCardsLayout: ServiceCards,
   BlocksBlocksNewsLayout: NewsWrapper,
-  BlocksBlocksWYSIWYGLayout: Wysiwyg,
+  BlocksBlocksWysiwygLayout: Wysiwyg,
 };

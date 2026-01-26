@@ -6514,6 +6514,8 @@ export type PageContent = AcfFieldGroup & AcfFieldGroupFields & PageContent_Fiel
   large?: Maybe<PageContentLarge>;
   /** Suitable for sub pages. */
   medium?: Maybe<PageContentMedium>;
+  /** Pick this for Cases and News pages. */
+  rounded?: Maybe<AcfMediaItemConnectionEdge>;
   /** Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;PageContent&quot; Field Group */
   small?: Maybe<PageContentSmall>;
 };
@@ -6655,6 +6657,8 @@ export type PageContent_Fields = {
   large?: Maybe<PageContentLarge>;
   /** Suitable for sub pages. */
   medium?: Maybe<PageContentMedium>;
+  /** Pick this for Cases and News pages. */
+  rounded?: Maybe<AcfMediaItemConnectionEdge>;
   /** Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;PageContent&quot; Field Group */
   small?: Maybe<PageContentSmall>;
 };
@@ -14362,7 +14366,7 @@ type BlocksFragment_BlocksBlocksTestimonialsLayout_Fragment = { __typename: 'Blo
 
 type BlocksFragment_BlocksBlocksTimelineLayout_Fragment = { __typename?: 'BlocksBlocksTimelineLayout' } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksTimelineLayout_Fragment' };
 
-type BlocksFragment_BlocksBlocksWysiwygLayout_Fragment = { __typename?: 'BlocksBlocksWysiwygLayout' } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksWysiwygLayout_Fragment' };
+type BlocksFragment_BlocksBlocksWysiwygLayout_Fragment = { __typename: 'BlocksBlocksWysiwygLayout', content?: string | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksWysiwygLayout_Fragment' };
 
 export type BlocksFragmentFragment =
   | BlocksFragment_BlocksBlocksAnimatedCardsLayout_Fragment
@@ -14399,20 +14403,91 @@ export type NewsQueryQueryVariables = Exact<{
 }>;
 
 
-export type NewsQueryQuery = { __typename?: 'RootQuery', posts?: { __typename?: 'RootQueryToPostConnection', pageInfo: { __typename?: 'RootQueryToPostConnectionPageInfo', hasNextPage: boolean, endCursor?: string | null }, nodes: Array<{ __typename?: 'Post', date?: string | null, title?: string | null, slug?: string | null, pageContent?: (
-        { __typename?: 'PageContent' }
-        & { ' $fragmentRefs'?: { 'PageContentFragmentFragment': PageContentFragmentFragment } }
-      ) | null }> } | null };
+export type NewsQueryQuery = { __typename?: 'RootQuery', posts?: { __typename?: 'RootQueryToPostConnection', pageInfo: { __typename?: 'RootQueryToPostConnectionPageInfo', hasNextPage: boolean, endCursor?: string | null }, nodes: Array<{ __typename?: 'Post', date?: string | null, title?: string | null, slug?: string | null, pageContent?: { __typename?: 'PageContent', rounded?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null } } | null } | null }> } | null };
+
+export type NewsBySlugQueryQueryVariables = Exact<{
+  slug: Scalars['ID']['input'];
+}>;
+
+
+export type NewsBySlugQueryQuery = { __typename?: 'RootQuery', post?: { __typename?: 'Post', title?: string | null, date?: string | null, slug?: string | null, blocks?: { __typename?: 'Blocks', blocks?: Array<
+        | (
+          { __typename?: 'BlocksBlocksAnimatedCardsLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksAnimatedCardsLayout_Fragment': BlocksFragment_BlocksBlocksAnimatedCardsLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksCardsAndTextLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksCardsAndTextLayout_Fragment': BlocksFragment_BlocksBlocksCardsAndTextLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksCaseCardGridLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksCaseCardGridLayout_Fragment': BlocksFragment_BlocksBlocksCaseCardGridLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksCollaboratorsBannerLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksCollaboratorsBannerLayout_Fragment': BlocksFragment_BlocksBlocksCollaboratorsBannerLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksContactFormLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksContactFormLayout_Fragment': BlocksFragment_BlocksBlocksContactFormLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksEmployeesLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksEmployeesLayout_Fragment': BlocksFragment_BlocksBlocksEmployeesLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksFaqLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksFaqLayout_Fragment': BlocksFragment_BlocksBlocksFaqLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksImageBannerLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksImageBannerLayout_Fragment': BlocksFragment_BlocksBlocksImageBannerLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksMediaAndTextLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksMediaAndTextLayout_Fragment': BlocksFragment_BlocksBlocksMediaAndTextLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksNewsLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksNewsLayout_Fragment': BlocksFragment_BlocksBlocksNewsLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksQuoteLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksQuoteLayout_Fragment': BlocksFragment_BlocksBlocksQuoteLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksServiceCardsLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksServiceCardsLayout_Fragment': BlocksFragment_BlocksBlocksServiceCardsLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksTestimonialsLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksTestimonialsLayout_Fragment': BlocksFragment_BlocksBlocksTestimonialsLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksTimelineLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksTimelineLayout_Fragment': BlocksFragment_BlocksBlocksTimelineLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksWysiwygLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksWysiwygLayout_Fragment': BlocksFragment_BlocksBlocksWysiwygLayout_Fragment } }
+        )
+       | null> | null } | null, pageContent?: { __typename?: 'PageContent', rounded?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null, altText?: string | null } } | null } | null } | null };
 
 export type PageQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['ID']['input']>;
 }>;
 
 
-export type PageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page', title?: string | null, slug?: string | null, pageContent?: (
-      { __typename?: 'PageContent' }
-      & { ' $fragmentRefs'?: { 'PageContentFragmentFragment': PageContentFragmentFragment } }
-    ) | null, blocks?: { __typename?: 'Blocks', blocks?: Array<
+export type PageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page', title?: string | null, slug?: string | null, pageContent?: { __typename?: 'PageContent', rounded?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null } } | null, small?: { __typename?: 'PageContentSmall', heroImage?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null } } | null } | null, medium?: { __typename?: 'PageContentMedium', heading_accent?: string | null, heading_main?: string | null, text?: string | null } | null, large?: { __typename?: 'PageContentLarge', heading?: string | null, headingAccent?: string | null, subheading?: string | null, heroImage?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null, button?: { __typename?: 'PageContentLargeButton', ariaLabel?: string | null, label?: string | null, url?: { __typename?: 'ReusableFieldsButtonUrl', externalLink?: string | null, is_internal?: boolean | null, internalLink?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
+                | { __typename?: 'Case', slug?: string | null }
+                | { __typename?: 'Employee', slug?: string | null }
+                | { __typename?: 'Faq', slug?: string | null }
+                | { __typename?: 'MediaItem', slug?: string | null }
+                | { __typename?: 'Page', slug?: string | null }
+                | { __typename?: 'Post', slug?: string | null }
+                | { __typename?: 'Service', slug?: string | null }
+                | { __typename?: 'Testimonial', slug?: string | null }
+              > } | null } | null } | null } | null } | null, blocks?: { __typename?: 'Blocks', blocks?: Array<
         | (
           { __typename?: 'BlocksBlocksAnimatedCardsLayout' }
           & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksAnimatedCardsLayout_Fragment': BlocksFragment_BlocksBlocksAnimatedCardsLayout_Fragment } }
@@ -14722,6 +14797,10 @@ export const BlocksFragmentFragmentDoc = new TypedDocumentString(`
     newsAmount
     textContent
     __typename
+  }
+  ... on BlocksBlocksWysiwygLayout {
+    __typename
+    content
   }
   ... on BlocksBlocksEmployeesLayout {
     __typename
@@ -15071,6 +15150,10 @@ export const CaseDocument = new TypedDocumentString(`
     textContent
     __typename
   }
+  ... on BlocksBlocksWysiwygLayout {
+    __typename
+    content
+  }
   ... on BlocksBlocksEmployeesLayout {
     __typename
     accentHeading {
@@ -15332,61 +15415,363 @@ export const NewsQueryDocument = new TypedDocumentString(`
       title
       slug
       pageContent {
-        ...PageContentFragment
+        rounded {
+          node {
+            altText
+            mediaItemUrl
+          }
+        }
       }
     }
   }
 }
-    fragment PageContentFragment on PageContent {
-  small {
-    heroImage {
-      node {
-        altText
-        mediaItemUrl
+    `) as unknown as TypedDocumentString<NewsQueryQuery, NewsQueryQueryVariables>;
+export const NewsBySlugQueryDocument = new TypedDocumentString(`
+    query NewsBySlugQuery($slug: ID!) {
+  post(id: $slug, idType: URI) {
+    title
+    date
+    slug
+    blocks {
+      blocks {
+        ...BlocksFragment
+      }
+    }
+    pageContent {
+      rounded {
+        node {
+          mediaItemUrl
+          altText
+        }
       }
     }
   }
-  medium {
-    heading_accent
-    heading_main
-    text
+}
+    fragment BlocksFragment on BlocksBlocks_Layout {
+  ... on BlocksBlocksMediaAndTextLayout {
+    __typename
+    mediaAndText {
+      image {
+        node {
+          altText
+          mediaItemUrl
+          mediaDetails {
+            height
+            width
+          }
+        }
+      }
+      button {
+        ariaLabel
+        __typename
+        label
+        url {
+          externalLink
+          internalLink {
+            nodes {
+              slug
+            }
+          }
+        }
+      }
+      accentHeading {
+        accent
+        main
+      }
+      textContent
+      imagePlacement
+    }
   }
-  large {
-    heading
-    headingAccent
-    subheading
-    heroImage {
-      node {
+  ... on BlocksBlocksServiceCardsLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+    description
+    service {
+      nodes {
+        ... on Service {
+          __typename
+          id
+          title
+          slug
+          uri
+          serviceContent {
+            icon {
+              node {
+                altText
+                mediaItemUrl
+                mediaDetails {
+                  width
+                  height
+                }
+              }
+            }
+            shortDescription
+          }
+        }
+      }
+    }
+  }
+  ... on BlocksBlocksQuoteLayout {
+    __typename
+    author
+    authorTitle
+    companyName
+    quote
+  }
+  ... on BlocksBlocksContactFormLayout {
+    __typename
+  }
+  ... on BlocksBlocksCollaboratorsBannerLayout {
+    __typename
+  }
+  ... on BlocksBlocksImageBannerLayout {
+    __typename
+    fullWidth
+    images {
+      nodes {
         altText
         mediaItemUrl
         mediaDetails {
-          height
           width
+          height
         }
-      }
-    }
-    button {
-      ariaLabel
-      label
-      url {
-        externalLink
-        internalLink {
-          nodes {
-            slug
-          }
-        }
-        is_internal
       }
     }
   }
-}`) as unknown as TypedDocumentString<NewsQueryQuery, NewsQueryQueryVariables>;
+  ... on BlocksBlocksCaseCardGridLayout {
+    __typename
+    compact
+    accentHeading {
+      accent
+      main
+    }
+    cases {
+      nodes {
+        ... on Case {
+          __typename
+          id
+          title
+          slug
+          caseContent {
+            shortDescription
+            heroImage {
+              node {
+                altText
+                mediaItemUrl
+                mediaDetails {
+                  height
+                  width
+                }
+              }
+            }
+          }
+          casesCategories {
+            nodes {
+              slug
+              name
+            }
+          }
+        }
+      }
+    }
+  }
+  ... on BlocksBlocksTestimonialsLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+  }
+  ... on BlocksBlocksNewsLayout {
+    accentHeading {
+      accent
+      main
+    }
+    newsAmount
+    textContent
+    __typename
+  }
+  ... on BlocksBlocksWysiwygLayout {
+    __typename
+    content
+  }
+  ... on BlocksBlocksEmployeesLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+    employees {
+      nodes {
+        ... on Employee {
+          __typename
+          title
+          slug
+          employeeContent {
+            email
+            employmentType
+            quote
+            telephone
+            textContent
+            workTitle
+            image {
+              node {
+                altText
+                mediaItemUrl
+              }
+            }
+          }
+        }
+      }
+    }
+    textContent
+  }
+  ... on BlocksBlocksFaqLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+    questions {
+      nodes {
+        ... on Faq {
+          id
+          __typename
+          faqContent {
+            answer
+            longAnswer
+          }
+          title
+        }
+      }
+    }
+  }
+  ... on BlocksBlocksCardsAndTextLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+    textContent
+    cards {
+      card {
+        textContent
+        title
+        button {
+          ariaLabel
+          label
+          url {
+            externalLink
+            internalLink {
+              nodes {
+                slug
+              }
+            }
+          }
+        }
+        image {
+          node {
+            mediaItemUrl
+            altText
+          }
+        }
+      }
+    }
+  }
+  ... on BlocksBlocksAnimatedCardsLayout {
+    __typename
+    textContent
+    accentHeading {
+      accent
+      main
+    }
+    cards {
+      card {
+        button {
+          ariaLabel
+          label
+          url {
+            externalLink
+            internalLink {
+              nodes {
+                slug
+              }
+            }
+            is_internal
+          }
+        }
+        image {
+          node {
+            altText
+            mediaItemUrl
+            mediaDetails {
+              width
+              height
+            }
+          }
+        }
+        textContent
+        title
+      }
+    }
+  }
+}`) as unknown as TypedDocumentString<NewsBySlugQueryQuery, NewsBySlugQueryQueryVariables>;
 export const PageDocument = new TypedDocumentString(`
     query Page($slug: ID = "hem") {
   page(id: $slug, idType: URI) {
     title
     slug
     pageContent {
-      ...PageContentFragment
+      rounded {
+        node {
+          altText
+          mediaItemUrl
+        }
+      }
+      small {
+        heroImage {
+          node {
+            altText
+            mediaItemUrl
+          }
+        }
+      }
+      medium {
+        heading_accent
+        heading_main
+        text
+      }
+      large {
+        heading
+        headingAccent
+        subheading
+        heroImage {
+          node {
+            altText
+            mediaItemUrl
+            mediaDetails {
+              height
+              width
+            }
+          }
+        }
+        button {
+          ariaLabel
+          label
+          url {
+            externalLink
+            internalLink {
+              nodes {
+                slug
+              }
+            }
+            is_internal
+          }
+        }
+      }
     }
     blocks {
       blocks {
@@ -15542,6 +15927,10 @@ export const PageDocument = new TypedDocumentString(`
     textContent
     __typename
   }
+  ... on BlocksBlocksWysiwygLayout {
+    __typename
+    content
+  }
   ... on BlocksBlocksEmployeesLayout {
     __typename
     accentHeading {
@@ -15659,49 +16048,6 @@ export const PageDocument = new TypedDocumentString(`
         }
         textContent
         title
-      }
-    }
-  }
-}
-fragment PageContentFragment on PageContent {
-  small {
-    heroImage {
-      node {
-        altText
-        mediaItemUrl
-      }
-    }
-  }
-  medium {
-    heading_accent
-    heading_main
-    text
-  }
-  large {
-    heading
-    headingAccent
-    subheading
-    heroImage {
-      node {
-        altText
-        mediaItemUrl
-        mediaDetails {
-          height
-          width
-        }
-      }
-    }
-    button {
-      ariaLabel
-      label
-      url {
-        externalLink
-        internalLink {
-          nodes {
-            slug
-          }
-        }
-        is_internal
       }
     }
   }
@@ -15922,6 +16268,10 @@ export const QueryDocument = new TypedDocumentString(`
     newsAmount
     textContent
     __typename
+  }
+  ... on BlocksBlocksWysiwygLayout {
+    __typename
+    content
   }
   ... on BlocksBlocksEmployeesLayout {
     __typename

@@ -7541,6 +7541,8 @@ type PageContent implements AcfFieldGroup & AcfFieldGroupFields & PageContent_Fi
   large: PageContentLarge
   """Suitable for sub pages."""
   medium: PageContentMedium
+  """Pick this for Cases and News pages."""
+  rounded: AcfMediaItemConnectionEdge
   """
   Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;PageContent&quot; Field Group
   """
@@ -7703,6 +7705,8 @@ interface PageContent_Fields implements AcfFieldGroup & AcfFieldGroupFields {
   large: PageContentLarge
   """Suitable for sub pages."""
   medium: PageContentMedium
+  """Pick this for Cases and News pages."""
+  rounded: AcfMediaItemConnectionEdge
   """
   Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;PageContent&quot; Field Group
   """
