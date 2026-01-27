@@ -184,6 +184,18 @@ export const BlocksFragment = graphql(`
     ... on BlocksBlocksWysiwygLayout {
       __typename
       content
+      button {
+        ariaLabel
+        label
+        url {
+          externalLink
+          internalLink {
+            nodes {
+              uri
+            }
+          }
+        }
+      }
     }
     ... on BlocksBlocksEmployeesLayout {
       __typename

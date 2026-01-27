@@ -62,7 +62,7 @@ type AcfMediaItemConnection implements Connection & MediaItemConnection {
 }
 
 """
-Connection between the BlocksBlocksMediaAndText_Fields type and the MediaItem type
+Connection between the BlocksBlocksCardsCard_Fields type and the MediaItem type
 """
 type AcfMediaItemConnectionEdge implements Edge & MediaItemConnectionEdge & OneToOneConnection {
   """
@@ -266,6 +266,46 @@ interface BlocksBlocksAuthorLayout_Fields implements AcfFieldGroup & AcfFieldGro
   ): AcfContentNodeConnection
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
+}
+
+"""
+The &quot;BlocksBlocksButton&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type BlocksBlocksButton implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksButton_Fields {
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BlocksBlocksButton&quot; Field Group
+  """
+  ariaLabel: String
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BlocksBlocksButton&quot; Field Group
+  """
+  label: String
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;BlocksBlocksButton&quot; Field Group
+  """
+  url: ReusableFieldsButtonUrl
+}
+
+"""
+Interface representing fields of the ACF &quot;BlocksBlocksButton&quot; Field Group
+"""
+interface BlocksBlocksButton_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BlocksBlocksButton&quot; Field Group
+  """
+  ariaLabel: String
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BlocksBlocksButton&quot; Field Group
+  """
+  label: String
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;BlocksBlocksButton&quot; Field Group
+  """
+  url: ReusableFieldsButtonUrl
 }
 
 """
@@ -1033,6 +1073,10 @@ The &quot;BlocksBlocksWysiwygLayout&quot; Field Group. Added to the Schema by &q
 """
 type BlocksBlocksWysiwygLayout implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksWysiwygLayout_Fields & BlocksBlocks_Layout {
   """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;BlocksBlocksWysiwygLayout&quot; Field Group
+  """
+  button: BlocksBlocksButton
+  """
   Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksWysiwygLayout&quot; Field Group
   """
   content: String
@@ -1044,6 +1088,10 @@ type BlocksBlocksWysiwygLayout implements AcfFieldGroup & AcfFieldGroupFields & 
 Interface representing fields of the ACF &quot;BlocksBlocksWysiwygLayout&quot; Field Group
 """
 interface BlocksBlocksWysiwygLayout_Fields implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocks_Layout {
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;BlocksBlocksWysiwygLayout&quot; Field Group
+  """
+  button: BlocksBlocksButton
   """
   Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksWysiwygLayout&quot; Field Group
   """
