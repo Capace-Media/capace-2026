@@ -999,11 +999,11 @@ type BlocksBlocksTwoColumnTextLayout implements AcfFieldGroup & AcfFieldGroupFie
   """
   Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksTwoColumnTextLayout&quot; Field Group
   """
-  columnRight: String
+  column_left: String
   """
   Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksTwoColumnTextLayout&quot; Field Group
   """
-  column_left: String
+  column_right: String
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
 }
@@ -1019,11 +1019,11 @@ interface BlocksBlocksTwoColumnTextLayout_Fields implements AcfFieldGroup & AcfF
   """
   Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksTwoColumnTextLayout&quot; Field Group
   """
-  columnRight: String
+  column_left: String
   """
   Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksTwoColumnTextLayout&quot; Field Group
   """
-  column_left: String
+  column_right: String
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
 }
@@ -1663,12 +1663,6 @@ type CaseContent implements AcfFieldGroup & AcfFieldGroupFields & Blocks_Fields 
   Field of the &quot;flexible_content&quot; Field Type added to the schema as part of the &quot;Blocks&quot; Field Group
   """
   blocks: [BlocksBlocks_Layout]
-  """This will be the first text shown on the case page"""
-  description: String
-  """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;CaseContent&quot; Field Group
-  """
-  descriptionContinued: String
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
   """
@@ -1691,12 +1685,6 @@ interface CaseContent_Fields implements AcfFieldGroup & AcfFieldGroupFields & Bl
   Field of the &quot;flexible_content&quot; Field Type added to the schema as part of the &quot;Blocks&quot; Field Group
   """
   blocks: [BlocksBlocks_Layout]
-  """This will be the first text shown on the case page"""
-  description: String
-  """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;CaseContent&quot; Field Group
-  """
-  descriptionContinued: String
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
   """

@@ -35,8 +35,6 @@ export const CaseQuery = graphql(`
       }
 
       caseContent {
-        description
-        descriptionContinued
         url
         heroImage {
           node {

@@ -46,7 +46,7 @@ function Header({
   return (
     <div
       className={cn(
-        "flex flex-col-reverse justify-between gap-4 sm:flex-row",
+        "flex flex-col-reverse items-start justify-between gap-4 sm:flex-row",
         className,
       )}
     >

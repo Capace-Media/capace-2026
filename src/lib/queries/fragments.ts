@@ -140,7 +140,7 @@ export const BlocksFragment = graphql(`
       }
     }
     ... on BlocksBlocksTwoColumnTextLayout {
-      columnRight
+      column_right
       column_left
       __typename
       accentHeading {

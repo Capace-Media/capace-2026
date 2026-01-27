@@ -7,6 +7,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import ParallaxHero from "@/components/layout/parallax-hero";
 import { cn } from "@/lib/utils";
+import ButtonLink from "@/components/shared/link";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -40,20 +41,14 @@ export default async function Page(props: Props) {
           )}
         </div>
       </section>
-      <section className="section pt-0">
+      {/* <section className="section pt-0">
         <h1 className="mr-auto text-6xl font-bold">{data.title}</h1>
         {data.caseContent?.url && (
           <CaseLink className="text-lg sm:hidden" href={data.caseContent?.url}>
             {formattedUrl}
           </CaseLink>
         )}
-        <p className="prose prose-invert font-medium">
-          {data.caseContent?.description}
-        </p>
-        <p className="prose prose-invert">
-          {data.caseContent?.descriptionContinued}
-        </p>
-      </section>
+      </section> */}
       <Blocks blocks={data.blocks?.blocks} />
       <CasesCarouselWrapper />
       <section className="section relative items-center pb-70">
@@ -64,7 +59,8 @@ export default async function Page(props: Props) {
           Vi är här för att göra det möjligt. Kontakta oss idag och låt oss
           skapa något fantastiskt tillsammans!
         </p>
-        <Button withArrow>Kontakta oss</Button>
+        <ButtonLink href={"/kontakt"}>Kontakta oss</ButtonLink>
+
         <div
           className="absolute right-0 hidden aspect-auto h-80 w-80 translate-x-[15%] lg:block"
           aria-hidden

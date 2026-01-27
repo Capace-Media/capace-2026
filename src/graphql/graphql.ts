@@ -865,9 +865,9 @@ export type BlocksBlocksTwoColumnTextLayout = AcfFieldGroup & AcfFieldGroupField
   /** A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space. */
   accentHeading?: Maybe<BlocksBlocksAccentHeading>;
   /** Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksTwoColumnTextLayout&quot; Field Group */
-  columnRight?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksTwoColumnTextLayout&quot; Field Group */
   column_left?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksTwoColumnTextLayout&quot; Field Group */
+  column_right?: Maybe<Scalars['String']['output']>;
   /**
    * The name of the field group
    * @deprecated Use __typename instead
@@ -880,9 +880,9 @@ export type BlocksBlocksTwoColumnTextLayout_Fields = {
   /** A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space. */
   accentHeading?: Maybe<BlocksBlocksAccentHeading>;
   /** Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksTwoColumnTextLayout&quot; Field Group */
-  columnRight?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksTwoColumnTextLayout&quot; Field Group */
   column_left?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksTwoColumnTextLayout&quot; Field Group */
+  column_right?: Maybe<Scalars['String']['output']>;
   /**
    * The name of the field group
    * @deprecated Use __typename instead
@@ -1437,10 +1437,6 @@ export type CaseContent = AcfFieldGroup & AcfFieldGroupFields & Blocks_Fields & 
   __typename?: 'CaseContent';
   /** Field of the &quot;flexible_content&quot; Field Type added to the schema as part of the &quot;Blocks&quot; Field Group */
   blocks?: Maybe<Array<Maybe<BlocksBlocks_Layout>>>;
-  /** This will be the first text shown on the case page */
-  description?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;CaseContent&quot; Field Group */
-  descriptionContinued?: Maybe<Scalars['String']['output']>;
   /**
    * The name of the field group
    * @deprecated Use __typename instead
@@ -1458,10 +1454,6 @@ export type CaseContent = AcfFieldGroup & AcfFieldGroupFields & Blocks_Fields & 
 export type CaseContent_Fields = {
   /** Field of the &quot;flexible_content&quot; Field Type added to the schema as part of the &quot;Blocks&quot; Field Group */
   blocks?: Maybe<Array<Maybe<BlocksBlocks_Layout>>>;
-  /** This will be the first text shown on the case page */
-  description?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;CaseContent&quot; Field Group */
-  descriptionContinued?: Maybe<Scalars['String']['output']>;
   /**
    * The name of the field group
    * @deprecated Use __typename instead
@@ -14326,7 +14318,7 @@ export type CaseQuery = { __typename?: 'RootQuery', case?: { __typename?: 'Case'
           { __typename?: 'BlocksBlocksWysiwygLayout' }
           & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksWysiwygLayout_Fragment': BlocksFragment_BlocksBlocksWysiwygLayout_Fragment } }
         )
-       | null> | null } | null, caseContent?: { __typename?: 'CaseContent', description?: string | null, descriptionContinued?: string | null, url?: string | null, shortDescription?: string | null, heroImage?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null } | null } | null };
+       | null> | null } | null, caseContent?: { __typename?: 'CaseContent', url?: string | null, shortDescription?: string | null, heroImage?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null } | null } | null };
 
 export type CasesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -14457,7 +14449,7 @@ type BlocksFragment_BlocksBlocksTestimonialsLayout_Fragment = { __typename: 'Blo
 
 type BlocksFragment_BlocksBlocksTimelineLayout_Fragment = { __typename?: 'BlocksBlocksTimelineLayout' } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksTimelineLayout_Fragment' };
 
-type BlocksFragment_BlocksBlocksTwoColumnTextLayout_Fragment = { __typename: 'BlocksBlocksTwoColumnTextLayout', columnRight?: string | null, column_left?: string | null, accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksTwoColumnTextLayout_Fragment' };
+type BlocksFragment_BlocksBlocksTwoColumnTextLayout_Fragment = { __typename: 'BlocksBlocksTwoColumnTextLayout', column_right?: string | null, column_left?: string | null, accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksTwoColumnTextLayout_Fragment' };
 
 type BlocksFragment_BlocksBlocksWysiwygLayout_Fragment = { __typename: 'BlocksBlocksWysiwygLayout', content?: string | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksWysiwygLayout_Fragment' };
 
@@ -14909,7 +14901,7 @@ export const BlocksFragmentFragmentDoc = new TypedDocumentString(`
     }
   }
   ... on BlocksBlocksTwoColumnTextLayout {
-    columnRight
+    column_right
     column_left
     __typename
     accentHeading {
@@ -15139,8 +15131,6 @@ export const CaseDocument = new TypedDocumentString(`
       }
     }
     caseContent {
-      description
-      descriptionContinued
       url
       heroImage {
         node {
@@ -15295,7 +15285,7 @@ export const CaseDocument = new TypedDocumentString(`
     }
   }
   ... on BlocksBlocksTwoColumnTextLayout {
-    columnRight
+    column_right
     column_left
     __typename
     accentHeading {
@@ -15773,7 +15763,7 @@ export const NewsBySlugQueryDocument = new TypedDocumentString(`
     }
   }
   ... on BlocksBlocksTwoColumnTextLayout {
-    columnRight
+    column_right
     column_left
     __typename
     accentHeading {
@@ -16140,7 +16130,7 @@ export const PageDocument = new TypedDocumentString(`
     }
   }
   ... on BlocksBlocksTwoColumnTextLayout {
-    columnRight
+    column_right
     column_left
     __typename
     accentHeading {
@@ -16516,7 +16506,7 @@ export const QueryDocument = new TypedDocumentString(`
     }
   }
   ... on BlocksBlocksTwoColumnTextLayout {
-    columnRight
+    column_right
     column_left
     __typename
     accentHeading {

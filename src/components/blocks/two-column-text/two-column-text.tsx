@@ -6,12 +6,15 @@ interface Props {
   column2: string | undefined | null;
 }
 export default function TwoColumnText(props: Props) {
-  console.log("th props are:", props);
-
   return (
-    <div className={cn("grid grid-cols-2 gap-8", props.className)}>
-      <div>{parse(props.column1 || "")}</div>
-      <div>{parse(props.column2 || "")}</div>
+    <div
+      className={cn(
+        "grid w-full grid-cols-1 gap-8 md:grid-cols-2",
+        props.className,
+      )}
+    >
+      <div className="prose prose-invert">{parse(props.column1 || "")}</div>
+      <div className="prose prose-invert">{parse(props.column2 || "")}</div>
     </div>
   );
 }

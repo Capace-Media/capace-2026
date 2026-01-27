@@ -18,7 +18,7 @@ export default function HeadingWithAccent(props: Props) {
     >
       <h3
         className={cn(
-          "text-4xl",
+          "text-2xl md:text-4xl",
           props.textAlign === "left" ? "text-left" : "text-center",
         )}
       >
