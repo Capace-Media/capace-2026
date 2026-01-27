@@ -12,13 +12,12 @@ export default function TwoColumnTextWrapper(props: Props) {
 
   return (
     <section className="section items-center">
-      {data.accentHeading?.accent ||
-        (data.accentHeading?.main && (
-          <HeadingWithAccent
-            accentedHeading={data.accentHeading?.accent || ""}
-            mainHeading={data.accentHeading?.main || ""}
-          />
-        ))}
+      {(data.accentHeading?.accent || data.accentHeading?.main) && (
+        <HeadingWithAccent
+          accentedHeading={data.accentHeading?.accent || ""}
+          mainHeading={data.accentHeading?.main || ""}
+        />
+      )}
       <TwoColumnText column1={data.column_left} column2={data.column_right} />
     </section>
   );

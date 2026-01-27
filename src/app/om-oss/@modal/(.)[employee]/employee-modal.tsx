@@ -43,18 +43,18 @@ export default function EmployeeModal({ data }: Props) {
       onClose={handleClose}
       className="animate-in fade-in fixed inset-0 z-100 flex h-screen max-h-screen w-full max-w-full cursor-pointer items-center justify-center bg-transparent duration-300 backdrop:bg-black/80 backdrop:backdrop-blur-sm"
     >
+      <button
+        onClick={handleClose}
+        className="absolute top-5 right-5 z-200 cursor-pointer"
+      >
+        <X className="text-muted-foreground" />
+      </button>
       <article
         className={cn(
           "bg-background border-muted relative grid h-[90vh] w-full max-w-4xl cursor-default grid-cols-[repeat(auto-fit,minmax(300px,1fr))] flex-col gap-0 overflow-y-auto rounded-3xl border shadow-2xl",
           "scrollbar-thin scrollbar-track-transparent scrollbar-thumb-accent/30",
         )}
       >
-        <button
-          onClick={handleClose}
-          className="absolute top-5 right-5 z-200 cursor-pointer"
-        >
-          <X className="text-muted-foreground" />
-        </button>
         <div>
           {data.employeeContent?.image?.node.mediaItemUrl && (
             <div className="relative aspect-square h-auto w-full">

@@ -1,6 +1,6 @@
 "use client";
-import { cn } from "@/lib/utils";
 import { Minus } from "lucide-react";
+import Image from "next/image";
 
 interface Props {
   quote: string | undefined | null;
@@ -13,13 +13,16 @@ interface Props {
 export default function Quote(props: Props) {
   return (
     <blockquote className="flex flex-col gap-8">
-      <div className="flex flex-col">
-        <span
-          aria-hidden="true"
-          className="text-primary text-[96px] leading-5 font-bold"
-        >
-          “
-        </span>
+      <div className="flex flex-col p-6">
+        <div className="relative aspect-square h-12 w-12" aria-hidden>
+          <Image
+            src={"/icons/citation-marks.svg"}
+            fill
+            className="object-contain"
+            alt={""}
+            sizes="10vw"
+          />
+        </div>
         <p className="prose-invert prose prose-sm text-center font-medium text-white! md:text-base">
           {props.quote}
         </p>

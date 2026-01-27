@@ -10,12 +10,10 @@ interface Props {
 }
 export default function Author(props: Props) {
   const data = useFragment(BlocksFragment, props.data);
-  console.log("emp data:", data);
 
   if (data.__typename !== "BlocksBlocksAuthorLayout") return null;
   return (
     <div>
-      <div></div>
       <div>
         {data.employee?.nodes.map((data, index) => {
           if (data.__typename !== "Employee") return;

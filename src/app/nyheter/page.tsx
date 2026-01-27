@@ -6,7 +6,6 @@ export default async function Page() {
   const data = await getPage("nyheter");
 
   const blocks = data?.blocks?.blocks;
-  console.log("news page data:", data);
 
   if (!data) notFound();
   return (

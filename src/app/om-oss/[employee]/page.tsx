@@ -1,16 +1,15 @@
 import parse from "html-react-parser";
-import Quote from "@/components/blocks/quote/quote";
 import EmailLink from "@/components/shared/email-link";
 import ParallaxImage from "@/components/shared/parallax-image";
 import TelephoneLink from "@/components/shared/telephone-link";
 import { getEmployeeBySlug } from "@/lib/fetchers/employees";
 import { notFound } from "next/navigation";
+import Quote from "@/components/blocks/quote/quote";
 
 export default async function Page(props: PageProps<"/om-oss/[employee]">) {
   const { employee } = await props.params;
   const data = await getEmployeeBySlug(employee);
   if (!data) notFound();
-  console.log("employee data:", data);
 
   return (
     <section className="section end-section items-center pt-40">
