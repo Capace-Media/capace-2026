@@ -7,7 +7,6 @@ export default async function Page(props: PageProps<"/nyheter/[slug]">) {
   const { slug } = await props.params;
 
   const data = await getNewsPage(slug);
-  console.log("data:", data);
 
   return (
     <section className="end-section items-center">

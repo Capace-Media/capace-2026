@@ -1,16 +1,13 @@
 import Image from "next/image";
 import Blocks from "@/components/blocks/blocks";
 import Hero from "@/components/layout/hero";
-import { Button } from "@/components/ui/button";
 import { getPage } from "@/lib/fetchers/pages";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import ButtonLink from "@/components/shared/link";
 
 export default async function Page() {
   const data = await getPage("/om-oss");
   if (!data) notFound();
-  console.log("om oss data:", data);
 
   return (
     <div>
