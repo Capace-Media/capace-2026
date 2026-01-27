@@ -34,9 +34,6 @@ export default function MobileMenu() {
         </SheetHeader>
         <nav className="w-full">
           <ul className="flex w-full flex-col">
-            <NavLink close={close} href="/">
-              Hem
-            </NavLink>
             <NavLink close={close} href="/tjanster">
               Våra tjänster
             </NavLink>

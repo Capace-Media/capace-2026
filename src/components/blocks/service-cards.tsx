@@ -35,10 +35,7 @@ export default function ServiceCards(props: Props) {
           return (
             <Card key={index} className="h-110 max-w-75 min-w-70">
               <Card.Header>
-                <Card.Icon
-                  src={s.serviceContent?.icon?.node.mediaItemUrl}
-                  altText={s.serviceContent?.icon?.node.altText}
-                />
+                <Card.Icon src={s.serviceContent?.icon?.node.mediaItemUrl} />
               </Card.Header>
               <Card.Body>
                 <Card.Title>{s.title}</Card.Title>

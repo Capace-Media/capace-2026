@@ -6,6 +6,7 @@ import MobileMenu from "./mobile-menu";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { gsap } from "gsap";
+import { cn } from "@/lib/utils";
 gsap.registerPlugin(ScrollTrigger, gsap);
 
 export default function Header() {
@@ -25,7 +26,8 @@ export default function Header() {
       <div className="fade-on-scroll absolute bottom-0 left-10 text-neutral-400 uppercase opacity-100">
         Digitalbyrå / webbyrå Malmö
       </div>
-      <div className="ml-auto md:hidden">
+      <div className="ml-auto flex w-full items-center justify-between md:hidden">
+        <CapaceLogo />
         <MobileMenu />
       </div>
       <div className="hidden w-full md:flex">
@@ -66,20 +68,7 @@ export default function Header() {
             </li>
           </ul>
         </nav>
-        <div className="flex max-w-[1/3] flex-1 justify-center">
-          <Link
-            className="frosted flex h-12 min-w-40 items-center justify-center rounded-full px-8 py-1 transition-all duration-300 hover:border-white/20"
-            href={"/"}
-          >
-            <Image
-              src={"/logotypes/capace-media.svg"}
-              alt="Logotyp för Capace Media Group AB"
-              width={100}
-              height={40}
-              className="h-[80%] w-auto"
-            />
-          </Link>
-        </div>
+        <CapaceLogo className="max-w-[1/3] flex-1" />
         <div className="flex max-w-[1/3] flex-1 justify-end">
           <Button withArrow variant={"secondary"} size={"default"}>
             Be om offert
@@ -89,3 +78,22 @@ export default function Header() {
     </header>
   );
 }
+
+const CapaceLogo = ({ className }: { className?: string }) => {
+  return (
+    <div className={cn("flex justify-center", className)}>
+      <Link
+        className="frosted flex h-12 min-w-40 items-center justify-center rounded-full px-8 py-1 transition-all duration-300 hover:border-white/20"
+        href={"/"}
+      >
+        <Image
+          src={"/logotypes/capace-media.svg"}
+          alt="Logotyp för Capace Media Group AB"
+          width={100}
+          height={40}
+          className="h-[80%] w-auto"
+        />
+      </Link>
+    </div>
+  );
+};

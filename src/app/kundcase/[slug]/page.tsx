@@ -24,7 +24,7 @@ export default async function Page(props: Props) {
 
   return (
     <div className="flex flex-col items-center gap-0">
-      <section className="section">
+      <section className="section pb-0">
         <ParallaxHero src={data.caseContent?.heroImage?.node.mediaItemUrl} />
         <div className="flex w-full items-center justify-between">
           <CategoryButtons
