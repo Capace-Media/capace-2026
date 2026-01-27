@@ -107,11 +107,14 @@ const HeroMedium = (data: Props) => {
   const heroData = data.data?.medium;
   return (
     <div className="section flex w-full flex-col items-center justify-center pt-40">
-      <HeadingWithAccent
-        textAlign="center"
-        accentedHeading={heroData?.heading_accent || ""}
-        mainHeading={heroData?.heading_main || ""}
-      />
+      <div className="flex flex-col items-center">
+        <h1 className={"text-2xl md:text-4xl"}>
+          <span className="font-caveat text-accent block text-center text-5xl">
+            {heroData?.heading_accent}
+          </span>
+          {heroData?.heading_main}
+        </h1>
+      </div>
       {data.data?.medium?.text && (
         <p className="text-muted-foreground prose text-center">
           {data.data?.medium?.text}

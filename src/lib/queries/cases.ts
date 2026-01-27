@@ -36,6 +36,7 @@ export const CaseQuery = graphql(`
 
       caseContent {
         url
+        followLink
         heroImage {
           node {
             altText

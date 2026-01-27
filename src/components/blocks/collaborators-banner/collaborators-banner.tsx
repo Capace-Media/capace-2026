@@ -1,11 +1,11 @@
 "use client";
 
 import type { getCollaborators } from "@/lib/fetchers/collaborators";
-import { animate } from "motion";
 import { CollaboratorImage } from "./collaborator-image";
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import gsap from "gsap";
 
 interface Props {
   items: Awaited<ReturnType<typeof getCollaborators>>;
@@ -13,7 +13,7 @@ interface Props {
 
 export default function CollaboratorsBanner(props: Props) {
   const ref = useRef<HTMLDivElement>(null);
-  const animationRef = useRef<any>(null);
+  const animationRef = useRef<gsap.core.Tween | null>(null);
   const pathname = usePathname();
   const isHomePage = pathname === "/";
 
@@ -30,28 +30,34 @@ export default function CollaboratorsBanner(props: Props) {
   useEffect(() => {
     if (!ref.current || width === 0) return;
 
-    animationRef.current = animate(
-      ref.current,
-      { x: -width },
-      {
+    gsap.set(ref.current, { x: 0 });
+
+    const animateBanner = () => {
+      animationRef.current = gsap.to(ref.current, {
+        x: -width,
         duration: width / BASE_SPEED,
         ease: "linear",
-        repeat: Infinity,
-      },
-    );
+        onComplete: () => {
+          gsap.set(ref.current, { x: 0 });
+          animateBanner();
+        },
+      });
+    };
+    animateBanner();
+
     return () => {
-      animationRef.current?.stop();
+      animationRef.current?.kill();
     };
   }, [width]);
 
   const slowDownSpeed = () => {
     if (!animationRef.current) return;
-    animationRef.current.speed = SLOW_SPEED;
+    animationRef.current.timeScale(SLOW_SPEED);
   };
 
   const resetSpeed = () => {
     if (!animationRef.current) return;
-    animationRef.current.speed = BASE_SPEED / 50;
+    animationRef.current.timeScale(1);
   };
 
   if (!props.items) return null;

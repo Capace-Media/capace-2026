@@ -1,5 +1,5 @@
 /* eslint-disable */
-import {type  DocumentTypeDecoration } from '@graphql-typed-document-node/core';
+import { DocumentTypeDecoration } from '@graphql-typed-document-node/core';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = T | null | undefined;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -1477,6 +1477,8 @@ export type CaseContent = AcfFieldGroup & AcfFieldGroupFields & Blocks_Fields & 
    * @deprecated Use __typename instead
    */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;radio&quot; Field Type added to the schema as part of the &quot;CaseContent&quot; Field Group */
+  followLink?: Maybe<Scalars['String']['output']>;
   /** Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;CaseContent&quot; Field Group */
   heroImage?: Maybe<AcfMediaItemConnectionEdge>;
   /** This will be displayed on preview cards */
@@ -1494,6 +1496,8 @@ export type CaseContent_Fields = {
    * @deprecated Use __typename instead
    */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;radio&quot; Field Type added to the schema as part of the &quot;CaseContent&quot; Field Group */
+  followLink?: Maybe<Scalars['String']['output']>;
   /** Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;CaseContent&quot; Field Group */
   heroImage?: Maybe<AcfMediaItemConnectionEdge>;
   /** This will be displayed on preview cards */
@@ -14353,7 +14357,7 @@ export type CaseQuery = { __typename?: 'RootQuery', case?: { __typename?: 'Case'
           { __typename?: 'BlocksBlocksWysiwygLayout' }
           & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksWysiwygLayout_Fragment': BlocksFragment_BlocksBlocksWysiwygLayout_Fragment } }
         )
-       | null> | null } | null, caseContent?: { __typename?: 'CaseContent', url?: string | null, shortDescription?: string | null, heroImage?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null } | null } | null };
+       | null> | null } | null, caseContent?: { __typename?: 'CaseContent', url?: string | null, followLink?: string | null, shortDescription?: string | null, heroImage?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null } | null } | null };
 
 export type CasesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -15188,6 +15192,7 @@ export const CaseDocument = new TypedDocumentString(`
     }
     caseContent {
       url
+      followLink
       heroImage {
         node {
           altText

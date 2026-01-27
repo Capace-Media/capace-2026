@@ -165,6 +165,15 @@
   h1 {
     @apply text-4xl font-bold;
   }
+  h1::after {
+    content: "";
+    display: inline-block;
+    background-color: var(--primary);
+    width: 0.7rem;
+    height: 0.7rem;
+    margin-left: 2px;
+    border-radius: 100%;
+  }
   a:focus-visible {
     outline: 5px solid var(--primary);
   }

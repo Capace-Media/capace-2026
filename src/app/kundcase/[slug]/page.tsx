@@ -1,7 +1,6 @@
 import Blocks from "@/components/blocks/blocks";
 import CasesCarouselWrapper from "@/components/blocks/cases-carousel/cases-carousel-wrapper";
 import CategoryButtons from "@/components/shared/category-buttons";
-import { Button } from "@/components/ui/button";
 import { getCase } from "@/lib/fetchers/cases";
 import { notFound } from "next/navigation";
 import Image from "next/image";
@@ -35,7 +34,11 @@ export default async function Page(props: Props) {
             })}
           />
           {data.caseContent?.url && (
-            <CaseLink className="hidden sm:flex" href={data.caseContent?.url}>
+            <CaseLink
+              shouldFollow={data.caseContent?.followLink === "dofollow"}
+              className="hidden sm:flex"
+              href={data.caseContent?.url}
+            >
               {formattedUrl}
             </CaseLink>
           )}
@@ -80,6 +83,7 @@ export default async function Page(props: Props) {
 
 interface CaseLinkProps {
   href: string;
+  shouldFollow: boolean;
   children: React.ReactNode;
   className?: string;
 }
@@ -92,7 +96,11 @@ const CaseLink = (props: CaseLinkProps) => {
       )}
       href={props.href}
       target="_blank"
-      rel="nofollow noopener norefferer"
+      rel={
+        props.shouldFollow
+          ? "noopener noreferrer"
+          : "noopener noreferrer nofollow"
+      }
     >
       {props.children}
     </a>

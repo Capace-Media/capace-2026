@@ -1714,6 +1714,10 @@ type CaseContent implements AcfFieldGroup & AcfFieldGroupFields & Blocks_Fields 
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
   """
+  Field of the &quot;radio&quot; Field Type added to the schema as part of the &quot;CaseContent&quot; Field Group
+  """
+  followLink: String
+  """
   Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;CaseContent&quot; Field Group
   """
   heroImage: AcfMediaItemConnectionEdge
@@ -1735,6 +1739,10 @@ interface CaseContent_Fields implements AcfFieldGroup & AcfFieldGroupFields & Bl
   blocks: [BlocksBlocks_Layout]
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;radio&quot; Field Type added to the schema as part of the &quot;CaseContent&quot; Field Group
+  """
+  followLink: String
   """
   Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;CaseContent&quot; Field Group
   """
