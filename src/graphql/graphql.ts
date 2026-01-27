@@ -1,5 +1,5 @@
 /* eslint-disable */
-import {type DocumentTypeDecoration } from '@graphql-typed-document-node/core';
+import { DocumentTypeDecoration } from '@graphql-typed-document-node/core';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = T | null | undefined;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -316,7 +316,7 @@ export type BlocksBlocksCardsCard = AcfFieldGroup & AcfFieldGroupFields & Blocks
   fieldGroupName?: Maybe<Scalars['String']['output']>;
   /** Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;BlocksBlocksCardsCard&quot; Field Group */
   image?: Maybe<AcfMediaItemConnectionEdge>;
-  /** Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BlocksBlocksCardsCard&quot; Field Group */
+  /** Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksCardsCard&quot; Field Group */
   textContent?: Maybe<Scalars['String']['output']>;
   /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BlocksBlocksCardsCard&quot; Field Group */
   title?: Maybe<Scalars['String']['output']>;
@@ -333,7 +333,7 @@ export type BlocksBlocksCardsCard_Fields = {
   fieldGroupName?: Maybe<Scalars['String']['output']>;
   /** Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;BlocksBlocksCardsCard&quot; Field Group */
   image?: Maybe<AcfMediaItemConnectionEdge>;
-  /** Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BlocksBlocksCardsCard&quot; Field Group */
+  /** Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksCardsCard&quot; Field Group */
   textContent?: Maybe<Scalars['String']['output']>;
   /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BlocksBlocksCardsCard&quot; Field Group */
   title?: Maybe<Scalars['String']['output']>;
@@ -8594,7 +8594,7 @@ export type ReusableFieldsCard = AcfFieldGroup & AcfFieldGroupFields & ReusableF
   fieldGroupName?: Maybe<Scalars['String']['output']>;
   /** Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;ReusableFieldsCard&quot; Field Group */
   image?: Maybe<AcfMediaItemConnectionEdge>;
-  /** Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;ReusableFieldsCard&quot; Field Group */
+  /** Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;ReusableFieldsCard&quot; Field Group */
   textContent?: Maybe<Scalars['String']['output']>;
   /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;ReusableFieldsCard&quot; Field Group */
   title?: Maybe<Scalars['String']['output']>;
@@ -8642,7 +8642,7 @@ export type ReusableFieldsCard_Fields = {
   fieldGroupName?: Maybe<Scalars['String']['output']>;
   /** Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;ReusableFieldsCard&quot; Field Group */
   image?: Maybe<AcfMediaItemConnectionEdge>;
-  /** Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;ReusableFieldsCard&quot; Field Group */
+  /** Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;ReusableFieldsCard&quot; Field Group */
   textContent?: Maybe<Scalars['String']['output']>;
   /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;ReusableFieldsCard&quot; Field Group */
   title?: Maybe<Scalars['String']['output']>;
@@ -14333,7 +14333,7 @@ type BlocksFragment_BlocksBlocksAnimatedCardsLayout_Fragment = { __typename: 'Bl
 
 type BlocksFragment_BlocksBlocksAuthorLayout_Fragment = { __typename: 'BlocksBlocksAuthorLayout', employee?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
       | { __typename?: 'Case' }
-      | { __typename: 'Employee', title?: string | null, slug?: string | null, employeeContent?: { __typename?: 'EmployeeContent', email?: string | null, telephone?: string | null, workTitle?: string | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null } } | null } | null }
+      | { __typename: 'Employee', title?: string | null, slug?: string | null, employeeContent?: { __typename?: 'EmployeeContent', email?: string | null, employmentType?: Array<string | null> | null, telephone?: string | null, workTitle?: string | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null } } | null } | null }
       | { __typename?: 'Faq' }
       | { __typename?: 'MediaItem' }
       | { __typename?: 'Page' }
@@ -14877,6 +14877,7 @@ export const BlocksFragmentFragmentDoc = new TypedDocumentString(`
           slug
           employeeContent {
             email
+            employmentType
             image {
               node {
                 altText
@@ -15252,6 +15253,7 @@ export const CaseDocument = new TypedDocumentString(`
           slug
           employeeContent {
             email
+            employmentType
             image {
               node {
                 altText
@@ -15719,6 +15721,7 @@ export const NewsBySlugQueryDocument = new TypedDocumentString(`
           slug
           employeeContent {
             email
+            employmentType
             image {
               node {
                 altText
@@ -16075,6 +16078,7 @@ export const PageDocument = new TypedDocumentString(`
           slug
           employeeContent {
             email
+            employmentType
             image {
               node {
                 altText
@@ -16440,6 +16444,7 @@ export const QueryDocument = new TypedDocumentString(`
           slug
           employeeContent {
             email
+            employmentType
             image {
               node {
                 altText

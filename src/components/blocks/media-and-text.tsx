@@ -2,7 +2,6 @@ import type { ReusableFieldsButton_Fields } from "@/graphql/graphql";
 import { type FragmentType, useFragment } from "@/graphql/fragment-masking";
 import { BlocksFragment } from "@/lib/queries/fragments";
 import parse from "html-react-parser";
-import Image from "next/image";
 import HeadingWithAccent from "../shared/heading-with-accent";
 import ExternalOrInternalLink from "../shared/external-or-internal-link";
 import ParallaxImage from "../shared/parallax-image";
@@ -33,15 +32,14 @@ export default function MediaAndText(props: Props) {
       )}
     >
       <div className="order-1">
-        {data?.accentHeading?.accent ||
-          (data?.accentHeading?.main && (
-            <HeadingWithAccent
-              noBottomMargin
-              textAlign="left"
-              accentedHeading={data?.accentHeading?.accent || ""}
-              mainHeading={data?.accentHeading?.main || ""}
-            />
-          ))}
+        {(data?.accentHeading?.accent || data?.accentHeading?.main) && (
+          <HeadingWithAccent
+            noBottomMargin
+            textAlign="left"
+            accentedHeading={data?.accentHeading?.accent || ""}
+            mainHeading={data?.accentHeading?.main || ""}
+          />
+        )}
       </div>
       <div
         className={cn(

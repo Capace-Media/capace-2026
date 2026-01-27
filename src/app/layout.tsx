@@ -33,6 +33,9 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={cn(poppins.className, caveat.variable)}>
+      <head>
+        <meta name="apple-mobile-web-app-title" content="Capace" />
+      </head>
       <body className="mx-auto flex min-h-screen max-w-400 flex-col">
         <Header />
         <main className="bg-background z-1 flex-1 rounded-bl-[100px] transition-all duration-300">

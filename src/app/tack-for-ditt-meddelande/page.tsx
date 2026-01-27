@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
@@ -7,6 +8,14 @@ export default function Page() {
       <h1 className="text-primary text-4xl font-bold">
         Tack för ditt meddelande!
       </h1>
+      <div className="relative h-50 w-50" aria-hidden>
+        <Image
+          fill
+          className="object-contain"
+          src={"/stickers/sticker-plane.webp"}
+          alt={""}
+        />
+      </div>
       <p className="prose prose-invert text-center">
         Vi återkommer inom kort! Lite mer text här. Lorem, ipsum dolor sit amet
         consectetur adipisicing elit. Sint, laboriosam! Dolores tenetur sint

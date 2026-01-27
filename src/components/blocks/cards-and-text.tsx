@@ -2,6 +2,7 @@ import { useFragment, type FragmentType } from "@/graphql";
 import { BlocksFragment } from "@/lib/queries/fragments";
 import HeadingWithAccent from "../shared/heading-with-accent";
 import Card from "../shared/card";
+import parse from "html-react-parser";
 
 interface Props {
   data: FragmentType<typeof BlocksFragment>;
@@ -23,7 +24,16 @@ export default function CardsAndText(props: Props) {
           <Card key={index} className="max-w-100">
             <Card.Body>
               <Card.Title>{card?.card?.title}</Card.Title>
-              <Card.TextContent>{card?.card?.textContent}</Card.TextContent>
+              {card?.card?.image?.node.mediaItemUrl && (
+                <Card.Icon src={card?.card?.image?.node.mediaItemUrl} />
+              )}
+              {card?.card?.textContent && (
+                <Card.TextContent>
+                  <div className="prose prose-invert">
+                    {parse(card?.card?.textContent)}
+                  </div>
+                </Card.TextContent>
+              )}
             </Card.Body>
           </Card>
         ))}

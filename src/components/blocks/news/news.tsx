@@ -38,6 +38,9 @@ export default function News(props: Props) {
           duration: 0.5,
           stagger: 0.08,
           ease: "power2.out",
+          onStart: () => {
+            newCards.forEach((el) => el.classList.remove("invisible"));
+          },
         },
       );
 
@@ -68,8 +71,13 @@ export default function News(props: Props) {
           if (item.date) {
             date = new Date(item.date?.toString());
           }
+          // Only add 'invisible' to cards that are newly loaded (after initial render)
+          const isInitial = index < animatedCountRef.current;
           return (
-            <div key={item.slug ?? index} className="case-card invisible">
+            <div
+              key={item.slug ?? index}
+              className={"case-card" + (isInitial ? "" : " invisible")}
+            >
               <ArticleCard
                 imgSrc={item.pageContent?.rounded?.node.mediaItemUrl}
                 altText={

@@ -143,14 +143,16 @@ const HeroSmall = (data: Props) => {
 const HeroRounded = (data: Props) => {
   const heroData = data.data?.rounded?.node;
   return (
-    <div
-      className="mt-30 h-60 w-full overflow-hidden rounded-[36px] md:h-90 lg:h-130"
-      aria-hidden
-    >
-      <ParallaxImage
-        src={heroData?.mediaItemUrl || "/misc/no-image.svg"}
-        alt={""}
-      />
+    <div className="section">
+      <div
+        className="mt-30 h-60 w-full overflow-hidden rounded-[36px] md:h-90 lg:h-130"
+        aria-hidden
+      >
+        <ParallaxImage
+          src={heroData?.mediaItemUrl || "/misc/no-image.svg"}
+          alt={""}
+        />
+      </div>
     </div>
   );
 };

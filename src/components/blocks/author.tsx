@@ -39,18 +39,31 @@ export default function Author(props: Props) {
                 />
               </div>
               <div className="flex flex-col justify-center gap-4">
-                <div className="flex flex-col items-start">
+                <div className="flex flex-col items-start gap-2">
                   <h3 className="orange-dot font-bold">
-                    <Link
-                      href={`/om-oss/${data.slug}`}
-                      className="hover:underline!"
-                    >
-                      {data.title}
-                    </Link>
+                    {data.employeeContent?.employmentType?.includes(
+                      "not-employed",
+                    ) ? (
+                      <span>{data.title}</span>
+                    ) : (
+                      <Link
+                        href={`/om-oss/${data.slug}`}
+                        className="hover:underline!"
+                      >
+                        {data.title}
+                      </Link>
+                    )}
                   </h3>
                   <p className="text-primary text-sm uppercase">
                     {data.employeeContent?.workTitle}
                   </p>
+                  {data.employeeContent?.employmentType?.includes(
+                    "not-employed",
+                  ) && (
+                    <p className="text-muted-foreground text-sm">
+                      (Tidigare anställd)
+                    </p>
+                  )}
                 </div>
                 {data.employeeContent?.email && (
                   <EmailLink email={data.employeeContent.email} />

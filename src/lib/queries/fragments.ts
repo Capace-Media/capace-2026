@@ -158,6 +158,7 @@ export const BlocksFragment = graphql(`
             slug
             employeeContent {
               email
+              employmentType
               image {
                 node {
                   altText

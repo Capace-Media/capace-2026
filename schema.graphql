@@ -335,7 +335,7 @@ type BlocksBlocksCardsCard implements AcfFieldGroup & AcfFieldGroupFields & Bloc
   """
   image: AcfMediaItemConnectionEdge
   """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BlocksBlocksCardsCard&quot; Field Group
+  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksCardsCard&quot; Field Group
   """
   textContent: String
   """
@@ -359,7 +359,7 @@ interface BlocksBlocksCardsCard_Fields implements AcfFieldGroup & AcfFieldGroupF
   """
   image: AcfMediaItemConnectionEdge
   """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BlocksBlocksCardsCard&quot; Field Group
+  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksCardsCard&quot; Field Group
   """
   textContent: String
   """
@@ -9986,7 +9986,7 @@ type ReusableFieldsCard implements AcfFieldGroup & AcfFieldGroupFields & Reusabl
   """
   image: AcfMediaItemConnectionEdge
   """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;ReusableFieldsCard&quot; Field Group
+  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;ReusableFieldsCard&quot; Field Group
   """
   textContent: String
   """
@@ -10050,7 +10050,7 @@ interface ReusableFieldsCard_Fields implements AcfFieldGroup & AcfFieldGroupFiel
   """
   image: AcfMediaItemConnectionEdge
   """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;ReusableFieldsCard&quot; Field Group
+  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;ReusableFieldsCard&quot; Field Group
   """
   textContent: String
   """

@@ -1,7 +1,6 @@
 import Blocks from "@/components/blocks/blocks";
 import CasesCarouselWrapper from "@/components/blocks/cases-carousel/cases-carousel-wrapper";
 import CategoryButtons from "@/components/shared/category-buttons";
-import ParallaxImage from "@/components/shared/parallax-image";
 import { Button } from "@/components/ui/button";
 import { getCase } from "@/lib/fetchers/cases";
 import { notFound } from "next/navigation";

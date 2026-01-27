@@ -1,3 +1,4 @@
+import ButtonLink from "@/components/shared/link";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,9 +19,7 @@ export default function Page() {
       <p className="text-center text-lg">
         Sidan du söker kunde inte hittas. Försök gärna igen senare.
       </p>
-      <Button withArrow>
-        <Link href={"/"}>Hem</Link>
-      </Button>
+      <ButtonLink href={"/"}>Hem</ButtonLink>
       <div
         className="absolute top-20 right-0 hidden aspect-auto h-80 w-80 translate-x-[15%] lg:block"
         aria-hidden
