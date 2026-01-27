@@ -3,6 +3,8 @@ import { BlocksFragment } from "@/lib/queries/fragments";
 import HeadingWithAccent from "../shared/heading-with-accent";
 import Card from "../shared/card";
 import parse from "html-react-parser";
+import ExternalOrInternalLink from "../shared/external-or-internal-link";
+import type { ReusableFieldsButton_Fields } from "@/graphql/graphql";
 
 interface Props {
   data: FragmentType<typeof BlocksFragment>;
@@ -33,6 +35,15 @@ export default function CardsAndText(props: Props) {
                     {parse(card?.card?.textContent)}
                   </div>
                 </Card.TextContent>
+              )}
+              {card?.card?.button?.url && card.card.button.label && (
+                <Card.Footer>
+                  <ExternalOrInternalLink
+                    buttonProps={
+                      card.card.button as ReusableFieldsButton_Fields
+                    }
+                  />
+                </Card.Footer>
               )}
             </Card.Body>
           </Card>

@@ -20,7 +20,7 @@ export default function CaseFilters() {
   };
 
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex flex-wrap items-center gap-4">
       <FilterButton filterString="all" onClick={() => setFilter("all")}>
         Alla
       </FilterButton>
@@ -57,7 +57,7 @@ const FilterButton = ({
       animatedText={false}
       size={"lg"}
       onClick={onClick}
-      className={cn(isActive && "text-accent")}
+      className={cn(isActive && "text-accent", "w-fit")}
     >
       {children}
     </Button>

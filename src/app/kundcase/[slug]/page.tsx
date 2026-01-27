@@ -15,7 +15,6 @@ export default async function Page(props: Props) {
   const { slug } = await props.params;
   const data = await getCase(slug);
   if (!data) notFound();
-  console.log("case data in here:", data);
   //delete https:// and trailing slash
   const formattedUrl = data.caseContent?.url
     ?.replace("https://", "")

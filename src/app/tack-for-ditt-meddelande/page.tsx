@@ -1,11 +1,12 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import ButtonLink from "@/components/shared/link";
 
 export default function Page() {
   return (
     <section className="section no-hero h-screen items-center justify-center">
-      <h1 className="text-primary text-4xl font-bold">
+      <h1 className="text-primary text-center text-4xl font-bold">
         Tack för ditt meddelande!
       </h1>
       <div className="relative h-50 w-50" aria-hidden>
@@ -22,9 +23,7 @@ export default function Page() {
         illo assumenda quas quae ipsa distinctio dolorem, repudiandae incidunt
         molestiae velit, doloribus voluptates. Aut itaque dolore quidem.
       </p>
-      <Button withArrow>
-        <Link href={"/kundcase"}>Utforska våra projekt</Link>
-      </Button>
+      <ButtonLink href={"/kundcase"}>Utforska våra projekt</ButtonLink>
     </section>
   );
 }

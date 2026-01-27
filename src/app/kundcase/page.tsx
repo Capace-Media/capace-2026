@@ -1,9 +1,11 @@
 import Blocks from "@/components/blocks/blocks";
 import AllCasesGridWrapper from "@/components/blocks/cases/all-cases-wrapper";
 import Hero from "@/components/layout/hero";
-import { Button } from "@/components/ui/button";
+import ButtonLink from "@/components/shared/link";
+import { env } from "@/env";
 import { getPage } from "@/lib/fetchers/pages";
 import { notFound } from "next/navigation";
+
 import { Suspense } from "react";
 
 export default async function Page() {
@@ -26,9 +28,7 @@ export default async function Page() {
           Klicka på knappen nedan
         </p>
       </div>
-      <Button withArrow className={"mb-30"}>
-        Lämna ett omdöme nu
-      </Button>
+      <ButtonLink href={env.GOOGLE_REVIEWS}>Lämna ett omdöme nu</ButtonLink>
     </section>
   );
 }

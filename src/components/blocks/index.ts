@@ -13,6 +13,7 @@ import NewsWrapper from "./news/news-wrapper";
 import QuoteWrapper from "./quote/quote-wrapper";
 import ServiceCards from "./service-cards";
 import TestimonialsWrapper from "./testimonials/testimonials-wrapper";
+import TwoColumnTextWrapper from "./two-column-text/two-column-text-wrapper";
 import Wysiwyg from "./wysiwyg";
 export const blockComponents = {
   BlocksBlocksMediaAndTextLayout: MediaAndText,
@@ -31,4 +32,5 @@ export const blockComponents = {
   BlocksBlocksNewsLayout: NewsWrapper,
   BlocksBlocksWysiwygLayout: Wysiwyg,
   BlocksBlocksAuthorLayout: Author,
+  BlocksBlocksTwoColumnTextLayout: TwoColumnTextWrapper,
 };

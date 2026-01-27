@@ -859,6 +859,37 @@ export type BlocksBlocksTimelineLayout_Fields = {
   fieldGroupName?: Maybe<Scalars['String']['output']>;
 };
 
+/** The &quot;BlocksBlocksTwoColumnTextLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
+export type BlocksBlocksTwoColumnTextLayout = AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksTwoColumnTextLayout_Fields & BlocksBlocks_Layout & {
+  __typename?: 'BlocksBlocksTwoColumnTextLayout';
+  /** A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space. */
+  accentHeading?: Maybe<BlocksBlocksAccentHeading>;
+  /** Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksTwoColumnTextLayout&quot; Field Group */
+  columnRight?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksTwoColumnTextLayout&quot; Field Group */
+  column_left?: Maybe<Scalars['String']['output']>;
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars['String']['output']>;
+};
+
+/** Interface representing fields of the ACF &quot;BlocksBlocksTwoColumnTextLayout&quot; Field Group */
+export type BlocksBlocksTwoColumnTextLayout_Fields = {
+  /** A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space. */
+  accentHeading?: Maybe<BlocksBlocksAccentHeading>;
+  /** Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksTwoColumnTextLayout&quot; Field Group */
+  columnRight?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksTwoColumnTextLayout&quot; Field Group */
+  column_left?: Maybe<Scalars['String']['output']>;
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars['String']['output']>;
+};
+
 /** The &quot;BlocksBlocksWysiwygLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
 export type BlocksBlocksWysiwygLayout = AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksWysiwygLayout_Fields & BlocksBlocks_Layout & {
   __typename?: 'BlocksBlocksWysiwygLayout';
@@ -14288,6 +14319,10 @@ export type CaseQuery = { __typename?: 'RootQuery', case?: { __typename?: 'Case'
           & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksTimelineLayout_Fragment': BlocksFragment_BlocksBlocksTimelineLayout_Fragment } }
         )
         | (
+          { __typename?: 'BlocksBlocksTwoColumnTextLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksTwoColumnTextLayout_Fragment': BlocksFragment_BlocksBlocksTwoColumnTextLayout_Fragment } }
+        )
+        | (
           { __typename?: 'BlocksBlocksWysiwygLayout' }
           & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksWysiwygLayout_Fragment': BlocksFragment_BlocksBlocksWysiwygLayout_Fragment } }
         )
@@ -14343,14 +14378,14 @@ type BlocksFragment_BlocksBlocksAuthorLayout_Fragment = { __typename: 'BlocksBlo
     > } | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksAuthorLayout_Fragment' };
 
 type BlocksFragment_BlocksBlocksCardsAndTextLayout_Fragment = { __typename: 'BlocksBlocksCardsAndTextLayout', textContent?: string | null, accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null, cards?: Array<{ __typename?: 'BlocksBlocksCards', card?: { __typename?: 'BlocksBlocksCardsCard', textContent?: string | null, title?: string | null, button?: { __typename?: 'ReusableFieldsCardButton', ariaLabel?: string | null, label?: string | null, url?: { __typename?: 'ReusableFieldsButtonUrl', externalLink?: string | null, internalLink?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
-              | { __typename?: 'Case', slug?: string | null }
-              | { __typename?: 'Employee', slug?: string | null }
-              | { __typename?: 'Faq', slug?: string | null }
-              | { __typename?: 'MediaItem', slug?: string | null }
-              | { __typename?: 'Page', slug?: string | null }
-              | { __typename?: 'Post', slug?: string | null }
-              | { __typename?: 'Service', slug?: string | null }
-              | { __typename?: 'Testimonial', slug?: string | null }
+              | { __typename?: 'Case', slug?: string | null, uri?: string | null }
+              | { __typename?: 'Employee', slug?: string | null, uri?: string | null }
+              | { __typename?: 'Faq', slug?: string | null, uri?: string | null }
+              | { __typename?: 'MediaItem', slug?: string | null, uri?: string | null }
+              | { __typename?: 'Page', slug?: string | null, uri?: string | null }
+              | { __typename?: 'Post', slug?: string | null, uri?: string | null }
+              | { __typename?: 'Service', slug?: string | null, uri?: string | null }
+              | { __typename?: 'Testimonial', slug?: string | null, uri?: string | null }
             > } | null } | null } | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null, altText?: string | null } } | null } | null } | null> | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksCardsAndTextLayout_Fragment' };
 
 type BlocksFragment_BlocksBlocksCaseCardGridLayout_Fragment = { __typename: 'BlocksBlocksCaseCardGridLayout', compact?: boolean | null, accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null, cases?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
@@ -14422,6 +14457,8 @@ type BlocksFragment_BlocksBlocksTestimonialsLayout_Fragment = { __typename: 'Blo
 
 type BlocksFragment_BlocksBlocksTimelineLayout_Fragment = { __typename?: 'BlocksBlocksTimelineLayout' } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksTimelineLayout_Fragment' };
 
+type BlocksFragment_BlocksBlocksTwoColumnTextLayout_Fragment = { __typename: 'BlocksBlocksTwoColumnTextLayout', columnRight?: string | null, column_left?: string | null, accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksTwoColumnTextLayout_Fragment' };
+
 type BlocksFragment_BlocksBlocksWysiwygLayout_Fragment = { __typename: 'BlocksBlocksWysiwygLayout', content?: string | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksWysiwygLayout_Fragment' };
 
 export type BlocksFragmentFragment =
@@ -14440,6 +14477,7 @@ export type BlocksFragmentFragment =
   | BlocksFragment_BlocksBlocksServiceCardsLayout_Fragment
   | BlocksFragment_BlocksBlocksTestimonialsLayout_Fragment
   | BlocksFragment_BlocksBlocksTimelineLayout_Fragment
+  | BlocksFragment_BlocksBlocksTwoColumnTextLayout_Fragment
   | BlocksFragment_BlocksBlocksWysiwygLayout_Fragment
 ;
 
@@ -14529,6 +14567,10 @@ export type NewsBySlugQueryQuery = { __typename?: 'RootQuery', post?: { __typena
           & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksTimelineLayout_Fragment': BlocksFragment_BlocksBlocksTimelineLayout_Fragment } }
         )
         | (
+          { __typename?: 'BlocksBlocksTwoColumnTextLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksTwoColumnTextLayout_Fragment': BlocksFragment_BlocksBlocksTwoColumnTextLayout_Fragment } }
+        )
+        | (
           { __typename?: 'BlocksBlocksWysiwygLayout' }
           & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksWysiwygLayout_Fragment': BlocksFragment_BlocksBlocksWysiwygLayout_Fragment } }
         )
@@ -14610,6 +14652,10 @@ export type PageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page'
           & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksTimelineLayout_Fragment': BlocksFragment_BlocksBlocksTimelineLayout_Fragment } }
         )
         | (
+          { __typename?: 'BlocksBlocksTwoColumnTextLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksTwoColumnTextLayout_Fragment': BlocksFragment_BlocksBlocksTwoColumnTextLayout_Fragment } }
+        )
+        | (
           { __typename?: 'BlocksBlocksWysiwygLayout' }
           & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksWysiwygLayout_Fragment': BlocksFragment_BlocksBlocksWysiwygLayout_Fragment } }
         )
@@ -14689,6 +14735,10 @@ export type QueryQuery = { __typename?: 'RootQuery', service?: { __typename?: 'S
         | (
           { __typename?: 'BlocksBlocksTimelineLayout' }
           & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksTimelineLayout_Fragment': BlocksFragment_BlocksBlocksTimelineLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksTwoColumnTextLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksTwoColumnTextLayout_Fragment': BlocksFragment_BlocksBlocksTwoColumnTextLayout_Fragment } }
         )
         | (
           { __typename?: 'BlocksBlocksWysiwygLayout' }
@@ -14858,6 +14908,15 @@ export const BlocksFragmentFragmentDoc = new TypedDocumentString(`
       main
     }
   }
+  ... on BlocksBlocksTwoColumnTextLayout {
+    columnRight
+    column_left
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+  }
   ... on BlocksBlocksNewsLayout {
     accentHeading {
       accent
@@ -14965,6 +15024,7 @@ export const BlocksFragmentFragmentDoc = new TypedDocumentString(`
             internalLink {
               nodes {
                 slug
+                uri
               }
             }
           }
@@ -15234,6 +15294,15 @@ export const CaseDocument = new TypedDocumentString(`
       main
     }
   }
+  ... on BlocksBlocksTwoColumnTextLayout {
+    columnRight
+    column_left
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+  }
   ... on BlocksBlocksNewsLayout {
     accentHeading {
       accent
@@ -15341,6 +15410,7 @@ export const CaseDocument = new TypedDocumentString(`
             internalLink {
               nodes {
                 slug
+                uri
               }
             }
           }
@@ -15702,6 +15772,15 @@ export const NewsBySlugQueryDocument = new TypedDocumentString(`
       main
     }
   }
+  ... on BlocksBlocksTwoColumnTextLayout {
+    columnRight
+    column_left
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+  }
   ... on BlocksBlocksNewsLayout {
     accentHeading {
       accent
@@ -15809,6 +15888,7 @@ export const NewsBySlugQueryDocument = new TypedDocumentString(`
             internalLink {
               nodes {
                 slug
+                uri
               }
             }
           }
@@ -16059,6 +16139,15 @@ export const PageDocument = new TypedDocumentString(`
       main
     }
   }
+  ... on BlocksBlocksTwoColumnTextLayout {
+    columnRight
+    column_left
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+  }
   ... on BlocksBlocksNewsLayout {
     accentHeading {
       accent
@@ -16166,6 +16255,7 @@ export const PageDocument = new TypedDocumentString(`
             internalLink {
               nodes {
                 slug
+                uri
               }
             }
           }
@@ -16425,6 +16515,15 @@ export const QueryDocument = new TypedDocumentString(`
       main
     }
   }
+  ... on BlocksBlocksTwoColumnTextLayout {
+    columnRight
+    column_left
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+  }
   ... on BlocksBlocksNewsLayout {
     accentHeading {
       accent
@@ -16532,6 +16631,7 @@ export const QueryDocument = new TypedDocumentString(`
             internalLink {
               nodes {
                 slug
+                uri
               }
             }
           }

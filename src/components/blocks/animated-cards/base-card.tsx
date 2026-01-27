@@ -1,3 +1,4 @@
+import parse from "html-react-parser";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import type { ReusableFieldsButton_Fields } from "@/graphql/graphql";
@@ -63,15 +64,15 @@ export default function BaseCard(props: Props) {
         >
           {props.title}
         </h3>
-        <p
+        <div
           className={cn(
             isInactive ? "text-muted-foreground" : "text-background",
             "text-center text-sm font-light",
             "noscript:text-muted-foreground",
           )}
         >
-          {props.textContent}
-        </p>
+          {parse(props.textContent)}
+        </div>
         {props.buttonProps?.label && props.buttonProps?.url && (
           <ExternalOrInternalLink
             buttonProps={props.buttonProps}

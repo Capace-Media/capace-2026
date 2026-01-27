@@ -139,6 +139,15 @@ export const BlocksFragment = graphql(`
         main
       }
     }
+    ... on BlocksBlocksTwoColumnTextLayout {
+      columnRight
+      column_left
+      __typename
+      accentHeading {
+        accent
+        main
+      }
+    }
     ... on BlocksBlocksNewsLayout {
       accentHeading {
         accent
@@ -246,6 +255,7 @@ export const BlocksFragment = graphql(`
               internalLink {
                 nodes {
                   slug
+                  uri
                 }
               }
             }

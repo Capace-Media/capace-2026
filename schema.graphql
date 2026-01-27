@@ -989,6 +989,46 @@ interface BlocksBlocksTimelineLayout_Fields implements AcfFieldGroup & AcfFieldG
 }
 
 """
+The &quot;BlocksBlocksTwoColumnTextLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type BlocksBlocksTwoColumnTextLayout implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksTwoColumnTextLayout_Fields & BlocksBlocks_Layout {
+  """
+  A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space.
+  """
+  accentHeading: BlocksBlocksAccentHeading
+  """
+  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksTwoColumnTextLayout&quot; Field Group
+  """
+  columnRight: String
+  """
+  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksTwoColumnTextLayout&quot; Field Group
+  """
+  column_left: String
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+}
+
+"""
+Interface representing fields of the ACF &quot;BlocksBlocksTwoColumnTextLayout&quot; Field Group
+"""
+interface BlocksBlocksTwoColumnTextLayout_Fields implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocks_Layout {
+  """
+  A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space.
+  """
+  accentHeading: BlocksBlocksAccentHeading
+  """
+  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksTwoColumnTextLayout&quot; Field Group
+  """
+  columnRight: String
+  """
+  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksTwoColumnTextLayout&quot; Field Group
+  """
+  column_left: String
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+}
+
+"""
 The &quot;BlocksBlocksWysiwygLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
 """
 type BlocksBlocksWysiwygLayout implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksWysiwygLayout_Fields & BlocksBlocks_Layout {

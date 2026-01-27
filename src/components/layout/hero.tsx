@@ -112,9 +112,11 @@ const HeroMedium = (data: Props) => {
         accentedHeading={heroData?.heading_accent || ""}
         mainHeading={heroData?.heading_main || ""}
       />
-      <p className="text-muted-foreground prose text-center">
-        {data.data?.medium?.text}
-      </p>
+      {data.data?.medium?.text && (
+        <p className="text-muted-foreground prose text-center">
+          {data.data?.medium?.text}
+        </p>
+      )}
     </div>
   );
 };
