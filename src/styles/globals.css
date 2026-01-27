@@ -181,7 +181,7 @@
   }
 
   .prose-invert {
-    color: var(--color-muted-foreground) !important;
+    color: var(--color-muted-foreground);
   }
 
   .prose strong,

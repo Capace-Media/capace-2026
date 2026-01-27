@@ -6,6 +6,7 @@ import { getCase } from "@/lib/fetchers/cases";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import ParallaxHero from "@/components/layout/parallax-hero";
+import { cn } from "@/lib/utils";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -27,23 +28,25 @@ export default async function Page(props: Props) {
         <div className="flex w-full items-center justify-between">
           <CategoryButtons
             className="gap-4"
-            size="lg"
+            size="md"
             categories={data.casesCategories?.nodes.map((c) => {
               return { name: c.name, slug: c.slug };
             })}
           />
-          <a
-            className="text-primary duration:300 cursor-pointer text-base transition-all"
-            href={data.caseContent?.url || "#"}
-            target="_blank"
-            rel="nofollow noopener norefferer"
-          >
-            {formattedUrl}
-          </a>
+          {data.caseContent?.url && (
+            <CaseLink className="hidden sm:flex" href={data.caseContent?.url}>
+              {formattedUrl}
+            </CaseLink>
+          )}
         </div>
       </section>
-      <section className="section">
+      <section className="section pt-0">
         <h1 className="mr-auto text-6xl font-bold">{data.title}</h1>
+        {data.caseContent?.url && (
+          <CaseLink className="text-lg sm:hidden" href={data.caseContent?.url}>
+            {formattedUrl}
+          </CaseLink>
+        )}
         <p className="prose prose-invert font-medium">
           {data.caseContent?.description}
         </p>
@@ -78,3 +81,24 @@ export default async function Page(props: Props) {
     </div>
   );
 }
+
+interface CaseLinkProps {
+  href: string;
+  children: React.ReactNode;
+  className?: string;
+}
+const CaseLink = (props: CaseLinkProps) => {
+  return (
+    <a
+      className={cn(
+        "text-primary duration:300 cursor-pointer text-base transition-all",
+        props.className,
+      )}
+      href={props.href}
+      target="_blank"
+      rel="nofollow noopener norefferer"
+    >
+      {props.children}
+    </a>
+  );
+};

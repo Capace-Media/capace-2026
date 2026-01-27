@@ -1,6 +1,5 @@
+"use client";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import ButtonLink from "@/components/shared/link";
 
 export default function Page() {
