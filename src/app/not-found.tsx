@@ -6,7 +6,7 @@ export default function Page() {
   return (
     <section className="section no-hero relative h-screen items-center justify-center">
       <h1 className="text-primary text-center text-4xl font-bold">
-        Hoppsan! Den sidan finns inte.
+        Hoppsan! Den sidan finns inte
       </h1>
       <div className="relative aspect-video h-auto w-60" aria-hidden>
         <Image

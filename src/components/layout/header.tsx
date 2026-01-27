@@ -7,6 +7,7 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { gsap } from "gsap";
 import { cn } from "@/lib/utils";
+import ButtonLink from "../shared/link";
 gsap.registerPlugin(ScrollTrigger, gsap);
 
 export default function Header() {
@@ -70,9 +71,7 @@ export default function Header() {
         </nav>
         <CapaceLogo className="max-w-[1/3] flex-1" />
         <div className="flex max-w-[1/3] flex-1 justify-end">
-          <Button withArrow variant={"secondary"} size={"default"}>
-            Be om offert
-          </Button>
+          <ButtonLink href="/offert">Be om offert</ButtonLink>
         </div>
       </div>
     </header>
