@@ -11,9 +11,16 @@ export async function getCasePreviews() {
 }
 
 export async function getCase(slug: string) {
-  return (await execute(CaseQuery, "force-cache", { slug })).case;
+  return (
+    await execute(
+      CaseQuery,
+      { cache: "force-cache", tags: ["cases"] },
+      { slug },
+    )
+  ).case;
 }
 
 export async function getCases() {
-  return (await execute(CasesQuery, "force-cache")).cases;
+  return (await execute(CasesQuery, { cache: "force-cache", tags: ["cases"] }))
+    .cases;
 }

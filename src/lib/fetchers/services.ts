@@ -8,5 +8,11 @@ export async function getServiceCategorySlugs() {
 }
 
 export async function getServicePage(slug: string) {
-  return (await execute(ServicePageQuery, "force-cache", { slug })).service;
+  return (
+    await execute(
+      ServicePageQuery,
+      { cache: "force-cache", tags: ["services"] },
+      { slug },
+    )
+  ).service;
 }

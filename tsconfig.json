@@ -45,7 +45,8 @@
     ".next/dev/types/**/*.ts",
     "src/app/om-oss/[employee]/page.tsx",
     "src/app/om-oss/[employee]/page.tsx",
-    "src/app/om-oss/[employee]/page-test"
+    "src/app/om-oss/[employee]/page-test",
+    "src/app/api/v1/revalidate.route"
   ],
   "exclude": ["node_modules", "generated"]
 }
