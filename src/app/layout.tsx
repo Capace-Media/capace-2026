@@ -39,8 +39,8 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="Capace" />
       </head>
       <body className="mx-auto flex min-h-screen max-w-400 flex-col">
-        <NavMenu />
-        {/* <Header /> */}
+        {/* <NavMenu /> */}
+        <Header />
         <main className="bg-background z-1 flex-1 rounded-bl-[100px] transition-all duration-300">
           {children}
         </main>

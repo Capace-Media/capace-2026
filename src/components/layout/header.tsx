@@ -24,22 +24,24 @@ export default function Header() {
     });
   });
   return (
-    <header className="fixed z-100 flex h-30 w-full max-w-400 items-center justify-between gap-6 px-8 text-sm lg:px-8">
-      <div className="fade-on-scroll absolute bottom-0 left-10 text-neutral-400 uppercase opacity-100">
-        Digitalbyrå / webbyrå Malmö
-      </div>
-      <div className="ml-auto flex w-full items-center justify-between md:hidden">
-        <CapaceLogo />
-        <MobileMenu />
-      </div>
-      <div className="hidden w-full md:flex">
-        <nav className="max-w-[1/3] flex-1">
-          <NavMenu />
-        </nav>
-        <CapaceLogo className="max-w-[1/3] flex-1" />
-        <div className="flex max-w-[1/3] flex-1 justify-end">
-          <ButtonLink href="/offert">Be om offert</ButtonLink>
+    <header className="fixed z-50 flex w-full max-w-400 flex-col">
+      <div className="flex h-30 w-full items-center justify-between gap-6 px-8 text-sm lg:px-8">
+        <div className="ml-auto flex w-full items-center justify-between md:hidden">
+          <CapaceLogo />
+          <MobileMenu />
         </div>
+        <div className="hidden w-full md:flex">
+          <nav className="z-10! max-w-[1/3] flex-1">
+            <NavMenu />
+          </nav>
+          <CapaceLogo className="max-w-[1/3] flex-1" />
+          <div className="flex max-w-[1/3] flex-1 justify-end">
+            <ButtonLink href="/offert">Be om offert</ButtonLink>
+          </div>
+        </div>
+      </div>
+      <div className="fade-on-scroll z-1 px-12 text-sm text-neutral-400 uppercase opacity-100">
+        Digitalbyrå / webbyrå Malmö
       </div>
     </header>
   );
