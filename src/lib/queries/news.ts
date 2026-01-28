@@ -1,5 +1,16 @@
 import { graphql } from "@/graphql";
 
+export const NewsSlugsQuery = graphql(`
+  query NewsSlugsQuery {
+    posts(first: 100) {
+      nodes {
+        uri
+        modified
+      }
+    }
+  }
+`);
+
 export const NewsQuery = graphql(`
   query NewsQuery($amount: Int!, $after: String) {
     posts(first: $amount, after: $after) {

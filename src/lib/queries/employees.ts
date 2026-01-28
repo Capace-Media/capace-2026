@@ -1,5 +1,16 @@
 import { graphql } from "@/graphql";
 
+export const EmployeeSlugsQuery = graphql(`
+  query EmployeeSlugsQuery {
+    employees(first: 100) {
+      nodes {
+        uri
+        modified
+      }
+    }
+  }
+`);
+
 export const EmployeesQuery = graphql(`
   query Employees {
     employees {

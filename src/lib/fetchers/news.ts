@@ -1,5 +1,11 @@
 import { execute } from "@/graphql/execute";
-import { NewsBySlugQuery, NewsQuery } from "../queries/news";
+import { NewsBySlugQuery, NewsQuery, NewsSlugsQuery } from "../queries/news";
+
+export async function getNewsSlugs() {
+  return (
+    await execute(NewsSlugsQuery, { cache: "force-cache", tags: ["news"] })
+  ).posts?.nodes;
+}
 
 export async function getNews(amount: number, after?: string | null) {
   return (

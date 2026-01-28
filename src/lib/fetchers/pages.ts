@@ -1,5 +1,11 @@
 import { execute } from "@/graphql/execute";
-import { PageQuery } from "../queries/pages";
+import { PageQuery, PageSlugsQuery } from "../queries/pages";
+
+export async function getPageSlugs() {
+  return (
+    await execute(PageSlugsQuery, { cache: "force-cache", tags: ["pages"] })
+  ).pages?.nodes;
+}
 
 export async function getPage(slug: string) {
   return (

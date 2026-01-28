@@ -1,19 +1,14 @@
 import { graphql } from "@/graphql";
 
-// export const ServiceSlugsQuery = graphql(`
-//   query ServicesSlugs {
-//     serviceCategories {
-//       nodes {
-//         slug
-//         services {
-//           nodes {
-//             slug
-//           }
-//         }
-//       }
-//     }
-//   }
-// `);
+export const ServiceSlugsQuery = graphql(`
+  query ServicesSlugs {
+    services {
+      nodes {
+        uri
+      }
+    }
+  }
+`);
 
 export const ServicePageQuery = graphql(`
   query Query($slug: ID!) {

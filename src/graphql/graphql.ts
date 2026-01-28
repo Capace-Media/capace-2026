@@ -14309,6 +14309,11 @@ export type ServiceCard_FragmentFragment = { __typename: 'BlocksBlocksServiceCar
       | { __typename?: 'Testimonial' }
     > } | null } & { ' $fragmentName'?: 'ServiceCard_FragmentFragment' };
 
+export type CaseSlugsQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CaseSlugsQueryQuery = { __typename?: 'RootQuery', cases?: { __typename?: 'RootQueryToCaseConnection', nodes: Array<{ __typename?: 'Case', uri?: string | null }> } | null };
+
 export type CaseQueryVariables = Exact<{
   slug: Scalars['ID']['input'];
 }>;
@@ -14394,6 +14399,11 @@ export type CollaboratorsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type CollaboratorsQuery = { __typename?: 'RootQuery', collaborators?: { __typename?: 'Collaborators', collaboratorContent?: { __typename?: 'CollaboratorContent', collaborators?: Array<{ __typename?: 'CollaboratorContentCollaborators', url?: string | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null } } | null } | null> | null } | null } | null };
+
+export type EmployeeSlugsQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type EmployeeSlugsQueryQuery = { __typename?: 'RootQuery', employees?: { __typename?: 'RootQueryToEmployeeConnection', nodes: Array<{ __typename?: 'Employee', uri?: string | null, modified?: string | null }> } | null };
 
 export type EmployeesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -14575,6 +14585,11 @@ export type BlocksFragmentFragment =
   | BlocksFragment_BlocksBlocksWysiwygLayout_Fragment
 ;
 
+export type NewsSlugsQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type NewsSlugsQueryQuery = { __typename?: 'RootQuery', posts?: { __typename?: 'RootQueryToPostConnection', nodes: Array<{ __typename?: 'Post', uri?: string | null, modified?: string | null }> } | null };
+
 export type NewsQueryQueryVariables = Exact<{
   amount: Scalars['Int']['input'];
   after?: InputMaybe<Scalars['String']['input']>;
@@ -14659,6 +14674,11 @@ export type NewsBySlugQueryQuery = { __typename?: 'RootQuery', post?: { __typena
         )
        | null> | null } | null, pageContent?: { __typename?: 'PageContent', rounded?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null, altText?: string | null } } | null } | null } | null };
 
+export type PageSlugsQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type PageSlugsQueryQuery = { __typename?: 'RootQuery', pages?: { __typename?: 'RootQueryToPageConnection', nodes: Array<{ __typename?: 'Page', uri?: string | null, modified?: string | null }> } | null };
+
 export type PageQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['ID']['input']>;
 }>;
@@ -14737,6 +14757,11 @@ export type PageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page'
           & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksWysiwygLayout_Fragment': BlocksFragment_BlocksBlocksWysiwygLayout_Fragment } }
         )
        | null> | null } | null } | null };
+
+export type ServicesSlugsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ServicesSlugsQuery = { __typename?: 'RootQuery', services?: { __typename?: 'RootQueryToServiceConnection', nodes: Array<{ __typename?: 'Service', uri?: string | null }> } | null };
 
 export type QueryQueryVariables = Exact<{
   slug: Scalars['ID']['input'];
@@ -15365,6 +15390,15 @@ fragment ServiceCard_Fragment on BlocksBlocksServiceCardsLayout {
     }
   }
 }`, {"fragmentName":"BlocksFragment"}) as unknown as TypedDocumentString<BlocksFragmentFragment, unknown>;
+export const CaseSlugsQueryDocument = new TypedDocumentString(`
+    query CaseSlugsQuery {
+  cases(first: 100) {
+    nodes {
+      uri
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<CaseSlugsQueryQuery, CaseSlugsQueryQueryVariables>;
 export const CaseDocument = new TypedDocumentString(`
     query Case($slug: ID!) {
   case(id: $slug, idType: URI) {
@@ -15776,6 +15810,16 @@ export const CollaboratorsDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<CollaboratorsQuery, CollaboratorsQueryVariables>;
+export const EmployeeSlugsQueryDocument = new TypedDocumentString(`
+    query EmployeeSlugsQuery {
+  employees(first: 100) {
+    nodes {
+      uri
+      modified
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<EmployeeSlugsQueryQuery, EmployeeSlugsQueryQueryVariables>;
 export const EmployeesDocument = new TypedDocumentString(`
     query Employees {
   employees {
@@ -15856,6 +15900,16 @@ export const FooterDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<FooterQuery, FooterQueryVariables>;
+export const NewsSlugsQueryDocument = new TypedDocumentString(`
+    query NewsSlugsQuery {
+  posts(first: 100) {
+    nodes {
+      uri
+      modified
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<NewsSlugsQueryQuery, NewsSlugsQueryQueryVariables>;
 export const NewsQueryDocument = new TypedDocumentString(`
     query NewsQuery($amount: Int!, $after: String) {
   posts(first: $amount, after: $after) {
@@ -16226,6 +16280,16 @@ fragment BlocksFragment on BlocksBlocks_Layout {
     }
   }
 }`) as unknown as TypedDocumentString<NewsBySlugQueryQuery, NewsBySlugQueryQueryVariables>;
+export const PageSlugsQueryDocument = new TypedDocumentString(`
+    query PageSlugsQuery {
+  pages(first: 100) {
+    nodes {
+      uri
+      modified
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<PageSlugsQueryQuery, PageSlugsQueryQueryVariables>;
 export const PageDocument = new TypedDocumentString(`
     query Page($slug: ID = "hem") {
   page(id: $slug, idType: URI) {
@@ -16616,6 +16680,15 @@ fragment BlocksFragment on BlocksBlocks_Layout {
     }
   }
 }`) as unknown as TypedDocumentString<PageQuery, PageQueryVariables>;
+export const ServicesSlugsDocument = new TypedDocumentString(`
+    query ServicesSlugs {
+  services {
+    nodes {
+      uri
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<ServicesSlugsQuery, ServicesSlugsQueryVariables>;
 export const QueryDocument = new TypedDocumentString(`
     query Query($slug: ID!) {
   service(id: $slug, idType: URI) {

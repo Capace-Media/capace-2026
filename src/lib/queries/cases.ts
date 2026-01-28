@@ -1,21 +1,14 @@
 import { graphql } from "@/graphql";
-import { BlocksFragment } from "./fragments";
 
-// export const AllCaseSlugsQuery = graphql(`
-//   query AllCaseSlugs {
-//     cases {
-//       nodes {
-//         slug
-//       }
-//     }
-//   }
-// `);
-
-// export const CasePreviewsQuery = graphql(`
-//   query CasePreviews {
-
-//   }
-// `);
+export const CaseSlugsQuery = graphql(`
+  query CaseSlugsQuery {
+    cases(first: 100) {
+      nodes {
+        uri
+      }
+    }
+  }
+`);
 
 export const CaseQuery = graphql(`
   query Case($slug: ID!) {
