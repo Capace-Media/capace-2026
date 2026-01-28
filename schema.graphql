@@ -98,6 +98,42 @@ interface AcfOptionsPage implements Node & WithAcfBlocks {
   parentId: String
 }
 
+type Announcement implements AcfOptionsPage & Node & WithAcfAnnouncementContent & WithAcfBlocks {
+  """Fields of the AnnouncementContent ACF Field Group"""
+  announcementContent: AnnouncementContent
+  """Fields of the Blocks ACF Field Group"""
+  blocks: Blocks
+  """The globally unique ID for the object"""
+  id: ID!
+  menuTitle: String
+  pageTitle: String
+  parentId: String
+}
+
+"""
+The &quot;AnnouncementContent&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type AnnouncementContent implements AcfFieldGroup & AcfFieldGroupFields & AnnouncementContent_Fields {
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Write a message that will be displayed as a rolling banner on the top of the website.
+  """
+  message: String
+}
+
+"""
+Interface representing fields of the ACF &quot;AnnouncementContent&quot; Field Group
+"""
+interface AnnouncementContent_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Write a message that will be displayed as a rolling banner on the top of the website.
+  """
+  message: String
+}
+
 """
 Avatars are profile images for users. WordPress by default uses the Gravatar service to host and fetch avatars from.
 """
@@ -10462,9 +10498,10 @@ type RootMutation {
 }
 
 """The root entry point into the Graph"""
-type RootQuery implements WithAcfOptionsPageCollaborators & WithAcfOptionsPageFooter {
+type RootQuery implements WithAcfOptionsPageAnnouncement & WithAcfOptionsPageCollaborators & WithAcfOptionsPageFooter {
   """Entry point to get all settings for the site"""
   allSettings: Settings
+  announcement: Announcement
   """An object of the case Type. """
   case(
     """
@@ -16219,6 +16256,14 @@ interface WPPageInfo implements PageInfo {
 }
 
 """
+Provides access to fields of the &quot;AnnouncementContent&quot; ACF Field Group via the &quot;announcementContent&quot; field
+"""
+interface WithAcfAnnouncementContent {
+  """Fields of the AnnouncementContent ACF Field Group"""
+  announcementContent: AnnouncementContent
+}
+
+"""
 Provides access to fields of the &quot;Blocks&quot; ACF Field Group via the &quot;blocks&quot; field
 """
 interface WithAcfBlocks {
@@ -16264,6 +16309,11 @@ Provides access to fields of the &quot;FooterContent&quot; ACF Field Group via t
 interface WithAcfFooterContent {
   """Fields of the FooterContent ACF Field Group"""
   footerContent: FooterContent
+}
+
+"""Access point for the &quot;Announcement&quot; ACF Options Page"""
+interface WithAcfOptionsPageAnnouncement {
+  announcement: Announcement
 }
 
 """Access point for the &quot;Collaborators&quot; ACF Options Page"""

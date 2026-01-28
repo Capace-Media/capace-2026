@@ -64,7 +64,6 @@ export default function ServiceCards(props: Props) {
       <div className="flex min-h-110 w-full flex-wrap justify-center gap-6">
         {data.service?.nodes.map((s, index) => {
           if (s.__typename !== "Service") return;
-          console.log("service data:", s);
 
           return (
             <Card key={index} className="h-110 max-w-75 min-w-70">

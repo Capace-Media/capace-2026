@@ -111,6 +111,42 @@ export type AcfOptionsPage = {
   parentId?: Maybe<Scalars['String']['output']>;
 };
 
+export type Announcement = AcfOptionsPage & Node & WithAcfAnnouncementContent & WithAcfBlocks & {
+  __typename?: 'Announcement';
+  /** Fields of the AnnouncementContent ACF Field Group */
+  announcementContent?: Maybe<AnnouncementContent>;
+  /** Fields of the Blocks ACF Field Group */
+  blocks?: Maybe<Blocks>;
+  /** The globally unique ID for the object */
+  id: Scalars['ID']['output'];
+  menuTitle?: Maybe<Scalars['String']['output']>;
+  pageTitle?: Maybe<Scalars['String']['output']>;
+  parentId?: Maybe<Scalars['String']['output']>;
+};
+
+/** The &quot;AnnouncementContent&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
+export type AnnouncementContent = AcfFieldGroup & AcfFieldGroupFields & AnnouncementContent_Fields & {
+  __typename?: 'AnnouncementContent';
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars['String']['output']>;
+  /** Write a message that will be displayed as a rolling banner on the top of the website. */
+  message?: Maybe<Scalars['String']['output']>;
+};
+
+/** Interface representing fields of the ACF &quot;AnnouncementContent&quot; Field Group */
+export type AnnouncementContent_Fields = {
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars['String']['output']>;
+  /** Write a message that will be displayed as a rolling banner on the top of the website. */
+  message?: Maybe<Scalars['String']['output']>;
+};
+
 /** Avatars are profile images for users. WordPress by default uses the Gravatar service to host and fetch avatars from. */
 export type Avatar = {
   __typename?: 'Avatar';
@@ -9158,10 +9194,11 @@ export type RootMutationUpdateUserArgs = {
 };
 
 /** The root entry point into the Graph */
-export type RootQuery = WithAcfOptionsPageCollaborators & WithAcfOptionsPageFooter & {
+export type RootQuery = WithAcfOptionsPageAnnouncement & WithAcfOptionsPageCollaborators & WithAcfOptionsPageFooter & {
   __typename?: 'RootQuery';
   /** Entry point to get all settings for the site */
   allSettings?: Maybe<Settings>;
+  announcement?: Maybe<Announcement>;
   /** An object of the case Type.  */
   case?: Maybe<Case>;
   /**
@@ -14208,6 +14245,12 @@ export type WpPageInfo = {
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
+/** Provides access to fields of the &quot;AnnouncementContent&quot; ACF Field Group via the &quot;announcementContent&quot; field */
+export type WithAcfAnnouncementContent = {
+  /** Fields of the AnnouncementContent ACF Field Group */
+  announcementContent?: Maybe<AnnouncementContent>;
+};
+
 /** Provides access to fields of the &quot;Blocks&quot; ACF Field Group via the &quot;blocks&quot; field */
 export type WithAcfBlocks = {
   /** Fields of the Blocks ACF Field Group */
@@ -14242,6 +14285,11 @@ export type WithAcfFaqContent = {
 export type WithAcfFooterContent = {
   /** Fields of the FooterContent ACF Field Group */
   footerContent?: Maybe<FooterContent>;
+};
+
+/** Access point for the &quot;Announcement&quot; ACF Options Page */
+export type WithAcfOptionsPageAnnouncement = {
+  announcement?: Maybe<Announcement>;
 };
 
 /** Access point for the &quot;Collaborators&quot; ACF Options Page */
@@ -14308,6 +14356,11 @@ export type ServiceCard_FragmentFragment = { __typename: 'BlocksBlocksServiceCar
       | { __typename: 'Service', id: string, title?: string | null, slug?: string | null, uri?: string | null, serviceContent?: { __typename?: 'ServiceContent', shortDescription?: string | null, icon?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null } | null }
       | { __typename?: 'Testimonial' }
     > } | null } & { ' $fragmentName'?: 'ServiceCard_FragmentFragment' };
+
+export type AnnouncementQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AnnouncementQueryQuery = { __typename?: 'RootQuery', announcement?: { __typename?: 'Announcement', announcementContent?: { __typename?: 'AnnouncementContent', message?: string | null } | null } | null };
 
 export type CaseSlugsQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -15390,6 +15443,15 @@ fragment ServiceCard_Fragment on BlocksBlocksServiceCardsLayout {
     }
   }
 }`, {"fragmentName":"BlocksFragment"}) as unknown as TypedDocumentString<BlocksFragmentFragment, unknown>;
+export const AnnouncementQueryDocument = new TypedDocumentString(`
+    query AnnouncementQuery {
+  announcement {
+    announcementContent {
+      message
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<AnnouncementQueryQuery, AnnouncementQueryQueryVariables>;
 export const CaseSlugsQueryDocument = new TypedDocumentString(`
     query CaseSlugsQuery {
   cases(first: 100) {
