@@ -4,6 +4,7 @@ import Quote from "./quote";
 
 const Quote_Fragment = graphql(`
   fragment Quote_Fragment on BlocksBlocksQuoteLayout {
+    __typename
     author
     authorTitle
     companyName

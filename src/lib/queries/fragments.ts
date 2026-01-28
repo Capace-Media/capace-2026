@@ -1,5 +1,37 @@
 import { graphql } from "@/graphql/gql";
 
+export const ServiceContentFragment = graphql(`
+  fragment ServiceContentFragment on ServiceContent {
+    shortDescription
+    icon {
+      node {
+        altText
+        mediaItemUrl
+        mediaDetails {
+          height
+          width
+        }
+      }
+    }
+  }
+`);
+
+export const ButtonFragment = graphql(`
+  fragment ButtonFragment on ReusableFieldsButton {
+    ariaLabel
+    __typename
+    label
+    url {
+      externalLink
+      internalLink {
+        nodes {
+          slug
+        }
+      }
+    }
+  }
+`);
+
 export const EmployeeContentFragment = graphql(`
   fragment EmployeeContentFragment on EmployeeContent {
     email
@@ -73,72 +105,12 @@ export const BlocksFragment = graphql(`
   fragment BlocksFragment on BlocksBlocks_Layout {
     ... on BlocksBlocksMediaAndTextLayout {
       __typename
-      mediaAndText {
-        image {
-          node {
-            altText
-            mediaItemUrl
-            mediaDetails {
-              height
-              width
-            }
-          }
-        }
-        button {
-          ariaLabel
-          __typename
-          label
-          url {
-            externalLink
-            internalLink {
-              nodes {
-                slug
-              }
-            }
-          }
-        }
-        accentHeading {
-          accent
-          main
-        }
-        textContent
-        imagePlacement
-      }
+      ...MediaAndTextFragment
     }
     ... on BlocksBlocksServiceCardsLayout {
-      __typename
-      accentHeading {
-        accent
-        main
-      }
-      description
-      service {
-        nodes {
-          ... on Service {
-            __typename
-            id
-            title
-            slug
-            uri
-            serviceContent {
-              icon {
-                node {
-                  altText
-                  mediaItemUrl
-                  mediaDetails {
-                    width
-                    height
-                  }
-                }
-              }
-              shortDescription
-            }
-          }
-        }
-      }
+      ...ServiceCard_Fragment
     }
     ... on BlocksBlocksQuoteLayout {
-      __typename
       ...Quote_Fragment
     }
     ... on BlocksBlocksContactFormLayout {

@@ -14294,7 +14294,18 @@ export type MediaAndTextFragmentFragment = { __typename?: 'BlocksBlocksMediaAndT
             | { __typename?: 'Testimonial', slug?: string | null }
           > } | null } | null } | null } | null } & { ' $fragmentName'?: 'MediaAndTextFragmentFragment' };
 
-export type Quote_FragmentFragment = { __typename?: 'BlocksBlocksQuoteLayout', author?: string | null, authorTitle?: string | null, companyName?: string | null, quote?: string | null } & { ' $fragmentName'?: 'Quote_FragmentFragment' };
+export type Quote_FragmentFragment = { __typename: 'BlocksBlocksQuoteLayout', author?: string | null, authorTitle?: string | null, companyName?: string | null, quote?: string | null } & { ' $fragmentName'?: 'Quote_FragmentFragment' };
+
+export type ServiceCard_FragmentFragment = { __typename: 'BlocksBlocksServiceCardsLayout', description?: string | null, accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null, service?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
+      | { __typename?: 'Case' }
+      | { __typename?: 'Employee' }
+      | { __typename?: 'Faq' }
+      | { __typename?: 'MediaItem' }
+      | { __typename?: 'Page' }
+      | { __typename?: 'Post' }
+      | { __typename: 'Service', id: string, title?: string | null, slug?: string | null, uri?: string | null, serviceContent?: { __typename?: 'ServiceContent', shortDescription?: string | null, icon?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null } | null }
+      | { __typename?: 'Testimonial' }
+    > } | null } & { ' $fragmentName'?: 'ServiceCard_FragmentFragment' };
 
 export type CaseQueryVariables = Exact<{
   slug: Scalars['ID']['input'];
@@ -14405,6 +14416,19 @@ export type FooterQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type FooterQuery = { __typename?: 'RootQuery', footer?: { __typename?: 'Footer', footerContent?: { __typename?: 'FooterContent', address?: string | null, email?: string | null, heading?: string | null, telephone?: string | null, textContent?: string | null, socials?: { __typename?: 'FooterContentSocials', facebook?: string | null, instagram?: string | null, linkedin?: string | null, threads?: string | null, tiktok?: string | null, x?: string | null } | null, certifications?: { __typename?: 'AcfMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', altText?: string | null, id: string, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null }> } | null } | null } | null };
 
+export type ServiceContentFragmentFragment = { __typename?: 'ServiceContent', shortDescription?: string | null, icon?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null } & { ' $fragmentName'?: 'ServiceContentFragmentFragment' };
+
+export type ButtonFragmentFragment = { __typename: 'ReusableFieldsButton', ariaLabel?: string | null, label?: string | null, url?: { __typename?: 'ReusableFieldsButtonUrl', externalLink?: string | null, internalLink?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
+        | { __typename?: 'Case', slug?: string | null }
+        | { __typename?: 'Employee', slug?: string | null }
+        | { __typename?: 'Faq', slug?: string | null }
+        | { __typename?: 'MediaItem', slug?: string | null }
+        | { __typename?: 'Page', slug?: string | null }
+        | { __typename?: 'Post', slug?: string | null }
+        | { __typename?: 'Service', slug?: string | null }
+        | { __typename?: 'Testimonial', slug?: string | null }
+      > } | null } | null } & { ' $fragmentName'?: 'ButtonFragmentFragment' };
+
 export type EmployeeContentFragmentFragment = { __typename?: 'EmployeeContent', email?: string | null, employmentType?: Array<string | null> | null, telephone?: string | null, quote?: string | null, textContent?: string | null, workTitle?: string | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null, altText?: string | null } } | null } & { ' $fragmentName'?: 'EmployeeContentFragmentFragment' };
 
 export type PageContentFragmentFragment = { __typename?: 'PageContent', rounded?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null } } | null, small?: { __typename?: 'PageContentSmall', heroImage?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null } } | null } | null, medium?: { __typename?: 'PageContentMedium', heading_accent?: string | null, heading_main?: string | null, text?: string | null } | null, large?: { __typename?: 'PageContentLarge', heading?: string | null, headingAccent?: string | null, subheading?: string | null, heroImage?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null, button?: { __typename?: 'PageContentLargeButton', ariaLabel?: string | null, label?: string | null, url?: { __typename?: 'ReusableFieldsButtonUrl', externalLink?: string | null, is_internal?: boolean | null, internalLink?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
@@ -14490,34 +14514,22 @@ type BlocksFragment_BlocksBlocksFaqLayout_Fragment = { __typename: 'BlocksBlocks
 
 type BlocksFragment_BlocksBlocksImageBannerLayout_Fragment = { __typename: 'BlocksBlocksImageBannerLayout', fullWidth?: boolean | null, images?: { __typename?: 'AcfMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null }> } | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksImageBannerLayout_Fragment' };
 
-type BlocksFragment_BlocksBlocksMediaAndTextLayout_Fragment = { __typename: 'BlocksBlocksMediaAndTextLayout', mediaAndText?: { __typename?: 'BlocksBlocksMediaAndText', textContent?: string | null, imagePlacement?: boolean | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null, button?: { __typename: 'BlocksBlocksMediaAndTextButton', ariaLabel?: string | null, label?: string | null, url?: { __typename?: 'ReusableFieldsButtonUrl', externalLink?: string | null, internalLink?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
-            | { __typename?: 'Case', slug?: string | null }
-            | { __typename?: 'Employee', slug?: string | null }
-            | { __typename?: 'Faq', slug?: string | null }
-            | { __typename?: 'MediaItem', slug?: string | null }
-            | { __typename?: 'Page', slug?: string | null }
-            | { __typename?: 'Post', slug?: string | null }
-            | { __typename?: 'Service', slug?: string | null }
-            | { __typename?: 'Testimonial', slug?: string | null }
-          > } | null } | null } | null, accentHeading?: { __typename?: 'BlocksBlocksMediaAndTextAccentHeading', accent?: string | null, main?: string | null } | null } | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksMediaAndTextLayout_Fragment' };
+type BlocksFragment_BlocksBlocksMediaAndTextLayout_Fragment = (
+  { __typename: 'BlocksBlocksMediaAndTextLayout' }
+  & { ' $fragmentRefs'?: { 'MediaAndTextFragmentFragment': MediaAndTextFragmentFragment } }
+) & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksMediaAndTextLayout_Fragment' };
 
 type BlocksFragment_BlocksBlocksNewsLayout_Fragment = { __typename: 'BlocksBlocksNewsLayout', newsAmount?: string | null, textContent?: string | null, accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksNewsLayout_Fragment' };
 
 type BlocksFragment_BlocksBlocksQuoteLayout_Fragment = (
-  { __typename: 'BlocksBlocksQuoteLayout' }
+  { __typename?: 'BlocksBlocksQuoteLayout' }
   & { ' $fragmentRefs'?: { 'Quote_FragmentFragment': Quote_FragmentFragment } }
 ) & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksQuoteLayout_Fragment' };
 
-type BlocksFragment_BlocksBlocksServiceCardsLayout_Fragment = { __typename: 'BlocksBlocksServiceCardsLayout', description?: string | null, accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null, service?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
-      | { __typename?: 'Case' }
-      | { __typename?: 'Employee' }
-      | { __typename?: 'Faq' }
-      | { __typename?: 'MediaItem' }
-      | { __typename?: 'Page' }
-      | { __typename?: 'Post' }
-      | { __typename: 'Service', id: string, title?: string | null, slug?: string | null, uri?: string | null, serviceContent?: { __typename?: 'ServiceContent', shortDescription?: string | null, icon?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null } } | null } | null }
-      | { __typename?: 'Testimonial' }
-    > } | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksServiceCardsLayout_Fragment' };
+type BlocksFragment_BlocksBlocksServiceCardsLayout_Fragment = (
+  { __typename?: 'BlocksBlocksServiceCardsLayout' }
+  & { ' $fragmentRefs'?: { 'ServiceCard_FragmentFragment': ServiceCard_FragmentFragment } }
+) & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksServiceCardsLayout_Fragment' };
 
 type BlocksFragment_BlocksBlocksTestimonialsLayout_Fragment = { __typename: 'BlocksBlocksTestimonialsLayout', accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksTestimonialsLayout_Fragment' };
 
@@ -14821,41 +14833,36 @@ export class TypedDocumentString<TResult, TVariables>
     return this.value;
   }
 }
-export const MediaAndTextFragmentFragmentDoc = new TypedDocumentString(`
-    fragment MediaAndTextFragment on BlocksBlocksMediaAndTextLayout {
-  mediaAndText {
-    textContent
-    imagePlacement
-    accentHeading {
-      accent
-      main
-    }
-    image {
-      node {
-        altText
-        mediaItemUrl
-        mediaDetails {
-          height
-          width
-        }
-      }
-    }
-    button {
-      ariaLabel
-      __typename
-      label
-      url {
-        externalLink
-        internalLink {
-          nodes {
-            slug
-          }
-        }
+export const ServiceContentFragmentFragmentDoc = new TypedDocumentString(`
+    fragment ServiceContentFragment on ServiceContent {
+  shortDescription
+  icon {
+    node {
+      altText
+      mediaItemUrl
+      mediaDetails {
+        height
+        width
       }
     }
   }
 }
-    `, {"fragmentName":"MediaAndTextFragment"}) as unknown as TypedDocumentString<MediaAndTextFragmentFragment, unknown>;
+    `, {"fragmentName":"ServiceContentFragment"}) as unknown as TypedDocumentString<ServiceContentFragmentFragment, unknown>;
+export const ButtonFragmentFragmentDoc = new TypedDocumentString(`
+    fragment ButtonFragment on ReusableFieldsButton {
+  ariaLabel
+  __typename
+  label
+  url {
+    externalLink
+    internalLink {
+      nodes {
+        slug
+      }
+    }
+  }
+}
+    `, {"fragmentName":"ButtonFragment"}) as unknown as TypedDocumentString<ButtonFragmentFragment, unknown>;
 export const EmployeeContentFragmentFragmentDoc = new TypedDocumentString(`
     fragment EmployeeContentFragment on EmployeeContent {
   email
@@ -14923,8 +14930,78 @@ export const PageContentFragmentFragmentDoc = new TypedDocumentString(`
   }
 }
     `, {"fragmentName":"PageContentFragment"}) as unknown as TypedDocumentString<PageContentFragmentFragment, unknown>;
+export const MediaAndTextFragmentFragmentDoc = new TypedDocumentString(`
+    fragment MediaAndTextFragment on BlocksBlocksMediaAndTextLayout {
+  mediaAndText {
+    textContent
+    imagePlacement
+    accentHeading {
+      accent
+      main
+    }
+    image {
+      node {
+        altText
+        mediaItemUrl
+        mediaDetails {
+          height
+          width
+        }
+      }
+    }
+    button {
+      ariaLabel
+      __typename
+      label
+      url {
+        externalLink
+        internalLink {
+          nodes {
+            slug
+          }
+        }
+      }
+    }
+  }
+}
+    `, {"fragmentName":"MediaAndTextFragment"}) as unknown as TypedDocumentString<MediaAndTextFragmentFragment, unknown>;
+export const ServiceCard_FragmentFragmentDoc = new TypedDocumentString(`
+    fragment ServiceCard_Fragment on BlocksBlocksServiceCardsLayout {
+  __typename
+  accentHeading {
+    accent
+    main
+  }
+  description
+  service {
+    nodes {
+      ... on Service {
+        __typename
+        id
+        title
+        slug
+        uri
+        serviceContent {
+          shortDescription
+          icon {
+            node {
+              altText
+              mediaItemUrl
+              mediaDetails {
+                height
+                width
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `, {"fragmentName":"ServiceCard_Fragment"}) as unknown as TypedDocumentString<ServiceCard_FragmentFragment, unknown>;
 export const Quote_FragmentFragmentDoc = new TypedDocumentString(`
     fragment Quote_Fragment on BlocksBlocksQuoteLayout {
+  __typename
   author
   authorTitle
   companyName
@@ -14935,72 +15012,12 @@ export const BlocksFragmentFragmentDoc = new TypedDocumentString(`
     fragment BlocksFragment on BlocksBlocks_Layout {
   ... on BlocksBlocksMediaAndTextLayout {
     __typename
-    mediaAndText {
-      image {
-        node {
-          altText
-          mediaItemUrl
-          mediaDetails {
-            height
-            width
-          }
-        }
-      }
-      button {
-        ariaLabel
-        __typename
-        label
-        url {
-          externalLink
-          internalLink {
-            nodes {
-              slug
-            }
-          }
-        }
-      }
-      accentHeading {
-        accent
-        main
-      }
-      textContent
-      imagePlacement
-    }
+    ...MediaAndTextFragment
   }
   ... on BlocksBlocksServiceCardsLayout {
-    __typename
-    accentHeading {
-      accent
-      main
-    }
-    description
-    service {
-      nodes {
-        ... on Service {
-          __typename
-          id
-          title
-          slug
-          uri
-          serviceContent {
-            icon {
-              node {
-                altText
-                mediaItemUrl
-                mediaDetails {
-                  width
-                  height
-                }
-              }
-            }
-            shortDescription
-          }
-        }
-      }
-    }
+    ...ServiceCard_Fragment
   }
   ... on BlocksBlocksQuoteLayout {
-    __typename
     ...Quote_Fragment
   }
   ... on BlocksBlocksContactFormLayout {
@@ -15247,11 +15264,77 @@ export const BlocksFragmentFragmentDoc = new TypedDocumentString(`
     }
   }
 }
-    fragment Quote_Fragment on BlocksBlocksQuoteLayout {
+    fragment MediaAndTextFragment on BlocksBlocksMediaAndTextLayout {
+  mediaAndText {
+    textContent
+    imagePlacement
+    accentHeading {
+      accent
+      main
+    }
+    image {
+      node {
+        altText
+        mediaItemUrl
+        mediaDetails {
+          height
+          width
+        }
+      }
+    }
+    button {
+      ariaLabel
+      __typename
+      label
+      url {
+        externalLink
+        internalLink {
+          nodes {
+            slug
+          }
+        }
+      }
+    }
+  }
+}
+fragment Quote_Fragment on BlocksBlocksQuoteLayout {
+  __typename
   author
   authorTitle
   companyName
   quote
+}
+fragment ServiceCard_Fragment on BlocksBlocksServiceCardsLayout {
+  __typename
+  accentHeading {
+    accent
+    main
+  }
+  description
+  service {
+    nodes {
+      ... on Service {
+        __typename
+        id
+        title
+        slug
+        uri
+        serviceContent {
+          shortDescription
+          icon {
+            node {
+              altText
+              mediaItemUrl
+              mediaDetails {
+                height
+                width
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }`, {"fragmentName":"BlocksFragment"}) as unknown as TypedDocumentString<BlocksFragmentFragment, unknown>;
 export const CaseDocument = new TypedDocumentString(`
     query Case($slug: ID!) {
@@ -15286,81 +15369,87 @@ export const CaseDocument = new TypedDocumentString(`
     }
   }
 }
-    fragment Quote_Fragment on BlocksBlocksQuoteLayout {
+    fragment MediaAndTextFragment on BlocksBlocksMediaAndTextLayout {
+  mediaAndText {
+    textContent
+    imagePlacement
+    accentHeading {
+      accent
+      main
+    }
+    image {
+      node {
+        altText
+        mediaItemUrl
+        mediaDetails {
+          height
+          width
+        }
+      }
+    }
+    button {
+      ariaLabel
+      __typename
+      label
+      url {
+        externalLink
+        internalLink {
+          nodes {
+            slug
+          }
+        }
+      }
+    }
+  }
+}
+fragment Quote_Fragment on BlocksBlocksQuoteLayout {
+  __typename
   author
   authorTitle
   companyName
   quote
 }
+fragment ServiceCard_Fragment on BlocksBlocksServiceCardsLayout {
+  __typename
+  accentHeading {
+    accent
+    main
+  }
+  description
+  service {
+    nodes {
+      ... on Service {
+        __typename
+        id
+        title
+        slug
+        uri
+        serviceContent {
+          shortDescription
+          icon {
+            node {
+              altText
+              mediaItemUrl
+              mediaDetails {
+                height
+                width
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
 fragment BlocksFragment on BlocksBlocks_Layout {
   ... on BlocksBlocksMediaAndTextLayout {
     __typename
-    mediaAndText {
-      image {
-        node {
-          altText
-          mediaItemUrl
-          mediaDetails {
-            height
-            width
-          }
-        }
-      }
-      button {
-        ariaLabel
-        __typename
-        label
-        url {
-          externalLink
-          internalLink {
-            nodes {
-              slug
-            }
-          }
-        }
-      }
-      accentHeading {
-        accent
-        main
-      }
-      textContent
-      imagePlacement
-    }
+    ...MediaAndTextFragment
   }
   ... on BlocksBlocksServiceCardsLayout {
-    __typename
-    accentHeading {
-      accent
-      main
-    }
-    description
-    service {
-      nodes {
-        ... on Service {
-          __typename
-          id
-          title
-          slug
-          uri
-          serviceContent {
-            icon {
-              node {
-                altText
-                mediaItemUrl
-                mediaDetails {
-                  width
-                  height
-                }
-              }
-            }
-            shortDescription
-          }
-        }
-      }
-    }
+    ...ServiceCard_Fragment
   }
   ... on BlocksBlocksQuoteLayout {
-    __typename
     ...Quote_Fragment
   }
   ... on BlocksBlocksContactFormLayout {
@@ -15783,81 +15872,87 @@ export const NewsBySlugQueryDocument = new TypedDocumentString(`
     }
   }
 }
-    fragment Quote_Fragment on BlocksBlocksQuoteLayout {
+    fragment MediaAndTextFragment on BlocksBlocksMediaAndTextLayout {
+  mediaAndText {
+    textContent
+    imagePlacement
+    accentHeading {
+      accent
+      main
+    }
+    image {
+      node {
+        altText
+        mediaItemUrl
+        mediaDetails {
+          height
+          width
+        }
+      }
+    }
+    button {
+      ariaLabel
+      __typename
+      label
+      url {
+        externalLink
+        internalLink {
+          nodes {
+            slug
+          }
+        }
+      }
+    }
+  }
+}
+fragment Quote_Fragment on BlocksBlocksQuoteLayout {
+  __typename
   author
   authorTitle
   companyName
   quote
 }
+fragment ServiceCard_Fragment on BlocksBlocksServiceCardsLayout {
+  __typename
+  accentHeading {
+    accent
+    main
+  }
+  description
+  service {
+    nodes {
+      ... on Service {
+        __typename
+        id
+        title
+        slug
+        uri
+        serviceContent {
+          shortDescription
+          icon {
+            node {
+              altText
+              mediaItemUrl
+              mediaDetails {
+                height
+                width
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
 fragment BlocksFragment on BlocksBlocks_Layout {
   ... on BlocksBlocksMediaAndTextLayout {
     __typename
-    mediaAndText {
-      image {
-        node {
-          altText
-          mediaItemUrl
-          mediaDetails {
-            height
-            width
-          }
-        }
-      }
-      button {
-        ariaLabel
-        __typename
-        label
-        url {
-          externalLink
-          internalLink {
-            nodes {
-              slug
-            }
-          }
-        }
-      }
-      accentHeading {
-        accent
-        main
-      }
-      textContent
-      imagePlacement
-    }
+    ...MediaAndTextFragment
   }
   ... on BlocksBlocksServiceCardsLayout {
-    __typename
-    accentHeading {
-      accent
-      main
-    }
-    description
-    service {
-      nodes {
-        ... on Service {
-          __typename
-          id
-          title
-          slug
-          uri
-          serviceContent {
-            icon {
-              node {
-                altText
-                mediaItemUrl
-                mediaDetails {
-                  width
-                  height
-                }
-              }
-            }
-            shortDescription
-          }
-        }
-      }
-    }
+    ...ServiceCard_Fragment
   }
   ... on BlocksBlocksQuoteLayout {
-    __typename
     ...Quote_Fragment
   }
   ... on BlocksBlocksContactFormLayout {
@@ -16119,11 +16214,77 @@ export const PageDocument = new TypedDocumentString(`
     }
   }
 }
-    fragment Quote_Fragment on BlocksBlocksQuoteLayout {
+    fragment MediaAndTextFragment on BlocksBlocksMediaAndTextLayout {
+  mediaAndText {
+    textContent
+    imagePlacement
+    accentHeading {
+      accent
+      main
+    }
+    image {
+      node {
+        altText
+        mediaItemUrl
+        mediaDetails {
+          height
+          width
+        }
+      }
+    }
+    button {
+      ariaLabel
+      __typename
+      label
+      url {
+        externalLink
+        internalLink {
+          nodes {
+            slug
+          }
+        }
+      }
+    }
+  }
+}
+fragment Quote_Fragment on BlocksBlocksQuoteLayout {
+  __typename
   author
   authorTitle
   companyName
   quote
+}
+fragment ServiceCard_Fragment on BlocksBlocksServiceCardsLayout {
+  __typename
+  accentHeading {
+    accent
+    main
+  }
+  description
+  service {
+    nodes {
+      ... on Service {
+        __typename
+        id
+        title
+        slug
+        uri
+        serviceContent {
+          shortDescription
+          icon {
+            node {
+              altText
+              mediaItemUrl
+              mediaDetails {
+                height
+                width
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
 fragment PageContentFragment on PageContent {
   rounded {
@@ -16177,72 +16338,12 @@ fragment PageContentFragment on PageContent {
 fragment BlocksFragment on BlocksBlocks_Layout {
   ... on BlocksBlocksMediaAndTextLayout {
     __typename
-    mediaAndText {
-      image {
-        node {
-          altText
-          mediaItemUrl
-          mediaDetails {
-            height
-            width
-          }
-        }
-      }
-      button {
-        ariaLabel
-        __typename
-        label
-        url {
-          externalLink
-          internalLink {
-            nodes {
-              slug
-            }
-          }
-        }
-      }
-      accentHeading {
-        accent
-        main
-      }
-      textContent
-      imagePlacement
-    }
+    ...MediaAndTextFragment
   }
   ... on BlocksBlocksServiceCardsLayout {
-    __typename
-    accentHeading {
-      accent
-      main
-    }
-    description
-    service {
-      nodes {
-        ... on Service {
-          __typename
-          id
-          title
-          slug
-          uri
-          serviceContent {
-            icon {
-              node {
-                altText
-                mediaItemUrl
-                mediaDetails {
-                  width
-                  height
-                }
-              }
-            }
-            shortDescription
-          }
-        }
-      }
-    }
+    ...ServiceCard_Fragment
   }
   ... on BlocksBlocksQuoteLayout {
-    __typename
     ...Quote_Fragment
   }
   ... on BlocksBlocksContactFormLayout {
@@ -16518,11 +16619,77 @@ export const QueryDocument = new TypedDocumentString(`
     }
   }
 }
-    fragment Quote_Fragment on BlocksBlocksQuoteLayout {
+    fragment MediaAndTextFragment on BlocksBlocksMediaAndTextLayout {
+  mediaAndText {
+    textContent
+    imagePlacement
+    accentHeading {
+      accent
+      main
+    }
+    image {
+      node {
+        altText
+        mediaItemUrl
+        mediaDetails {
+          height
+          width
+        }
+      }
+    }
+    button {
+      ariaLabel
+      __typename
+      label
+      url {
+        externalLink
+        internalLink {
+          nodes {
+            slug
+          }
+        }
+      }
+    }
+  }
+}
+fragment Quote_Fragment on BlocksBlocksQuoteLayout {
+  __typename
   author
   authorTitle
   companyName
   quote
+}
+fragment ServiceCard_Fragment on BlocksBlocksServiceCardsLayout {
+  __typename
+  accentHeading {
+    accent
+    main
+  }
+  description
+  service {
+    nodes {
+      ... on Service {
+        __typename
+        id
+        title
+        slug
+        uri
+        serviceContent {
+          shortDescription
+          icon {
+            node {
+              altText
+              mediaItemUrl
+              mediaDetails {
+                height
+                width
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
 fragment PageContentFragment on PageContent {
   rounded {
@@ -16576,72 +16743,12 @@ fragment PageContentFragment on PageContent {
 fragment BlocksFragment on BlocksBlocks_Layout {
   ... on BlocksBlocksMediaAndTextLayout {
     __typename
-    mediaAndText {
-      image {
-        node {
-          altText
-          mediaItemUrl
-          mediaDetails {
-            height
-            width
-          }
-        }
-      }
-      button {
-        ariaLabel
-        __typename
-        label
-        url {
-          externalLink
-          internalLink {
-            nodes {
-              slug
-            }
-          }
-        }
-      }
-      accentHeading {
-        accent
-        main
-      }
-      textContent
-      imagePlacement
-    }
+    ...MediaAndTextFragment
   }
   ... on BlocksBlocksServiceCardsLayout {
-    __typename
-    accentHeading {
-      accent
-      main
-    }
-    description
-    service {
-      nodes {
-        ... on Service {
-          __typename
-          id
-          title
-          slug
-          uri
-          serviceContent {
-            icon {
-              node {
-                altText
-                mediaItemUrl
-                mediaDetails {
-                  width
-                  height
-                }
-              }
-            }
-            shortDescription
-          }
-        }
-      }
-    }
+    ...ServiceCard_Fragment
   }
   ... on BlocksBlocksQuoteLayout {
-    __typename
     ...Quote_Fragment
   }
   ... on BlocksBlocksContactFormLayout {

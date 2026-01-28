@@ -1,18 +1,51 @@
 "use client";
-import { useFragment, type FragmentType } from "@/graphql";
-import { BlocksFragment } from "@/lib/queries/fragments";
+import { graphql, useFragment, type FragmentType } from "@/graphql";
 import HeadingWithAccent from "../shared/heading-with-accent";
 import Card from "../shared/card";
 import { Button } from "../ui/button";
 import Link from "next/link";
 
+const ServiceCards_Fragment = graphql(`
+  fragment ServiceCard_Fragment on BlocksBlocksServiceCardsLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+    description
+    service {
+      nodes {
+        ... on Service {
+          __typename
+          id
+          title
+          slug
+          uri
+          serviceContent {
+            shortDescription
+            icon {
+              node {
+                altText
+                mediaItemUrl
+                mediaDetails {
+                  height
+                  width
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`);
+
 interface Props {
-  data: FragmentType<typeof BlocksFragment>;
+  data: FragmentType<typeof ServiceCards_Fragment>;
 }
 
 export default function ServiceCards(props: Props) {
-  const data = useFragment(BlocksFragment, props.data);
-  if (data.__typename !== "BlocksBlocksServiceCardsLayout") return null;
+  const data = useFragment(ServiceCards_Fragment, props.data);
 
   return (
     <section className="section items-center gap-12 px-2">
@@ -31,6 +64,7 @@ export default function ServiceCards(props: Props) {
       <div className="flex min-h-110 w-full flex-wrap justify-center gap-6">
         {data.service?.nodes.map((s, index) => {
           if (s.__typename !== "Service") return;
+          console.log("service data:", s);
 
           return (
             <Card key={index} className="h-110 max-w-75 min-w-70">
