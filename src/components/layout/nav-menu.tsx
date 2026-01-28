@@ -34,43 +34,43 @@ export default function NavMenu() {
               <SubLink href={"/tjanster/design/grafisk-profil"}>
                 Grafisk profil
               </SubLink>
-              <ParentLink href="/tjanster/marknadsföring">
+              <ParentLink href="/tjanster/marknadsforing">
                 Marknadsföring
               </ParentLink>
-              <SubLink href={"/tjanster/marknadsföring/seo"}>SEO</SubLink>
-              <SubLink href={"/tjanster/marknadsföring/google-ads"}>
+              <SubLink href={"/tjanster/marknadsforing/seo"}>SEO</SubLink>
+              <SubLink href={"/tjanster/marknadsforing/google-ads"}>
                 Google Ads
               </SubLink>
-              <SubLink href={"/tjanster/marknadsföring/sociala-medier"}>
+              <SubLink href={"/tjanster/marknadsforing/sociala-medier"}>
                 Sociala medier
               </SubLink>
-              <SubLink href={"/tjanster/marknadsföring/paid-social"}>
+              <SubLink href={"/tjanster/marknadsforing/paid-social"}>
                 Paid social
               </SubLink>
             </div>
             <div>
               <ParentLink href="/tjanster/webb">Webb</ParentLink>
-              <SubLink href={"/tjanster/webb/hemsidor"}>Hemsidor</SubLink>
+              <SubLink href={"/tjanster/webb/webbutveckling"}>Hemsidor</SubLink>
               <SubLink href={"/tjanster/webb/e-handel"}>E-handel</SubLink>
               <SubLink href={"/tjanster/webb/hosting"}>Hosting</SubLink>
               <ParentLink href="/tjanster/content">Content</ParentLink>
               <SubLink href={"/tjanster/content/foto-film"}>
                 Foto & Film
               </SubLink>
-              <SubLink href={"/tjanster/content/tryckmeterial"}>
+              <SubLink href={"/tjanster/content/tryckmaterial"}>
                 Tryckmaterial
               </SubLink>
             </div>
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
+          <ParentLink href="/kundcase">Kundcase</ParentLink>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
           <ParentLink href="/nyheter">Nyheter</ParentLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <ParentLink href="/tjanster/kundcase">Kundcase</ParentLink>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <ParentLink href="/tjanster/om-oss">Om oss</ParentLink>
+          <ParentLink href="/om-oss">Om oss</ParentLink>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>

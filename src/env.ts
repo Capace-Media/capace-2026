@@ -16,6 +16,7 @@ export const env = createEnv({
     SITE_URL: z.string(),
     GOOGLE_REVIEWS: z.url(),
     GOOGLE_API_KEY: z.string(),
+    REVALIDATION_SECRET_TOKEN: z.string(),
   },
 
   /**
@@ -41,6 +42,7 @@ export const env = createEnv({
     SITE_URL: process.env.SITE_URL,
     GOOGLE_REVIEWS: process.env.GOOGLE_REVIEWS,
     GOOGLE_API_KEY: process.env.GOOGLE_API_KEY,
+    REVALIDATION_SECRET_TOKEN: process.env.REVALIDATION_SECRET_TOKEN,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   /**
