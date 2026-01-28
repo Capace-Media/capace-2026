@@ -6,19 +6,25 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+import { ChevronDown } from "lucide-react";
 import Link from "next/link";
 export default function NavMenu() {
   return (
-    <NavigationMenu>
+    <NavigationMenu className="frosted rounded-full border px-4">
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger
             render={
-              <Link href={"/tjanster"} className="hover:text-primary">
+              <Link
+                href={"/tjanster"}
+                className="hover:text-primary flex items-center gap-1"
+              >
                 Våra tjänster
+                <ChevronDown className="size-3" />
               </Link>
             }
           ></NavigationMenuTrigger>
+
           <NavigationMenuContent className="z-50">
             <div>
               <ParentLink href="/tjanster/design">Design</ParentLink>
@@ -58,6 +64,9 @@ export default function NavMenu() {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
+          <ParentLink href="/nyheter">Nyheter</ParentLink>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
           <ParentLink href="/tjanster/kundcase">Kundcase</ParentLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
@@ -78,7 +87,7 @@ const ParentLink = ({
   return (
     <NavigationMenuLink
       render={
-        <Link href={href} className="hover:text-primary">
+        <Link href={href} className="hover:text-primary whitespace-nowrap">
           {children}
         </Link>
       }

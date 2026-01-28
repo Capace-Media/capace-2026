@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "../ui/button";
 import MobileMenu from "./mobile-menu";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -31,7 +30,7 @@ export default function Header() {
           <MobileMenu />
         </div>
         <div className="hidden w-full md:flex">
-          <nav className="z-10! max-w-[1/3] flex-1">
+          <nav className="z-10! max-w-[1/3] flex-1 items-center justify-center">
             <NavMenu />
           </nav>
           <CapaceLogo className="max-w-[1/3] flex-1" />
