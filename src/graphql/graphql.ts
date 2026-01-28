@@ -14283,16 +14283,16 @@ export type WritingSettings = {
   useSmilies?: Maybe<Scalars['Boolean']['output']>;
 };
 
-export type MediaAndTextFragmentFragment = { __typename?: 'BlocksBlocksMediaAndText', textContent?: string | null, imagePlacement?: boolean | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null, button?: { __typename: 'BlocksBlocksMediaAndTextButton', ariaLabel?: string | null, label?: string | null, url?: { __typename?: 'ReusableFieldsButtonUrl', externalLink?: string | null, internalLink?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
-          | { __typename?: 'Case', slug?: string | null }
-          | { __typename?: 'Employee', slug?: string | null }
-          | { __typename?: 'Faq', slug?: string | null }
-          | { __typename?: 'MediaItem', slug?: string | null }
-          | { __typename?: 'Page', slug?: string | null }
-          | { __typename?: 'Post', slug?: string | null }
-          | { __typename?: 'Service', slug?: string | null }
-          | { __typename?: 'Testimonial', slug?: string | null }
-        > } | null } | null } | null, accentHeading?: { __typename?: 'BlocksBlocksMediaAndTextAccentHeading', accent?: string | null, main?: string | null } | null } & { ' $fragmentName'?: 'MediaAndTextFragmentFragment' };
+export type MediaAndTextFragmentFragment = { __typename?: 'BlocksBlocksMediaAndTextLayout', mediaAndText?: { __typename?: 'BlocksBlocksMediaAndText', textContent?: string | null, imagePlacement?: boolean | null, accentHeading?: { __typename?: 'BlocksBlocksMediaAndTextAccentHeading', accent?: string | null, main?: string | null } | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null, button?: { __typename: 'BlocksBlocksMediaAndTextButton', ariaLabel?: string | null, label?: string | null, url?: { __typename?: 'ReusableFieldsButtonUrl', externalLink?: string | null, internalLink?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
+            | { __typename?: 'Case', slug?: string | null }
+            | { __typename?: 'Employee', slug?: string | null }
+            | { __typename?: 'Faq', slug?: string | null }
+            | { __typename?: 'MediaItem', slug?: string | null }
+            | { __typename?: 'Page', slug?: string | null }
+            | { __typename?: 'Post', slug?: string | null }
+            | { __typename?: 'Service', slug?: string | null }
+            | { __typename?: 'Testimonial', slug?: string | null }
+          > } | null } | null } | null } | null } & { ' $fragmentName'?: 'MediaAndTextFragmentFragment' };
 
 export type Quote_FragmentFragment = { __typename?: 'BlocksBlocksQuoteLayout', author?: string | null, authorTitle?: string | null, companyName?: string | null, quote?: string | null } & { ' $fragmentName'?: 'Quote_FragmentFragment' };
 
@@ -14822,36 +14822,38 @@ export class TypedDocumentString<TResult, TVariables>
   }
 }
 export const MediaAndTextFragmentFragmentDoc = new TypedDocumentString(`
-    fragment MediaAndTextFragment on BlocksBlocksMediaAndText {
-  image {
-    node {
-      altText
-      mediaItemUrl
-      mediaDetails {
-        height
-        width
+    fragment MediaAndTextFragment on BlocksBlocksMediaAndTextLayout {
+  mediaAndText {
+    textContent
+    imagePlacement
+    accentHeading {
+      accent
+      main
+    }
+    image {
+      node {
+        altText
+        mediaItemUrl
+        mediaDetails {
+          height
+          width
+        }
       }
     }
-  }
-  button {
-    ariaLabel
-    __typename
-    label
-    url {
-      externalLink
-      internalLink {
-        nodes {
-          slug
+    button {
+      ariaLabel
+      __typename
+      label
+      url {
+        externalLink
+        internalLink {
+          nodes {
+            slug
+          }
         }
       }
     }
   }
-  accentHeading {
-    accent
-    main
-  }
-  textContent
-  imagePlacement
 }
     `, {"fragmentName":"MediaAndTextFragment"}) as unknown as TypedDocumentString<MediaAndTextFragmentFragment, unknown>;
 export const EmployeeContentFragmentFragmentDoc = new TypedDocumentString(`

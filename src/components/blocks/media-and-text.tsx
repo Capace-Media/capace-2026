@@ -8,36 +8,38 @@ import { cn } from "@/lib/utils";
 import { graphql } from "@/graphql";
 
 const MediaAndTextFragment = graphql(`
-  fragment MediaAndTextFragment on BlocksBlocksMediaAndText {
-    image {
-      node {
-        altText
-        mediaItemUrl
-        mediaDetails {
-          height
-          width
+  fragment MediaAndTextFragment on BlocksBlocksMediaAndTextLayout {
+    mediaAndText {
+      textContent
+      imagePlacement
+      accentHeading {
+        accent
+        main
+      }
+      image {
+        node {
+          altText
+          mediaItemUrl
+          mediaDetails {
+            height
+            width
+          }
         }
       }
-    }
-    button {
-      ariaLabel
-      __typename
-      label
-      url {
-        externalLink
-        internalLink {
-          nodes {
-            slug
+      button {
+        ariaLabel
+        __typename
+        label
+        url {
+          externalLink
+          internalLink {
+            nodes {
+              slug
+            }
           }
         }
       }
     }
-    accentHeading {
-      accent
-      main
-    }
-    textContent
-    imagePlacement
   }
 `);
 
@@ -46,11 +48,10 @@ type MediaAndTextProps = {
 };
 
 export default function MediaAndText(props: MediaAndTextProps) {
-  const block = useFragment(MediaAndTextFragment, props.data);
-  const image = block.image?.node;
-  const button = block.button;
-  const imageOnRightSide = block.imagePlacement;
-  console.log("data:", block);
+  const data = useFragment(MediaAndTextFragment, props.data);
+  const image = data.mediaAndText?.image?.node;
+  const button = data.mediaAndText?.button;
+  const imageOnRightSide = data.mediaAndText?.imagePlacement;
 
   return (
     <section
@@ -59,12 +60,13 @@ export default function MediaAndText(props: MediaAndTextProps) {
       )}
     >
       <div className="order-1">
-        {(block?.accentHeading?.accent || block?.accentHeading?.main) && (
+        {(data?.mediaAndText?.accentHeading?.accent ||
+          data?.mediaAndText?.accentHeading?.main) && (
           <HeadingWithAccent
             noBottomMargin
             textAlign="left"
-            accentedHeading={block?.accentHeading?.accent || ""}
-            mainHeading={block?.accentHeading?.main || ""}
+            accentedHeading={data?.mediaAndText.accentHeading?.accent || ""}
+            mainHeading={data?.mediaAndText.accentHeading?.main || ""}
           />
         )}
       </div>
@@ -87,7 +89,7 @@ export default function MediaAndText(props: MediaAndTextProps) {
           "prose prose-invert italic-accent list-capace order-3 flex flex-col",
         )}
       >
-        {parse(block?.textContent || "")}
+        {parse(data.mediaAndText?.textContent || "")}
         {button?.url && button.label && (
           <div className={cn("flex justify-center py-10 lg:justify-start")}>
             <ExternalOrInternalLink
