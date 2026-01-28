@@ -139,10 +139,7 @@ export const BlocksFragment = graphql(`
     }
     ... on BlocksBlocksQuoteLayout {
       __typename
-      author
-      authorTitle
-      companyName
-      quote
+      ...Quote_Fragment
     }
     ... on BlocksBlocksContactFormLayout {
       __typename

@@ -1,25 +1,56 @@
 import type { ReusableFieldsButton_Fields } from "@/graphql/graphql";
 import { type FragmentType, useFragment } from "@/graphql/fragment-masking";
-import { BlocksFragment } from "@/lib/queries/fragments";
 import parse from "html-react-parser";
 import HeadingWithAccent from "../shared/heading-with-accent";
 import ExternalOrInternalLink from "../shared/external-or-internal-link";
 import ParallaxImage from "../shared/parallax-image";
 import { cn } from "@/lib/utils";
+import { graphql } from "@/graphql";
 
-interface Props {
-  data: FragmentType<typeof BlocksFragment>;
-}
+const MediaAndTextFragment = graphql(`
+  fragment MediaAndTextFragment on BlocksBlocksMediaAndText {
+    image {
+      node {
+        altText
+        mediaItemUrl
+        mediaDetails {
+          height
+          width
+        }
+      }
+    }
+    button {
+      ariaLabel
+      __typename
+      label
+      url {
+        externalLink
+        internalLink {
+          nodes {
+            slug
+          }
+        }
+      }
+    }
+    accentHeading {
+      accent
+      main
+    }
+    textContent
+    imagePlacement
+  }
+`);
 
-export default function MediaAndText(props: Props) {
-  const block = useFragment(BlocksFragment, props.data);
+type MediaAndTextProps = {
+  data: FragmentType<typeof MediaAndTextFragment>;
+};
 
-  if (block.__typename !== "BlocksBlocksMediaAndTextLayout") return null;
-
-  const data = block.mediaAndText;
-  const image = block.mediaAndText?.image?.node;
-  const button = block.mediaAndText?.button;
-  const imageOnRightSide = block.mediaAndText?.imagePlacement;
+export default function MediaAndText(props: MediaAndTextProps) {
+  const block = useFragment(MediaAndTextFragment, props.data);
+  const image = block.image?.node;
+  const button = block.button;
+  const imageOnRightSide = block.imagePlacement;
+  console.log("data:", block);
 
   return (
     <section
@@ -28,12 +59,12 @@ export default function MediaAndText(props: Props) {
       )}
     >
       <div className="order-1">
-        {(data?.accentHeading?.accent || data?.accentHeading?.main) && (
+        {(block?.accentHeading?.accent || block?.accentHeading?.main) && (
           <HeadingWithAccent
             noBottomMargin
             textAlign="left"
-            accentedHeading={data?.accentHeading?.accent || ""}
-            mainHeading={data?.accentHeading?.main || ""}
+            accentedHeading={block?.accentHeading?.accent || ""}
+            mainHeading={block?.accentHeading?.main || ""}
           />
         )}
       </div>
@@ -56,7 +87,7 @@ export default function MediaAndText(props: Props) {
           "prose prose-invert italic-accent list-capace order-3 flex flex-col",
         )}
       >
-        {parse(data?.textContent || "")}
+        {parse(block?.textContent || "")}
         {button?.url && button.label && (
           <div className={cn("flex justify-center py-10 lg:justify-start")}>
             <ExternalOrInternalLink

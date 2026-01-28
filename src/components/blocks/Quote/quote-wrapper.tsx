@@ -1,15 +1,22 @@
 "use client";
-import { useFragment, type FragmentType } from "@/graphql";
-import { BlocksFragment } from "@/lib/queries/fragments";
+import { graphql, useFragment, type FragmentType } from "@/graphql";
 import Quote from "./quote";
 
-interface Props {
-  data: FragmentType<typeof BlocksFragment>;
-}
+const Quote_Fragment = graphql(`
+  fragment Quote_Fragment on BlocksBlocksQuoteLayout {
+    author
+    authorTitle
+    companyName
+    quote
+  }
+`);
 
-export default function QuoteWrapper(props: Props) {
-  const data = useFragment(BlocksFragment, props.data);
-  if (data.__typename !== "BlocksBlocksQuoteLayout") return null;
+type QuoteWrapperProps = {
+  data: FragmentType<typeof Quote_Fragment>;
+};
+
+export default function QuoteWrapper(props: QuoteWrapperProps) {
+  const data = useFragment(Quote_Fragment, props.data);
   return (
     <section className="section items-center py-20">
       <Quote

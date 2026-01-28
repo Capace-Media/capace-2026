@@ -14283,6 +14283,19 @@ export type WritingSettings = {
   useSmilies?: Maybe<Scalars['Boolean']['output']>;
 };
 
+export type MediaAndTextFragmentFragment = { __typename?: 'BlocksBlocksMediaAndText', textContent?: string | null, imagePlacement?: boolean | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null, button?: { __typename: 'BlocksBlocksMediaAndTextButton', ariaLabel?: string | null, label?: string | null, url?: { __typename?: 'ReusableFieldsButtonUrl', externalLink?: string | null, internalLink?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
+          | { __typename?: 'Case', slug?: string | null }
+          | { __typename?: 'Employee', slug?: string | null }
+          | { __typename?: 'Faq', slug?: string | null }
+          | { __typename?: 'MediaItem', slug?: string | null }
+          | { __typename?: 'Page', slug?: string | null }
+          | { __typename?: 'Post', slug?: string | null }
+          | { __typename?: 'Service', slug?: string | null }
+          | { __typename?: 'Testimonial', slug?: string | null }
+        > } | null } | null } | null, accentHeading?: { __typename?: 'BlocksBlocksMediaAndTextAccentHeading', accent?: string | null, main?: string | null } | null } & { ' $fragmentName'?: 'MediaAndTextFragmentFragment' };
+
+export type Quote_FragmentFragment = { __typename?: 'BlocksBlocksQuoteLayout', author?: string | null, authorTitle?: string | null, companyName?: string | null, quote?: string | null } & { ' $fragmentName'?: 'Quote_FragmentFragment' };
+
 export type CaseQueryVariables = Exact<{
   slug: Scalars['ID']['input'];
 }>;
@@ -14490,7 +14503,10 @@ type BlocksFragment_BlocksBlocksMediaAndTextLayout_Fragment = { __typename: 'Blo
 
 type BlocksFragment_BlocksBlocksNewsLayout_Fragment = { __typename: 'BlocksBlocksNewsLayout', newsAmount?: string | null, textContent?: string | null, accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksNewsLayout_Fragment' };
 
-type BlocksFragment_BlocksBlocksQuoteLayout_Fragment = { __typename: 'BlocksBlocksQuoteLayout', author?: string | null, authorTitle?: string | null, companyName?: string | null, quote?: string | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksQuoteLayout_Fragment' };
+type BlocksFragment_BlocksBlocksQuoteLayout_Fragment = (
+  { __typename: 'BlocksBlocksQuoteLayout' }
+  & { ' $fragmentRefs'?: { 'Quote_FragmentFragment': Quote_FragmentFragment } }
+) & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksQuoteLayout_Fragment' };
 
 type BlocksFragment_BlocksBlocksServiceCardsLayout_Fragment = { __typename: 'BlocksBlocksServiceCardsLayout', description?: string | null, accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null, service?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
       | { __typename?: 'Case' }
@@ -14805,6 +14821,39 @@ export class TypedDocumentString<TResult, TVariables>
     return this.value;
   }
 }
+export const MediaAndTextFragmentFragmentDoc = new TypedDocumentString(`
+    fragment MediaAndTextFragment on BlocksBlocksMediaAndText {
+  image {
+    node {
+      altText
+      mediaItemUrl
+      mediaDetails {
+        height
+        width
+      }
+    }
+  }
+  button {
+    ariaLabel
+    __typename
+    label
+    url {
+      externalLink
+      internalLink {
+        nodes {
+          slug
+        }
+      }
+    }
+  }
+  accentHeading {
+    accent
+    main
+  }
+  textContent
+  imagePlacement
+}
+    `, {"fragmentName":"MediaAndTextFragment"}) as unknown as TypedDocumentString<MediaAndTextFragmentFragment, unknown>;
 export const EmployeeContentFragmentFragmentDoc = new TypedDocumentString(`
     fragment EmployeeContentFragment on EmployeeContent {
   email
@@ -14872,6 +14921,14 @@ export const PageContentFragmentFragmentDoc = new TypedDocumentString(`
   }
 }
     `, {"fragmentName":"PageContentFragment"}) as unknown as TypedDocumentString<PageContentFragmentFragment, unknown>;
+export const Quote_FragmentFragmentDoc = new TypedDocumentString(`
+    fragment Quote_Fragment on BlocksBlocksQuoteLayout {
+  author
+  authorTitle
+  companyName
+  quote
+}
+    `, {"fragmentName":"Quote_Fragment"}) as unknown as TypedDocumentString<Quote_FragmentFragment, unknown>;
 export const BlocksFragmentFragmentDoc = new TypedDocumentString(`
     fragment BlocksFragment on BlocksBlocks_Layout {
   ... on BlocksBlocksMediaAndTextLayout {
@@ -14942,10 +14999,7 @@ export const BlocksFragmentFragmentDoc = new TypedDocumentString(`
   }
   ... on BlocksBlocksQuoteLayout {
     __typename
-    author
-    authorTitle
-    companyName
-    quote
+    ...Quote_Fragment
   }
   ... on BlocksBlocksContactFormLayout {
     __typename
@@ -15191,7 +15245,12 @@ export const BlocksFragmentFragmentDoc = new TypedDocumentString(`
     }
   }
 }
-    `, {"fragmentName":"BlocksFragment"}) as unknown as TypedDocumentString<BlocksFragmentFragment, unknown>;
+    fragment Quote_Fragment on BlocksBlocksQuoteLayout {
+  author
+  authorTitle
+  companyName
+  quote
+}`, {"fragmentName":"BlocksFragment"}) as unknown as TypedDocumentString<BlocksFragmentFragment, unknown>;
 export const CaseDocument = new TypedDocumentString(`
     query Case($slug: ID!) {
   case(id: $slug, idType: URI) {
@@ -15225,7 +15284,13 @@ export const CaseDocument = new TypedDocumentString(`
     }
   }
 }
-    fragment BlocksFragment on BlocksBlocks_Layout {
+    fragment Quote_Fragment on BlocksBlocksQuoteLayout {
+  author
+  authorTitle
+  companyName
+  quote
+}
+fragment BlocksFragment on BlocksBlocks_Layout {
   ... on BlocksBlocksMediaAndTextLayout {
     __typename
     mediaAndText {
@@ -15294,10 +15359,7 @@ export const CaseDocument = new TypedDocumentString(`
   }
   ... on BlocksBlocksQuoteLayout {
     __typename
-    author
-    authorTitle
-    companyName
-    quote
+    ...Quote_Fragment
   }
   ... on BlocksBlocksContactFormLayout {
     __typename
@@ -15719,7 +15781,13 @@ export const NewsBySlugQueryDocument = new TypedDocumentString(`
     }
   }
 }
-    fragment BlocksFragment on BlocksBlocks_Layout {
+    fragment Quote_Fragment on BlocksBlocksQuoteLayout {
+  author
+  authorTitle
+  companyName
+  quote
+}
+fragment BlocksFragment on BlocksBlocks_Layout {
   ... on BlocksBlocksMediaAndTextLayout {
     __typename
     mediaAndText {
@@ -15788,10 +15856,7 @@ export const NewsBySlugQueryDocument = new TypedDocumentString(`
   }
   ... on BlocksBlocksQuoteLayout {
     __typename
-    author
-    authorTitle
-    companyName
-    quote
+    ...Quote_Fragment
   }
   ... on BlocksBlocksContactFormLayout {
     __typename
@@ -16052,7 +16117,13 @@ export const PageDocument = new TypedDocumentString(`
     }
   }
 }
-    fragment PageContentFragment on PageContent {
+    fragment Quote_Fragment on BlocksBlocksQuoteLayout {
+  author
+  authorTitle
+  companyName
+  quote
+}
+fragment PageContentFragment on PageContent {
   rounded {
     node {
       altText
@@ -16170,10 +16241,7 @@ fragment BlocksFragment on BlocksBlocks_Layout {
   }
   ... on BlocksBlocksQuoteLayout {
     __typename
-    author
-    authorTitle
-    companyName
-    quote
+    ...Quote_Fragment
   }
   ... on BlocksBlocksContactFormLayout {
     __typename
@@ -16448,7 +16516,13 @@ export const QueryDocument = new TypedDocumentString(`
     }
   }
 }
-    fragment PageContentFragment on PageContent {
+    fragment Quote_Fragment on BlocksBlocksQuoteLayout {
+  author
+  authorTitle
+  companyName
+  quote
+}
+fragment PageContentFragment on PageContent {
   rounded {
     node {
       altText
@@ -16566,10 +16640,7 @@ fragment BlocksFragment on BlocksBlocks_Layout {
   }
   ... on BlocksBlocksQuoteLayout {
     __typename
-    author
-    authorTitle
-    companyName
-    quote
+    ...Quote_Fragment
   }
   ... on BlocksBlocksContactFormLayout {
     __typename
