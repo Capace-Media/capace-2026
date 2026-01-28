@@ -6,18 +6,7 @@ export const EmployeesQuery = graphql(`
       nodes {
         title
         employeeContent {
-          email
-          employmentType
-          telephone
-          image {
-            node {
-              mediaItemUrl
-              altText
-            }
-          }
-          quote
-          textContent
-          workTitle
+          ...EmployeeContentFragment
         }
       }
     }
@@ -29,18 +18,7 @@ export const EmployeeBySlugQuery = graphql(`
     employee(id: $slug, idType: URI) {
       title
       employeeContent {
-        email
-        employmentType
-        telephone
-        image {
-          node {
-            mediaItemUrl
-            altText
-          }
-        }
-        quote
-        textContent
-        workTitle
+        ...EmployeeContentFragment
       }
     }
   }

@@ -1,5 +1,74 @@
 import { graphql } from "@/graphql/gql";
 
+export const EmployeeContentFragment = graphql(`
+  fragment EmployeeContentFragment on EmployeeContent {
+    email
+    employmentType
+    telephone
+    image {
+      node {
+        mediaItemUrl
+        altText
+      }
+    }
+    quote
+    textContent
+    workTitle
+  }
+`);
+
+export const PageContentFragment = graphql(`
+  fragment PageContentFragment on PageContent {
+    rounded {
+      node {
+        altText
+        mediaItemUrl
+      }
+    }
+    small {
+      heroImage {
+        node {
+          altText
+          mediaItemUrl
+        }
+      }
+    }
+    medium {
+      heading_accent
+      heading_main
+      text
+    }
+    large {
+      heading
+      headingAccent
+      subheading
+      heroImage {
+        node {
+          altText
+          mediaItemUrl
+          mediaDetails {
+            height
+            width
+          }
+        }
+      }
+      button {
+        ariaLabel
+        label
+        url {
+          externalLink
+          internalLink {
+            nodes {
+              slug
+            }
+          }
+          is_internal
+        }
+      }
+    }
+  }
+`);
+
 export const BlocksFragment = graphql(`
   fragment BlocksFragment on BlocksBlocks_Layout {
     ... on BlocksBlocksMediaAndTextLayout {
@@ -315,51 +384,6 @@ export const BlocksFragment = graphql(`
           }
           textContent
           title
-        }
-      }
-    }
-  }
-`);
-export const PageContentFragment = graphql(`
-  fragment PageContentFragment on PageContent {
-    small {
-      heroImage {
-        node {
-          altText
-          mediaItemUrl
-        }
-      }
-    }
-    medium {
-      heading_accent
-      heading_main
-      text
-    }
-    large {
-      heading
-      headingAccent
-      subheading
-      heroImage {
-        node {
-          altText
-          mediaItemUrl
-          mediaDetails {
-            height
-            width
-          }
-        }
-      }
-      button {
-        ariaLabel
-        label
-        url {
-          externalLink
-          internalLink {
-            nodes {
-              slug
-            }
-          }
-          is_internal
         }
       }
     }
