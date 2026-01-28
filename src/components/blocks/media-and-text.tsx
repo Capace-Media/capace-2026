@@ -9,6 +9,7 @@ import { graphql } from "@/graphql";
 
 const MediaAndTextFragment = graphql(`
   fragment MediaAndTextFragment on BlocksBlocksMediaAndTextLayout {
+    __typename
     mediaAndText {
       textContent
       imagePlacement

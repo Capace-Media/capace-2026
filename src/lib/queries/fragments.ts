@@ -1,5 +1,16 @@
 import { graphql } from "@/graphql/gql";
 
+export const ImageFragment = graphql(`
+  fragment ImageFragment on MediaItem {
+    altText
+    mediaItemUrl
+    mediaDetails {
+      width
+      height
+    }
+  }
+`);
+
 export const ServiceContentFragment = graphql(`
   fragment ServiceContentFragment on ServiceContent {
     shortDescription
@@ -104,7 +115,6 @@ export const PageContentFragment = graphql(`
 export const BlocksFragment = graphql(`
   fragment BlocksFragment on BlocksBlocks_Layout {
     ... on BlocksBlocksMediaAndTextLayout {
-      __typename
       ...MediaAndTextFragment
     }
     ... on BlocksBlocksServiceCardsLayout {
@@ -120,18 +130,7 @@ export const BlocksFragment = graphql(`
       __typename
     }
     ... on BlocksBlocksImageBannerLayout {
-      __typename
-      fullWidth
-      images {
-        nodes {
-          altText
-          mediaItemUrl
-          mediaDetails {
-            width
-            height
-          }
-        }
-      }
+      ...ImageBannerFragment
     }
     ... on BlocksBlocksCaseCardGridLayout {
       __typename

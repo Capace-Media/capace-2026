@@ -14283,7 +14283,9 @@ export type WritingSettings = {
   useSmilies?: Maybe<Scalars['Boolean']['output']>;
 };
 
-export type MediaAndTextFragmentFragment = { __typename?: 'BlocksBlocksMediaAndTextLayout', mediaAndText?: { __typename?: 'BlocksBlocksMediaAndText', textContent?: string | null, imagePlacement?: boolean | null, accentHeading?: { __typename?: 'BlocksBlocksMediaAndTextAccentHeading', accent?: string | null, main?: string | null } | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null, button?: { __typename: 'BlocksBlocksMediaAndTextButton', ariaLabel?: string | null, label?: string | null, url?: { __typename?: 'ReusableFieldsButtonUrl', externalLink?: string | null, internalLink?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
+export type ImageBannerFragmentFragment = { __typename: 'BlocksBlocksImageBannerLayout', fullWidth?: boolean | null, images?: { __typename?: 'AcfMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null }> } | null } & { ' $fragmentName'?: 'ImageBannerFragmentFragment' };
+
+export type MediaAndTextFragmentFragment = { __typename: 'BlocksBlocksMediaAndTextLayout', mediaAndText?: { __typename?: 'BlocksBlocksMediaAndText', textContent?: string | null, imagePlacement?: boolean | null, accentHeading?: { __typename?: 'BlocksBlocksMediaAndTextAccentHeading', accent?: string | null, main?: string | null } | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null, button?: { __typename: 'BlocksBlocksMediaAndTextButton', ariaLabel?: string | null, label?: string | null, url?: { __typename?: 'ReusableFieldsButtonUrl', externalLink?: string | null, internalLink?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
             | { __typename?: 'Case', slug?: string | null }
             | { __typename?: 'Employee', slug?: string | null }
             | { __typename?: 'Faq', slug?: string | null }
@@ -14416,6 +14418,8 @@ export type FooterQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type FooterQuery = { __typename?: 'RootQuery', footer?: { __typename?: 'Footer', footerContent?: { __typename?: 'FooterContent', address?: string | null, email?: string | null, heading?: string | null, telephone?: string | null, textContent?: string | null, socials?: { __typename?: 'FooterContentSocials', facebook?: string | null, instagram?: string | null, linkedin?: string | null, threads?: string | null, tiktok?: string | null, x?: string | null } | null, certifications?: { __typename?: 'AcfMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', altText?: string | null, id: string, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null }> } | null } | null } | null };
 
+export type ImageFragmentFragment = { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null } & { ' $fragmentName'?: 'ImageFragmentFragment' };
+
 export type ServiceContentFragmentFragment = { __typename?: 'ServiceContent', shortDescription?: string | null, icon?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null } & { ' $fragmentName'?: 'ServiceContentFragmentFragment' };
 
 export type ButtonFragmentFragment = { __typename: 'ReusableFieldsButton', ariaLabel?: string | null, label?: string | null, url?: { __typename?: 'ReusableFieldsButtonUrl', externalLink?: string | null, internalLink?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
@@ -14512,10 +14516,13 @@ type BlocksFragment_BlocksBlocksFaqLayout_Fragment = { __typename: 'BlocksBlocks
       | { __typename?: 'Testimonial' }
     > } | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksFaqLayout_Fragment' };
 
-type BlocksFragment_BlocksBlocksImageBannerLayout_Fragment = { __typename: 'BlocksBlocksImageBannerLayout', fullWidth?: boolean | null, images?: { __typename?: 'AcfMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null }> } | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksImageBannerLayout_Fragment' };
+type BlocksFragment_BlocksBlocksImageBannerLayout_Fragment = (
+  { __typename?: 'BlocksBlocksImageBannerLayout' }
+  & { ' $fragmentRefs'?: { 'ImageBannerFragmentFragment': ImageBannerFragmentFragment } }
+) & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksImageBannerLayout_Fragment' };
 
 type BlocksFragment_BlocksBlocksMediaAndTextLayout_Fragment = (
-  { __typename: 'BlocksBlocksMediaAndTextLayout' }
+  { __typename?: 'BlocksBlocksMediaAndTextLayout' }
   & { ' $fragmentRefs'?: { 'MediaAndTextFragmentFragment': MediaAndTextFragmentFragment } }
 ) & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksMediaAndTextLayout_Fragment' };
 
@@ -14833,6 +14840,16 @@ export class TypedDocumentString<TResult, TVariables>
     return this.value;
   }
 }
+export const ImageFragmentFragmentDoc = new TypedDocumentString(`
+    fragment ImageFragment on MediaItem {
+  altText
+  mediaItemUrl
+  mediaDetails {
+    width
+    height
+  }
+}
+    `, {"fragmentName":"ImageFragment"}) as unknown as TypedDocumentString<ImageFragmentFragment, unknown>;
 export const ServiceContentFragmentFragmentDoc = new TypedDocumentString(`
     fragment ServiceContentFragment on ServiceContent {
   shortDescription
@@ -14932,6 +14949,7 @@ export const PageContentFragmentFragmentDoc = new TypedDocumentString(`
     `, {"fragmentName":"PageContentFragment"}) as unknown as TypedDocumentString<PageContentFragmentFragment, unknown>;
 export const MediaAndTextFragmentFragmentDoc = new TypedDocumentString(`
     fragment MediaAndTextFragment on BlocksBlocksMediaAndTextLayout {
+  __typename
   mediaAndText {
     textContent
     imagePlacement
@@ -15008,10 +15026,21 @@ export const Quote_FragmentFragmentDoc = new TypedDocumentString(`
   quote
 }
     `, {"fragmentName":"Quote_Fragment"}) as unknown as TypedDocumentString<Quote_FragmentFragment, unknown>;
+export const ImageBannerFragmentFragmentDoc = new TypedDocumentString(`
+    fragment ImageBannerFragment on BlocksBlocksImageBannerLayout {
+  __typename
+  fullWidth
+  images {
+    nodes {
+      altText
+      mediaItemUrl
+    }
+  }
+}
+    `, {"fragmentName":"ImageBannerFragment"}) as unknown as TypedDocumentString<ImageBannerFragmentFragment, unknown>;
 export const BlocksFragmentFragmentDoc = new TypedDocumentString(`
     fragment BlocksFragment on BlocksBlocks_Layout {
   ... on BlocksBlocksMediaAndTextLayout {
-    __typename
     ...MediaAndTextFragment
   }
   ... on BlocksBlocksServiceCardsLayout {
@@ -15027,18 +15056,7 @@ export const BlocksFragmentFragmentDoc = new TypedDocumentString(`
     __typename
   }
   ... on BlocksBlocksImageBannerLayout {
-    __typename
-    fullWidth
-    images {
-      nodes {
-        altText
-        mediaItemUrl
-        mediaDetails {
-          width
-          height
-        }
-      }
-    }
+    ...ImageBannerFragment
   }
   ... on BlocksBlocksCaseCardGridLayout {
     __typename
@@ -15264,7 +15282,18 @@ export const BlocksFragmentFragmentDoc = new TypedDocumentString(`
     }
   }
 }
-    fragment MediaAndTextFragment on BlocksBlocksMediaAndTextLayout {
+    fragment ImageBannerFragment on BlocksBlocksImageBannerLayout {
+  __typename
+  fullWidth
+  images {
+    nodes {
+      altText
+      mediaItemUrl
+    }
+  }
+}
+fragment MediaAndTextFragment on BlocksBlocksMediaAndTextLayout {
+  __typename
   mediaAndText {
     textContent
     imagePlacement
@@ -15369,7 +15398,18 @@ export const CaseDocument = new TypedDocumentString(`
     }
   }
 }
-    fragment MediaAndTextFragment on BlocksBlocksMediaAndTextLayout {
+    fragment ImageBannerFragment on BlocksBlocksImageBannerLayout {
+  __typename
+  fullWidth
+  images {
+    nodes {
+      altText
+      mediaItemUrl
+    }
+  }
+}
+fragment MediaAndTextFragment on BlocksBlocksMediaAndTextLayout {
+  __typename
   mediaAndText {
     textContent
     imagePlacement
@@ -15443,7 +15483,6 @@ fragment ServiceCard_Fragment on BlocksBlocksServiceCardsLayout {
 }
 fragment BlocksFragment on BlocksBlocks_Layout {
   ... on BlocksBlocksMediaAndTextLayout {
-    __typename
     ...MediaAndTextFragment
   }
   ... on BlocksBlocksServiceCardsLayout {
@@ -15459,18 +15498,7 @@ fragment BlocksFragment on BlocksBlocks_Layout {
     __typename
   }
   ... on BlocksBlocksImageBannerLayout {
-    __typename
-    fullWidth
-    images {
-      nodes {
-        altText
-        mediaItemUrl
-        mediaDetails {
-          width
-          height
-        }
-      }
-    }
+    ...ImageBannerFragment
   }
   ... on BlocksBlocksCaseCardGridLayout {
     __typename
@@ -15872,7 +15900,18 @@ export const NewsBySlugQueryDocument = new TypedDocumentString(`
     }
   }
 }
-    fragment MediaAndTextFragment on BlocksBlocksMediaAndTextLayout {
+    fragment ImageBannerFragment on BlocksBlocksImageBannerLayout {
+  __typename
+  fullWidth
+  images {
+    nodes {
+      altText
+      mediaItemUrl
+    }
+  }
+}
+fragment MediaAndTextFragment on BlocksBlocksMediaAndTextLayout {
+  __typename
   mediaAndText {
     textContent
     imagePlacement
@@ -15946,7 +15985,6 @@ fragment ServiceCard_Fragment on BlocksBlocksServiceCardsLayout {
 }
 fragment BlocksFragment on BlocksBlocks_Layout {
   ... on BlocksBlocksMediaAndTextLayout {
-    __typename
     ...MediaAndTextFragment
   }
   ... on BlocksBlocksServiceCardsLayout {
@@ -15962,18 +16000,7 @@ fragment BlocksFragment on BlocksBlocks_Layout {
     __typename
   }
   ... on BlocksBlocksImageBannerLayout {
-    __typename
-    fullWidth
-    images {
-      nodes {
-        altText
-        mediaItemUrl
-        mediaDetails {
-          width
-          height
-        }
-      }
-    }
+    ...ImageBannerFragment
   }
   ... on BlocksBlocksCaseCardGridLayout {
     __typename
@@ -16214,7 +16241,18 @@ export const PageDocument = new TypedDocumentString(`
     }
   }
 }
-    fragment MediaAndTextFragment on BlocksBlocksMediaAndTextLayout {
+    fragment ImageBannerFragment on BlocksBlocksImageBannerLayout {
+  __typename
+  fullWidth
+  images {
+    nodes {
+      altText
+      mediaItemUrl
+    }
+  }
+}
+fragment MediaAndTextFragment on BlocksBlocksMediaAndTextLayout {
+  __typename
   mediaAndText {
     textContent
     imagePlacement
@@ -16337,7 +16375,6 @@ fragment PageContentFragment on PageContent {
 }
 fragment BlocksFragment on BlocksBlocks_Layout {
   ... on BlocksBlocksMediaAndTextLayout {
-    __typename
     ...MediaAndTextFragment
   }
   ... on BlocksBlocksServiceCardsLayout {
@@ -16353,18 +16390,7 @@ fragment BlocksFragment on BlocksBlocks_Layout {
     __typename
   }
   ... on BlocksBlocksImageBannerLayout {
-    __typename
-    fullWidth
-    images {
-      nodes {
-        altText
-        mediaItemUrl
-        mediaDetails {
-          width
-          height
-        }
-      }
-    }
+    ...ImageBannerFragment
   }
   ... on BlocksBlocksCaseCardGridLayout {
     __typename
@@ -16619,7 +16645,18 @@ export const QueryDocument = new TypedDocumentString(`
     }
   }
 }
-    fragment MediaAndTextFragment on BlocksBlocksMediaAndTextLayout {
+    fragment ImageBannerFragment on BlocksBlocksImageBannerLayout {
+  __typename
+  fullWidth
+  images {
+    nodes {
+      altText
+      mediaItemUrl
+    }
+  }
+}
+fragment MediaAndTextFragment on BlocksBlocksMediaAndTextLayout {
+  __typename
   mediaAndText {
     textContent
     imagePlacement
@@ -16742,7 +16779,6 @@ fragment PageContentFragment on PageContent {
 }
 fragment BlocksFragment on BlocksBlocks_Layout {
   ... on BlocksBlocksMediaAndTextLayout {
-    __typename
     ...MediaAndTextFragment
   }
   ... on BlocksBlocksServiceCardsLayout {
@@ -16758,18 +16794,7 @@ fragment BlocksFragment on BlocksBlocks_Layout {
     __typename
   }
   ... on BlocksBlocksImageBannerLayout {
-    __typename
-    fullWidth
-    images {
-      nodes {
-        altText
-        mediaItemUrl
-        mediaDetails {
-          width
-          height
-        }
-      }
-    }
+    ...ImageBannerFragment
   }
   ... on BlocksBlocksCaseCardGridLayout {
     __typename
