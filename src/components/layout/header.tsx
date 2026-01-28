@@ -8,6 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { gsap } from "gsap";
 import { cn } from "@/lib/utils";
 import ButtonLink from "../shared/link";
+import NavMenu from "./nav-menu";
 gsap.registerPlugin(ScrollTrigger, gsap);
 
 export default function Header() {
@@ -33,41 +34,7 @@ export default function Header() {
       </div>
       <div className="hidden w-full md:flex">
         <nav className="max-w-[1/3] flex-1">
-          <ul className="frosted flex h-12 list-none justify-evenly gap-2 rounded-full p-3 whitespace-nowrap">
-            <li>
-              <Link
-                href={"/tjanster"}
-                className="hover:text-accent p-3 no-underline! transition-all duration-300"
-              >
-                Våra tjänster
-              </Link>
-            </li>
-            <li>
-              <Link
-                href={"/nyheter"}
-                className="hover:text-accent p-3 no-underline! transition-all duration-300"
-              >
-                Nyheter
-              </Link>
-            </li>
-
-            <li>
-              <Link
-                href={"/kundcase"}
-                className="hover:text-accent p-3 no-underline! transition-all duration-300"
-              >
-                Kundcase
-              </Link>
-            </li>
-            <li>
-              <Link
-                href={"/om-oss"}
-                className="hover:text-accent p-3 no-underline! transition-all duration-300"
-              >
-                Om Capace
-              </Link>
-            </li>
-          </ul>
+          <NavMenu />
         </nav>
         <CapaceLogo className="max-w-[1/3] flex-1" />
         <div className="flex max-w-[1/3] flex-1 justify-end">
