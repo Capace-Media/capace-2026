@@ -14,19 +14,22 @@ export default function NavMenu() {
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger
-            render={
-              <Link
-                href={"/tjanster"}
-                className="hover:text-primary flex items-center gap-1"
-              >
-                Våra tjänster
-                <ChevronDown className="size-3" />
-              </Link>
-            }
-          ></NavigationMenuTrigger>
+          // render={
+          //   <Link
+          //     href={"/tjanster"}
+          //     className="hover:text-primary flex items-center gap-1"
+          //   >
+          //     Våra tjänster
+          //     <ChevronDown className="size-3" />
+          //   </Link>
+          // }
+          >
+            Våra tjänster
+          </NavigationMenuTrigger>
 
-          <NavigationMenuContent className="z-50">
+          <NavigationMenuContent className="z-50 flex gap-2">
             <div>
+              <ParentLink href="/tjanster">Alla tjänster</ParentLink>
               <ParentLink href="/tjanster/design">Design</ParentLink>
               <SubLink href={"/tjanster/design/logotypdesign"}>
                 Logotypdesign
@@ -107,7 +110,7 @@ const SubLink = ({
       render={
         <Link
           href={href}
-          className="text-muted-foreground hover:text-primary pl-5"
+          className="hover:text-primary text-muted-foreground text-xs"
         >
           {children}
         </Link>
