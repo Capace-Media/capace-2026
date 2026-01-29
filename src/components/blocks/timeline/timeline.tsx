@@ -9,16 +9,27 @@ import type {
 import Image from "next/image";
 
 export default function Timeline(props: TimelineProps) {
-  const milestone = useFragment(Timeline_Fragment, props.data)
+  const milestones = useFragment(Timeline_Fragment, props.data)
     .milestones as Milestones_FragmentFragment[];
 
   return (
-    <div className="relative flex w-full snap-x flex-col gap-12 overflow-x-scroll">
-      <div className="border-primary sticky top-32 left-0 h-1 w-[50%] border-t-2" />
+    <div className="relative flex w-full snap-x snap-mandatory flex-col overflow-x-scroll">
+      <div className="flex w-full gap-30 px-6 md:px-130">
+        {milestones.map((m, index) => (
+          <div
+            key={index}
+            className="text-primary relative min-w-70 justify-center py-8 text-center text-lg font-medium md:min-w-100"
+          >
+            {m.year}
+            <div className="bg-primary absolute bottom-0 left-1/2 h-6 w-6 -translate-x-1/2 translate-y-1/2 rounded-full" />
+          </div>
+        ))}
+      </div>
+      <div className="border-primary sticky top-3 left-0 h-1 w-[50%] border-b-2" />
       <div className="relative flex h-100 min-h-120 w-fit flex-col items-center">
-        <div className="border-primary absolute top-19 left-0 h-1 w-full border-t-2 border-dashed" />
-        <div className="flex h-full flex-1 items-center gap-30 px-100">
-          {milestone?.map((m) => {
+        <div className="border-primary absolute -top-1 left-0 h-1 w-full border-b-2 border-dashed" />
+        <div className="flex h-full flex-1 items-center gap-30 px-6 md:px-130">
+          {milestones?.map((m) => {
             const image = m.image?.node as ImageFragmentFragment;
             return (
               <MilestoneItem
@@ -45,12 +56,8 @@ interface MilestoneItemProps {
 
 const MilestoneItem = (props: MilestoneItemProps) => {
   return (
-    <article className="flex h-full min-w-120 flex-1 snap-center flex-col items-center">
-      <p className="text-primary flex w-full flex-1 flex-col justify-center text-center font-medium">
-        {props.year}
-      </p>
-      <div className="bg-primary h-6 w-6 rounded-full" />
-      <h3 className="text-primary flex h-full w-full flex-1 flex-col justify-center text-center font-medium">
+    <article className="flex h-full min-w-70 flex-1 snap-center flex-col items-center md:h-full md:min-w-100">
+      <h3 className="text-primary flex h-full w-full flex-1 flex-col justify-center text-center text-lg font-medium">
         {props.title}
       </h3>
       <p className="w-full flex-3 text-center">{props.description}</p>

@@ -99,7 +99,7 @@ export default function News(props: Props) {
                         {dayjs(date).format("DD MMMM YYYY")}
                       </p>
                     )}
-                    <span className="text-muted-foreground">Lästid: X min</span>
+                    {/* <span className="text-muted-foreground">Lästid: X min</span> */}
                   </div>
                 </ArticleCard.Footer>
               </ArticleCard>
