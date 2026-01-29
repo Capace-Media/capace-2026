@@ -129,6 +129,9 @@ export const BlocksFragment = graphql(`
     ... on BlocksBlocksCollaboratorsBannerLayout {
       __typename
     }
+    ... on BlocksBlocksTimelineLayout {
+      ...Timeline_Fragment
+    }
     ... on BlocksBlocksImageBannerLayout {
       ...ImageBannerFragment
     }

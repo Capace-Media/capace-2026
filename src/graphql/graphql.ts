@@ -763,6 +763,41 @@ export type BlocksBlocksMediaAndText_Fields = {
   textContent?: Maybe<Scalars['String']['output']>;
 };
 
+/** The &quot;BlocksBlocksMilestones&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
+export type BlocksBlocksMilestones = AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksMilestones_Fields & {
+  __typename?: 'BlocksBlocksMilestones';
+  /** Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BlocksBlocksMilestones&quot; Field Group */
+  description?: Maybe<Scalars['String']['output']>;
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;BlocksBlocksMilestones&quot; Field Group */
+  image?: Maybe<AcfMediaItemConnectionEdge>;
+  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BlocksBlocksMilestones&quot; Field Group */
+  title?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BlocksBlocksMilestones&quot; Field Group */
+  year?: Maybe<Scalars['String']['output']>;
+};
+
+/** Interface representing fields of the ACF &quot;BlocksBlocksMilestones&quot; Field Group */
+export type BlocksBlocksMilestones_Fields = {
+  /** Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BlocksBlocksMilestones&quot; Field Group */
+  description?: Maybe<Scalars['String']['output']>;
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;BlocksBlocksMilestones&quot; Field Group */
+  image?: Maybe<AcfMediaItemConnectionEdge>;
+  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BlocksBlocksMilestones&quot; Field Group */
+  title?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BlocksBlocksMilestones&quot; Field Group */
+  year?: Maybe<Scalars['String']['output']>;
+};
+
 /** The &quot;BlocksBlocksNewsLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
 export type BlocksBlocksNewsLayout = AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksNewsLayout_Fields & BlocksBlocks_Layout & {
   __typename?: 'BlocksBlocksNewsLayout';
@@ -910,20 +945,28 @@ export type BlocksBlocksTestimonialsLayout_Fields = {
 /** The &quot;BlocksBlocksTimelineLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
 export type BlocksBlocksTimelineLayout = AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksTimelineLayout_Fields & BlocksBlocks_Layout & {
   __typename?: 'BlocksBlocksTimelineLayout';
+  /** A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space. */
+  accentHeading?: Maybe<BlocksBlocksAccentHeading>;
   /**
    * The name of the field group
    * @deprecated Use __typename instead
    */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;BlocksBlocksTimelineLayout&quot; Field Group */
+  milestones?: Maybe<Array<Maybe<BlocksBlocksMilestones>>>;
 };
 
 /** Interface representing fields of the ACF &quot;BlocksBlocksTimelineLayout&quot; Field Group */
 export type BlocksBlocksTimelineLayout_Fields = {
+  /** A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space. */
+  accentHeading?: Maybe<BlocksBlocksAccentHeading>;
   /**
    * The name of the field group
    * @deprecated Use __typename instead
    */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;BlocksBlocksTimelineLayout&quot; Field Group */
+  milestones?: Maybe<Array<Maybe<BlocksBlocksMilestones>>>;
 };
 
 /** The &quot;BlocksBlocksTwoColumnTextLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
@@ -14357,6 +14400,16 @@ export type ServiceCard_FragmentFragment = { __typename: 'BlocksBlocksServiceCar
       | { __typename?: 'Testimonial' }
     > } | null } & { ' $fragmentName'?: 'ServiceCard_FragmentFragment' };
 
+export type Milestones_FragmentFragment = { __typename?: 'BlocksBlocksMilestones', description?: string | null, title?: string | null, year?: string | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: (
+      { __typename?: 'MediaItem' }
+      & { ' $fragmentRefs'?: { 'ImageFragmentFragment': ImageFragmentFragment } }
+    ) } | null } & { ' $fragmentName'?: 'Milestones_FragmentFragment' };
+
+export type Timeline_FragmentFragment = { __typename: 'BlocksBlocksTimelineLayout', accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null, milestones?: Array<(
+    { __typename?: 'BlocksBlocksMilestones' }
+    & { ' $fragmentRefs'?: { 'Milestones_FragmentFragment': Milestones_FragmentFragment } }
+  ) | null> | null } & { ' $fragmentName'?: 'Timeline_FragmentFragment' };
+
 export type AnnouncementQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -14603,7 +14656,10 @@ type BlocksFragment_BlocksBlocksServiceCardsLayout_Fragment = (
 
 type BlocksFragment_BlocksBlocksTestimonialsLayout_Fragment = { __typename: 'BlocksBlocksTestimonialsLayout', accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksTestimonialsLayout_Fragment' };
 
-type BlocksFragment_BlocksBlocksTimelineLayout_Fragment = { __typename?: 'BlocksBlocksTimelineLayout' } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksTimelineLayout_Fragment' };
+type BlocksFragment_BlocksBlocksTimelineLayout_Fragment = (
+  { __typename?: 'BlocksBlocksTimelineLayout' }
+  & { ' $fragmentRefs'?: { 'Timeline_FragmentFragment': Timeline_FragmentFragment } }
+) & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksTimelineLayout_Fragment' };
 
 type BlocksFragment_BlocksBlocksTwoColumnTextLayout_Fragment = { __typename: 'BlocksBlocksTwoColumnTextLayout', column_right?: string | null, column_left?: string | null, accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null } & { ' $fragmentName'?: 'BlocksFragment_BlocksBlocksTwoColumnTextLayout_Fragment' };
 
@@ -14918,16 +14974,6 @@ export class TypedDocumentString<TResult, TVariables>
     return this.value;
   }
 }
-export const ImageFragmentFragmentDoc = new TypedDocumentString(`
-    fragment ImageFragment on MediaItem {
-  altText
-  mediaItemUrl
-  mediaDetails {
-    width
-    height
-  }
-}
-    `, {"fragmentName":"ImageFragment"}) as unknown as TypedDocumentString<ImageFragmentFragment, unknown>;
 export const ServiceContentFragmentFragmentDoc = new TypedDocumentString(`
     fragment ServiceContentFragment on ServiceContent {
   shortDescription
@@ -15104,6 +15150,64 @@ export const Quote_FragmentFragmentDoc = new TypedDocumentString(`
   quote
 }
     `, {"fragmentName":"Quote_Fragment"}) as unknown as TypedDocumentString<Quote_FragmentFragment, unknown>;
+export const ImageFragmentFragmentDoc = new TypedDocumentString(`
+    fragment ImageFragment on MediaItem {
+  altText
+  mediaItemUrl
+  mediaDetails {
+    width
+    height
+  }
+}
+    `, {"fragmentName":"ImageFragment"}) as unknown as TypedDocumentString<ImageFragmentFragment, unknown>;
+export const Milestones_FragmentFragmentDoc = new TypedDocumentString(`
+    fragment Milestones_Fragment on BlocksBlocksMilestones {
+  description
+  image {
+    node {
+      ...ImageFragment
+    }
+  }
+  title
+  year
+}
+    fragment ImageFragment on MediaItem {
+  altText
+  mediaItemUrl
+  mediaDetails {
+    width
+    height
+  }
+}`, {"fragmentName":"Milestones_Fragment"}) as unknown as TypedDocumentString<Milestones_FragmentFragment, unknown>;
+export const Timeline_FragmentFragmentDoc = new TypedDocumentString(`
+    fragment Timeline_Fragment on BlocksBlocksTimelineLayout {
+  __typename
+  accentHeading {
+    accent
+    main
+  }
+  milestones {
+    ...Milestones_Fragment
+  }
+}
+    fragment Milestones_Fragment on BlocksBlocksMilestones {
+  description
+  image {
+    node {
+      ...ImageFragment
+    }
+  }
+  title
+  year
+}
+fragment ImageFragment on MediaItem {
+  altText
+  mediaItemUrl
+  mediaDetails {
+    width
+    height
+  }
+}`, {"fragmentName":"Timeline_Fragment"}) as unknown as TypedDocumentString<Timeline_FragmentFragment, unknown>;
 export const ImageBannerFragmentFragmentDoc = new TypedDocumentString(`
     fragment ImageBannerFragment on BlocksBlocksImageBannerLayout {
   __typename
@@ -15132,6 +15236,9 @@ export const BlocksFragmentFragmentDoc = new TypedDocumentString(`
   }
   ... on BlocksBlocksCollaboratorsBannerLayout {
     __typename
+  }
+  ... on BlocksBlocksTimelineLayout {
+    ...Timeline_Fragment
   }
   ... on BlocksBlocksImageBannerLayout {
     ...ImageBannerFragment
@@ -15442,6 +15549,34 @@ fragment ServiceCard_Fragment on BlocksBlocksServiceCardsLayout {
       }
     }
   }
+}
+fragment Milestones_Fragment on BlocksBlocksMilestones {
+  description
+  image {
+    node {
+      ...ImageFragment
+    }
+  }
+  title
+  year
+}
+fragment Timeline_Fragment on BlocksBlocksTimelineLayout {
+  __typename
+  accentHeading {
+    accent
+    main
+  }
+  milestones {
+    ...Milestones_Fragment
+  }
+}
+fragment ImageFragment on MediaItem {
+  altText
+  mediaItemUrl
+  mediaDetails {
+    width
+    height
+  }
 }`, {"fragmentName":"BlocksFragment"}) as unknown as TypedDocumentString<BlocksFragmentFragment, unknown>;
 export const AnnouncementQueryDocument = new TypedDocumentString(`
     query AnnouncementQuery {
@@ -15577,6 +15712,34 @@ fragment ServiceCard_Fragment on BlocksBlocksServiceCardsLayout {
     }
   }
 }
+fragment Milestones_Fragment on BlocksBlocksMilestones {
+  description
+  image {
+    node {
+      ...ImageFragment
+    }
+  }
+  title
+  year
+}
+fragment Timeline_Fragment on BlocksBlocksTimelineLayout {
+  __typename
+  accentHeading {
+    accent
+    main
+  }
+  milestones {
+    ...Milestones_Fragment
+  }
+}
+fragment ImageFragment on MediaItem {
+  altText
+  mediaItemUrl
+  mediaDetails {
+    width
+    height
+  }
+}
 fragment BlocksFragment on BlocksBlocks_Layout {
   ... on BlocksBlocksMediaAndTextLayout {
     ...MediaAndTextFragment
@@ -15592,6 +15755,9 @@ fragment BlocksFragment on BlocksBlocks_Layout {
   }
   ... on BlocksBlocksCollaboratorsBannerLayout {
     __typename
+  }
+  ... on BlocksBlocksTimelineLayout {
+    ...Timeline_Fragment
   }
   ... on BlocksBlocksImageBannerLayout {
     ...ImageBannerFragment
@@ -16099,6 +16265,34 @@ fragment ServiceCard_Fragment on BlocksBlocksServiceCardsLayout {
     }
   }
 }
+fragment Milestones_Fragment on BlocksBlocksMilestones {
+  description
+  image {
+    node {
+      ...ImageFragment
+    }
+  }
+  title
+  year
+}
+fragment Timeline_Fragment on BlocksBlocksTimelineLayout {
+  __typename
+  accentHeading {
+    accent
+    main
+  }
+  milestones {
+    ...Milestones_Fragment
+  }
+}
+fragment ImageFragment on MediaItem {
+  altText
+  mediaItemUrl
+  mediaDetails {
+    width
+    height
+  }
+}
 fragment BlocksFragment on BlocksBlocks_Layout {
   ... on BlocksBlocksMediaAndTextLayout {
     ...MediaAndTextFragment
@@ -16114,6 +16308,9 @@ fragment BlocksFragment on BlocksBlocks_Layout {
   }
   ... on BlocksBlocksCollaboratorsBannerLayout {
     __typename
+  }
+  ... on BlocksBlocksTimelineLayout {
+    ...Timeline_Fragment
   }
   ... on BlocksBlocksImageBannerLayout {
     ...ImageBannerFragment
@@ -16450,6 +16647,34 @@ fragment ServiceCard_Fragment on BlocksBlocksServiceCardsLayout {
     }
   }
 }
+fragment Milestones_Fragment on BlocksBlocksMilestones {
+  description
+  image {
+    node {
+      ...ImageFragment
+    }
+  }
+  title
+  year
+}
+fragment Timeline_Fragment on BlocksBlocksTimelineLayout {
+  __typename
+  accentHeading {
+    accent
+    main
+  }
+  milestones {
+    ...Milestones_Fragment
+  }
+}
+fragment ImageFragment on MediaItem {
+  altText
+  mediaItemUrl
+  mediaDetails {
+    width
+    height
+  }
+}
 fragment PageContentFragment on PageContent {
   rounded {
     node {
@@ -16514,6 +16739,9 @@ fragment BlocksFragment on BlocksBlocks_Layout {
   }
   ... on BlocksBlocksCollaboratorsBannerLayout {
     __typename
+  }
+  ... on BlocksBlocksTimelineLayout {
+    ...Timeline_Fragment
   }
   ... on BlocksBlocksImageBannerLayout {
     ...ImageBannerFragment
@@ -16863,6 +17091,34 @@ fragment ServiceCard_Fragment on BlocksBlocksServiceCardsLayout {
     }
   }
 }
+fragment Milestones_Fragment on BlocksBlocksMilestones {
+  description
+  image {
+    node {
+      ...ImageFragment
+    }
+  }
+  title
+  year
+}
+fragment Timeline_Fragment on BlocksBlocksTimelineLayout {
+  __typename
+  accentHeading {
+    accent
+    main
+  }
+  milestones {
+    ...Milestones_Fragment
+  }
+}
+fragment ImageFragment on MediaItem {
+  altText
+  mediaItemUrl
+  mediaDetails {
+    width
+    height
+  }
+}
 fragment PageContentFragment on PageContent {
   rounded {
     node {
@@ -16927,6 +17183,9 @@ fragment BlocksFragment on BlocksBlocks_Layout {
   }
   ... on BlocksBlocksCollaboratorsBannerLayout {
     __typename
+  }
+  ... on BlocksBlocksTimelineLayout {
+    ...Timeline_Fragment
   }
   ... on BlocksBlocksImageBannerLayout {
     ...ImageBannerFragment
