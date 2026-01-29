@@ -21,9 +21,9 @@ export default function CardsAndText(props: Props) {
         noBottomMargin
       />
       <p className="prose prose-invert text-center">{data.textContent}</p>
-      <div className="grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-2">
+      <div className="flex flex-wrap justify-center gap-6">
         {data.cards?.map((card, index) => (
-          <Card key={index} className="max-w-100">
+          <Card key={index} className="max-w-100 flex-1 border">
             <Card.Body>
               <Card.Title>{card?.card?.title}</Card.Title>
               {card?.card?.image?.node.mediaItemUrl && (

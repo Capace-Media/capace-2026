@@ -15,7 +15,7 @@ export default function CategoryButtons(props: Props) {
     <div className={cn("flex flex-wrap gap-2", props.className)}>
       {props.categories.map((category, index) => (
         <Link
-          href={`tjanster/${category.slug}`}
+          href={`/tjanster/${category.slug}`}
           key={index}
           className={cn(
             props.size === "lg" && "text-base",

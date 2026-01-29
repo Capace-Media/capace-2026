@@ -17,7 +17,7 @@ export default function Timeline(props: TimelineProps) {
       <div className="border-primary sticky top-32 left-0 h-1 w-[50%] border-t-2" />
       <div className="relative flex h-100 min-h-120 w-fit flex-col items-center">
         <div className="border-primary absolute top-19 left-0 h-1 w-full border-t-2 border-dashed" />
-        <div className="flex h-full flex-1 items-center gap-30 pr-100">
+        <div className="flex h-full flex-1 items-center gap-30 px-100">
           {milestone?.map((m) => {
             const image = m.image?.node as ImageFragmentFragment;
             return (
