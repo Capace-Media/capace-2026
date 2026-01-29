@@ -13,7 +13,7 @@ export default function Timeline(props: TimelineProps) {
     .milestones as Milestones_FragmentFragment[];
 
   return (
-    <div className="relative flex w-full flex-col gap-12 overflow-x-scroll">
+    <div className="relative flex w-full snap-x flex-col gap-12 overflow-x-scroll">
       <div className="border-primary sticky top-32 left-0 h-1 w-[50%] border-t-2" />
       <div className="relative flex h-100 min-h-120 w-fit flex-col items-center">
         <div className="border-primary absolute top-19 left-0 h-1 w-full border-t-2 border-dashed" />
@@ -45,12 +45,12 @@ interface MilestoneItemProps {
 
 const MilestoneItem = (props: MilestoneItemProps) => {
   return (
-    <article className="flex h-full min-w-120 flex-1 flex-col items-center">
-      <p className="text-primary flex w-full flex-1 flex-col justify-center text-center">
+    <article className="flex h-full min-w-120 flex-1 snap-center flex-col items-center">
+      <p className="text-primary flex w-full flex-1 flex-col justify-center text-center font-medium">
         {props.year}
       </p>
       <div className="bg-primary h-6 w-6 rounded-full" />
-      <h3 className="text-primary flex h-full w-full flex-1 flex-col justify-center text-center">
+      <h3 className="text-primary flex h-full w-full flex-1 flex-col justify-center text-center font-medium">
         {props.title}
       </h3>
       <p className="w-full flex-3 text-center">{props.description}</p>

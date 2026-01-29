@@ -6,26 +6,13 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { ChevronDown } from "lucide-react";
 import Link from "next/link";
 export default function NavMenu() {
   return (
     <NavigationMenu className="frosted rounded-full border px-4">
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger
-          // render={
-          //   <Link
-          //     href={"/tjanster"}
-          //     className="hover:text-primary flex items-center gap-1"
-          //   >
-          //     Våra tjänster
-          //     <ChevronDown className="size-3" />
-          //   </Link>
-          // }
-          >
-            Våra tjänster
-          </NavigationMenuTrigger>
+          <NavigationMenuTrigger>Våra tjänster</NavigationMenuTrigger>
 
           <NavigationMenuContent className="z-50 flex gap-2">
             <div>
