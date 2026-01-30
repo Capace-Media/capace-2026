@@ -3,6 +3,8 @@ import EmailLink from "@/components/shared/email-link";
 import ParallaxImage from "@/components/shared/parallax-image";
 import TelephoneLink from "@/components/shared/telephone-link";
 import { getEmployeeBySlug } from "@/lib/fetchers/employees";
+import { useFragment } from "@/graphql";
+import { EmployeeContentFragment } from "@/lib/queries/fragments";
 import { notFound } from "next/navigation";
 import Quote from "@/components/blocks/quote/quote";
 
@@ -11,37 +13,39 @@ export default async function Page(props: PageProps<"/om-oss/[employee]">) {
   const data = await getEmployeeBySlug(employee);
   if (!data) notFound();
 
+  const employeeContent = data.employeeContent
+    ? useFragment(EmployeeContentFragment, data.employeeContent)
+    : undefined;
+
   return (
     <section className="section end-section items-center pt-40">
       <div className="flex w-full flex-col items-center justify-center gap-2">
         <h1 className="orange-dot text-4xl font-bold">{data?.title}</h1>
         <h2 className="text-primary text-xl uppercase">
-          {data?.employeeContent?.workTitle}
+          {employeeContent?.workTitle}
         </h2>
       </div>
       <div className="h-100 w-80">
         <ParallaxImage
-          src={data.employeeContent?.image?.node.mediaItemUrl}
-          alt={data.employeeContent?.image?.node.altText || ""}
+          src={employeeContent?.image?.node?.mediaItemUrl}
+          alt={employeeContent?.image?.node?.altText || ""}
         />
       </div>
       <div className="flex flex-col items-center gap-2">
-        {data.employeeContent?.email && (
-          <EmailLink email={data.employeeContent?.email} />
-        )}
-        {data.employeeContent?.telephone && (
-          <TelephoneLink phoneNumber={data.employeeContent.telephone} />
+        {employeeContent?.email && <EmailLink email={employeeContent.email} />}
+        {employeeContent?.telephone && (
+          <TelephoneLink phoneNumber={employeeContent.telephone} />
         )}
       </div>
-      {data.employeeContent?.quote && (
+      {employeeContent?.quote && (
         <Quote
-          quote={data.employeeContent.quote}
+          quote={employeeContent.quote}
           className="max-w-xl pt-10 pb-0 font-bold"
         />
       )}
-      {data.employeeContent?.textContent && (
+      {employeeContent?.textContent && (
         <div className="prose prose-invert">
-          {parse(data.employeeContent.textContent)}
+          {parse(employeeContent.textContent)}
         </div>
       )}
     </section>

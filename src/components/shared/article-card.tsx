@@ -72,6 +72,7 @@ function ImageAndButton(props: ImageProps) {
         alt={props.altText}
         className="rounded-[36px] object-cover"
         fill
+        loading="lazy"
       />
 
       <div className="absolute right-0 bottom-0 flex items-center justify-center rounded-tl-[36px] bg-black pt-4 pr-1 pl-4">

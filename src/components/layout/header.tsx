@@ -30,7 +30,10 @@ export default function Header() {
           <MobileMenu />
         </div>
         <div className="hidden w-full md:flex">
-          <nav className="z-10! max-w-[1/3] flex-1 items-center justify-center">
+          <nav
+            aria-label="Huvudmeny"
+            className="z-10! max-w-[1/3] flex-1 items-center justify-center"
+          >
             <NavMenu />
           </nav>
           <CapaceLogo className="max-w-[1/3] flex-1" />

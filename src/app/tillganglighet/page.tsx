@@ -7,7 +7,7 @@ export default async function Page() {
 
   const blocks = data?.blocks?.blocks;
 
-  if (!data) notFound();
+  if (!data || !data.pageContent) notFound();
 
   return (
     <>

@@ -9,7 +9,7 @@ export default async function Page(
   const { service } = await props.params;
 
   const data = await getServicePage(service);
-  if (!data) notFound();
+  if (!data || !data.pageContent) notFound();
 
   return (
     <div className="">

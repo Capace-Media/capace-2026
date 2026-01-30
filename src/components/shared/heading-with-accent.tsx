@@ -16,7 +16,7 @@ export default function HeadingWithAccent(props: Props) {
         props.className,
       )}
     >
-      <h3
+      <h2
         className={cn(
           "text-2xl md:text-4xl",
           props.textAlign === "left" ? "text-left" : "text-center",
@@ -25,8 +25,10 @@ export default function HeadingWithAccent(props: Props) {
         <span className="font-caveat text-accent block text-5xl">
           {props.accentedHeading}
         </span>
-        <span className="block font-bold">{props.mainHeading}</span>
-      </h3>
+        <span className="block text-center font-bold lg:text-left">
+          {props.mainHeading}
+        </span>
+      </h2>
     </div>
   );
 }

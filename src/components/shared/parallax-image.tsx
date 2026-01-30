@@ -11,6 +11,8 @@ interface Props {
   src: string | undefined | null;
   alt: string;
   sizes?: string;
+  lazyLoad?: boolean;
+  priority?: boolean;
 }
 
 export default function ParallaxImage(props: Props) {
@@ -46,6 +48,8 @@ export default function ParallaxImage(props: Props) {
           className="object-cover"
           fill
           sizes={props.sizes || "100vw"}
+          priority={props.priority}
+          loading={props.lazyLoad ? "lazy" : undefined}
         />
       </div>
     </div>

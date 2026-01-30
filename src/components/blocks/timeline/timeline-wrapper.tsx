@@ -34,7 +34,6 @@ export type TimelineProps = {
 
 export default function TimelineWrapper(props: TimelineProps) {
   const data = useFragment(Timeline_Fragment, props.data);
-  console.log("timeline weapper data:", data);
 
   if (!data) return null;
   return (

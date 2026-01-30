@@ -2,11 +2,13 @@ import Blocks from "@/components/blocks/blocks";
 import Hero from "@/components/layout/hero";
 import { getNewsPage } from "@/lib/fetchers/news";
 import dayjs from "dayjs";
+import { notFound } from "next/navigation";
 
 export default async function Page(props: PageProps<"/nyheter/[slug]">) {
   const { slug } = await props.params;
 
   const data = await getNewsPage(slug);
+  if (!data?.pageContent) notFound();
 
   return (
     <section className="end-section items-center">

@@ -1,9 +1,10 @@
 "use client";
-import type { PageQuery, ReusableFieldsButton_Fields } from "@/graphql/graphql";
+import type { ReusableFieldsButton_Fields } from "@/graphql/graphql";
+import { useFragment, makeFragmentData } from "@/graphql/fragment-masking";
+import { PageContentFragmentFragmentDoc } from "@/graphql/graphql";
 import Image from "next/image";
 import parse from "html-react-parser";
 import ExternalOrInternalLink from "../shared/external-or-internal-link";
-import HeadingWithAccent from "../shared/heading-with-accent";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
@@ -12,17 +13,22 @@ import ParallaxImage from "../shared/parallax-image";
 
 gsap.registerPlugin(SplitText);
 
+import type { PageContentFragmentFragment } from "@/graphql/graphql";
 interface Props {
-  data: NonNullable<PageQuery["page"]>["pageContent"];
+  data: PageContentFragmentFragment;
 }
 export default function Hero(props: Props) {
   if (!props.data) return null;
+  const pageContent = useFragment(
+    PageContentFragmentFragmentDoc,
+    makeFragmentData(props.data, PageContentFragmentFragmentDoc),
+  );
   let size;
-  if (props.data.large?.heroImage) {
+  if (pageContent.large?.heroImage) {
     size = "large";
-  } else if (props.data.medium?.heading_main) {
+  } else if (pageContent.medium?.heading_main) {
     size = "medium";
-  } else if (props.data.rounded) {
+  } else if (pageContent.rounded) {
     size = "rounded";
   } else {
     size = "small";
@@ -30,13 +36,13 @@ export default function Hero(props: Props) {
 
   switch (size) {
     case "large":
-      return <HeroLarge data={props.data} />;
+      return <HeroLarge data={pageContent} />;
     case "medium":
-      return <HeroMedium data={props.data} />;
+      return <HeroMedium data={pageContent} />;
     case "small":
-      return <HeroSmall data={props.data} />;
+      return <HeroSmall data={pageContent} />;
     case "rounded":
-      return <HeroRounded data={props.data} />;
+      return <HeroRounded data={pageContent} />;
     default:
       return null;
   }
@@ -108,7 +114,7 @@ const HeroMedium = (data: Props) => {
   return (
     <div className="section flex w-full flex-col items-center justify-center pt-40">
       <div className="flex flex-col items-center">
-        <h1 className={"text-2xl md:text-4xl"}>
+        <h1 className={"text-center text-2xl md:text-4xl"}>
           <span className="font-caveat text-accent block text-center text-5xl">
             {heroData?.heading_accent}
           </span>

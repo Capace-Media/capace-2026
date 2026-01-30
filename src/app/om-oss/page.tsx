@@ -7,7 +7,7 @@ import ButtonLink from "@/components/shared/link";
 
 export default async function Page() {
   const data = await getPage("/om-oss");
-  if (!data) notFound();
+  if (!data?.pageContent) notFound();
 
   return (
     <div>

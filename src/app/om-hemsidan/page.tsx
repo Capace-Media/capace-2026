@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 export default async function Page() {
   const data = await getPage("om-hemsidan");
   const blocks = data?.blocks?.blocks;
-  if (!data) notFound();
+  if (!data?.pageContent) notFound();
 
   return (
     <>

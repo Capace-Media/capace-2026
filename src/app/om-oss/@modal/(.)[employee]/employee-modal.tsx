@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import type { getEmployeeBySlug } from "@/lib/fetchers/employees";
+import { useFragment } from "@/graphql";
+import { EmployeeContentFragment } from "@/lib/queries/fragments";
 import Quote from "@/components/blocks/quote/quote";
 import EmailLink from "@/components/shared/email-link";
 import { X } from "lucide-react";
@@ -15,6 +17,10 @@ interface Props {
 }
 
 export default function EmployeeModal({ data }: Props) {
+  // Unwrap the employeeContent fragment for type-safe access
+  const employeeContent = data?.employeeContent
+    ? useFragment(EmployeeContentFragment, data.employeeContent)
+    : undefined;
   const router = useRouter();
   const dialogRef = useRef<HTMLDialogElement>(null);
 
@@ -56,13 +62,12 @@ export default function EmployeeModal({ data }: Props) {
         )}
       >
         <div>
-          {data.employeeContent?.image?.node.mediaItemUrl && (
+          {employeeContent?.image?.node?.mediaItemUrl && (
             <div className="relative aspect-square h-auto w-full">
               <Image
-                src={data.employeeContent.image.node.mediaItemUrl}
+                src={employeeContent.image.node.mediaItemUrl}
                 alt={
-                  data.employeeContent.image.node.altText ||
-                  `Bild på ${data.title}`
+                  employeeContent.image.node.altText || `Bild på ${data.title}`
                 }
                 fill
                 className="object-cover"
@@ -70,12 +75,12 @@ export default function EmployeeModal({ data }: Props) {
               />
             </div>
           )}
-          {data.employeeContent?.quote && (
+          {employeeContent?.quote && (
             <Quote
               className="col-span-1 row-start-2 my-0 px-6 pb-0 font-medium"
-              quote={data.employeeContent.quote}
+              quote={employeeContent.quote}
               author={data.title}
-              authorTitle={data.employeeContent.workTitle}
+              authorTitle={employeeContent.workTitle}
             />
           )}
         </div>
@@ -85,22 +90,22 @@ export default function EmployeeModal({ data }: Props) {
               <h2 className="orange-dot text-foreground text-3xl font-bold">
                 {data.title}
               </h2>
-              {data.employeeContent?.workTitle && (
+              {employeeContent?.workTitle && (
                 <p className="text-primary text-lg uppercase">
-                  {data.employeeContent.workTitle}
+                  {employeeContent.workTitle}
                 </p>
               )}
-              {data.employeeContent?.email && (
-                <EmailLink email={data.employeeContent.email} />
+              {employeeContent?.email && (
+                <EmailLink email={employeeContent.email} />
               )}
-              {data.employeeContent?.telephone && (
-                <TelephoneLink phoneNumber={data.employeeContent.telephone} />
+              {employeeContent?.telephone && (
+                <TelephoneLink phoneNumber={employeeContent.telephone} />
               )}
             </div>
           </header>
-          {data.employeeContent?.textContent && (
+          {employeeContent?.textContent && (
             <section className="prose prose-invert text-muted-foreground max-w-none overflow-scroll">
-              {parse(data.employeeContent.textContent)}
+              {parse(employeeContent.textContent)}
             </section>
           )}
         </div>

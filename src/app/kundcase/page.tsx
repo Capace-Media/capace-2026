@@ -10,7 +10,7 @@ import { Suspense } from "react";
 
 export default async function Page() {
   const data = await getPage("kundcase");
-  if (!data) notFound();
+  if (!data?.pageContent) notFound();
 
   return (
     <section className="section flex w-full flex-col items-center justify-center gap-8">

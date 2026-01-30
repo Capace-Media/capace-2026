@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 
 export default async function Page() {
   const data = await getPage("/tjanster");
-  if (!data) notFound();
+  if (!data || !data.pageContent) notFound();
   return (
     <section>
       <Hero data={data.pageContent} />

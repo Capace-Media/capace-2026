@@ -7,7 +7,7 @@ export default async function Page() {
 
   const blocks = data?.blocks?.blocks;
 
-  if (!data) notFound();
+  if (!data?.pageContent) notFound();
   return (
     <>
       <Hero data={data.pageContent} />
