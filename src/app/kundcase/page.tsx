@@ -4,9 +4,15 @@ import Hero from "@/components/layout/hero";
 import ButtonLink from "@/components/shared/link";
 import { env } from "@/env";
 import { getPage } from "@/lib/fetchers/pages";
+import { getPageSeo } from "@/lib/fetchers/seo";
+import generatePageSeo from "@/lib/utilities/seo";
 import { notFound } from "next/navigation";
-
 import { Suspense } from "react";
+
+export const generateMetadata = async () => {
+  const seo = await getPageSeo("kundcase");
+  return generatePageSeo(seo);
+};
 
 export default async function Page() {
   const data = await getPage("kundcase");

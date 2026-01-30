@@ -4,6 +4,13 @@ import Hero from "@/components/layout/hero";
 import { getPage } from "@/lib/fetchers/pages";
 import { notFound } from "next/navigation";
 import ButtonLink from "@/components/shared/link";
+import { getPageSeo } from "@/lib/fetchers/seo";
+import generatePageSeo from "@/lib/utilities/seo";
+
+export const generateMetadata = async () => {
+  const seo = await getPageSeo("om-oss");
+  return generatePageSeo(seo);
+};
 
 export default async function Page() {
   const data = await getPage("/om-oss");

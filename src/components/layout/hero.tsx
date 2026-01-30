@@ -74,6 +74,8 @@ const HeroLarge = (data: Props) => {
   );
 
   const heroData = data.data?.large;
+  console.log("hero data:", heroData);
+
   return (
     <section
       aria-label="Herosektion"

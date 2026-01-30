@@ -1,7 +1,17 @@
 import Blocks from "@/components/blocks/blocks";
 import Hero from "@/components/layout/hero";
+import { getServiceSeo } from "@/lib/fetchers/seo";
 import { getServicePage } from "@/lib/fetchers/services";
+import generatePageSeo from "@/lib/utilities/seo";
 import { notFound } from "next/navigation";
+
+export const generateMetadata = async (
+  props: PageProps<"/tjanster/[category]/[service]">,
+) => {
+  const { service } = await props.params;
+  const seo = await getServiceSeo(service);
+  return generatePageSeo(seo);
+};
 
 export default async function Page(
   props: PageProps<"/tjanster/[category]/[service]">,

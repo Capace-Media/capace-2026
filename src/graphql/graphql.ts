@@ -15173,14 +15173,14 @@ export type ButtonFragmentFragment = { __typename: 'ReusableFieldsButton', ariaL
 export type EmployeeContentFragmentFragment = { __typename?: 'EmployeeContent', email?: string | null, employmentType?: Array<string | null> | null, telephone?: string | null, quote?: string | null, textContent?: string | null, workTitle?: string | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null, altText?: string | null } } | null } & { ' $fragmentName'?: 'EmployeeContentFragmentFragment' };
 
 export type PageContentFragmentFragment = { __typename?: 'PageContent', rounded?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null } } | null, small?: { __typename?: 'PageContentSmall', heroImage?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null } } | null } | null, medium?: { __typename?: 'PageContentMedium', heading_accent?: string | null, heading_main?: string | null, text?: string | null } | null, large?: { __typename?: 'PageContentLarge', heading?: string | null, headingAccent?: string | null, subheading?: string | null, heroImage?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null, button?: { __typename?: 'PageContentLargeButton', ariaLabel?: string | null, label?: string | null, url?: { __typename?: 'ReusableFieldsButtonUrl', externalLink?: string | null, is_internal?: boolean | null, internalLink?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
-            | { __typename?: 'Case', slug?: string | null }
-            | { __typename?: 'Employee', slug?: string | null }
-            | { __typename?: 'Faq', slug?: string | null }
-            | { __typename?: 'MediaItem', slug?: string | null }
-            | { __typename?: 'Page', slug?: string | null }
-            | { __typename?: 'Post', slug?: string | null }
-            | { __typename?: 'Service', slug?: string | null }
-            | { __typename?: 'Testimonial', slug?: string | null }
+            | { __typename?: 'Case', uri?: string | null }
+            | { __typename?: 'Employee', uri?: string | null }
+            | { __typename?: 'Faq', uri?: string | null }
+            | { __typename?: 'MediaItem', uri?: string | null }
+            | { __typename?: 'Page', uri?: string | null }
+            | { __typename?: 'Post', uri?: string | null }
+            | { __typename?: 'Service', uri?: string | null }
+            | { __typename?: 'Testimonial', uri?: string | null }
           > } | null } | null } | null } | null } & { ' $fragmentName'?: 'PageContentFragmentFragment' };
 
 type BlocksFragment_BlocksBlocksAnimatedCardsLayout_Fragment = { __typename: 'BlocksBlocksAnimatedCardsLayout', textContent?: string | null, accentHeading?: { __typename?: 'BlocksBlocksAccentHeading', accent?: string | null, main?: string | null } | null, cards?: Array<{ __typename?: 'BlocksBlocksCards', card?: { __typename?: 'BlocksBlocksCardsCard', textContent?: string | null, title?: string | null, button?: { __typename?: 'ReusableFieldsCardButton', ariaLabel?: string | null, label?: string | null, url?: { __typename?: 'ReusableFieldsButtonUrl', externalLink?: string | null, is_internal?: boolean | null, internalLink?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
@@ -15488,6 +15488,34 @@ export type PageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page'
         )
        | null> | null } | null } | null };
 
+export type PageSeoQueryQueryVariables = Exact<{
+  slug: Scalars['ID']['input'];
+}>;
+
+
+export type PageSeoQueryQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page', seo?: { __typename?: 'PostTypeSEO', canonical?: string | null, metaRobotsNoindex?: string | null, opengraphTitle?: string | null, opengraphSiteName?: string | null, opengraphPublisher?: string | null, opengraphUrl?: string | null, opengraphDescription?: string | null, metaDesc?: string | null, title?: string | null, opengraphImage?: { __typename?: 'MediaItem', mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } | null } | null } | null };
+
+export type NewsSeoQueryQueryVariables = Exact<{
+  slug: Scalars['ID']['input'];
+}>;
+
+
+export type NewsSeoQueryQuery = { __typename?: 'RootQuery', post?: { __typename?: 'Post', seo?: { __typename?: 'PostTypeSEO', canonical?: string | null, metaRobotsNoindex?: string | null, opengraphTitle?: string | null, opengraphSiteName?: string | null, opengraphPublisher?: string | null, opengraphUrl?: string | null, opengraphDescription?: string | null, metaDesc?: string | null, title?: string | null, opengraphImage?: { __typename?: 'MediaItem', mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } | null } | null } | null };
+
+export type CaseSeoQueryQueryVariables = Exact<{
+  slug: Scalars['ID']['input'];
+}>;
+
+
+export type CaseSeoQueryQuery = { __typename?: 'RootQuery', case?: { __typename?: 'Case', seo?: { __typename?: 'PostTypeSEO', canonical?: string | null, metaRobotsNoindex?: string | null, opengraphTitle?: string | null, opengraphSiteName?: string | null, opengraphPublisher?: string | null, opengraphUrl?: string | null, opengraphDescription?: string | null, metaDesc?: string | null, title?: string | null, opengraphImage?: { __typename?: 'MediaItem', mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } | null } | null } | null };
+
+export type ServiceSeoQueryQueryVariables = Exact<{
+  slug: Scalars['ID']['input'];
+}>;
+
+
+export type ServiceSeoQueryQuery = { __typename?: 'RootQuery', service?: { __typename?: 'Service', seo?: { __typename?: 'PostTypeSEO', canonical?: string | null, metaRobotsNoindex?: string | null, opengraphTitle?: string | null, opengraphSiteName?: string | null, opengraphPublisher?: string | null, opengraphUrl?: string | null, opengraphDescription?: string | null, metaDesc?: string | null, title?: string | null, opengraphImage?: { __typename?: 'MediaItem', mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } | null } | null } | null };
+
 export type ServicesSlugsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -15683,7 +15711,7 @@ export const PageContentFragmentFragmentDoc = new TypedDocumentString(`
         externalLink
         internalLink {
           nodes {
-            slug
+            uri
           }
         }
         is_internal
@@ -17343,7 +17371,7 @@ fragment PageContentFragment on PageContent {
         externalLink
         internalLink {
           nodes {
-            slug
+            uri
           }
         }
         is_internal
@@ -17597,6 +17625,102 @@ fragment BlocksFragment on BlocksBlocks_Layout {
     }
   }
 }`) as unknown as TypedDocumentString<PageQuery, PageQueryVariables>;
+export const PageSeoQueryDocument = new TypedDocumentString(`
+    query PageSeoQuery($slug: ID!) {
+  page(id: $slug, idType: URI) {
+    seo {
+      canonical
+      metaRobotsNoindex
+      opengraphTitle
+      opengraphSiteName
+      opengraphPublisher
+      opengraphUrl
+      opengraphDescription
+      opengraphImage {
+        mediaItemUrl
+        mediaDetails {
+          height
+          width
+        }
+      }
+      metaDesc
+      title
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<PageSeoQueryQuery, PageSeoQueryQueryVariables>;
+export const NewsSeoQueryDocument = new TypedDocumentString(`
+    query NewsSeoQuery($slug: ID!) {
+  post(id: $slug, idType: URI) {
+    seo {
+      canonical
+      metaRobotsNoindex
+      opengraphTitle
+      opengraphSiteName
+      opengraphPublisher
+      opengraphUrl
+      opengraphDescription
+      opengraphImage {
+        mediaItemUrl
+        mediaDetails {
+          height
+          width
+        }
+      }
+      metaDesc
+      title
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<NewsSeoQueryQuery, NewsSeoQueryQueryVariables>;
+export const CaseSeoQueryDocument = new TypedDocumentString(`
+    query CaseSeoQuery($slug: ID!) {
+  case(id: $slug, idType: URI) {
+    seo {
+      canonical
+      metaRobotsNoindex
+      opengraphTitle
+      opengraphSiteName
+      opengraphPublisher
+      opengraphUrl
+      opengraphDescription
+      opengraphImage {
+        mediaItemUrl
+        mediaDetails {
+          height
+          width
+        }
+      }
+      metaDesc
+      title
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<CaseSeoQueryQuery, CaseSeoQueryQueryVariables>;
+export const ServiceSeoQueryDocument = new TypedDocumentString(`
+    query ServiceSeoQuery($slug: ID!) {
+  service(id: $slug, idType: URI) {
+    seo {
+      canonical
+      metaRobotsNoindex
+      opengraphTitle
+      opengraphSiteName
+      opengraphPublisher
+      opengraphUrl
+      opengraphDescription
+      opengraphImage {
+        mediaItemUrl
+        mediaDetails {
+          height
+          width
+        }
+      }
+      metaDesc
+      title
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<ServiceSeoQueryQuery, ServiceSeoQueryQueryVariables>;
 export const ServicesSlugsDocument = new TypedDocumentString(`
     query ServicesSlugs {
   services {
@@ -17787,7 +17911,7 @@ fragment PageContentFragment on PageContent {
         externalLink
         internalLink {
           nodes {
-            slug
+            uri
           }
         }
         is_internal

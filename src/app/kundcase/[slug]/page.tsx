@@ -7,12 +7,18 @@ import Image from "next/image";
 import ParallaxHero from "@/components/layout/parallax-hero";
 import { cn } from "@/lib/utils";
 import ButtonLink from "@/components/shared/link";
+import { getCaseSeo } from "@/lib/fetchers/seo";
+import generatePageSeo from "@/lib/utilities/seo";
 
-interface Props {
-  params: Promise<{ slug: string }>;
-}
+export const generateMetadata = async (
+  props: PageProps<"/kundcase/[slug]">,
+) => {
+  const { slug } = await props.params;
+  const seo = await getCaseSeo(slug);
+  return generatePageSeo(seo);
+};
 
-export default async function Page(props: Props) {
+export default async function Page(props: PageProps<"/kundcase/[slug]">) {
   const { slug } = await props.params;
   const data = await getCase(slug);
   if (!data) notFound();

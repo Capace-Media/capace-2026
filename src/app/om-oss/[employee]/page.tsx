@@ -7,6 +7,8 @@ import { useFragment } from "@/graphql";
 import { EmployeeContentFragment } from "@/lib/queries/fragments";
 import { notFound } from "next/navigation";
 import Quote from "@/components/blocks/quote/quote";
+import { getPageSeo } from "@/lib/fetchers/seo";
+import generatePageSeo from "@/lib/utilities/seo";
 
 export default async function Page(props: PageProps<"/om-oss/[employee]">) {
   const { employee } = await props.params;

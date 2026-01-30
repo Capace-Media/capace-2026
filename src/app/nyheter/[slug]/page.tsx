@@ -1,8 +1,16 @@
 import Blocks from "@/components/blocks/blocks";
 import Hero from "@/components/layout/hero";
 import { getNewsPage } from "@/lib/fetchers/news";
+import { getNewsSeo } from "@/lib/fetchers/seo";
+import generatePageSeo from "@/lib/utilities/seo";
 import dayjs from "dayjs";
 import { notFound } from "next/navigation";
+
+export const generateMetadata = async (props: PageProps<"/nyheter/[slug]">) => {
+  const { slug } = await props.params;
+  const seo = await getNewsSeo(slug);
+  return generatePageSeo(seo);
+};
 
 export default async function Page(props: PageProps<"/nyheter/[slug]">) {
   const { slug } = await props.params;

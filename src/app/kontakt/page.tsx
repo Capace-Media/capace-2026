@@ -2,7 +2,15 @@ import Blocks from "@/components/blocks/blocks";
 import Hero from "@/components/layout/hero";
 import { env } from "@/env";
 import { getPage } from "@/lib/fetchers/pages";
+import { getPageSeo } from "@/lib/fetchers/seo";
+import generatePageSeo from "@/lib/utilities/seo";
 import { notFound } from "next/navigation";
+
+export const generateMetadata = async () => {
+  const seo = await getPageSeo("kontakt");
+  return generatePageSeo(seo);
+};
+
 export default async function Page() {
   const data = await getPage("kontakt");
   const blocks = data?.blocks?.blocks;

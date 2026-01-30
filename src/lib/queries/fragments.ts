@@ -102,7 +102,7 @@ export const PageContentFragment = graphql(`
           externalLink
           internalLink {
             nodes {
-              slug
+              uri
             }
           }
           is_internal
