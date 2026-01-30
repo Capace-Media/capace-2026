@@ -19,6 +19,8 @@ export const env = createEnv({
     REVALIDATION_SECRET_TOKEN: z.string(),
     DRAFT_SECRET_TOKEN: z.string(),
     DRAFT_MODE_PASSWORD: z.string(),
+    EMAIL: z.email(),
+    SENDGRID_API_KEY: z.string(),
   },
 
   /**
@@ -47,6 +49,8 @@ export const env = createEnv({
     REVALIDATION_SECRET_TOKEN: process.env.REVALIDATION_SECRET_TOKEN,
     DRAFT_SECRET_TOKEN: process.env.DRAFT_SECRET_TOKEN,
     DRAFT_MODE_PASSWORD: process.env.DRAFT_MODE_PASSWORD,
+    EMAIL: process.env.EMAIL,
+    SENDGRID_API_KEY: process.env.SENDGRID_API_KEY,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   /**

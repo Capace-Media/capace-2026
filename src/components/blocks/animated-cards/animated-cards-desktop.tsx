@@ -77,7 +77,7 @@ export default function AnimatedCardsDesktop(props: Props) {
   return (
     <section
       ref={container}
-      className="flex flex-col items-center px-4 py-12 md:px-0"
+      className="flex h-screen flex-col items-center justify-center px-4 py-12 md:px-0"
     >
       <HeadingWithAccent
         accentedHeading={block.accentHeading?.accent || ""}
