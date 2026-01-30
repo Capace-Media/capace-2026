@@ -35,7 +35,7 @@ const MediaAndTextFragment = graphql(`
           externalLink
           internalLink {
             nodes {
-              slug
+              uri
             }
           }
         }

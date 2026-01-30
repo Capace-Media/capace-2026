@@ -18,6 +18,7 @@ export const env = createEnv({
     GOOGLE_API_KEY: z.string(),
     REVALIDATION_SECRET_TOKEN: z.string(),
     DRAFT_SECRET_TOKEN: z.string(),
+    DRAFT_MODE_PASSWORD: z.string(),
   },
 
   /**
@@ -45,6 +46,7 @@ export const env = createEnv({
     GOOGLE_API_KEY: process.env.GOOGLE_API_KEY,
     REVALIDATION_SECRET_TOKEN: process.env.REVALIDATION_SECRET_TOKEN,
     DRAFT_SECRET_TOKEN: process.env.DRAFT_SECRET_TOKEN,
+    DRAFT_MODE_PASSWORD: process.env.DRAFT_MODE_PASSWORD,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   /**

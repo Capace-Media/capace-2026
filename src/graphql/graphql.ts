@@ -14998,14 +14998,14 @@ export type WritingSettings = {
 export type ImageBannerFragmentFragment = { __typename: 'BlocksBlocksImageBannerLayout', fullWidth?: boolean | null, images?: { __typename?: 'AcfMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null }> } | null } & { ' $fragmentName'?: 'ImageBannerFragmentFragment' };
 
 export type MediaAndTextFragmentFragment = { __typename: 'BlocksBlocksMediaAndTextLayout', mediaAndText?: { __typename?: 'BlocksBlocksMediaAndText', textContent?: string | null, imagePlacement?: boolean | null, accentHeading?: { __typename?: 'BlocksBlocksMediaAndTextAccentHeading', accent?: string | null, main?: string | null } | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null, width?: number | null } | null } } | null, button?: { __typename: 'BlocksBlocksMediaAndTextButton', ariaLabel?: string | null, label?: string | null, url?: { __typename?: 'ReusableFieldsButtonUrl', externalLink?: string | null, internalLink?: { __typename?: 'AcfContentNodeConnection', nodes: Array<
-            | { __typename?: 'Case', slug?: string | null }
-            | { __typename?: 'Employee', slug?: string | null }
-            | { __typename?: 'Faq', slug?: string | null }
-            | { __typename?: 'MediaItem', slug?: string | null }
-            | { __typename?: 'Page', slug?: string | null }
-            | { __typename?: 'Post', slug?: string | null }
-            | { __typename?: 'Service', slug?: string | null }
-            | { __typename?: 'Testimonial', slug?: string | null }
+            | { __typename?: 'Case', uri?: string | null }
+            | { __typename?: 'Employee', uri?: string | null }
+            | { __typename?: 'Faq', uri?: string | null }
+            | { __typename?: 'MediaItem', uri?: string | null }
+            | { __typename?: 'Page', uri?: string | null }
+            | { __typename?: 'Post', uri?: string | null }
+            | { __typename?: 'Service', uri?: string | null }
+            | { __typename?: 'Testimonial', uri?: string | null }
           > } | null } | null } | null } | null } & { ' $fragmentName'?: 'MediaAndTextFragmentFragment' };
 
 export type Quote_FragmentFragment = { __typename: 'BlocksBlocksQuoteLayout', author?: string | null, authorTitle?: string | null, companyName?: string | null, quote?: string | null } & { ' $fragmentName'?: 'Quote_FragmentFragment' };
@@ -15488,6 +15488,22 @@ export type PageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page'
         )
        | null> | null } | null } | null };
 
+export type DraftPageQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type DraftPageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page', title?: string | null, slug?: string | null, status?: string | null, pageContent?: (
+      { __typename?: 'PageContent' }
+      & { ' $fragmentRefs'?: { 'PageContentFragmentFragment': PageContentFragmentFragment } }
+    ) | null, preview?: { __typename?: 'PageToPreviewConnectionEdge', node: { __typename?: 'Page', pageContent?: (
+          { __typename?: 'PageContent' }
+          & { ' $fragmentRefs'?: { 'PageContentFragmentFragment': PageContentFragmentFragment } }
+        ) | null } } | null, revisions?: { __typename?: 'PageToRevisionConnection', nodes: Array<{ __typename?: 'Page', title?: string | null, slug?: string | null, databaseId: number, pageContent?: (
+          { __typename?: 'PageContent' }
+          & { ' $fragmentRefs'?: { 'PageContentFragmentFragment': PageContentFragmentFragment } }
+        ) | null }> } | null } | null };
+
 export type PageSeoQueryQueryVariables = Exact<{
   slug: Scalars['ID']['input'];
 }>;
@@ -15748,7 +15764,7 @@ export const MediaAndTextFragmentFragmentDoc = new TypedDocumentString(`
         externalLink
         internalLink {
           nodes {
-            slug
+            uri
           }
         }
       }
@@ -16153,7 +16169,7 @@ fragment MediaAndTextFragment on BlocksBlocksMediaAndTextLayout {
         externalLink
         internalLink {
           nodes {
-            slug
+            uri
           }
         }
       }
@@ -16315,7 +16331,7 @@ fragment MediaAndTextFragment on BlocksBlocksMediaAndTextLayout {
         externalLink
         internalLink {
           nodes {
-            slug
+            uri
           }
         }
       }
@@ -16874,7 +16890,7 @@ fragment MediaAndTextFragment on BlocksBlocksMediaAndTextLayout {
         externalLink
         internalLink {
           nodes {
-            slug
+            uri
           }
         }
       }
@@ -17256,7 +17272,7 @@ fragment MediaAndTextFragment on BlocksBlocksMediaAndTextLayout {
         externalLink
         internalLink {
           nodes {
-            slug
+            uri
           }
         }
       }
@@ -17625,6 +17641,83 @@ fragment BlocksFragment on BlocksBlocks_Layout {
     }
   }
 }`) as unknown as TypedDocumentString<PageQuery, PageQueryVariables>;
+export const DraftPageDocument = new TypedDocumentString(`
+    query DraftPage($id: ID!) {
+  page(id: $id, idType: DATABASE_ID, asPreview: true) {
+    title
+    slug
+    status
+    pageContent {
+      ...PageContentFragment
+    }
+    preview {
+      node {
+        pageContent {
+          ...PageContentFragment
+        }
+      }
+    }
+    revisions(first: 1, where: {orderby: {field: MODIFIED, order: DESC}}) {
+      nodes {
+        title
+        slug
+        databaseId
+        pageContent {
+          ...PageContentFragment
+        }
+      }
+    }
+  }
+}
+    fragment PageContentFragment on PageContent {
+  rounded {
+    node {
+      altText
+      mediaItemUrl
+    }
+  }
+  small {
+    heroImage {
+      node {
+        altText
+        mediaItemUrl
+      }
+    }
+  }
+  medium {
+    heading_accent
+    heading_main
+    text
+  }
+  large {
+    heading
+    headingAccent
+    subheading
+    heroImage {
+      node {
+        altText
+        mediaItemUrl
+        mediaDetails {
+          height
+          width
+        }
+      }
+    }
+    button {
+      ariaLabel
+      label
+      url {
+        externalLink
+        internalLink {
+          nodes {
+            uri
+          }
+        }
+        is_internal
+      }
+    }
+  }
+}`) as unknown as TypedDocumentString<DraftPageQuery, DraftPageQueryVariables>;
 export const PageSeoQueryDocument = new TypedDocumentString(`
     query PageSeoQuery($slug: ID!) {
   page(id: $slug, idType: URI) {
@@ -17796,7 +17889,7 @@ fragment MediaAndTextFragment on BlocksBlocksMediaAndTextLayout {
         externalLink
         internalLink {
           nodes {
-            slug
+            uri
           }
         }
       }

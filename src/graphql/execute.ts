@@ -1,3 +1,4 @@
+import { env } from "@/env";
 import type { TypedDocumentString } from "./graphql";
 
 type CacheMethod =
@@ -9,11 +10,14 @@ export async function execute<TResult, TVariables>(
   cacheMethod: CacheMethod,
   ...[variables]: TVariables extends Record<string, never> ? [] : [TVariables]
 ) {
+  const authString = `${env.CMS_GRAPHQL_AUTH_USER}:${env.DRAFT_MODE_PASSWORD}`;
+
   const fetchOptions: RequestInit & { next?: any } = {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Accept: "application/graphql-response+json",
+      Authorization: `Basic ${btoa(authString)}`,
     },
     body: JSON.stringify({
       query,

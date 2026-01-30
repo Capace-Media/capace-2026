@@ -1,5 +1,5 @@
 import { execute } from "@/graphql/execute";
-import { PageQuery, PageSlugsQuery } from "../queries/pages";
+import { DraftPageQuery, PageQuery, PageSlugsQuery } from "../queries/pages";
 
 export async function getPageSlugs() {
   return (
@@ -15,4 +15,8 @@ export async function getPage(slug: string) {
       { slug: slug },
     )
   ).page;
+}
+
+export async function getPageDraft(id: string) {
+  return (await execute(DraftPageQuery, { revalidate: 0 }, { id: id })).page;
 }

@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import dayjs from "dayjs";
 import "dayjs/locale/sv";
 import AnnouncementBannerWrapper from "@/components/announcement-banner/announcement-banner-wrapper";
+import ExitDraftButton from "@/components/layout/exit-draft-button";
 dayjs.locale("sv");
 
 const poppins = Poppins({
@@ -43,6 +44,7 @@ export default function RootLayout({
         <main className="bg-background z-1 flex-1 rounded-bl-[100px] transition-all duration-300">
           {children}
         </main>
+        <ExitDraftButton />
         <Footer />
       </body>
     </html>
