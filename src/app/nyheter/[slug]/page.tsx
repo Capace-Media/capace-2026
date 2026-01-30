@@ -21,10 +21,15 @@ export default async function Page(props: PageProps<"/nyheter/[slug]">) {
             {dayjs(data?.date).format("DD MMMM YYYY")}
           </p>
         </div>
-        {/* <div className="flex flex-col items-start">
+        <div className="flex flex-col items-start">
           <p className="text-primary">Lästid:</p>
-          <p className="text-sm uppercase">XX minuter</p>
-        </div> */}
+          {data.seo?.readingTime && (
+            <p className="text-sm uppercase">
+              {data.seo?.readingTime}{" "}
+              {data.seo?.readingTime > 1 ? "minuter" : "minut"}
+            </p>
+          )}
+        </div>
       </div>
       <Blocks blocks={data?.blocks?.blocks} />
     </section>

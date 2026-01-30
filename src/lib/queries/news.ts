@@ -19,6 +19,9 @@ export const NewsQuery = graphql(`
         endCursor
       }
       nodes {
+        seo {
+          readingTime
+        }
         date
         title
         slug
@@ -41,6 +44,9 @@ export const NewsBySlugQuery = graphql(`
       title
       date
       slug
+      seo {
+        readingTime
+      }
       blocks {
         blocks {
           ...BlocksFragment
