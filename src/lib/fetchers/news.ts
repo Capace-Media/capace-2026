@@ -1,5 +1,10 @@
 import { execute } from "@/graphql/execute";
-import { NewsBySlugQuery, NewsQuery, NewsSlugsQuery } from "../queries/news";
+import {
+  NewsBySlugQuery,
+  NewsBySlugQueryDraft,
+  NewsQuery,
+  NewsSlugsQuery,
+} from "../queries/news";
 
 export async function getNewsSlugs() {
   return (
@@ -25,4 +30,9 @@ export async function getNewsPage(slug: string) {
       { slug },
     )
   ).post;
+}
+
+export async function getNewsDraft(id: string) {
+  return (await execute(NewsBySlugQueryDraft, { revalidate: 0 }, { id: id }))
+    .post;
 }

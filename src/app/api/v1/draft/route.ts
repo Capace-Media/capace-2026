@@ -1,6 +1,5 @@
 import { env } from "@/env";
 import { getNewsPage } from "@/lib/fetchers/news";
-import { getPage } from "@/lib/fetchers/pages";
 import { draftMode } from "next/headers";
 import { redirect } from "next/navigation";
 
@@ -18,15 +17,7 @@ export async function GET(request: Request) {
 
   // Try all post types in order, use the first valid result
   // This way we allow draft modes for different post types
-  let post = null;
-  const fetchers = [getNewsPage, getPage];
-  for (const fetcher of fetchers) {
-    const data = await fetcher(slug);
-    if (data) {
-      post = data;
-      break;
-    }
-  }
+  const post = await getNewsPage(slug);
 
   // If the slug doesn't exist prevent draft mode from being enabled
   if (!post || !post.slug) {

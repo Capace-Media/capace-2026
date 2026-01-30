@@ -15404,6 +15404,82 @@ export type NewsBySlugQueryQuery = { __typename?: 'RootQuery', post?: { __typena
         )
        | null> | null } | null, pageContent?: { __typename?: 'PageContent', rounded?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null, altText?: string | null } } | null } | null } | null };
 
+export type NewsBySlugQueryDraftQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type NewsBySlugQueryDraftQuery = { __typename?: 'RootQuery', post?: { __typename?: 'Post', title?: string | null, date?: string | null, slug?: string | null, seo?: { __typename?: 'PostTypeSEO', readingTime?: number | null } | null, blocks?: { __typename?: 'Blocks', blocks?: Array<
+        | (
+          { __typename?: 'BlocksBlocksAnimatedCardsLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksAnimatedCardsLayout_Fragment': BlocksFragment_BlocksBlocksAnimatedCardsLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksAuthorLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksAuthorLayout_Fragment': BlocksFragment_BlocksBlocksAuthorLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksCardsAndTextLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksCardsAndTextLayout_Fragment': BlocksFragment_BlocksBlocksCardsAndTextLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksCaseCardGridLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksCaseCardGridLayout_Fragment': BlocksFragment_BlocksBlocksCaseCardGridLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksCollaboratorsBannerLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksCollaboratorsBannerLayout_Fragment': BlocksFragment_BlocksBlocksCollaboratorsBannerLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksContactFormLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksContactFormLayout_Fragment': BlocksFragment_BlocksBlocksContactFormLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksEmployeesLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksEmployeesLayout_Fragment': BlocksFragment_BlocksBlocksEmployeesLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksFaqLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksFaqLayout_Fragment': BlocksFragment_BlocksBlocksFaqLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksImageBannerLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksImageBannerLayout_Fragment': BlocksFragment_BlocksBlocksImageBannerLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksMediaAndTextLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksMediaAndTextLayout_Fragment': BlocksFragment_BlocksBlocksMediaAndTextLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksNewsLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksNewsLayout_Fragment': BlocksFragment_BlocksBlocksNewsLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksQuoteLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksQuoteLayout_Fragment': BlocksFragment_BlocksBlocksQuoteLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksServiceCardsLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksServiceCardsLayout_Fragment': BlocksFragment_BlocksBlocksServiceCardsLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksTestimonialsLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksTestimonialsLayout_Fragment': BlocksFragment_BlocksBlocksTestimonialsLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksTimelineLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksTimelineLayout_Fragment': BlocksFragment_BlocksBlocksTimelineLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksTwoColumnTextLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksTwoColumnTextLayout_Fragment': BlocksFragment_BlocksBlocksTwoColumnTextLayout_Fragment } }
+        )
+        | (
+          { __typename?: 'BlocksBlocksWysiwygLayout' }
+          & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksWysiwygLayout_Fragment': BlocksFragment_BlocksBlocksWysiwygLayout_Fragment } }
+        )
+       | null> | null } | null, pageContent?: { __typename?: 'PageContent', rounded?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null, altText?: string | null } } | null } | null } | null };
+
 export type PageSlugsQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -15487,22 +15563,6 @@ export type PageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page'
           & { ' $fragmentRefs'?: { 'BlocksFragment_BlocksBlocksWysiwygLayout_Fragment': BlocksFragment_BlocksBlocksWysiwygLayout_Fragment } }
         )
        | null> | null } | null } | null };
-
-export type DraftPageQueryVariables = Exact<{
-  id: Scalars['ID']['input'];
-}>;
-
-
-export type DraftPageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page', title?: string | null, slug?: string | null, status?: string | null, pageContent?: (
-      { __typename?: 'PageContent' }
-      & { ' $fragmentRefs'?: { 'PageContentFragmentFragment': PageContentFragmentFragment } }
-    ) | null, preview?: { __typename?: 'PageToPreviewConnectionEdge', node: { __typename?: 'Page', pageContent?: (
-          { __typename?: 'PageContent' }
-          & { ' $fragmentRefs'?: { 'PageContentFragmentFragment': PageContentFragmentFragment } }
-        ) | null } } | null, revisions?: { __typename?: 'PageToRevisionConnection', nodes: Array<{ __typename?: 'Page', title?: string | null, slug?: string | null, databaseId: number, pageContent?: (
-          { __typename?: 'PageContent' }
-          & { ' $fragmentRefs'?: { 'PageContentFragmentFragment': PageContentFragmentFragment } }
-        ) | null }> } | null } | null };
 
 export type PageSeoQueryQueryVariables = Exact<{
   slug: Scalars['ID']['input'];
@@ -17210,6 +17270,387 @@ fragment BlocksFragment on BlocksBlocks_Layout {
     }
   }
 }`) as unknown as TypedDocumentString<NewsBySlugQueryQuery, NewsBySlugQueryQueryVariables>;
+export const NewsBySlugQueryDraftDocument = new TypedDocumentString(`
+    query NewsBySlugQueryDraft($id: ID!) {
+  post(id: $id, idType: URI, asPreview: true) {
+    title
+    date
+    slug
+    seo {
+      readingTime
+    }
+    blocks {
+      blocks {
+        ...BlocksFragment
+      }
+    }
+    pageContent {
+      rounded {
+        node {
+          mediaItemUrl
+          altText
+        }
+      }
+    }
+  }
+}
+    fragment ImageBannerFragment on BlocksBlocksImageBannerLayout {
+  __typename
+  fullWidth
+  images {
+    nodes {
+      altText
+      mediaItemUrl
+    }
+  }
+}
+fragment MediaAndTextFragment on BlocksBlocksMediaAndTextLayout {
+  __typename
+  mediaAndText {
+    textContent
+    imagePlacement
+    accentHeading {
+      accent
+      main
+    }
+    image {
+      node {
+        altText
+        mediaItemUrl
+        mediaDetails {
+          height
+          width
+        }
+      }
+    }
+    button {
+      ariaLabel
+      __typename
+      label
+      url {
+        externalLink
+        internalLink {
+          nodes {
+            uri
+          }
+        }
+      }
+    }
+  }
+}
+fragment Quote_Fragment on BlocksBlocksQuoteLayout {
+  __typename
+  author
+  authorTitle
+  companyName
+  quote
+}
+fragment ServiceCard_Fragment on BlocksBlocksServiceCardsLayout {
+  __typename
+  accentHeading {
+    accent
+    main
+  }
+  description
+  service {
+    nodes {
+      ... on Service {
+        __typename
+        id
+        title
+        slug
+        uri
+        serviceContent {
+          shortDescription
+          icon {
+            node {
+              altText
+              mediaItemUrl
+              mediaDetails {
+                height
+                width
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+fragment Milestones_Fragment on BlocksBlocksMilestones {
+  description
+  image {
+    node {
+      ...ImageFragment
+    }
+  }
+  title
+  year
+}
+fragment Timeline_Fragment on BlocksBlocksTimelineLayout {
+  __typename
+  accentHeading {
+    accent
+    main
+  }
+  milestones {
+    ...Milestones_Fragment
+  }
+}
+fragment ImageFragment on MediaItem {
+  altText
+  mediaItemUrl
+  mediaDetails {
+    width
+    height
+  }
+}
+fragment BlocksFragment on BlocksBlocks_Layout {
+  ... on BlocksBlocksMediaAndTextLayout {
+    ...MediaAndTextFragment
+  }
+  ... on BlocksBlocksServiceCardsLayout {
+    ...ServiceCard_Fragment
+  }
+  ... on BlocksBlocksQuoteLayout {
+    ...Quote_Fragment
+  }
+  ... on BlocksBlocksContactFormLayout {
+    __typename
+  }
+  ... on BlocksBlocksCollaboratorsBannerLayout {
+    __typename
+  }
+  ... on BlocksBlocksTimelineLayout {
+    ...Timeline_Fragment
+  }
+  ... on BlocksBlocksImageBannerLayout {
+    ...ImageBannerFragment
+  }
+  ... on BlocksBlocksCaseCardGridLayout {
+    __typename
+    compact
+    accentHeading {
+      accent
+      main
+    }
+    cases {
+      nodes {
+        ... on Case {
+          __typename
+          id
+          title
+          slug
+          caseContent {
+            shortDescription
+            heroImage {
+              node {
+                altText
+                mediaItemUrl
+                mediaDetails {
+                  height
+                  width
+                }
+              }
+            }
+          }
+          casesCategories {
+            nodes {
+              slug
+              name
+            }
+          }
+        }
+      }
+    }
+  }
+  ... on BlocksBlocksTestimonialsLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+  }
+  ... on BlocksBlocksTwoColumnTextLayout {
+    column_right
+    column_left
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+  }
+  ... on BlocksBlocksNewsLayout {
+    accentHeading {
+      accent
+      main
+    }
+    newsAmount
+    textContent
+    __typename
+  }
+  ... on BlocksBlocksAuthorLayout {
+    __typename
+    employee {
+      nodes {
+        ... on Employee {
+          __typename
+          title
+          slug
+          employeeContent {
+            email
+            employmentType
+            image {
+              node {
+                altText
+                mediaItemUrl
+              }
+            }
+            telephone
+            workTitle
+          }
+        }
+      }
+    }
+  }
+  ... on BlocksBlocksWysiwygLayout {
+    __typename
+    content
+    button {
+      ariaLabel
+      label
+      url {
+        externalLink
+        internalLink {
+          nodes {
+            uri
+          }
+        }
+      }
+    }
+  }
+  ... on BlocksBlocksEmployeesLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+    employees {
+      nodes {
+        ... on Employee {
+          __typename
+          title
+          slug
+          employeeContent {
+            email
+            employmentType
+            quote
+            telephone
+            textContent
+            workTitle
+            image {
+              node {
+                altText
+                mediaItemUrl
+              }
+            }
+          }
+        }
+      }
+    }
+    textContent
+  }
+  ... on BlocksBlocksFaqLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+    questions {
+      nodes {
+        ... on Faq {
+          id
+          __typename
+          faqContent {
+            answer
+            longAnswer
+          }
+          title
+        }
+      }
+    }
+  }
+  ... on BlocksBlocksCardsAndTextLayout {
+    __typename
+    accentHeading {
+      accent
+      main
+    }
+    textContent
+    cards {
+      card {
+        textContent
+        title
+        button {
+          ariaLabel
+          label
+          url {
+            externalLink
+            internalLink {
+              nodes {
+                slug
+                uri
+              }
+            }
+          }
+        }
+        image {
+          node {
+            mediaItemUrl
+            altText
+          }
+        }
+      }
+    }
+  }
+  ... on BlocksBlocksAnimatedCardsLayout {
+    __typename
+    textContent
+    accentHeading {
+      accent
+      main
+    }
+    cards {
+      card {
+        button {
+          ariaLabel
+          label
+          url {
+            externalLink
+            internalLink {
+              nodes {
+                slug
+              }
+            }
+            is_internal
+          }
+        }
+        image {
+          node {
+            altText
+            mediaItemUrl
+            mediaDetails {
+              width
+              height
+            }
+          }
+        }
+        textContent
+        title
+      }
+    }
+  }
+}`) as unknown as TypedDocumentString<NewsBySlugQueryDraftQuery, NewsBySlugQueryDraftQueryVariables>;
 export const PageSlugsQueryDocument = new TypedDocumentString(`
     query PageSlugsQuery {
   pages(first: 100) {
@@ -17641,83 +18082,6 @@ fragment BlocksFragment on BlocksBlocks_Layout {
     }
   }
 }`) as unknown as TypedDocumentString<PageQuery, PageQueryVariables>;
-export const DraftPageDocument = new TypedDocumentString(`
-    query DraftPage($id: ID!) {
-  page(id: $id, idType: DATABASE_ID, asPreview: true) {
-    title
-    slug
-    status
-    pageContent {
-      ...PageContentFragment
-    }
-    preview {
-      node {
-        pageContent {
-          ...PageContentFragment
-        }
-      }
-    }
-    revisions(first: 1, where: {orderby: {field: MODIFIED, order: DESC}}) {
-      nodes {
-        title
-        slug
-        databaseId
-        pageContent {
-          ...PageContentFragment
-        }
-      }
-    }
-  }
-}
-    fragment PageContentFragment on PageContent {
-  rounded {
-    node {
-      altText
-      mediaItemUrl
-    }
-  }
-  small {
-    heroImage {
-      node {
-        altText
-        mediaItemUrl
-      }
-    }
-  }
-  medium {
-    heading_accent
-    heading_main
-    text
-  }
-  large {
-    heading
-    headingAccent
-    subheading
-    heroImage {
-      node {
-        altText
-        mediaItemUrl
-        mediaDetails {
-          height
-          width
-        }
-      }
-    }
-    button {
-      ariaLabel
-      label
-      url {
-        externalLink
-        internalLink {
-          nodes {
-            uri
-          }
-        }
-        is_internal
-      }
-    }
-  }
-}`) as unknown as TypedDocumentString<DraftPageQuery, DraftPageQueryVariables>;
 export const PageSeoQueryDocument = new TypedDocumentString(`
     query PageSeoQuery($slug: ID!) {
   page(id: $slug, idType: URI) {

@@ -1,9 +1,10 @@
 import Blocks from "@/components/blocks/blocks";
 import Hero from "@/components/layout/hero";
-import { getNewsPage } from "@/lib/fetchers/news";
+import { getNewsDraft, getNewsPage } from "@/lib/fetchers/news";
 import { getNewsSeo } from "@/lib/fetchers/seo";
 import generatePageSeo from "@/lib/utilities/seo";
 import dayjs from "dayjs";
+import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
 
 export const generateMetadata = async (props: PageProps<"/nyheter/[slug]">) => {
@@ -14,8 +15,16 @@ export const generateMetadata = async (props: PageProps<"/nyheter/[slug]">) => {
 
 export default async function Page(props: PageProps<"/nyheter/[slug]">) {
   const { slug } = await props.params;
+  const { isEnabled } = await draftMode();
+  let data:
+    | Awaited<ReturnType<typeof getNewsPage>>
+    | Awaited<ReturnType<typeof getNewsPage>>;
 
-  const data = await getNewsPage(slug);
+  if (isEnabled) {
+    data = await getNewsDraft(slug);
+  } else {
+    data = await getNewsPage(slug);
+  }
   if (!data?.pageContent) notFound();
 
   return (

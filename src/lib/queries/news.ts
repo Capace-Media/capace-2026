@@ -63,3 +63,29 @@ export const NewsBySlugQuery = graphql(`
     }
   }
 `);
+//This query isn't fetching the preview page properly.
+export const NewsBySlugQueryDraft = graphql(`
+  query NewsBySlugQueryDraft($id: ID!) {
+    post(id: $id, idType: URI, asPreview: true) {
+      title
+      date
+      slug
+      seo {
+        readingTime
+      }
+      blocks {
+        blocks {
+          ...BlocksFragment
+        }
+      }
+      pageContent {
+        rounded {
+          node {
+            mediaItemUrl
+            altText
+          }
+        }
+      }
+    }
+  }
+`);
