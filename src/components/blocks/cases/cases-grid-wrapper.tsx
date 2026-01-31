@@ -21,11 +21,8 @@ export default function CasesGridWrapper(props: Props) {
   if (block.__typename !== "BlocksBlocksCaseCardGridLayout") return null;
 
   return (
-    <section
-      className="section cases-container relative flex flex-col items-center"
-      aria-labelledby="cases-heading"
-    >
-      <div id="cases-heading">
+    <section className="section cases-container relative flex flex-col items-center">
+      <div>
         <HeadingWithAccent
           accentedHeading={block.accentHeading?.accent || ""}
           mainHeading={block.accentHeading?.main || ""}

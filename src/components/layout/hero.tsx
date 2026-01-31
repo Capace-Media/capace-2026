@@ -102,10 +102,16 @@ const HeroLarge = (data: Props) => {
         ref={containerRef}
         className="section relative z-10 flex h-full flex-col items-center justify-center gap-6"
       >
-        <h1 className="hero text-center text-5xl leading-14 font-bold md:text-6xl">
-          <span className="drop-shadow-lg">{heroData?.heading}</span>
-          <span id="animated-text" className="text-accent drop-shadow-lg">
-            {heroData?.headingAccent}
+        <h1 className="hero text-center text-5xl font-bold md:text-6xl">
+          <span className="sr-only">
+            {heroData?.heading} {heroData?.headingAccent}
+          </span>
+
+          <span aria-hidden="true">
+            <span>{heroData?.heading}</span>
+            <span id="animated-text" className="text-accent">
+              {heroData?.headingAccent}
+            </span>
           </span>
         </h1>
         <div className="mb-8 text-center font-normal drop-shadow-lg">
