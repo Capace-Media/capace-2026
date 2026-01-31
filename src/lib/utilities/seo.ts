@@ -17,6 +17,5 @@ export default function generatePageSeo(
     alternates: {
       canonical: seo?.canonical,
     },
-    robots: seo?.metaRobotsNoindex === "noindex" ? "noindex" : "index",
   };
 }

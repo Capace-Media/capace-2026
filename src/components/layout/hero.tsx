@@ -74,25 +74,33 @@ const HeroLarge = (data: Props) => {
   );
 
   const heroData = data.data?.large;
-  console.log("hero data:", heroData);
 
   return (
     <section
       aria-label="Herosektion"
       className="relative h-170 w-full lg:h-200"
     >
-      <Image
-        className="w-full origin-bottom scale-y-70 object-fill object-bottom md:scale-y-100 md:object-cover md:object-center"
+      <video
+        className="absolute top-0 left-0 z-0 h-full w-full object-cover"
+        src="/hero-video-4.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+        aria-hidden="true"
+      />
+      {/* <Image
+        className="w-full origin-bottom scale-y-70 object-fill object-bottom md:hidden md:scale-y-100 md:object-cover md:object-center"
         priority
         src={"/hero.webp"}
         alt=""
         sizes="100vw"
         fill
         aria-hidden="true"
-      />
+      /> */}
       <div
         ref={containerRef}
-        className="section relative flex h-full flex-col items-center justify-center gap-6"
+        className="section relative z-10 flex h-full flex-col items-center justify-center gap-6"
       >
         <h1 className="hero text-center text-5xl leading-14 font-bold md:text-6xl">
           <span className="drop-shadow-lg">{heroData?.heading}</span>
