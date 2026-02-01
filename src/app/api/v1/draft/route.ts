@@ -15,8 +15,6 @@ export async function GET(request: Request) {
     return new Response("Invalid token", { status: 401 });
   }
 
-  // Try all post types in order, use the first valid result
-  // This way we allow draft modes for different post types
   const post = await getNewsPage(slug);
 
   // If the slug doesn't exist prevent draft mode from being enabled
