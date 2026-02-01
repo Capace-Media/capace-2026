@@ -6,8 +6,8 @@ import BouncySticker from "./bouncy-sticker";
 export default async function Footer() {
   const data = await getFooterData();
   return (
-    <footer className="bg-primary text-background overflow bottom-0 z-0 px-4 py-10 text-sm md:px-20 lg:sticky">
-      <div className="bg-accent absolute top-0 left-0 h-30 w-full -translate-y-full" />
+    <footer className="bg-primary text-background overflow bottom-0 z-0 px-4 py-0 text-sm md:px-20 lg:sticky">
+      <div className="bg-accent absolute top-0 left-0 h-22 w-full -translate-y-full" />
       <div className="flex flex-col gap-2">
         <div aria-hidden className="relative w-fit">
           <h3 className="text-[120px] leading-25 font-bold text-black md:leading-50">

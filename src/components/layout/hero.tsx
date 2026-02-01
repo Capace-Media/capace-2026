@@ -57,16 +57,17 @@ const HeroLarge = (data: Props) => {
       gsap.fromTo(
         split.chars,
         {
-          x: -2,
-          autoAlpha: 0,
+          filter: "brightness(100%)",
         },
         {
-          autoAlpha: 1,
-          x: 0,
-          stagger: 0.05,
-          delay: 0.5,
-          duration: 4,
-          ease: "elastic.out",
+          filter: "brightness(150%)",
+          stagger: {
+            each: 0.07,
+            repeat: 1,
+            yoyo: true,
+          },
+          duration: 0.7,
+          ease: "power1.inOut",
         },
       );
     },
@@ -102,16 +103,10 @@ const HeroLarge = (data: Props) => {
         ref={containerRef}
         className="section relative z-10 flex h-full flex-col items-center justify-center gap-6"
       >
-        <h1 className="hero text-center text-5xl font-bold md:text-6xl">
-          <span className="sr-only">
-            {heroData?.heading} {heroData?.headingAccent}
-          </span>
-
-          <span aria-hidden="true">
-            <span>{heroData?.heading}</span>
-            <span id="animated-text" className="text-accent">
-              {heroData?.headingAccent}
-            </span>
+        <h1 className="hero text-center text-5xl leading-14 font-bold md:text-6xl">
+          <span className="drop-shadow-lg">{heroData?.heading}</span>
+          <span id="animated-text" className="text-accent drop-shadow-lg">
+            {heroData?.headingAccent}
           </span>
         </h1>
         <div className="mb-8 text-center font-normal drop-shadow-lg">
