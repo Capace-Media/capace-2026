@@ -62,6 +62,7 @@ const CapaceLogo = ({ className }: { className?: string }) => {
           width={100}
           height={40}
           className="h-[80%] w-auto"
+          sizes="190px"
         />
       </Link>
     </div>

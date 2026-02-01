@@ -27,10 +27,6 @@ export default function ContactForm() {
         }
       },
     },
-    onSubmit: async () => {
-      // form.reset();
-      // setErrorMessage(null);
-    },
   });
 
   return (

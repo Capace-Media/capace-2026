@@ -27,11 +27,11 @@ export default function AnnouncementBanner(props: Props) {
       ref={containerRef}
       className="bg-primary fixed top-0 left-0 z-999 flex max-h-20 w-full overflow-hidden p-1 text-xs font-semibold text-black"
     >
-      <p className="message px-10 whitespace-nowrap">{props.message}</p>
-      <p className="message px-10 whitespace-nowrap">{props.message}</p>
-      <p className="message px-10 whitespace-nowrap">{props.message}</p>
-      <p className="message px-10 whitespace-nowrap">{props.message}</p>
-      <p className="message px-10 whitespace-nowrap">{props.message}</p>
+      {Array.from({ length: 10 }).map((_i, index) => (
+        <p key={index} className="message px-10 whitespace-nowrap">
+          {props.message}
+        </p>
+      ))}
     </div>
   );
 }

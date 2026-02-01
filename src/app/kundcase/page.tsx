@@ -21,7 +21,6 @@ export default async function Page() {
   return (
     <section className="section flex w-full flex-col items-center justify-center gap-8">
       <Hero data={data.pageContent} />
-      {/* TODO fixa loading */}
       <Suspense fallback={<div>laddar...</div>}>
         <AllCasesGridWrapper />
       </Suspense>

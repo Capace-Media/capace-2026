@@ -34,7 +34,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={cn(poppins.className, caveat.variable)}>
+    <html lang="sv" className={cn(poppins.className, caveat.variable)}>
       <head>
         <meta name="apple-mobile-web-app-title" content="Capace" />
       </head>

@@ -1,7 +1,5 @@
 import ButtonLink from "@/components/shared/link";
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import Link from "next/link";
 export default function Page() {
   return (
     <section className="section no-hero relative h-screen items-center justify-center">

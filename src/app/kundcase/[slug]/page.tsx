@@ -50,14 +50,6 @@ export default async function Page(props: PageProps<"/kundcase/[slug]">) {
           )}
         </div>
       </section>
-      {/* <section className="section pt-0">
-        <h1 className="mr-auto text-6xl font-bold">{data.title}</h1>
-        {data.caseContent?.url && (
-          <CaseLink className="text-lg sm:hidden" href={data.caseContent?.url}>
-            {formattedUrl}
-          </CaseLink>
-        )}
-      </section> */}
       <Blocks blocks={data.blocks?.blocks} />
       <CasesCarouselWrapper />
       <section className="section relative items-center pb-70">

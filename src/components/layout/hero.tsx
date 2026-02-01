@@ -90,15 +90,6 @@ const HeroLarge = (data: Props) => {
         playsInline
         aria-hidden="true"
       />
-      {/* <Image
-        className="w-full origin-bottom scale-y-70 object-fill object-bottom md:hidden md:scale-y-100 md:object-cover md:object-center"
-        priority
-        src={"/hero.webp"}
-        alt=""
-        sizes="100vw"
-        fill
-        aria-hidden="true"
-      /> */}
       <div
         ref={containerRef}
         className="section relative z-10 flex h-full flex-col items-center justify-center gap-6"
