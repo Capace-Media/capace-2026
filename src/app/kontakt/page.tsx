@@ -20,12 +20,14 @@ export default async function Page() {
     <>
       <Hero data={data.pageContent} />
       <Blocks blocks={blocks} />
-      <iframe
-        width="100%"
-        height="750"
-        className="section end-section"
-        src={`https://www.google.com/maps/embed/v1/place?key=${env.GOOGLE_API_KEY}&q=Capace+Media+Group+AB`}
-      />
+      <section className="section end-section">
+        <iframe
+          width="100%"
+          height="750"
+          className="mx-auto overflow-hidden rounded-xl"
+          src={`https://www.google.com/maps/embed/v1/place?key=${env.GOOGLE_API_KEY}&q=Capace+Media+Group+AB`}
+        />
+      </section>
     </>
   );
 }
