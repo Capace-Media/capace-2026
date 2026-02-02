@@ -10,7 +10,7 @@ import Faq from "./faq";
 import ImageBanner from "./image-banner";
 import MediaAndText from "./media-and-text";
 import NewsWrapper from "./news/news-wrapper";
-import QuoteWrapper from "./quote/quote-wrapper";
+import QuoteWrapper from "./quotes/quote-wrapper";
 import ServiceCards from "./service-cards";
 import TestimonialsWrapper from "./testimonials/testimonials-wrapper";
 import TimelineWrapper from "./timeline/timeline-wrapper";
