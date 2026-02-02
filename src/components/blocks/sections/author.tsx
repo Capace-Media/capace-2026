@@ -1,8 +1,8 @@
 import { useFragment, type FragmentType } from "@/graphql/fragment-masking";
 import { BlocksFragment } from "@/lib/queries/fragments";
 import Image from "next/image";
-import EmailLink from "../shared/email-link";
-import TelephoneLink from "../shared/telephone-link";
+import EmailLink from "@/components/shared/email-link";
+import TelephoneLink from "@/components/shared/telephone-link";
 import Link from "next/link";
 
 interface Props {
@@ -58,10 +58,10 @@ export default function Author(props: Props) {
                   {data.employeeContent?.employmentType?.includes(
                     "not-employed",
                   ) && (
-                    <p className="text-muted-foreground text-sm">
-                      (Tidigare anställd)
-                    </p>
-                  )}
+                      <p className="text-muted-foreground text-sm">
+                        (Tidigare anställd)
+                      </p>
+                    )}
                 </div>
                 {data.employeeContent?.email && (
                   <EmailLink email={data.employeeContent.email} />

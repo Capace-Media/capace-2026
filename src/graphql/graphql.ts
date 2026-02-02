@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { type DocumentTypeDecoration } from "@graphql-typed-document-node/core";
+import type { DocumentTypeDecoration } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = T | null | undefined;
 export type Exact<T extends { [key: string]: unknown }> = {
@@ -15602,7 +15602,14 @@ export type CaseSlugsQueryQuery = {
   __typename?: "RootQuery";
   cases?: {
     __typename?: "RootQueryToCaseConnection";
-    nodes: Array<{ __typename?: "Case"; uri?: string | null }>;
+    nodes: Array<{
+      __typename?: "Case";
+      uri?: string | null;
+      slug?: string | null;
+      title?: string | null;
+      modified?: string | null;
+      modifiedGmt?: string | null;
+    }>;
   } | null;
 };
 
@@ -17025,7 +17032,14 @@ export type ServicesSlugsQuery = {
   __typename?: "RootQuery";
   services?: {
     __typename?: "RootQueryToServiceConnection";
-    nodes: Array<{ __typename?: "Service"; uri?: string | null }>;
+    nodes: Array<{
+      __typename?: "Service";
+      uri?: string | null;
+      slug?: string | null;
+      title?: string | null;
+      modified?: string | null;
+      modifiedGmt?: string | null;
+    }>;
   } | null;
 };
 
@@ -17854,6 +17868,10 @@ export const CaseSlugsQueryDocument = new TypedDocumentString(`
   cases(first: 100) {
     nodes {
       uri
+      slug
+      title
+      modified
+      modifiedGmt
     }
   }
 }
@@ -19756,6 +19774,10 @@ export const ServicesSlugsDocument = new TypedDocumentString(`
   services {
     nodes {
       uri
+      slug
+      title
+      modified
+      modifiedGmt
     }
   }
 }

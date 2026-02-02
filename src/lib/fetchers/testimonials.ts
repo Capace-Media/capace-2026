@@ -1,5 +1,5 @@
 import { execute } from "@/graphql/execute";
-import { TestimonialsQuery } from "../queries/testimonials";
+import { TestimonialsQuery } from "@/lib/queries/testimonials";
 
 export async function getTestimonials() {
   return (

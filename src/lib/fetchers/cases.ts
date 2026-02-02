@@ -1,5 +1,5 @@
 import { execute } from "@/graphql/execute";
-import { CaseQuery, CaseSlugsQuery, CasesQuery } from "../queries/cases";
+import { CaseQuery, CaseSlugsQuery, CasesQuery } from "@/lib/queries/cases";
 
 export async function getCaseSlugs() {
   return (

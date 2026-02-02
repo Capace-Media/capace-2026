@@ -4,7 +4,7 @@ import {
   NewsSeoQuery,
   PageSeoQuery,
   ServiceSeoQuery,
-} from "../queries/seo";
+} from "@/lib/queries/seo";
 
 export async function getPageSeo(slug: string) {
   return (

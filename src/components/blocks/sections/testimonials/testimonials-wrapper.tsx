@@ -1,5 +1,5 @@
 import { getTestimonials } from "@/lib/fetchers/testimonials";
-import HeadingWithAccent from "../../shared/heading-with-accent";
+import HeadingWithAccent from "@/components/shared/heading-with-accent";
 import { type FragmentType, useFragment } from "@/graphql/fragment-masking";
 import { BlocksFragment } from "@/lib/queries/fragments";
 import Testimonials from "./testimonials";

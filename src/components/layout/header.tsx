@@ -6,7 +6,7 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { gsap } from "gsap";
 import { cn } from "@/lib/utils";
-import ButtonLink from "../shared/link";
+import ButtonLink from "@/components/shared/link";
 import NavMenu from "./nav-menu";
 gsap.registerPlugin(ScrollTrigger, gsap);
 

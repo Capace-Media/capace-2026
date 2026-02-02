@@ -1,5 +1,5 @@
 import Blocks from "@/components/blocks/blocks";
-import AllCasesGridWrapper from "@/components/blocks/cases/all-cases-wrapper";
+import AllCasesGridWrapper from "@/components/blocks/sections/cases/all-cases-wrapper";
 import Hero from "@/components/layout/hero";
 import ButtonLink from "@/components/shared/link";
 import { env } from "@/env";

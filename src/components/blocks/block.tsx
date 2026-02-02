@@ -16,6 +16,5 @@ export default function Block(props: Props) {
     return null;
   }
 
-  // @ts-expect-error - TypeScript can't narrow the union type properly here
-  return <BlockComponent data={props.block} />;
+  return <BlockComponent data={props.block as never} />;
 }

@@ -1,5 +1,5 @@
 import { execute } from "@/graphql/execute";
-import { CollaboratorsQuery } from "../queries/collaborators";
+import { CollaboratorsQuery } from "@/lib/queries/collaborators";
 
 export async function getCollaborators() {
   return (

@@ -4,7 +4,7 @@ import {
   NewsBySlugQueryDraft,
   NewsQuery,
   NewsSlugsQuery,
-} from "../queries/news";
+} from "@/lib/queries/news";
 
 export async function getNewsSlugs() {
   return (

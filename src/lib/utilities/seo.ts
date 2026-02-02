@@ -1,4 +1,4 @@
-import type { getPageSeo } from "../fetchers/seo";
+import type { getPageSeo } from "@/lib/fetchers/seo";
 
 export default function generatePageSeo(
   seo: Awaited<ReturnType<typeof getPageSeo>>,

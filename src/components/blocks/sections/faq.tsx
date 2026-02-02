@@ -6,7 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import HeadingWithAccent from "../shared/heading-with-accent";
+import HeadingWithAccent from "@/components/shared/heading-with-accent";
 import Image from "next/image";
 
 interface Props {
