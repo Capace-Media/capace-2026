@@ -1,8 +1,19 @@
+import { env } from "@/env";
 import { getPageSlugs } from "@/lib/fetchers/pages";
-import buildSitemapEntries from "@/lib/utilities/build-sitemap-entries";
 import type { MetadataRoute } from "next";
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const pageSlugs = await getPageSlugs();
   if (!pageSlugs || pageSlugs.length === 0) return [];
-  return buildSitemapEntries(pageSlugs, 0.9, "yearly");
+  return pageSlugs.map((item) => {
+    const noSlashAtTheEndOfTheOriginalUri = item?.uri
+      ?.replace(/ /g, "")
+      .replace(/\/$/, "");
+    return {
+      url: `${env.SITE_URL}${noSlashAtTheEndOfTheOriginalUri}`,
+      lastModified: item?.modified || new Date().toISOString(),
+      priority: 0.9,
+      changeFrequency: "yearly",
+    };
+  }) as MetadataRoute.Sitemap;
 }

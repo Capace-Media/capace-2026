@@ -1,6 +1,6 @@
 import Blocks from "@/components/blocks/blocks";
 import CategoryButtons from "@/components/shared/category-buttons";
-import { getCase, getCaseSlugs } from "@/lib/fetchers/cases";
+import { getCase } from "@/lib/fetchers/cases";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import ParallaxHero from "@/components/layout/parallax-hero";
@@ -9,7 +9,6 @@ import ButtonLink from "@/components/shared/link";
 import { getCaseSeo } from "@/lib/fetchers/seo";
 import generatePageSeo from "@/lib/utilities/seo";
 import CasesCarouselWrapper from "@/components/blocks/sections/cases-carousel/cases-carousel-wrapper";
-
 
 export const generateMetadata = async (
   props: PageProps<"/kundcase/[slug]">,

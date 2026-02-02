@@ -40,7 +40,7 @@ export default function RootLayout({
       <head>
         <meta name="apple-mobile-web-app-title" content="Capace" />
       </head>
-      <body className="mx-auto flex min-h-screen max-w-400 flex-col">
+      <body className="mx-auto flex min-h-screen max-w-400 flex-col bg-neutral-950">
         <AnnouncementBannerWrapper />
         <Header />
         <main className="bg-background z-1 flex-1 rounded-bl-[100px] transition-all duration-300">
