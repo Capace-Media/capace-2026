@@ -33,6 +33,8 @@ type AcfContentNodeConnectionPageInfo implements ContentNodeConnectionPageInfo &
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -62,7 +64,7 @@ type AcfMediaItemConnection implements Connection & MediaItemConnection {
 }
 
 """
-Connection between the BlocksBlocksMediaAndText_Fields type and the MediaItem type
+Connection between the BlocksBlocksCardsCard_Fields type and the MediaItem type
 """
 type AcfMediaItemConnectionEdge implements Edge & MediaItemConnectionEdge & OneToOneConnection {
   """
@@ -83,6 +85,8 @@ type AcfMediaItemConnectionPageInfo implements MediaItemConnectionPageInfo & Pag
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -96,6 +100,42 @@ interface AcfOptionsPage implements Node & WithAcfBlocks {
   menuTitle: String
   pageTitle: String
   parentId: String
+}
+
+type Announcement implements AcfOptionsPage & Node & WithAcfAnnouncementContent & WithAcfBlocks {
+  """Fields of the AnnouncementContent ACF Field Group"""
+  announcementContent: AnnouncementContent
+  """Fields of the Blocks ACF Field Group"""
+  blocks: Blocks
+  """The globally unique ID for the object"""
+  id: ID!
+  menuTitle: String
+  pageTitle: String
+  parentId: String
+}
+
+"""
+The &quot;AnnouncementContent&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type AnnouncementContent implements AcfFieldGroup & AcfFieldGroupFields & AnnouncementContent_Fields {
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Write a message that will be displayed as a rolling banner on the top of the website.
+  """
+  message: String
+}
+
+"""
+Interface representing fields of the ACF &quot;AnnouncementContent&quot; Field Group
+"""
+interface AnnouncementContent_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Write a message that will be displayed as a rolling banner on the top of the website.
+  """
+  message: String
 }
 
 """
@@ -194,6 +234,10 @@ type BlocksBlocksAnimatedCardsLayout implements AcfFieldGroup & AcfFieldGroupFie
   cards: [BlocksBlocksCards]
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksAnimatedCardsLayout&quot; Field Group
+  """
+  textContent: String
 }
 
 """
@@ -208,6 +252,100 @@ interface BlocksBlocksAnimatedCardsLayout_Fields implements AcfFieldGroup & AcfF
   cards: [BlocksBlocksCards]
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksAnimatedCardsLayout&quot; Field Group
+  """
+  textContent: String
+}
+
+"""
+The &quot;BlocksBlocksAuthorLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type BlocksBlocksAuthorLayout implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksAuthorLayout_Fields & BlocksBlocks_Layout {
+  """
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;BlocksBlocksAuthorLayout&quot; Field Group
+  """
+  employee(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+  ): AcfContentNodeConnection
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+}
+
+"""
+Interface representing fields of the ACF &quot;BlocksBlocksAuthorLayout&quot; Field Group
+"""
+interface BlocksBlocksAuthorLayout_Fields implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocks_Layout {
+  """
+  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;BlocksBlocksAuthorLayout&quot; Field Group
+  """
+  employee(
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+  ): AcfContentNodeConnection
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+}
+
+"""
+The &quot;BlocksBlocksButton&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type BlocksBlocksButton implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksButton_Fields {
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BlocksBlocksButton&quot; Field Group
+  """
+  ariaLabel: String
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BlocksBlocksButton&quot; Field Group
+  """
+  label: String
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;BlocksBlocksButton&quot; Field Group
+  """
+  url: ReusableFieldsButtonUrl
+}
+
+"""
+Interface representing fields of the ACF &quot;BlocksBlocksButton&quot; Field Group
+"""
+interface BlocksBlocksButton_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BlocksBlocksButton&quot; Field Group
+  """
+  ariaLabel: String
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BlocksBlocksButton&quot; Field Group
+  """
+  label: String
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;BlocksBlocksButton&quot; Field Group
+  """
+  url: ReusableFieldsButtonUrl
 }
 
 """
@@ -277,7 +415,7 @@ type BlocksBlocksCardsCard implements AcfFieldGroup & AcfFieldGroupFields & Bloc
   """
   image: AcfMediaItemConnectionEdge
   """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BlocksBlocksCardsCard&quot; Field Group
+  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksCardsCard&quot; Field Group
   """
   textContent: String
   """
@@ -301,7 +439,7 @@ interface BlocksBlocksCardsCard_Fields implements AcfFieldGroup & AcfFieldGroupF
   """
   image: AcfMediaItemConnectionEdge
   """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BlocksBlocksCardsCard&quot; Field Group
+  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksCardsCard&quot; Field Group
   """
   textContent: String
   """
@@ -591,30 +729,6 @@ interface BlocksBlocksImageBannerLayout_Fields implements AcfFieldGroup & AcfFie
 }
 
 """
-The &quot;BlocksBlocksLatestNewsGridLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
-"""
-type BlocksBlocksLatestNewsGridLayout implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksLatestNewsGridLayout_Fields & BlocksBlocks_Layout {
-  """
-  A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space.
-  """
-  accentHeading: BlocksBlocksAccentHeading
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-}
-
-"""
-Interface representing fields of the ACF &quot;BlocksBlocksLatestNewsGridLayout&quot; Field Group
-"""
-interface BlocksBlocksLatestNewsGridLayout_Fields implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocks_Layout {
-  """
-  A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space.
-  """
-  accentHeading: BlocksBlocksAccentHeading
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-}
-
-"""
 The &quot;BlocksBlocksMediaAndText&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
 """
 type BlocksBlocksMediaAndText implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksMediaAndText_Fields {
@@ -754,6 +868,96 @@ interface BlocksBlocksMediaAndText_Fields implements AcfFieldGroup & AcfFieldGro
   imagePlacement: Boolean
   """
   Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksMediaAndText&quot; Field Group
+  """
+  textContent: String
+}
+
+"""
+The &quot;BlocksBlocksMilestones&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type BlocksBlocksMilestones implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksMilestones_Fields {
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BlocksBlocksMilestones&quot; Field Group
+  """
+  description: String
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;BlocksBlocksMilestones&quot; Field Group
+  """
+  image: AcfMediaItemConnectionEdge
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BlocksBlocksMilestones&quot; Field Group
+  """
+  title: String
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BlocksBlocksMilestones&quot; Field Group
+  """
+  year: String
+}
+
+"""
+Interface representing fields of the ACF &quot;BlocksBlocksMilestones&quot; Field Group
+"""
+interface BlocksBlocksMilestones_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BlocksBlocksMilestones&quot; Field Group
+  """
+  description: String
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;BlocksBlocksMilestones&quot; Field Group
+  """
+  image: AcfMediaItemConnectionEdge
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BlocksBlocksMilestones&quot; Field Group
+  """
+  title: String
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;BlocksBlocksMilestones&quot; Field Group
+  """
+  year: String
+}
+
+"""
+The &quot;BlocksBlocksNewsLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type BlocksBlocksNewsLayout implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksNewsLayout_Fields & BlocksBlocks_Layout {
+  """
+  A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space.
+  """
+  accentHeading: BlocksBlocksAccentHeading
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Latest - Show only latest 3 news. 
+  All - Show all news with a &quot;load more&quot; button at the bottom to show more news.
+  """
+  newsAmount: String
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BlocksBlocksNewsLayout&quot; Field Group
+  """
+  textContent: String
+}
+
+"""
+Interface representing fields of the ACF &quot;BlocksBlocksNewsLayout&quot; Field Group
+"""
+interface BlocksBlocksNewsLayout_Fields implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocks_Layout {
+  """
+  A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space.
+  """
+  accentHeading: BlocksBlocksAccentHeading
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Latest - Show only latest 3 news. 
+  All - Show all news with a &quot;load more&quot; button at the bottom to show more news.
+  """
+  newsAmount: String
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;BlocksBlocksNewsLayout&quot; Field Group
   """
   textContent: String
 }
@@ -900,14 +1104,102 @@ interface BlocksBlocksTestimonialsLayout_Fields implements AcfFieldGroup & AcfFi
 The &quot;BlocksBlocksTimelineLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
 """
 type BlocksBlocksTimelineLayout implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksTimelineLayout_Fields & BlocksBlocks_Layout {
+  """
+  A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space.
+  """
+  accentHeading: BlocksBlocksAccentHeading
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;BlocksBlocksTimelineLayout&quot; Field Group
+  """
+  milestones: [BlocksBlocksMilestones]
 }
 
 """
 Interface representing fields of the ACF &quot;BlocksBlocksTimelineLayout&quot; Field Group
 """
 interface BlocksBlocksTimelineLayout_Fields implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocks_Layout {
+  """
+  A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space.
+  """
+  accentHeading: BlocksBlocksAccentHeading
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;repeater&quot; Field Type added to the schema as part of the &quot;BlocksBlocksTimelineLayout&quot; Field Group
+  """
+  milestones: [BlocksBlocksMilestones]
+}
+
+"""
+The &quot;BlocksBlocksTwoColumnTextLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type BlocksBlocksTwoColumnTextLayout implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksTwoColumnTextLayout_Fields & BlocksBlocks_Layout {
+  """
+  A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space.
+  """
+  accentHeading: BlocksBlocksAccentHeading
+  """
+  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksTwoColumnTextLayout&quot; Field Group
+  """
+  column_left: String
+  """
+  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksTwoColumnTextLayout&quot; Field Group
+  """
+  column_right: String
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+}
+
+"""
+Interface representing fields of the ACF &quot;BlocksBlocksTwoColumnTextLayout&quot; Field Group
+"""
+interface BlocksBlocksTwoColumnTextLayout_Fields implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocks_Layout {
+  """
+  A stylized heading consisting of an accented text and a white text below. Both will be rendered inside the same heading tag. They will be properly separated with blank space.
+  """
+  accentHeading: BlocksBlocksAccentHeading
+  """
+  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksTwoColumnTextLayout&quot; Field Group
+  """
+  column_left: String
+  """
+  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksTwoColumnTextLayout&quot; Field Group
+  """
+  column_right: String
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+}
+
+"""
+The &quot;BlocksBlocksWysiwygLayout&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type BlocksBlocksWysiwygLayout implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocksWysiwygLayout_Fields & BlocksBlocks_Layout {
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;BlocksBlocksWysiwygLayout&quot; Field Group
+  """
+  button: BlocksBlocksButton
+  """
+  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksWysiwygLayout&quot; Field Group
+  """
+  content: String
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+}
+
+"""
+Interface representing fields of the ACF &quot;BlocksBlocksWysiwygLayout&quot; Field Group
+"""
+interface BlocksBlocksWysiwygLayout_Fields implements AcfFieldGroup & AcfFieldGroupFields & BlocksBlocks_Layout {
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;BlocksBlocksWysiwygLayout&quot; Field Group
+  """
+  button: BlocksBlocksButton
+  """
+  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;BlocksBlocksWysiwygLayout&quot; Field Group
+  """
+  content: String
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
 }
@@ -1081,6 +1373,8 @@ type Case implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node 
   previewRevisionDatabaseId: Int
   """Whether the object is a node in the preview state"""
   previewRevisionId: ID
+  """The Yoast SEO data of the ContentNode"""
+  seo: PostTypeSEO
   """
   The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
   """
@@ -1243,6 +1537,8 @@ type CaseCategory implements DatabaseIdentifier & MenuItemLinkable & Node & Term
   link: String
   """The human friendly name of the object."""
   name: String
+  """The Yoast SEO data of the Cases categories taxonomy."""
+  seo: TaxonomySEO
   """An alphanumeric identifier for the object unique to its type."""
   slug: String
   """Connection between the CaseCategory type and the Taxonomy type"""
@@ -1293,6 +1589,8 @@ interface CaseCategoryConnectionPageInfo implements PageInfo & WPPageInfo {
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -1341,6 +1639,8 @@ type CaseCategoryToCaseConnectionPageInfo implements CaseConnectionPageInfo & Pa
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -1415,6 +1715,8 @@ type CaseCategoryToContentNodeConnectionPageInfo implements ContentNodeConnectio
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -1511,6 +1813,8 @@ interface CaseConnectionPageInfo implements PageInfo & WPPageInfo {
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -1523,14 +1827,12 @@ type CaseContent implements AcfFieldGroup & AcfFieldGroupFields & Blocks_Fields 
   Field of the &quot;flexible_content&quot; Field Type added to the schema as part of the &quot;Blocks&quot; Field Group
   """
   blocks: [BlocksBlocks_Layout]
-  """This will be the first text shown on the case page"""
-  description: String
-  """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;CaseContent&quot; Field Group
-  """
-  descriptionContinued: String
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;radio&quot; Field Type added to the schema as part of the &quot;CaseContent&quot; Field Group
+  """
+  followLink: String
   """
   Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;CaseContent&quot; Field Group
   """
@@ -1551,14 +1853,12 @@ interface CaseContent_Fields implements AcfFieldGroup & AcfFieldGroupFields & Bl
   Field of the &quot;flexible_content&quot; Field Type added to the schema as part of the &quot;Blocks&quot; Field Group
   """
   blocks: [BlocksBlocks_Layout]
-  """This will be the first text shown on the case page"""
-  description: String
-  """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;CaseContent&quot; Field Group
-  """
-  descriptionContinued: String
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;radio&quot; Field Type added to the schema as part of the &quot;CaseContent&quot; Field Group
+  """
+  followLink: String
   """
   Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;CaseContent&quot; Field Group
   """
@@ -1601,6 +1901,8 @@ type CaseToCaseCategoryConnection implements CaseCategoryConnection & Connection
 type CaseToCaseCategoryConnectionEdge implements CaseCategoryConnectionEdge & Edge {
   """A cursor for use in pagination"""
   cursor: String
+  """The Yoast SEO Primary case-category"""
+  isPrimary: Boolean
   """The item at the end of the edge"""
   node: CaseCategory!
 }
@@ -1615,6 +1917,8 @@ type CaseToCaseCategoryConnectionPageInfo implements CaseCategoryConnectionPageI
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -1713,6 +2017,8 @@ type CaseToCaseConnectionPageInfo implements CaseConnectionPageInfo & PageInfo &
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -1765,6 +2071,8 @@ type CaseToTermNodeConnectionPageInfo implements PageInfo & TermNodeConnectionPa
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -1973,6 +2281,8 @@ type Category implements DatabaseIdentifier & HierarchicalNode & HierarchicalTer
     """Arguments for filtering the connection"""
     where: CategoryToPostConnectionWhereArgs
   ): CategoryToPostConnection
+  """The Yoast SEO data of the Categories taxonomy."""
+  seo: TaxonomySEO
   """An alphanumeric identifier for the object unique to its type."""
   slug: String
   """Connection between the Category type and the Taxonomy type"""
@@ -2023,6 +2333,8 @@ interface CategoryConnectionPageInfo implements PageInfo & WPPageInfo {
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -2071,6 +2383,8 @@ type CategoryToAncestorsCategoryConnectionPageInfo implements CategoryConnection
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -2103,6 +2417,8 @@ type CategoryToCategoryConnectionPageInfo implements CategoryConnectionPageInfo 
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -2201,6 +2517,8 @@ type CategoryToContentNodeConnectionPageInfo implements ContentNodeConnectionPag
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -2287,6 +2605,8 @@ type CategoryToPostConnectionPageInfo implements PageInfo & PostConnectionPageIn
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -2607,6 +2927,8 @@ interface CommentConnectionPageInfo implements PageInfo & WPPageInfo {
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -2663,6 +2985,8 @@ type CommentToCommentConnectionPageInfo implements CommentConnectionPageInfo & P
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -3031,6 +3355,8 @@ interface ContentNode implements Node & UniformResourceIdentifiable & WithAcfBlo
   previewRevisionDatabaseId: Int
   """Whether the object is a node in the preview state"""
   previewRevisionId: ID
+  """The Yoast SEO data of the ContentNode"""
+  seo: PostTypeSEO
   """
   The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
   """
@@ -3079,6 +3405,8 @@ interface ContentNodeConnectionPageInfo implements PageInfo & WPPageInfo {
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -3155,6 +3483,8 @@ type ContentNodeToEnqueuedScriptConnectionPageInfo implements EnqueuedScriptConn
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -3189,6 +3519,8 @@ type ContentNodeToEnqueuedStylesheetConnectionPageInfo implements EnqueuedStyles
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -3359,6 +3691,8 @@ interface ContentTypeConnectionPageInfo implements PageInfo & WPPageInfo {
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -3423,6 +3757,8 @@ type ContentTypeToContentNodeConnectionPageInfo implements ContentNodeConnection
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -3501,6 +3837,8 @@ type ContentTypeToTaxonomyConnectionPageInfo implements PageInfo & TaxonomyConne
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -4638,6 +4976,8 @@ type Employee implements ContentNode & DatabaseIdentifier & MenuItemLinkable & N
   previewRevisionDatabaseId: Int
   """Whether the object is a node in the preview state"""
   previewRevisionId: ID
+  """The Yoast SEO data of the ContentNode"""
+  seo: PostTypeSEO
   """
   The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
   """
@@ -4693,6 +5033,8 @@ interface EmployeeConnectionPageInfo implements PageInfo & WPPageInfo {
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -4716,11 +5058,15 @@ type EmployeeContent implements AcfFieldGroup & AcfFieldGroupFields & EmployeeCo
   """
   quote: String
   """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;EmployeeContent&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;EmployeeContent&quot; Field Group
+  """
+  telephone: String
+  """
+  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;EmployeeContent&quot; Field Group
   """
   textContent: String
   """E.g. Developer"""
-  title: String
+  workTitle: String
 }
 
 """
@@ -4742,11 +5088,15 @@ interface EmployeeContent_Fields implements AcfFieldGroup & AcfFieldGroupFields 
   """
   quote: String
   """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;EmployeeContent&quot; Field Group
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;EmployeeContent&quot; Field Group
+  """
+  telephone: String
+  """
+  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;EmployeeContent&quot; Field Group
   """
   textContent: String
   """E.g. Developer"""
-  title: String
+  workTitle: String
 }
 
 """
@@ -4793,6 +5143,8 @@ type EmployeeToEmployeeConnectionPageInfo implements EmployeeConnectionPageInfo 
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -4917,6 +5269,8 @@ interface EnqueuedScriptConnectionPageInfo implements PageInfo & WPPageInfo {
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -5001,6 +5355,8 @@ interface EnqueuedStylesheetConnectionPageInfo implements PageInfo & WPPageInfo 
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -5137,6 +5493,8 @@ type Faq implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node &
   previewRevisionDatabaseId: Int
   """Whether the object is a node in the preview state"""
   previewRevisionId: ID
+  """The Yoast SEO data of the ContentNode"""
+  seo: PostTypeSEO
   """
   The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
   """
@@ -5192,6 +5550,8 @@ interface FaqConnectionPageInfo implements PageInfo & WPPageInfo {
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -5272,6 +5632,8 @@ type FaqToFaqConnectionPageInfo implements FaqConnectionPageInfo & PageInfo & WP
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -5624,6 +5986,8 @@ interface HierarchicalContentNode implements ContentNode & DatabaseIdentifier & 
   previewRevisionDatabaseId: Int
   """Whether the object is a node in the preview state"""
   previewRevisionId: ID
+  """The Yoast SEO data of the ContentNode"""
+  seo: PostTypeSEO
   """
   The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
   """
@@ -5668,6 +6032,8 @@ type HierarchicalContentNodeToContentNodeAncestorsConnectionPageInfo implements 
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -5750,6 +6116,8 @@ type HierarchicalContentNodeToContentNodeChildrenConnectionPageInfo implements C
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -6129,6 +6497,8 @@ type MediaItem implements ContentNode & DatabaseIdentifier & HierarchicalContent
   previewRevisionDatabaseId: Int
   """Whether the object is a node in the preview state"""
   previewRevisionId: ID
+  """The Yoast SEO data of the ContentNode"""
+  seo: PostTypeSEO
   """The sizes attribute value for an image."""
   sizes(
     """Size of the MediaItem to calculate sizes with"""
@@ -6201,6 +6571,8 @@ interface MediaItemConnectionPageInfo implements PageInfo & WPPageInfo {
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -6317,6 +6689,8 @@ type MediaItemToCommentConnectionPageInfo implements CommentConnectionPageInfo &
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -6488,6 +6862,8 @@ interface MenuConnectionPageInfo implements PageInfo & WPPageInfo {
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -6595,6 +6971,8 @@ interface MenuItemConnectionPageInfo implements PageInfo & WPPageInfo {
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -6684,6 +7062,8 @@ type MenuItemToMenuItemConnectionPageInfo implements MenuItemConnectionPageInfo 
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -6766,6 +7146,8 @@ type MenuToMenuItemConnectionPageInfo implements MenuItemConnectionPageInfo & Pa
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -7144,6 +7526,8 @@ Content with a dedicated title field. The title typically serves as the main hea
 interface NodeWithTitle implements Node {
   """The globally unique ID for the object"""
   id: ID!
+  """The Yoast SEO data of the ContentNode"""
+  seo: PostTypeSEO
   """
   The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made.
   """
@@ -7412,6 +7796,8 @@ type Page implements ContentNode & DatabaseIdentifier & HierarchicalContentNode 
     """Arguments for filtering the connection"""
     where: PageToRevisionConnectionWhereArgs
   ): PageToRevisionConnection
+  """The Yoast SEO data of the ContentNode"""
+  seo: PostTypeSEO
   """
   The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
   """
@@ -7467,6 +7853,8 @@ interface PageConnectionPageInfo implements PageInfo & WPPageInfo {
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -7483,6 +7871,12 @@ type PageContent implements AcfFieldGroup & AcfFieldGroupFields & PageContent_Fi
   large: PageContentLarge
   """Suitable for sub pages."""
   medium: PageContentMedium
+  """Pick this for Cases and News pages."""
+  rounded: AcfMediaItemConnectionEdge
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;PageContent&quot; Field Group
+  """
+  small: PageContentSmall
 }
 
 """
@@ -7606,6 +8000,30 @@ interface PageContentMedium_Fields implements AcfFieldGroup & AcfFieldGroupField
 }
 
 """
+The &quot;PageContentSmall&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type PageContentSmall implements AcfFieldGroup & AcfFieldGroupFields & PageContentSmall_Fields {
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;PageContentSmall&quot; Field Group
+  """
+  heroImage: AcfMediaItemConnectionEdge
+}
+
+"""
+Interface representing fields of the ACF &quot;PageContentSmall&quot; Field Group
+"""
+interface PageContentSmall_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+  """
+  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;PageContentSmall&quot; Field Group
+  """
+  heroImage: AcfMediaItemConnectionEdge
+}
+
+"""
 Interface representing fields of the ACF &quot;PageContent&quot; Field Group
 """
 interface PageContent_Fields implements AcfFieldGroup & AcfFieldGroupFields {
@@ -7617,6 +8035,12 @@ interface PageContent_Fields implements AcfFieldGroup & AcfFieldGroupFields {
   large: PageContentLarge
   """Suitable for sub pages."""
   medium: PageContentMedium
+  """Pick this for Cases and News pages."""
+  rounded: AcfMediaItemConnectionEdge
+  """
+  Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;PageContent&quot; Field Group
+  """
+  small: PageContentSmall
 }
 
 """
@@ -7673,6 +8097,8 @@ type PageToCommentConnectionPageInfo implements CommentConnectionPageInfo & Page
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -7785,6 +8211,8 @@ type PageToRevisionConnectionPageInfo implements PageConnectionPageInfo & PageIn
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -7903,6 +8331,8 @@ interface PluginConnectionPageInfo implements PageInfo & WPPageInfo {
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -7930,7 +8360,7 @@ enum PluginStatusEnum {
 """
 A chronological content entry typically used for blog posts, news articles, or similar date-based content.
 """
-type Post implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & NodeWithTrackbacks & Previewable & UniformResourceIdentifiable & WithAcfBlocks & WithAcfPostContent {
+type Post implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & NodeWithTrackbacks & Previewable & UniformResourceIdentifiable & WithAcfBlocks & WithAcfPageContent {
   """The ancestors of the content node."""
   ancestors(
     """
@@ -8102,6 +8532,8 @@ type Post implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node 
   The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT.
   """
   modifiedGmt: String
+  """Fields of the PageContent ACF Field Group"""
+  pageContent: PageContent
   """The parent of the content node."""
   parent: PostToParentConnectionEdge @deprecated(reason: "This content type is not hierarchical and typically will not have a parent")
   """The password for the post object."""
@@ -8110,8 +8542,6 @@ type Post implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node 
   pingStatus: String
   """URLs that have been pinged."""
   pinged: [String]
-  """Fields of the PostContent ACF Field Group"""
-  postContent: PostContent
   """Connection between the Post type and the postFormat type"""
   postFormats(
     """
@@ -8158,6 +8588,8 @@ type Post implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node 
     """Arguments for filtering the connection"""
     where: PostToRevisionConnectionWhereArgs
   ): PostToRevisionConnection
+  """The Yoast SEO data of the ContentNode"""
+  seo: PostTypeSEO
   """
   The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
   """
@@ -8281,74 +8713,10 @@ interface PostConnectionPageInfo implements PageInfo & WPPageInfo {
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
-}
-
-"""
-The &quot;PostContent&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
-"""
-type PostContent implements AcfFieldGroup & AcfFieldGroupFields & Blocks_Fields & PostContent_Fields {
-  """
-  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;PostContent&quot; Field Group
-  """
-  author(
-    """
-    Cursor used along with the "first" argument to reference where in the dataset to get data
-    """
-    after: String
-    """
-    Cursor used along with the "last" argument to reference where in the dataset to get data
-    """
-    before: String
-    """The number of items to return after the referenced "after" cursor"""
-    first: Int
-    """The number of items to return before the referenced "before" cursor"""
-    last: Int
-  ): AcfContentNodeConnection
-  """
-  Field of the &quot;flexible_content&quot; Field Type added to the schema as part of the &quot;Blocks&quot; Field Group
-  """
-  blocks: [BlocksBlocks_Layout]
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-  """
-  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;PostContent&quot; Field Group
-  """
-  heroImage: AcfMediaItemConnectionEdge
-}
-
-"""
-Interface representing fields of the ACF &quot;PostContent&quot; Field Group
-"""
-interface PostContent_Fields implements AcfFieldGroup & AcfFieldGroupFields & Blocks_Fields {
-  """
-  Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;PostContent&quot; Field Group
-  """
-  author(
-    """
-    Cursor used along with the "first" argument to reference where in the dataset to get data
-    """
-    after: String
-    """
-    Cursor used along with the "last" argument to reference where in the dataset to get data
-    """
-    before: String
-    """The number of items to return after the referenced "after" cursor"""
-    first: Int
-    """The number of items to return before the referenced "before" cursor"""
-    last: Int
-  ): AcfContentNodeConnection
-  """
-  Field of the &quot;flexible_content&quot; Field Type added to the schema as part of the &quot;Blocks&quot; Field Group
-  """
-  blocks: [BlocksBlocks_Layout]
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-  """
-  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;PostContent&quot; Field Group
-  """
-  heroImage: AcfMediaItemConnectionEdge
 }
 
 """
@@ -8447,6 +8815,8 @@ type PostFormat implements DatabaseIdentifier & Node & TermNode & UniformResourc
     """Arguments for filtering the connection"""
     where: PostFormatToPostConnectionWhereArgs
   ): PostFormatToPostConnection
+  """The Yoast SEO data of the Formats taxonomy."""
+  seo: TaxonomySEO
   """An alphanumeric identifier for the object unique to its type."""
   slug: String
   """Connection between the PostFormat type and the Taxonomy type"""
@@ -8497,6 +8867,8 @@ interface PostFormatConnectionPageInfo implements PageInfo & WPPageInfo {
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -8545,6 +8917,8 @@ type PostFormatToContentNodeConnectionPageInfo implements ContentNodeConnectionP
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -8623,6 +8997,8 @@ type PostFormatToPostConnectionPageInfo implements PageInfo & PostConnectionPage
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -8905,6 +9281,8 @@ type PostToCategoryConnection implements CategoryConnection & Connection {
 type PostToCategoryConnectionEdge implements CategoryConnectionEdge & Edge {
   """A cursor for use in pagination"""
   cursor: String
+  """The Yoast SEO Primary category"""
+  isPrimary: Boolean
   """The item at the end of the edge"""
   node: Category!
 }
@@ -8919,6 +9297,8 @@ type PostToCategoryConnectionPageInfo implements CategoryConnectionPageInfo & Pa
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -9017,6 +9397,8 @@ type PostToCommentConnectionPageInfo implements CommentConnectionPageInfo & Page
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -9129,6 +9511,8 @@ type PostToPostConnectionPageInfo implements PageInfo & PostConnectionPageInfo &
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -9147,6 +9531,8 @@ type PostToPostFormatConnection implements Connection & PostFormatConnection {
 type PostToPostFormatConnectionEdge implements Edge & PostFormatConnectionEdge {
   """A cursor for use in pagination"""
   cursor: String
+  """The Yoast SEO Primary post_format"""
+  isPrimary: Boolean
   """The item at the end of the edge"""
   node: PostFormat!
 }
@@ -9161,6 +9547,8 @@ type PostToPostFormatConnectionPageInfo implements PageInfo & PostFormatConnecti
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -9269,6 +9657,8 @@ type PostToRevisionConnectionPageInfo implements PageInfo & PostConnectionPageIn
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -9365,6 +9755,8 @@ type PostToTagConnection implements Connection & TagConnection {
 type PostToTagConnectionEdge implements Edge & TagConnectionEdge {
   """A cursor for use in pagination"""
   cursor: String
+  """The Yoast SEO Primary post_tag"""
+  isPrimary: Boolean
   """The item at the end of the edge"""
   node: Tag!
 }
@@ -9379,6 +9771,8 @@ type PostToTagConnectionPageInfo implements PageInfo & TagConnectionPageInfo & W
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -9477,6 +9871,8 @@ type PostToTermNodeConnectionPageInfo implements PageInfo & TermNodeConnectionPa
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -9601,6 +9997,34 @@ type PostTypeLabelDetails {
   viewItem: String
   """Label for viewing post type archives."""
   viewItems: String
+}
+
+type PostTypeSEO {
+  breadcrumbs: [SEOPostTypeBreadcrumbs]
+  canonical: String
+  cornerstone: Boolean
+  focuskw: String
+  fullHead: String
+  metaDesc: String
+  metaKeywords: String
+  metaRobotsNofollow: String
+  metaRobotsNoindex: String
+  opengraphAuthor: String
+  opengraphDescription: String
+  opengraphImage: MediaItem
+  opengraphModifiedTime: String
+  opengraphPublishedTime: String
+  opengraphPublisher: String
+  opengraphSiteName: String
+  opengraphTitle: String
+  opengraphType: String
+  opengraphUrl: String
+  readingTime: Float
+  schema: SEOPostTypeSchema
+  title: String
+  twitterDescription: String
+  twitterImage: MediaItem
+  twitterTitle: String
 }
 
 """
@@ -9908,7 +10332,7 @@ type ReusableFieldsCard implements AcfFieldGroup & AcfFieldGroupFields & Reusabl
   """
   image: AcfMediaItemConnectionEdge
   """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;ReusableFieldsCard&quot; Field Group
+  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;ReusableFieldsCard&quot; Field Group
   """
   textContent: String
   """
@@ -9972,7 +10396,7 @@ interface ReusableFieldsCard_Fields implements AcfFieldGroup & AcfFieldGroupFiel
   """
   image: AcfMediaItemConnectionEdge
   """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;ReusableFieldsCard&quot; Field Group
+  Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;ReusableFieldsCard&quot; Field Group
   """
   textContent: String
   """
@@ -10300,9 +10724,10 @@ type RootMutation {
 }
 
 """The root entry point into the Graph"""
-type RootQuery implements WithAcfOptionsPageCollaborators & WithAcfOptionsPageFooter {
+type RootQuery implements WithAcfOptionsPageAnnouncement & WithAcfOptionsPageCollaborators & WithAcfOptionsPageFooter {
   """Entry point to get all settings for the site"""
   allSettings: Settings
+  announcement: Announcement
   """An object of the case Type. """
   case(
     """
@@ -10832,6 +11257,8 @@ type RootQuery implements WithAcfOptionsPageCollaborators & WithAcfOptionsPageFo
     """Arguments for filtering the connection"""
     where: RootQueryToRevisionsConnectionWhereArgs
   ): RootQueryToRevisionsConnection
+  """Returns seo site data"""
+  seo: SEOConfig
   """An object of the service Type. """
   service(
     """
@@ -11084,6 +11511,8 @@ type RootQueryToCaseCategoryConnectionPageInfo implements CaseCategoryConnection
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -11184,6 +11613,8 @@ type RootQueryToCaseConnectionPageInfo implements CaseConnectionPageInfo & PageI
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -11258,6 +11689,8 @@ type RootQueryToCategoryConnectionPageInfo implements CategoryConnectionPageInfo
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -11356,6 +11789,8 @@ type RootQueryToCommentConnectionPageInfo implements CommentConnectionPageInfo &
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -11458,6 +11893,8 @@ type RootQueryToContentNodeConnectionPageInfo implements ContentNodeConnectionPa
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -11536,6 +11973,8 @@ type RootQueryToContentTypeConnectionPageInfo implements ContentTypeConnectionPa
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -11568,6 +12007,8 @@ type RootQueryToEmployeeConnectionPageInfo implements EmployeeConnectionPageInfo
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -11642,6 +12083,8 @@ type RootQueryToEnqueuedScriptConnectionPageInfo implements EnqueuedScriptConnec
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -11674,6 +12117,8 @@ type RootQueryToEnqueuedStylesheetConnectionPageInfo implements EnqueuedStyleshe
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -11706,6 +12151,8 @@ type RootQueryToFaqConnectionPageInfo implements FaqConnectionPageInfo & PageInf
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -11780,6 +12227,8 @@ type RootQueryToMediaItemConnectionPageInfo implements MediaItemConnectionPageIn
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -11866,6 +12315,8 @@ type RootQueryToMenuConnectionPageInfo implements MenuConnectionPageInfo & PageI
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -11908,6 +12359,8 @@ type RootQueryToMenuItemConnectionPageInfo implements MenuItemConnectionPageInfo
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -11952,6 +12405,8 @@ type RootQueryToPageConnectionPageInfo implements PageConnectionPageInfo & PageI
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -12038,6 +12493,8 @@ type RootQueryToPluginConnectionPageInfo implements PageInfo & PluginConnectionP
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -12080,6 +12537,8 @@ type RootQueryToPostConnectionPageInfo implements PageInfo & PostConnectionPageI
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -12190,6 +12649,8 @@ type RootQueryToPostFormatConnectionPageInfo implements PageInfo & PostFormatCon
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -12288,6 +12749,8 @@ type RootQueryToRevisionsConnectionPageInfo implements ContentNodeConnectionPage
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -12364,6 +12827,8 @@ type RootQueryToServiceConnectionPageInfo implements PageInfo & ServiceConnectio
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -12438,6 +12903,8 @@ type RootQueryToTagConnectionPageInfo implements PageInfo & TagConnectionPageInf
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -12536,6 +13003,8 @@ type RootQueryToTaxonomyConnectionPageInfo implements PageInfo & TaxonomyConnect
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -12568,6 +13037,8 @@ type RootQueryToTermNodeConnectionPageInfo implements PageInfo & TermNodeConnect
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -12668,6 +13139,8 @@ type RootQueryToTestimonialConnectionPageInfo implements PageInfo & TestimonialC
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -12744,6 +13217,8 @@ type RootQueryToThemeConnectionPageInfo implements PageInfo & ThemeConnectionPag
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -12776,6 +13251,8 @@ type RootQueryToUserConnectionPageInfo implements PageInfo & UserConnectionPageI
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -12862,8 +13339,294 @@ type RootQueryToUserRoleConnectionPageInfo implements PageInfo & UserRoleConnect
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
+}
+
+"""The Yoast SEO breadcrumb config"""
+type SEOBreadcrumbs {
+  archivePrefix: String
+  boldLast: Boolean
+  enabled: Boolean
+  homeText: String
+  notFoundText: String
+  prefix: String
+  searchPrefix: String
+  separator: String
+  showBlogPage: Boolean
+}
+
+"""Types of cards"""
+enum SEOCardType {
+  summary
+  summary_large_image
+}
+
+"""The Yoast SEO site level configuration data"""
+type SEOConfig {
+  breadcrumbs: SEOBreadcrumbs
+  contentTypes: SEOContentTypes
+  meta: SEOGlobalMeta
+  openGraph: SEOOpenGraph
+  redirects: [SEORedirect]
+  schema: SEOSchema
+  social: SEOSocial
+  taxonomyArchives: SEOTaxonomyTypes
+  webmaster: SEOWebmaster
+}
+
+"""The Yoast SEO search appearance content types fields"""
+type SEOContentType {
+  archive: SEOContentTypeArchive
+  metaDesc: String
+  metaRobotsNoindex: Boolean
+  schema: SEOPageInfoSchema
+  schemaType: String
+  title: String
+}
+
+"""The Yoast SEO search appearance content types fields"""
+type SEOContentTypeArchive {
+  archiveLink: String
+  breadcrumbTitle: String
+  fullHead: String
+  hasArchive: Boolean
+  metaDesc: String
+  metaRobotsFollow: String
+  metaRobotsIndex: String
+  metaRobotsNofollow: Boolean
+  metaRobotsNoindex: Boolean
+  title: String
+}
+
+"""The Yoast SEO search appearance content types"""
+type SEOContentTypes {
+  case: SEOContentType
+  employee: SEOContentType
+  faq: SEOContentType
+  mediaItem: SEOContentType
+  page: SEOContentType
+  post: SEOContentType
+  service: SEOContentType
+  testimonial: SEOContentType
+}
+
+"""The Yoast SEO meta data"""
+type SEOGlobalMeta {
+  author: SEOGlobalMetaAuthor
+  config: SEOGlobalMetaConfig
+  date: SEOGlobalMetaDate
+  homepage: SEOGlobalMetaHome
+  notFound: SEOGlobalMeta404
+}
+
+"""The Yoast SEO meta 404 data"""
+type SEOGlobalMeta404 {
+  breadcrumb: String
+  title: String
+}
+
+"""The Yoast SEO Author data"""
+type SEOGlobalMetaAuthor {
+  description: String
+  title: String
+}
+
+"""The Yoast SEO meta config data"""
+type SEOGlobalMetaConfig {
+  separator: String
+}
+
+"""The Yoast SEO Date data"""
+type SEOGlobalMetaDate {
+  description: String
+  title: String
+}
+
+"""The Yoast SEO homepage data"""
+type SEOGlobalMetaHome {
+  description: String
+  title: String
+}
+
+"""The Open Graph data"""
+type SEOOpenGraph {
+  defaultImage: MediaItem
+  frontPage: SEOOpenGraphFrontPage
+}
+
+"""The Open Graph Front page data"""
+type SEOOpenGraphFrontPage {
+  description: String
+  image: MediaItem
+  title: String
+}
+
+"""The Schema for post type"""
+type SEOPageInfoSchema {
+  raw: String
+}
+
+type SEOPostTypeBreadcrumbs {
+  text: String
+  url: String
+}
+
+"""The page info SEO details"""
+type SEOPostTypePageInfo {
+  schema: SEOPageInfoSchema
+}
+
+"""The Schema types"""
+type SEOPostTypeSchema {
+  articleType: [String]
+  pageType: [String]
+  raw: String
+}
+
+"""The Yoast redirect data  (Yoast Premium only)"""
+type SEORedirect {
+  format: String
+  origin: String
+  target: String
+  type: Int
+}
+
+"""The Yoast SEO schema data"""
+type SEOSchema {
+  companyLogo: MediaItem
+  companyName: String
+  companyOrPerson: String
+  homeUrl: String
+  inLanguage: String
+  logo: MediaItem
+  personLogo: MediaItem
+  personName: String
+  siteName: String
+  siteUrl: String
+  wordpressSiteName: String
+}
+
+"""The Yoast SEO Social media links"""
+type SEOSocial {
+  facebook: SEOSocialFacebook
+  instagram: SEOSocialInstagram
+  linkedIn: SEOSocialLinkedIn
+  mySpace: SEOSocialMySpace
+  otherSocials: [String]
+  pinterest: SEOSocialPinterest
+  twitter: SEOSocialTwitter
+  wikipedia: SEOSocialWikipedia
+  youTube: SEOSocialYoutube
+}
+
+type SEOSocialFacebook {
+  defaultImage: MediaItem
+  url: String
+}
+
+type SEOSocialInstagram {
+  url: String
+}
+
+type SEOSocialLinkedIn {
+  url: String
+}
+
+type SEOSocialMySpace {
+  url: String
+}
+
+type SEOSocialPinterest {
+  metaTag: String
+  url: String
+}
+
+type SEOSocialTwitter {
+  cardType: SEOCardType
+  username: String
+}
+
+type SEOSocialWikipedia {
+  url: String
+}
+
+type SEOSocialYoutube {
+  url: String
+}
+
+"""The Schema types for Taxonomy"""
+type SEOTaxonomySchema {
+  raw: String
+}
+
+"""The Yoast SEO search appearance Taxonomy types fields"""
+type SEOTaxonomyType {
+  archive: SEOTaxonomyTypeArchive
+}
+
+"""The Yoast SEO search appearance Taxonomy types fields"""
+type SEOTaxonomyTypeArchive {
+  metaDesc: String
+  metaRobotsNoindex: Boolean
+  title: String
+}
+
+"""The Yoast SEO archive configuration data for taxonomies"""
+type SEOTaxonomyTypes {
+  caseCategory: SEOTaxonomyType
+  category: SEOTaxonomyType
+  postFormat: SEOTaxonomyType
+  tag: SEOTaxonomyType
+}
+
+type SEOUser {
+  breadcrumbTitle: String
+  canonical: String
+  fullHead: String
+  language: String
+  metaDesc: String
+  metaRobotsNofollow: String
+  metaRobotsNoindex: String
+  opengraphDescription: String
+  opengraphImage: MediaItem
+  opengraphTitle: String
+  region: String
+  schema: SEOUserSchema
+  social: SEOUserSocial
+  title: String
+  twitterDescription: String
+  twitterImage: MediaItem
+  twitterTitle: String
+}
+
+"""The Schema types for User"""
+type SEOUserSchema {
+  articleType: [String]
+  pageType: [String]
+  raw: String
+}
+
+type SEOUserSocial {
+  facebook: String
+  instagram: String
+  linkedIn: String
+  mySpace: String
+  pinterest: String
+  soundCloud: String
+  twitter: String
+  wikipedia: String
+  youTube: String
+}
+
+"""The Yoast SEO  webmaster fields"""
+type SEOWebmaster {
+  baiduVerify: String
+  googleVerify: String
+  msVerify: String
+  yandexVerify: String
 }
 
 """
@@ -12919,7 +13682,7 @@ type SendPasswordResetEmailPayload {
 }
 
 """The service type"""
-type Service implements ContentNode & DatabaseIdentifier & HierarchicalContentNode & HierarchicalNode & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithPageAttributes & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfBlocks & WithAcfServiceContent {
+type Service implements ContentNode & DatabaseIdentifier & HierarchicalContentNode & HierarchicalNode & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithPageAttributes & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfBlocks & WithAcfPageContent & WithAcfServiceContent {
   """
   Returns ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root).
   """
@@ -13063,6 +13826,8 @@ type Service implements ContentNode & DatabaseIdentifier & HierarchicalContentNo
   The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT.
   """
   modifiedGmt: String
+  """Fields of the PageContent ACF Field Group"""
+  pageContent: PageContent
   """The parent of the node. The parent object can be of various types"""
   parent: HierarchicalContentNodeToParentContentNodeConnectionEdge
   """Database id of the parent node"""
@@ -13077,6 +13842,8 @@ type Service implements ContentNode & DatabaseIdentifier & HierarchicalContentNo
   previewRevisionDatabaseId: Int
   """Whether the object is a node in the preview state"""
   previewRevisionId: ID
+  """The Yoast SEO data of the ContentNode"""
+  seo: PostTypeSEO
   """Fields of the ServiceContent ACF Field Group"""
   serviceContent: ServiceContent
   """The id field matches the WP_Post-&gt;ID field."""
@@ -13136,6 +13903,8 @@ interface ServiceConnectionPageInfo implements PageInfo & WPPageInfo {
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -13144,10 +13913,6 @@ interface ServiceConnectionPageInfo implements PageInfo & WPPageInfo {
 The &quot;ServiceContent&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
 """
 type ServiceContent implements AcfFieldGroup & AcfFieldGroupFields & ServiceContent_Fields {
-  """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;ServiceContent&quot; Field Group
-  """
-  description: String
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
   """
@@ -13164,10 +13929,6 @@ type ServiceContent implements AcfFieldGroup & AcfFieldGroupFields & ServiceCont
 Interface representing fields of the ACF &quot;ServiceContent&quot; Field Group
 """
 interface ServiceContent_Fields implements AcfFieldGroup & AcfFieldGroupFields {
-  """
-  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;ServiceContent&quot; Field Group
-  """
-  description: String
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
   """
@@ -13336,6 +14097,8 @@ type Tag implements DatabaseIdentifier & MenuItemLinkable & Node & TermNode & Un
     """Arguments for filtering the connection"""
     where: TagToPostConnectionWhereArgs
   ): TagToPostConnection
+  """The Yoast SEO data of the Tags taxonomy."""
+  seo: TaxonomySEO
   """An alphanumeric identifier for the object unique to its type."""
   slug: String
   """The id field matches the WP_Post-&gt;ID field."""
@@ -13388,6 +14151,8 @@ interface TagConnectionPageInfo implements PageInfo & WPPageInfo {
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -13436,6 +14201,8 @@ type TagToContentNodeConnectionPageInfo implements ContentNodeConnectionPageInfo
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -13512,6 +14279,8 @@ type TagToPostConnectionPageInfo implements PageInfo & PostConnectionPageInfo & 
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -13726,6 +14495,8 @@ interface TaxonomyConnectionPageInfo implements PageInfo & WPPageInfo {
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -13752,6 +14523,33 @@ enum TaxonomyIdTypeEnum {
   ID
   """The name of the taxonomy"""
   NAME
+}
+
+type TaxonomySEO {
+  breadcrumbs: [SEOPostTypeBreadcrumbs]
+  canonical: String
+  cornerstone: Boolean
+  focuskw: String
+  fullHead: String
+  metaDesc: String
+  metaKeywords: String
+  metaRobotsNofollow: String
+  metaRobotsNoindex: String
+  opengraphAuthor: String
+  opengraphDescription: String
+  opengraphImage: MediaItem
+  opengraphModifiedTime: String
+  opengraphPublishedTime: String
+  opengraphPublisher: String
+  opengraphSiteName: String
+  opengraphTitle: String
+  opengraphType: String
+  opengraphUrl: String
+  schema: SEOTaxonomySchema
+  title: String
+  twitterDescription: String
+  twitterImage: MediaItem
+  twitterTitle: String
 }
 
 """Connection between the Taxonomy type and the ContentType type"""
@@ -13782,6 +14580,8 @@ type TaxonomyToContentTypeConnectionPageInfo implements ContentTypeConnectionPag
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -13814,6 +14614,8 @@ type TaxonomyToTermNodeConnectionPageInfo implements PageInfo & TermNodeConnecti
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -13926,6 +14728,8 @@ interface TermNodeConnectionPageInfo implements PageInfo & WPPageInfo {
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -13974,6 +14778,8 @@ type TermNodeToEnqueuedScriptConnectionPageInfo implements EnqueuedScriptConnect
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -14006,6 +14812,8 @@ type TermNodeToEnqueuedStylesheetConnectionPageInfo implements EnqueuedStyleshee
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -14158,6 +14966,8 @@ type Testimonial implements ContentNode & DatabaseIdentifier & MenuItemLinkable 
   previewRevisionDatabaseId: Int
   """Whether the object is a node in the preview state"""
   previewRevisionId: ID
+  """The Yoast SEO data of the ContentNode"""
+  seo: PostTypeSEO
   """
   The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
   """
@@ -14217,6 +15027,8 @@ interface TestimonialConnectionPageInfo implements PageInfo & WPPageInfo {
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -14329,6 +15141,8 @@ type TestimonialToTestimonialConnectionPageInfo implements PageInfo & Testimonia
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -14413,6 +15227,8 @@ interface ThemeConnectionPageInfo implements PageInfo & WPPageInfo {
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -15294,6 +16110,8 @@ type User implements Commenter & DatabaseIdentifier & Node & UniformResourceIden
     """The number of items to return before the referenced "before" cursor"""
     last: Int
   ): UserToUserRoleConnection
+  """The Yoast SEO data of a user"""
+  seo: SEOUser
   """
   Whether the Toolbar should be displayed when the user is viewing the site.
   """
@@ -15350,6 +16168,8 @@ interface UserConnectionPageInfo implements PageInfo & WPPageInfo {
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -15422,6 +16242,8 @@ interface UserRoleConnectionPageInfo implements PageInfo & WPPageInfo {
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -15474,6 +16296,8 @@ type UserToCommentConnectionPageInfo implements CommentConnectionPageInfo & Page
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -15576,6 +16400,8 @@ type UserToEnqueuedScriptConnectionPageInfo implements EnqueuedScriptConnectionP
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -15608,6 +16434,8 @@ type UserToEnqueuedStylesheetConnectionPageInfo implements EnqueuedStylesheetCon
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -15640,6 +16468,8 @@ type UserToMediaItemConnectionPageInfo implements MediaItemConnectionPageInfo & 
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -15726,6 +16556,8 @@ type UserToPageConnectionPageInfo implements PageConnectionPageInfo & PageInfo &
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -15812,6 +16644,8 @@ type UserToPostConnectionPageInfo implements PageInfo & PostConnectionPageInfo &
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -15922,6 +16756,8 @@ type UserToRevisionsConnectionPageInfo implements ContentNodeConnectionPageInfo 
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -15998,6 +16834,8 @@ type UserToUserRoleConnectionPageInfo implements PageInfo & UserRoleConnectionPa
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
 }
@@ -16058,8 +16896,18 @@ interface WPPageInfo implements PageInfo {
   hasNextPage: Boolean!
   """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
+  """Raw schema for page"""
+  seo: SEOPostTypePageInfo
   """When paginating backwards, the cursor to continue."""
   startCursor: String
+}
+
+"""
+Provides access to fields of the &quot;AnnouncementContent&quot; ACF Field Group via the &quot;announcementContent&quot; field
+"""
+interface WithAcfAnnouncementContent {
+  """Fields of the AnnouncementContent ACF Field Group"""
+  announcementContent: AnnouncementContent
 }
 
 """
@@ -16110,6 +16958,11 @@ interface WithAcfFooterContent {
   footerContent: FooterContent
 }
 
+"""Access point for the &quot;Announcement&quot; ACF Options Page"""
+interface WithAcfOptionsPageAnnouncement {
+  announcement: Announcement
+}
+
 """Access point for the &quot;Collaborators&quot; ACF Options Page"""
 interface WithAcfOptionsPageCollaborators {
   collaborators: Collaborators
@@ -16126,14 +16979,6 @@ Provides access to fields of the &quot;PageContent&quot; ACF Field Group via the
 interface WithAcfPageContent {
   """Fields of the PageContent ACF Field Group"""
   pageContent: PageContent
-}
-
-"""
-Provides access to fields of the &quot;PostContent&quot; ACF Field Group via the &quot;postContent&quot; field
-"""
-interface WithAcfPostContent {
-  """Fields of the PostContent ACF Field Group"""
-  postContent: PostContent
 }
 
 """

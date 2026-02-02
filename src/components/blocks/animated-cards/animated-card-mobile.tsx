@@ -17,7 +17,7 @@ export function AnimatedCardMobile(props: Props) {
     <div className="animated-card col-start-1 row-start-1 flex w-full justify-center">
       <BaseCard
         index={props.index}
-        imgSrc={props.card?.card?.image?.node.mediaItemUrl || ""}
+        imgSrc={props.card?.card?.image?.node.mediaItemUrl}
         altText={props.card?.card?.image?.node.altText || "Dekorativ bild"}
         title={props.card?.card?.title || ""}
         textContent={props.card?.card?.textContent || ""}

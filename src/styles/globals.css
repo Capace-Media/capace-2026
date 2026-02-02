@@ -10,7 +10,7 @@
   --foreground: oklch(91.583% 0.0001 271.152);
   --card: oklch(0% 0 0);
   --card-foreground: oklch(94.912% 0.00011 271.152);
-  --popover: oklch(35.618% 0.00004 271.152);
+  --popover: oklch(23.075% 0.00003 271.152);
   --popover-foreground: oklch(100% 0.00011 271.152);
   --primary: oklch(71.752% 0.18617 44.2);
   --primary-foreground: oklch(0.99 0.02 95);
@@ -150,24 +150,67 @@
   .frosted {
     @apply border border-white/10 bg-black/20 shadow-sm backdrop-blur-md;
   }
-  li {
-    @apply marker:text-accent!;
+  /* .list-capace > * li {
+    @apply marker:text-transparent!;
+  }
+  .list-capace > * li ::before {
+    content: "";
+    display: inline-block;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 100%;
+    background-color: var(--primary);
+    margin-right: 1rem;
+  } */
+  h1 {
+    @apply text-4xl font-bold;
+  }
+  h1:not(.hero)::after {
+    content: "";
+    display: inline-block;
+    background-color: var(--primary);
+    width: 0.7rem;
+    height: 0.7rem;
+    margin-left: 2px;
+    border-radius: 100%;
+  }
+  a:focus-visible {
+    outline: 5px solid var(--primary);
   }
 }
 
 @layer utilities {
   .italic-accent em,
   .italic-accent i {
-    color: var(--accent);
+    color: var(--primary);
     font-style: normal;
   }
   a {
     text-decoration: none !important;
   }
 
+  .prose-invert {
+    color: var(--color-muted-foreground);
+  }
+  .prose h1 {
+    @apply text-3xl md:text-5xl;
+  }
+  .prose h2 {
+    @apply text-2xl md:text-4xl;
+  }
+
   .prose strong,
   .prose b {
     color: white !important;
+  }
+
+  .prose i,
+  .prose em {
+    color: var(--primary);
+    font-style: normal;
+  }
+  .prose li {
+    @apply marker:to-blue-500!;
   }
   a:hover {
     text-decoration: underline;
@@ -182,6 +225,18 @@
   .no-hero {
     @apply pt-40;
   }
+  .orange-dot::after {
+    content: "";
+    display: inline-block;
+    background-color: var(--primary);
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-left: 2px;
+    border-radius: 100%;
+  }
+  .end-section {
+    @apply pb-40;
+  }
 }
 
 @utility prose {
@@ -191,7 +246,7 @@
   --tw-prose-links: var(--color-pink-900);
   --tw-prose-bold: var(--color-pink-900);
   --tw-prose-counters: var(--color-pink-600);
-  --tw-prose-bullets: var(--color-pink-400);
+  --tw-prose-bullets: var(--primary);
   --tw-prose-hr: var(--color-pink-300);
   --tw-prose-quotes: var(--color-pink-900);
   --tw-prose-quote-borders: var(--color-pink-300);
@@ -204,10 +259,10 @@
   --tw-prose-invert-body: var(--color-foreground);
   --tw-prose-invert-headings: var(--color-white);
   --tw-prose-invert-lead: var(--color-pink-300);
-  --tw-prose-invert-links: var(--color-white);
+  --tw-prose-invert-links: var(--primary);
   --tw-prose-invert-bold: var(--color-white);
   --tw-prose-invert-counters: var(--color-pink-400);
-  --tw-prose-invert-bullets: var(--color-pink-600);
+  --tw-prose-invert-bullets: var(--color-primary);
   --tw-prose-invert-hr: var(--color-pink-700);
   --tw-prose-invert-quotes: var(--color-pink-100);
   --tw-prose-invert-quote-borders: var(--color-pink-700);

@@ -5,6 +5,7 @@ interface Props {
   mainHeading: string;
   textAlign?: "left" | "center";
   noBottomMargin?: boolean;
+  className?: string;
 }
 export default function HeadingWithAccent(props: Props) {
   return (
@@ -12,19 +13,22 @@ export default function HeadingWithAccent(props: Props) {
       className={cn(
         "flex flex-col items-center lg:items-start",
         props.noBottomMargin ? "" : "mb-12",
+        props.className,
       )}
     >
-      <h3
+      <h2
         className={cn(
-          "text-4xl lg:text-5xl",
+          "text-2xl md:text-4xl",
           props.textAlign === "left" ? "text-left" : "text-center",
         )}
       >
-        <span className="font-caveat text-accent block">
+        <span className="font-caveat text-accent block text-5xl">
           {props.accentedHeading}
         </span>
-        <span className="block font-bold">{props.mainHeading}</span>
-      </h3>
+        <span className="block text-center font-bold lg:text-left">
+          {props.mainHeading}
+        </span>
+      </h2>
     </div>
   );
 }

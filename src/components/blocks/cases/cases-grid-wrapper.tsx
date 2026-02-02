@@ -8,6 +8,7 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import CasesGrid from "./cases-grid";
+import ButtonLink from "@/components/shared/link";
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 interface Props {
@@ -20,11 +21,8 @@ export default function CasesGridWrapper(props: Props) {
   if (block.__typename !== "BlocksBlocksCaseCardGridLayout") return null;
 
   return (
-    <section
-      className="section cases-container relative flex flex-col items-center"
-      aria-labelledby="cases-heading"
-    >
-      <div id="cases-heading">
+    <section className="section cases-container relative flex flex-col items-center">
+      <div>
         <HeadingWithAccent
           accentedHeading={block.accentHeading?.accent || ""}
           mainHeading={block.accentHeading?.main || ""}
@@ -32,7 +30,7 @@ export default function CasesGridWrapper(props: Props) {
       </div>
       <CasesGrid data={block.cases?.nodes} compact={!!block.compact} />
       <div className="py-12">
-        <Button withArrow>Se fler kundprojekt</Button>
+        <ButtonLink href="/kundcase">Se fler kundprojekt</ButtonLink>
       </div>
       {!block.compact && (
         <div

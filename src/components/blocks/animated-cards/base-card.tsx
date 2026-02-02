@@ -1,3 +1,4 @@
+import parse from "html-react-parser";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import type { ReusableFieldsButton_Fields } from "@/graphql/graphql";
@@ -5,7 +6,7 @@ import ExternalOrInternalLink from "@/components/shared/external-or-internal-lin
 
 interface Props {
   index: number;
-  imgSrc: string;
+  imgSrc: string | null | undefined;
   altText: string;
   title: string;
   textContent: string;
@@ -32,11 +33,14 @@ export default function BaseCard(props: Props) {
           <div
             className={cn(
               isInactive ? "text-accent" : "text-background",
-              "items-center justify-center rounded-full p-4 text-base font-bold",
+              "flex aspect-square! items-center justify-center rounded-full p-4 text-base font-bold",
               "noscript:text-accent",
+              !props.imgSrc && "bg-background text-primary text-3xl",
+              !props.imgSrc && isInactive && "text-background bg-primary",
             )}
           >
-            {(props.index + 1).toString().padStart(2, "0")}
+            {props.imgSrc && (props.index + 1).toString().padStart(2, "0")}
+            {!props.imgSrc && props.index + 1}
           </div>
         )}
 
@@ -60,15 +64,15 @@ export default function BaseCard(props: Props) {
         >
           {props.title}
         </h3>
-        <p
+        <div
           className={cn(
             isInactive ? "text-muted-foreground" : "text-background",
             "text-center text-sm font-light",
             "noscript:text-muted-foreground",
           )}
         >
-          {props.textContent}
-        </p>
+          {parse(props.textContent)}
+        </div>
         {props.buttonProps?.label && props.buttonProps?.url && (
           <ExternalOrInternalLink
             buttonProps={props.buttonProps}

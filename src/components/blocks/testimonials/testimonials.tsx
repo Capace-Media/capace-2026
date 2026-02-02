@@ -146,12 +146,12 @@ const TestimonialCard = (props: TestimonialCardProps) => {
           />
         </div>
         <div className="flex flex-col items-center justify-center">
-          <h4 className="font-bold">
+          <h3 className="font-bold">
             <span>
               <Minus className="inline" /> {props.author}
             </span>
             , <span>{props.authorTitle}</span>
-          </h4>
+          </h3>
           <p className="text-accent text-sm font-bold uppercase">
             {props.companyName}
           </p>

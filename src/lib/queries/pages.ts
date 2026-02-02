@@ -1,5 +1,15 @@
 import { graphql } from "@/graphql/gql";
-import { BlocksFragment } from "./fragments";
+
+export const PageSlugsQuery = graphql(`
+  query PageSlugsQuery {
+    pages(first: 100) {
+      nodes {
+        uri
+        modified
+      }
+    }
+  }
+`);
 
 export const PageQuery = graphql(`
   query Page($slug: ID = "hem") {
@@ -7,39 +17,7 @@ export const PageQuery = graphql(`
       title
       slug
       pageContent {
-        medium {
-          heading_accent
-          heading_main
-          text
-        }
-        large {
-          heading
-          headingAccent
-          subheading
-          heroImage {
-            node {
-              altText
-              mediaItemUrl
-              mediaDetails {
-                height
-                width
-              }
-            }
-          }
-          button {
-            ariaLabel
-            label
-            url {
-              externalLink
-              internalLink {
-                nodes {
-                  slug
-                }
-              }
-              is_internal
-            }
-          }
-        }
+        ...PageContentFragment
       }
       blocks {
         blocks {

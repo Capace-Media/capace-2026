@@ -10,6 +10,9 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 interface Props {
   src: string | undefined | null;
   alt: string;
+  sizes?: string;
+  lazyLoad?: boolean;
+  priority?: boolean;
 }
 
 export default function ParallaxImage(props: Props) {
@@ -44,6 +47,9 @@ export default function ParallaxImage(props: Props) {
           alt={props.alt}
           className="object-cover"
           fill
+          sizes={props.sizes || "100vw"}
+          priority={props.priority}
+          loading={props.lazyLoad ? "lazy" : undefined}
         />
       </div>
     </div>
