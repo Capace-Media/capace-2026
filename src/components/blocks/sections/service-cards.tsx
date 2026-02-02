@@ -1,10 +1,8 @@
 "use client";
 import { graphql, useFragment, type FragmentType } from "@/graphql";
-import HeadingWithAccent from "../shared/heading-with-accent";
-import Card from "../shared/card";
-import { Button } from "../ui/button";
-import Link from "next/link";
-import ButtonLink from "../shared/link";
+import HeadingWithAccent from "@/components/shared/heading-with-accent";
+import Card from "@/components/shared/card";
+import ButtonLink from "@/components/shared/link";
 
 const ServiceCards_Fragment = graphql(`
   fragment ServiceCard_Fragment on BlocksBlocksServiceCardsLayout {

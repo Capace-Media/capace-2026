@@ -1,5 +1,5 @@
 import { getCases } from "@/lib/fetchers/cases";
-import HeadingWithAccent from "../../shared/heading-with-accent";
+import HeadingWithAccent from "@/components/shared/heading-with-accent";
 import CasesCarousel from "./cases-carusel";
 
 export default async function CasesCarouselWrapper() {

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { ReusableFieldsButton_Fields } from "@/graphql/graphql";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 
 interface Props {
   buttonProps: ReusableFieldsButton_Fields;

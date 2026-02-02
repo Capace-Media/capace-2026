@@ -1,5 +1,5 @@
 import { execute } from "@/graphql/execute";
-import { PageQuery, PageSlugsQuery } from "../queries/pages";
+import { PageQuery, PageSlugsQuery } from "@/lib/queries/pages";
 
 export async function getPageSlugs() {
   return (

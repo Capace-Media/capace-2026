@@ -1,9 +1,9 @@
 "use client";
 import { type FragmentType, useFragment } from "@/graphql/fragment-masking";
 import { BlocksFragment } from "@/lib/queries/fragments";
-import HeadingWithAccent from "../../shared/heading-with-accent";
+import HeadingWithAccent from "@/components/shared/heading-with-accent";
 import Image from "next/image";
-import { Button } from "../../ui/button";
+
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";

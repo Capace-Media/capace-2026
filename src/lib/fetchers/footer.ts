@@ -1,5 +1,5 @@
 import { execute } from "@/graphql/execute";
-import { FooterQuery } from "../queries/footer";
+import { FooterQuery } from "@/lib/queries/footer";
 
 export async function getFooterData() {
   return (

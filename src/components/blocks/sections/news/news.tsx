@@ -1,6 +1,6 @@
 "use client";
 
-import ArticleCard from "../../shared/article-card";
+import ArticleCard from "@/components/shared/article-card";
 import { useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";

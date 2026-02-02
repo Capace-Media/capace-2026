@@ -1,5 +1,5 @@
 import { execute } from "@/graphql/execute";
-import { AnnouncementQuery } from "../queries/announcement";
+import { AnnouncementQuery } from "@/lib/queries/announcement";
 
 export async function getAnnouncement() {
   return (

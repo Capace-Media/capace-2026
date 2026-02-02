@@ -1,11 +1,11 @@
 import Image from "next/image";
 import { useFragment, type FragmentType } from "@/graphql";
 import { BlocksFragment } from "@/lib/queries/fragments";
-import HeadingWithAccent from "../shared/heading-with-accent";
+import HeadingWithAccent from "@/components/shared/heading-with-accent";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import EmailLink from "../shared/email-link";
-import TelephoneLink from "../shared/telephone-link";
+import EmailLink from "@/components/shared/email-link";
+import TelephoneLink from "@/components/shared/telephone-link";
 
 interface Props {
   data: FragmentType<typeof BlocksFragment>;

@@ -1,5 +1,8 @@
 import { execute } from "@/graphql/execute";
-import { EmployeeBySlugQuery, EmployeeSlugsQuery } from "../queries/employees";
+import {
+  EmployeeBySlugQuery,
+  EmployeeSlugsQuery,
+} from "@/lib/queries/employees";
 
 export async function getEmployeeSlugs() {
   return (

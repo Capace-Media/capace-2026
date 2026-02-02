@@ -1,5 +1,5 @@
 import { type FragmentType, useFragment } from "@/graphql/fragment-masking";
-import ParallaxImage from "../shared/parallax-image";
+import ParallaxImage from "@/components/shared/parallax-image";
 import { cn } from "@/lib/utils";
 import { graphql } from "@/graphql";
 

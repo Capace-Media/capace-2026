@@ -1,7 +1,7 @@
 import { useFragment, type FragmentType } from "@/graphql";
 import { BlocksFragment } from "@/lib/queries/fragments";
 import parse from "html-react-parser";
-import ExternalOrInternalLink from "../shared/external-or-internal-link";
+import ExternalOrInternalLink from "@/components/shared/external-or-internal-link";
 import type { ReusableFieldsButtonUrl_Fields } from "@/graphql/graphql";
 interface Props {
   data: FragmentType<typeof BlocksFragment>;

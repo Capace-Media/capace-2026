@@ -1,9 +1,9 @@
 import { useFragment, type FragmentType } from "@/graphql";
 import { BlocksFragment } from "@/lib/queries/fragments";
-import HeadingWithAccent from "../shared/heading-with-accent";
-import Card from "../shared/card";
+import HeadingWithAccent from "@/components/shared/heading-with-accent";
+import Card from "@/components/shared/card";
 import parse from "html-react-parser";
-import ExternalOrInternalLink from "../shared/external-or-internal-link";
+import ExternalOrInternalLink from "@/components/shared/external-or-internal-link";
 import type { ReusableFieldsButton_Fields } from "@/graphql/graphql";
 
 interface Props {

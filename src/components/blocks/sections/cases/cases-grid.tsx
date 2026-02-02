@@ -1,8 +1,7 @@
 "use client";
 
 import type { BlocksFragmentFragment } from "@/graphql/graphql";
-import Link from "next/link";
-import ArticleCard from "../../shared/article-card";
+import ArticleCard from "@/components/shared/article-card";
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";

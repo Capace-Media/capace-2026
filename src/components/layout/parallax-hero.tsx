@@ -1,4 +1,4 @@
-import ParallaxImage from "../shared/parallax-image";
+import ParallaxImage from "@/components/shared/parallax-image";
 
 interface Props {
   src: string | undefined | null;

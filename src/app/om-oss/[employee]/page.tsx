@@ -6,7 +6,7 @@ import { getEmployeeBySlug } from "@/lib/fetchers/employees";
 import { useFragment } from "@/graphql";
 import { EmployeeContentFragment } from "@/lib/queries/fragments";
 import { notFound } from "next/navigation";
-import Quote from "@/components/blocks/quote/quote";
+import Quote from "@/components/blocks/sections/quote/quote";
 import { getPageSeo } from "@/lib/fetchers/seo";
 import generatePageSeo from "@/lib/utilities/seo";
 

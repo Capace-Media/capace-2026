@@ -4,12 +4,12 @@ import { useFragment, makeFragmentData } from "@/graphql/fragment-masking";
 import { PageContentFragmentFragmentDoc } from "@/graphql/graphql";
 import Image from "next/image";
 import parse from "html-react-parser";
-import ExternalOrInternalLink from "../shared/external-or-internal-link";
+import ExternalOrInternalLink from "@/components/shared/external-or-internal-link";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { useRef } from "react";
-import ParallaxImage from "../shared/parallax-image";
+import ParallaxImage from "@/components/shared/parallax-image";
 
 gsap.registerPlugin(SplitText);
 

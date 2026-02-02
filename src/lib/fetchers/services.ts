@@ -1,5 +1,5 @@
 import { execute } from "@/graphql/execute";
-import { ServicePageQuery, ServiceSlugsQuery } from "../queries/services";
+import { ServicePageQuery, ServiceSlugsQuery } from "@/lib/queries/services";
 
 export async function getServiceCategorySlugs() {
   return (
