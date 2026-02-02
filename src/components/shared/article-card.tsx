@@ -73,6 +73,7 @@ function ImageAndButton(props: ImageProps) {
         className="rounded-[36px] object-cover"
         fill
         loading="lazy"
+        sizes="(max-width: 1024px) 95%, 50%"
       />
 
       <div className="absolute right-0 bottom-0 flex items-center justify-center rounded-tl-[36px] bg-black pt-4 pr-1 pl-4">
