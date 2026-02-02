@@ -1,11 +1,13 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "../ui/button";
 import MobileMenu from "./mobile-menu";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { gsap } from "gsap";
+import { cn } from "@/lib/utils";
+import ButtonLink from "../shared/link";
+import NavMenu from "./nav-menu";
 gsap.registerPlugin(ScrollTrigger, gsap);
 
 export default function Header() {
@@ -21,62 +23,48 @@ export default function Header() {
     });
   });
   return (
-    <header className="fixed z-100 flex h-30 w-full max-w-400 items-center justify-between gap-6 px-8 text-sm lg:px-24">
-      <div className="fade-on-scroll absolute bottom-0 left-33 text-neutral-400 uppercase opacity-100">
-        Digitalbyrå / webbyrå Malmö
-      </div>
-      <div className="ml-auto md:hidden">
-        <MobileMenu />
-      </div>
-      <div className="hidden w-full md:flex">
-        <nav className="max-w-[1/3] flex-1">
-          <ul className="frosted flex h-12 justify-evenly gap-10 rounded-full p-3 whitespace-nowrap">
-            <li>
-              <Link
-                href={"/tjanster"}
-                className="hover:text-accent p-3 no-underline! transition-all duration-300"
-              >
-                Våra tjänster
-              </Link>
-            </li>
-            <li>
-              <Link
-                href={"/om-oss"}
-                className="hover:text-accent p-3 no-underline! transition-all duration-300"
-              >
-                Om Capace
-              </Link>
-            </li>
-            <li>
-              <Link
-                href={"/kundcase"}
-                className="hover:text-accent p-3 no-underline! transition-all duration-300"
-              >
-                Kundcase
-              </Link>
-            </li>
-          </ul>
-        </nav>
-        <div className="flex max-w-[1/3] flex-1 justify-center">
-          <Link
-            className="frosted flex h-12 min-w-40 items-center justify-center rounded-full px-8 py-1 transition-all duration-300 hover:border-white/20"
-            href={"/"}
+    <header className="fixed z-50 flex w-full max-w-400 flex-col">
+      <div className="flex h-30 w-full items-center justify-between gap-6 px-8 text-sm lg:px-8">
+        <div className="ml-auto flex w-full items-center justify-between md:hidden">
+          <CapaceLogo />
+          <MobileMenu />
+        </div>
+        <div className="hidden w-full md:flex">
+          <nav
+            aria-label="Huvudmeny"
+            className="z-10! max-w-[1/3] flex-1 items-center justify-center"
           >
-            <Image
-              src={"/logotypes/capace-media.svg"}
-              alt="Logotyp för Capace Media Group AB"
-              width={100}
-              height={40}
-              className="h-[80%] w-auto"
-            />
-          </Link>
+            <NavMenu />
+          </nav>
+          <CapaceLogo className="max-w-[1/3] flex-1" />
+          <div className="flex max-w-[1/3] flex-1 justify-end">
+            <ButtonLink href="/offert">Be om offert</ButtonLink>
+          </div>
         </div>
-        <div className="flex max-w-[1/3] flex-1 justify-end">
-          <Button withArrow variant={"secondary"} size={"default"}>
-            Be om offert
-          </Button>
-        </div>
+      </div>
+      <div className="fade-on-scroll z-1 px-12 text-sm text-neutral-400 uppercase opacity-100">
+        Digitalbyrå / webbyrå Malmö
       </div>
     </header>
   );
 }
+
+const CapaceLogo = ({ className }: { className?: string }) => {
+  return (
+    <div className={cn("flex justify-center", className)}>
+      <Link
+        className="frosted flex h-12 min-w-40 items-center justify-center rounded-full px-8 py-1 transition-all duration-300 hover:border-white/20"
+        href={"/"}
+      >
+        <Image
+          src={"/logotypes/capace-media.svg"}
+          alt="Logotyp för Capace Media Group AB"
+          width={100}
+          height={40}
+          className="h-[80%] w-auto"
+          sizes="190px"
+        />
+      </Link>
+    </div>
+  );
+};

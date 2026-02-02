@@ -5,19 +5,22 @@ import { Button } from "../ui/button";
 interface Props {
   buttonProps: ReusableFieldsButton_Fields;
   variant?: "default" | "secondary";
+  className?: string;
 }
 
 export default function ExternalOrInternalLink({
   buttonProps,
+  className,
   variant = "default",
 }: Props) {
   const isExternal = buttonProps.url?.is_internal === false;
   const urlOrSlug = isExternal
     ? buttonProps.url?.externalLink || "#"
-    : buttonProps.url?.internalLink?.nodes?.[0]?.slug || "#";
+    : buttonProps.url?.internalLink?.nodes?.[0]?.uri || "#";
 
   return (
     <Button
+      className={className}
       withArrow
       size={"default"}
       variant={variant}
@@ -33,7 +36,7 @@ export default function ExternalOrInternalLink({
           />
         ) : (
           <Link
-            href={urlOrSlug}
+            href={`${urlOrSlug}`}
             aria-label={buttonProps.ariaLabel || undefined}
             className="no-underline!"
           />

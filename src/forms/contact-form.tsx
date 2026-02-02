@@ -3,21 +3,29 @@ import { FieldGroup } from "@/components/ui/field";
 import { useRouter } from "next/navigation";
 import { useAppForm } from "./create-form-hook";
 import { ContactFormOptions, contactFormSchema } from "@/types/forms";
+import submitContactFormAction from "@/actions/submit-contact-form-action";
+import { useState } from "react";
 
 export default function ContactForm() {
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const router = useRouter();
   const form = useAppForm({
     ...ContactFormOptions,
     validators: {
       onSubmit: contactFormSchema,
       onSubmitAsync: async ({ value }) => {
-        //TODO Replace mock await and implement send mail logic
-        await new Promise((resolve) => setTimeout(resolve, 2000));
+        try {
+          setErrorMessage(null);
+          const result = await submitContactFormAction(value);
+          if (!result.success) {
+            setErrorMessage("Kunde inte skicka meddelande. Försök igen senare");
+            return;
+          }
+          router.push("/tack-for-ditt-meddelande");
+        } catch (error: any) {
+          setErrorMessage("Kunde inte skicka meddelande. Försök igen senare");
+        }
       },
-    },
-    onSubmit: async () => {
-      form.reset();
-      router.push("/tack-for-ditt-meddelande");
     },
   });
 
@@ -102,7 +110,9 @@ export default function ContactForm() {
         Genom att skicka förfrågan godkänner jag att Capace Media Group AB
         hanterar mina personuppgifter
       </p>
-
+      {errorMessage && (
+        <p className="text-primary mt-2 text-center text-sm">{errorMessage}</p>
+      )}
       <form.AppForm>
         <div className="flex justify-center py-8">
           <form.SubmitButton label="Skicka förfrågan" />

@@ -12,10 +12,10 @@ interface Props {
 export default function CategoryButtons(props: Props) {
   if (!props.categories) return null;
   return (
-    <div className={cn("flex gap-2", props.className)}>
+    <div className={cn("flex flex-wrap gap-2", props.className)}>
       {props.categories.map((category, index) => (
         <Link
-          href={`tjanster/${category.slug}`}
+          href={`/tjanster/${category.slug}`}
           key={index}
           className={cn(
             props.size === "lg" && "text-base",

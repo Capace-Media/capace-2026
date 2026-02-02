@@ -14,6 +14,13 @@ export const env = createEnv({
     CMS_GRAPHQL_AUTH_PASS: z.string(),
     CMS_GRAPHQL_AUTH_USER: z.string(),
     SITE_URL: z.string(),
+    GOOGLE_REVIEWS: z.url(),
+    GOOGLE_API_KEY: z.string(),
+    REVALIDATION_SECRET_TOKEN: z.string(),
+    DRAFT_SECRET_TOKEN: z.string(),
+    DRAFT_MODE_PASSWORD: z.string(),
+    EMAIL: z.email(),
+    SENDGRID_API_KEY: z.string(),
   },
 
   /**
@@ -22,6 +29,7 @@ export const env = createEnv({
    * `NEXT_PUBLIC_`.
    */
   client: {
+    NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID: z.string(),
     // NEXT_PUBLIC_CLIENTVAR: z.string(),
   },
 
@@ -37,6 +45,15 @@ export const env = createEnv({
     CMS_GRAPHQL_AUTH_PASS: process.env.CMS_GRAPHQL_AUTH_PASS,
     CMS_GRAPHQL_AUTH_USER: process.env.CMS_GRAPHQL_AUTH_USER,
     SITE_URL: process.env.SITE_URL,
+    GOOGLE_REVIEWS: process.env.GOOGLE_REVIEWS,
+    GOOGLE_API_KEY: process.env.GOOGLE_API_KEY,
+    REVALIDATION_SECRET_TOKEN: process.env.REVALIDATION_SECRET_TOKEN,
+    DRAFT_SECRET_TOKEN: process.env.DRAFT_SECRET_TOKEN,
+    DRAFT_MODE_PASSWORD: process.env.DRAFT_MODE_PASSWORD,
+    EMAIL: process.env.EMAIL,
+    SENDGRID_API_KEY: process.env.SENDGRID_API_KEY,
+    NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID:
+      process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   /**

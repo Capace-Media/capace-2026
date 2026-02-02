@@ -14,11 +14,7 @@
     "noUncheckedIndexedAccess": true,
     "checkJs": false,
     /* Bundled projects */
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "ES2022"
-    ],
+    "lib": ["dom", "dom.iterable", "ES2022"],
     "noEmit": true,
     "module": "ESNext",
     "moduleResolution": "Bundler",
@@ -36,9 +32,7 @@
     /* Path Aliases */
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./src/*"
-      ]
+      "@/*": ["./src/*"]
     }
   },
   "include": [
@@ -48,10 +42,11 @@
     "**/*.cjs",
     "**/*.js",
     ".next/types/**/*.ts",
-    ".next/dev/types/**/*.ts"
+    ".next/dev/types/**/*.ts",
+    "src/app/om-oss/[employee]/page.tsx",
+    "src/app/om-oss/[employee]/page.tsx",
+    "src/app/om-oss/[employee]/page-test",
+    "src/app/api/v1/revalidate.route"
   ],
-  "exclude": [
-    "node_modules",
-    "generated"
-  ]
+  "exclude": ["node_modules", "generated"]
 }

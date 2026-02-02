@@ -1,19 +1,26 @@
 import Blocks from "@/components/blocks/blocks";
 import AllCasesGridWrapper from "@/components/blocks/cases/all-cases-wrapper";
 import Hero from "@/components/layout/hero";
-import { Button } from "@/components/ui/button";
+import ButtonLink from "@/components/shared/link";
+import { env } from "@/env";
 import { getPage } from "@/lib/fetchers/pages";
+import { getPageSeo } from "@/lib/fetchers/seo";
+import generatePageSeo from "@/lib/utilities/seo";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
+export const generateMetadata = async () => {
+  const seo = await getPageSeo("kundcase");
+  return generatePageSeo(seo);
+};
+
 export default async function Page() {
   const data = await getPage("kundcase");
-  if (!data) notFound();
+  if (!data?.pageContent) notFound();
 
   return (
     <section className="section flex w-full flex-col items-center justify-center gap-8">
       <Hero data={data.pageContent} />
-      {/* TODO fixa loading */}
       <Suspense fallback={<div>laddar...</div>}>
         <AllCasesGridWrapper />
       </Suspense>
@@ -26,9 +33,7 @@ export default async function Page() {
           Klicka på knappen nedan
         </p>
       </div>
-      <Button withArrow className={"mb-30"}>
-        Lämna ett omdöme nu
-      </Button>
+      <ButtonLink href={env.GOOGLE_REVIEWS}>Lämna ett omdöme nu</ButtonLink>
     </section>
   );
 }

@@ -1,21 +1,27 @@
 import Blocks from "@/components/blocks/blocks";
 import CasesCarouselWrapper from "@/components/blocks/cases-carousel/cases-carousel-wrapper";
 import CategoryButtons from "@/components/shared/category-buttons";
-import ParallaxImage from "@/components/shared/parallax-image";
-import { Button } from "@/components/ui/button";
 import { getCase } from "@/lib/fetchers/cases";
 import { notFound } from "next/navigation";
 import Image from "next/image";
+import ParallaxHero from "@/components/layout/parallax-hero";
+import { cn } from "@/lib/utils";
+import ButtonLink from "@/components/shared/link";
+import { getCaseSeo } from "@/lib/fetchers/seo";
+import generatePageSeo from "@/lib/utilities/seo";
 
-interface Props {
-  params: Promise<{ slug: string }>;
-}
+export const generateMetadata = async (
+  props: PageProps<"/kundcase/[slug]">,
+) => {
+  const { slug } = await props.params;
+  const seo = await getCaseSeo(slug);
+  return generatePageSeo(seo);
+};
 
-export default async function Page(props: Props) {
+export default async function Page(props: PageProps<"/kundcase/[slug]">) {
   const { slug } = await props.params;
   const data = await getCase(slug);
   if (!data) notFound();
-  console.log("case data in here:", data);
   //delete https:// and trailing slash
   const formattedUrl = data.caseContent?.url
     ?.replace("https://", "")
@@ -23,39 +29,26 @@ export default async function Page(props: Props) {
 
   return (
     <div className="flex flex-col items-center gap-0">
-      <section className="section">
-        <div className="mt-30 h-130 w-full overflow-hidden rounded-[36px]">
-          <ParallaxImage
-            src={data.caseContent?.heroImage?.node.mediaItemUrl || ""}
-            alt={data.caseContent?.heroImage?.node.altText || ""}
-          />
-        </div>
+      <section className="section pb-0">
+        <ParallaxHero src={data.caseContent?.heroImage?.node.mediaItemUrl} />
         <div className="flex w-full items-center justify-between">
           <CategoryButtons
             className="gap-4"
-            size="lg"
+            size="md"
             categories={data.casesCategories?.nodes.map((c) => {
               return { name: c.name, slug: c.slug };
             })}
           />
-          <a
-            className="text-primary duration:300 cursor-pointer text-base transition-all"
-            href={data.caseContent?.url || "#"}
-            target="_blank"
-            rel="nofollow noopener norefferer"
-          >
-            {formattedUrl}
-          </a>
+          {data.caseContent?.url && (
+            <CaseLink
+              shouldFollow={data.caseContent?.followLink === "dofollow"}
+              className="hidden sm:flex"
+              href={data.caseContent?.url}
+            >
+              {formattedUrl}
+            </CaseLink>
+          )}
         </div>
-      </section>
-      <section className="section">
-        <h1 className="mr-auto text-6xl font-bold">{data.title}</h1>
-        <p className="prose prose-invert font-medium">
-          {data.caseContent?.description}
-        </p>
-        <p className="prose prose-invert">
-          {data.caseContent?.descriptionContinued}
-        </p>
       </section>
       <Blocks blocks={data.blocks?.blocks} />
       <CasesCarouselWrapper />
@@ -67,7 +60,8 @@ export default async function Page(props: Props) {
           Vi är här för att göra det möjligt. Kontakta oss idag och låt oss
           skapa något fantastiskt tillsammans!
         </p>
-        <Button withArrow>Kontakta oss</Button>
+        <ButtonLink href={"/kontakt"}>Kontakta oss</ButtonLink>
+
         <div
           className="absolute right-0 hidden aspect-auto h-80 w-80 translate-x-[15%] lg:block"
           aria-hidden
@@ -84,3 +78,29 @@ export default async function Page(props: Props) {
     </div>
   );
 }
+
+interface CaseLinkProps {
+  href: string;
+  shouldFollow: boolean;
+  children: React.ReactNode;
+  className?: string;
+}
+const CaseLink = (props: CaseLinkProps) => {
+  return (
+    <a
+      className={cn(
+        "text-primary duration:300 cursor-pointer text-base transition-all",
+        props.className,
+      )}
+      href={props.href}
+      target="_blank"
+      rel={
+        props.shouldFollow
+          ? "noopener noreferrer"
+          : "noopener noreferrer nofollow"
+      }
+    >
+      {props.children}
+    </a>
+  );
+};

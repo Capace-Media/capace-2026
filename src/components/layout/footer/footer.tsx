@@ -6,11 +6,11 @@ import BouncySticker from "./bouncy-sticker";
 export default async function Footer() {
   const data = await getFooterData();
   return (
-    <footer className="bg-accent text-background overflow bottom-0 z-0 px-4 py-10 text-sm md:px-20 lg:sticky">
-      <div className="bg-accent absolute top-0 left-0 h-30 w-full -translate-y-full" />
+    <footer className="bg-primary text-background overflow bottom-0 z-0 px-4 py-0 text-sm md:px-20 lg:sticky">
+      <div className="bg-accent absolute top-0 left-0 h-22 w-full -translate-y-full" />
       <div className="flex flex-col gap-2">
         <div aria-hidden className="relative w-fit">
-          <h3 className="text-[120px] leading-25 font-bold text-white md:leading-50">
+          <h3 className="text-[120px] leading-25 font-bold text-black md:leading-50">
             {data?.heading}
           </h3>
           <BouncySticker
@@ -181,11 +181,14 @@ export default async function Footer() {
         <div className="flex flex-col-reverse items-center justify-center gap-8 border-t-black py-2 lg:flex-row lg:justify-between lg:border-t-2">
           © {new Date().getFullYear()} - Capace Media Group AB
           <nav className="flex flex-wrap items-center justify-center gap-4">
+            <Link href={"/nyheter"}>Nyheter</Link>
+            <Link href={"/kontakt"}>Kontakt</Link>
             <Link href={"#"}>Lokalt</Link>
-            <Link href={"#"}>Integritetspolicy</Link>
-            <Link href={"#"}>Tillgänglighet</Link>
+            <Link href={"/ordlistor"}>Ordlistor</Link>
+            <Link href={"/integritetspolicy"}>Integritetspolicy</Link>
+            <Link href={"/tillganglighet"}>Tillgänglighet</Link>
             <Link href={"#"}>Cookies</Link>
-            <Link href={"#"}>Om hemsidan</Link>
+            <Link href={"/om-hemsidan"}>Om hemsidan</Link>
           </nav>
         </div>
       </div>

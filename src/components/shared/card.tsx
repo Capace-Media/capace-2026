@@ -67,21 +67,15 @@ function Title({ children }: { children: React.ReactNode }) {
 }
 
 function TextContent({ children }: { children: React.ReactNode }) {
-  return <p className="text-center text-sm font-light">{children}</p>;
+  return <div className="text-center text-sm font-light">{children}</div>;
 }
 
-function Icon({
-  src,
-  altText,
-}: {
-  src: string | undefined | null;
-  altText: string | undefined | null;
-}) {
+function Icon({ src }: { src: string | undefined | null }) {
   return (
     <div className="relative aspect-square h-30 w-30" aria-hidden>
       <Image
         src={src || "/misc/no-image.svg"}
-        alt={altText || ""}
+        alt={""}
         fill
         className="h-auto w-auto object-contain"
       />

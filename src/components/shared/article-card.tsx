@@ -1,7 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
-import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
+import ButtonLink from "./link";
 
 export default function ArticleCard(props: ImageProps) {
   return (
@@ -47,7 +46,7 @@ function Header({
   return (
     <div
       className={cn(
-        "flex flex-col-reverse justify-between gap-4 sm:flex-row",
+        "flex flex-col-reverse items-start justify-between gap-4 sm:flex-row",
         className,
       )}
     >
@@ -57,7 +56,7 @@ function Header({
 }
 
 interface ImageProps {
-  imgSrc: string;
+  imgSrc: string | null | undefined;
   altText: string;
   buttonLabel: string;
   buttonLink: string;
@@ -69,10 +68,12 @@ function ImageAndButton(props: ImageProps) {
   return (
     <div className="relative aspect-[1.3] h-auto w-full">
       <Image
-        src={props.imgSrc}
+        src={props.imgSrc || "/misc/no-image.svg"}
         alt={props.altText}
         className="rounded-[36px] object-cover"
         fill
+        loading="lazy"
+        sizes="(max-width: 1024px) 95%, 50%"
       />
 
       <div className="absolute right-0 bottom-0 flex items-center justify-center rounded-tl-[36px] bg-black pt-4 pr-1 pl-4">
@@ -92,19 +93,9 @@ function ImageAndButton(props: ImageProps) {
             aria-hidden="true"
           />
         </div>
-        <Link
-          href={props.buttonLink}
-          className="no-underline! hover:cursor-pointer"
-        >
-          <Button
-            withArrow
-            variant={"default"}
-            className="w-[170]!"
-            aria-label={props.ariaLabel}
-          >
-            {props.buttonLabel}
-          </Button>
-        </Link>
+        <ButtonLink href={props.buttonLink} ariaLabel={props.ariaLabel}>
+          {props.buttonLabel}
+        </ButtonLink>
       </div>
     </div>
   );

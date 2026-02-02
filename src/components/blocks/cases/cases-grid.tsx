@@ -56,13 +56,13 @@ export default function CasesGrid({ data, compact }: Props) {
         return (
           <div key={item.slug ?? index} className="case-card invisible">
             <ArticleCard
-              imgSrc={item.caseContent?.heroImage?.node.mediaItemUrl || ""}
+              imgSrc={item.caseContent?.heroImage?.node.mediaItemUrl}
               altText={
                 item.caseContent?.heroImage?.node.altText || item.title || ""
               }
               buttonLabel={"Läs mer"}
               buttonLink={`/kundcase/${item.slug}` || "/kundcase"}
-              ariaLabel={`Läs mer om ${item.title}`}
+              ariaLabel={`Läs mer om vårt kundcase ${item.title}`}
             >
               <ArticleCard.Header>
                 <h3 className="flex items-center gap-3 text-lg font-bold">

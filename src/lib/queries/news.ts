@@ -1,22 +1,88 @@
 import { graphql } from "@/graphql";
 
-export const LatestNewsPreviewsQuery = graphql(`
-  query LatestNewsPreviews {
-    posts(first: 3) {
+export const NewsSlugsQuery = graphql(`
+  query NewsSlugsQuery {
+    posts(first: 100) {
       nodes {
+        uri
+        modified
+      }
+    }
+  }
+`);
+
+export const NewsQuery = graphql(`
+  query NewsQuery($amount: Int!, $after: String) {
+    posts(first: $amount, after: $after) {
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      nodes {
+        seo {
+          readingTime
+        }
         date
         title
         slug
-        postContent {
-          heroImage {
+        pageContent {
+          rounded {
             node {
               altText
               mediaItemUrl
-              mediaDetails {
-                width
-                height
-              }
             }
+          }
+        }
+      }
+    }
+  }
+`);
+
+export const NewsBySlugQuery = graphql(`
+  query NewsBySlugQuery($slug: ID!) {
+    post(id: $slug, idType: URI) {
+      title
+      date
+      slug
+      seo {
+        readingTime
+      }
+      blocks {
+        blocks {
+          ...BlocksFragment
+        }
+      }
+      pageContent {
+        rounded {
+          node {
+            mediaItemUrl
+            altText
+          }
+        }
+      }
+    }
+  }
+`);
+//This query isn't fetching the preview page properly.
+export const NewsBySlugQueryDraft = graphql(`
+  query NewsBySlugQueryDraft($id: ID!) {
+    post(id: $id, idType: URI, asPreview: true) {
+      title
+      date
+      slug
+      seo {
+        readingTime
+      }
+      blocks {
+        blocks {
+          ...BlocksFragment
+        }
+      }
+      pageContent {
+        rounded {
+          node {
+            mediaItemUrl
+            altText
           }
         }
       }
