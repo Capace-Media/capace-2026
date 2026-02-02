@@ -4,6 +4,7 @@ import HeadingWithAccent from "../shared/heading-with-accent";
 import Card from "../shared/card";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import ButtonLink from "../shared/link";
 
 const ServiceCards_Fragment = graphql(`
   fragment ServiceCard_Fragment on BlocksBlocksServiceCardsLayout {
@@ -77,9 +78,12 @@ export default function ServiceCards(props: Props) {
                 </Card.TextContent>
               </Card.Body>
               <Card.Footer>
-                <Link href={s.uri || `/tjanster/${s.slug}`} tabIndex={-1}>
-                  <Button withArrow>Läs mer</Button>
-                </Link>
+                <ButtonLink
+                  href={s.uri || `/tjanster/${s.slug}`}
+                  ariaLabel={`Läs mer om vår tjänst ${s.title}`}
+                >
+                  Läs mer
+                </ButtonLink>
               </Card.Footer>
             </Card>
           );

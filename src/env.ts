@@ -29,6 +29,7 @@ export const env = createEnv({
    * `NEXT_PUBLIC_`.
    */
   client: {
+    NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID: z.string(),
     // NEXT_PUBLIC_CLIENTVAR: z.string(),
   },
 
@@ -51,6 +52,8 @@ export const env = createEnv({
     DRAFT_MODE_PASSWORD: process.env.DRAFT_MODE_PASSWORD,
     EMAIL: process.env.EMAIL,
     SENDGRID_API_KEY: process.env.SENDGRID_API_KEY,
+    NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID:
+      process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   /**

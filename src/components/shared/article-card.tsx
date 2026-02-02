@@ -92,7 +92,9 @@ function ImageAndButton(props: ImageProps) {
             aria-hidden="true"
           />
         </div>
-        <ButtonLink href={props.buttonLink}>{props.buttonLabel}</ButtonLink>
+        <ButtonLink href={props.buttonLink} ariaLabel={props.ariaLabel}>
+          {props.buttonLabel}
+        </ButtonLink>
       </div>
     </div>
   );
