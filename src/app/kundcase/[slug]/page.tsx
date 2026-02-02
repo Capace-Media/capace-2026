@@ -1,7 +1,6 @@
 import Blocks from "@/components/blocks/blocks";
-import CasesCarouselWrapper from "@/components/blocks/cases-carousel/cases-carousel-wrapper";
 import CategoryButtons from "@/components/shared/category-buttons";
-import { getCase } from "@/lib/fetchers/cases";
+import { getCase, getCaseSlugs } from "@/lib/fetchers/cases";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import ParallaxHero from "@/components/layout/parallax-hero";
@@ -9,6 +8,8 @@ import { cn } from "@/lib/utils";
 import ButtonLink from "@/components/shared/link";
 import { getCaseSeo } from "@/lib/fetchers/seo";
 import generatePageSeo from "@/lib/utilities/seo";
+import CasesCarouselWrapper from "@/components/blocks/sections/cases-carousel/cases-carousel-wrapper";
+
 
 export const generateMetadata = async (
   props: PageProps<"/kundcase/[slug]">,
@@ -18,11 +19,20 @@ export const generateMetadata = async (
   return generatePageSeo(seo);
 };
 
+/**
+ * A page component for a kundcase
+ * @param props cool stuff here to describe the page
+ * @returns A page component for a kundcase
+ */
 export default async function Page(props: PageProps<"/kundcase/[slug]">) {
   const { slug } = await props.params;
   const data = await getCase(slug);
   if (!data) notFound();
-  //delete https:// and trailing slash
+
+  /**
+   * Remove https:// and trailing slash from the url
+   * @void
+   */
   const formattedUrl = data.caseContent?.url
     ?.replace("https://", "")
     .replace(/[\/]$/gm, "");

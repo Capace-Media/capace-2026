@@ -5,6 +5,10 @@ export const CaseSlugsQuery = graphql(`
     cases(first: 100) {
       nodes {
         uri
+        slug
+        title
+        modified
+        modifiedGmt
       }
     }
   }

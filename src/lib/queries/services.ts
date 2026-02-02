@@ -5,6 +5,10 @@ export const ServiceSlugsQuery = graphql(`
     services {
       nodes {
         uri
+        slug
+        title
+        modified
+        modifiedGmt
       }
     }
   }

@@ -10,7 +10,6 @@ export default function buildSitemapEntries(
     | "daily"
     | "always"
     | "never"
-    | "weekly"
     | "weekly",
 ): MetadataRoute.Sitemap {
   return slugs
