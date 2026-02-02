@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import type { getEmployeeBySlug } from "@/lib/fetchers/employees";
 import { useFragment } from "@/graphql";
 import { EmployeeContentFragment } from "@/lib/queries/fragments";
-import Quote from "@/components/blocks/quotes/quote";
+import Quote from "@/components/blocks/quote/quote";
 import EmailLink from "@/components/shared/email-link";
 import { X } from "lucide-react";
 import parse from "html-react-parser";
