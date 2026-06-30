@@ -9,17 +9,17 @@ export default async function Footer() {
   return (
     <footer className="bg-primary text-background overflow bottom-0 z-0 px-4 py-0 text-sm md:px-20 lg:sticky">
       <div className="bg-accent absolute top-0 left-0 h-22 w-full -translate-y-full" />
-      <div className="flex flex-col gap-2 border">
-        <div className="flex w-full items-center justify-between border">
+      <div className="flex flex-col gap-2">
+        <div className="flex w-full items-center justify-between">
           <LogoWithStickers label={data?.heading || "Let's talk"} />
           <p className="prose text-sm">{data?.textContent}</p>
         </div>
 
         <div className="flex flex-col">
-          <div className="flex items-center justify-center gap-4 border border-green-300">
+          <div className="flex items-center justify-center gap-4">
             <Certifications certifications={data?.certifications} />
           </div>
-          <div className="flex flex-2 flex-col gap-6 border border-red-800 pb-6 md:min-w-150">
+          <div className="flex w-full justify-between gap-6 md:min-w-150">
             <ul className="flex flex-col gap-6 text-sm font-bold lg:flex-row lg:gap-12 [&>li]:flex [&>li]:items-center [&>li]:gap-2 [&>li]:before:block [&>li]:before:size-2 [&>li]:before:rounded-full [&>li]:before:bg-white [&>li]:hover:text-white">
               <li>
                 <a href={`tel:${data?.telephone}`}>{data?.telephone}</a>
@@ -41,116 +41,10 @@ export default async function Footer() {
                 </address>
               </li>
             </ul>
-            <ul className="flex items-center justify-center gap-8 border-t-2 border-b-2 border-t-black border-b-black py-8 lg:justify-start lg:border-none [&_a:hover]:invert [&_img]:size-10 lg:[&_img]:size-[30px]">
-              {data?.socials?.facebook && (
-                <li>
-                  <a
-                    href={data.socials.facebook}
-                    aria-label="Länk till Facebook"
-                    target="_blank"
-                    rel="nofollow noopener noreferrer"
-                  >
-                    <Image
-                      src={"/logotypes/facebook.svg"}
-                      height={30}
-                      width={30}
-                      alt={"Facebook logotyp"}
-                    />
-                  </a>
-                </li>
-              )}
-              {data?.socials?.instagram && (
-                <li>
-                  <a
-                    href={data.socials.instagram}
-                    aria-label="Länk till Instagram"
-                    target="_blank"
-                    rel="nofollow noopener noreferrer"
-                  >
-                    <Image
-                      src={"/logotypes/instagram.svg"}
-                      height={30}
-                      width={30}
-                      alt={"Instagram logotyp"}
-                    />
-                  </a>
-                </li>
-              )}
-              {data?.socials?.linkedin && (
-                <li>
-                  <a
-                    href={data.socials.linkedin}
-                    aria-label="Länk till LinkedIn"
-                    target="_blank"
-                    rel="nofollow noopener noreferrer"
-                  >
-                    <Image
-                      src={"/logotypes/linkedin.svg"}
-                      height={30}
-                      width={30}
-                      alt={"LinkedIn logotyp"}
-                    />
-                  </a>
-                </li>
-              )}
-              {data?.socials?.tiktok && (
-                <li>
-                  <a
-                    href={data.socials.tiktok}
-                    className="relative"
-                    aria-label="Länk till TikTok"
-                    target="_blank"
-                    rel="nofollow noopener noreferrer"
-                  >
-                    <Image
-                      src={"/logotypes/tiktok.svg"}
-                      height={30}
-                      width={30}
-                      alt={"Tiktok logotyp"}
-                    />
-                  </a>
-                </li>
-              )}
-              {data?.socials?.threads && (
-                <li>
-                  <a
-                    href={data.socials.threads}
-                    className="relative"
-                    aria-label="Länk till Threads"
-                    target="_blank"
-                    rel="nofollow noopener noreferrer"
-                  >
-                    <Image
-                      src={"/logotypes/threads.svg"}
-                      height={30}
-                      width={30}
-                      alt={"Threads logotyp"}
-                    />
-                  </a>
-                </li>
-              )}
-              {data?.socials?.x && (
-                <li>
-                  <a
-                    href={data.socials.x}
-                    className="relative"
-                    aria-label="Länk till TikTok"
-                    target="_blank"
-                    rel="nofollow noopener noreferrer"
-                  >
-                    <Image
-                      src={"/logotypes/x.svg"}
-                      height={30}
-                      width={30}
-                      alt={"X logotyp"}
-                    />
-                  </a>
-                </li>
-              )}
-            </ul>
+            <Socials socials={data?.socials} />
           </div>
         </div>
-        <div className="flex flex-col-reverse items-center justify-center gap-8 border-t-black py-2 lg:flex-row lg:justify-between lg:border-t-2">
+        <div className="flex flex-col-reverse items-center justify-center gap-8 border-t-black py-12 lg:flex-row lg:justify-between lg:border-t-2">
           © {new Date().getFullYear()} - Capace Media Group AB
           <nav className="flex flex-wrap items-center justify-center gap-4">
             <Link href={"/nyheter"}>Nyheter</Link>
@@ -207,7 +101,7 @@ const Certifications = ({
     | undefined;
 }) => {
   return (
-    <div className="flex w-fit gap-12 border">
+    <div className="flex w-fit gap-24 py-18">
       {certifications &&
         certifications.nodes.map((image) => (
           <div
@@ -224,5 +118,128 @@ const Certifications = ({
           </div>
         ))}
     </div>
+  );
+};
+
+const Socials = ({
+  socials,
+}: {
+  socials:
+    | NonNullable<
+        NonNullable<
+          NonNullable<FooterQuery["footer"]>["footerContent"]
+        >["socials"]
+      >
+    | null
+    | undefined;
+}) => {
+  return (
+    <ul className="flex items-center justify-center gap-8 border-t-2 border-b-2 border-t-black border-b-black py-8 lg:justify-start lg:border-none [&_a:hover]:invert [&_img]:size-10 lg:[&_img]:size-[30px]">
+      {socials?.facebook && (
+        <li>
+          <a
+            href={socials.facebook}
+            aria-label="Länk till Facebook"
+            target="_blank"
+            rel="nofollow noopener noreferrer"
+          >
+            <Image
+              src={"/logotypes/facebook.svg"}
+              height={30}
+              width={30}
+              alt={"Facebook logotyp"}
+            />
+          </a>
+        </li>
+      )}
+      {socials?.instagram && (
+        <li>
+          <a
+            href={socials.instagram}
+            aria-label="Länk till Instagram"
+            target="_blank"
+            rel="nofollow noopener noreferrer"
+          >
+            <Image
+              src={"/logotypes/instagram.svg"}
+              height={30}
+              width={30}
+              alt={"Instagram logotyp"}
+            />
+          </a>
+        </li>
+      )}
+      {socials?.linkedin && (
+        <li>
+          <a
+            href={socials.linkedin}
+            aria-label="Länk till LinkedIn"
+            target="_blank"
+            rel="nofollow noopener noreferrer"
+          >
+            <Image
+              src={"/logotypes/linkedin.svg"}
+              height={30}
+              width={30}
+              alt={"LinkedIn logotyp"}
+            />
+          </a>
+        </li>
+      )}
+      {socials?.tiktok && (
+        <li>
+          <a
+            href={socials.tiktok}
+            className="relative"
+            aria-label="Länk till TikTok"
+            target="_blank"
+            rel="nofollow noopener noreferrer"
+          >
+            <Image
+              src={"/logotypes/tiktok.svg"}
+              height={30}
+              width={30}
+              alt={"Tiktok logotyp"}
+            />
+          </a>
+        </li>
+      )}
+      {socials?.threads && (
+        <li>
+          <a
+            href={socials.threads}
+            className="relative"
+            aria-label="Länk till Threads"
+            target="_blank"
+            rel="nofollow noopener noreferrer"
+          >
+            <Image
+              src={"/logotypes/threads.svg"}
+              height={30}
+              width={30}
+              alt={"Threads logotyp"}
+            />
+          </a>
+        </li>
+      )}
+      {socials?.x && (
+        <li>
+          <a
+            href={socials.x}
+            className="relative"
+            aria-label="Länk till TikTok"
+            target="_blank"
+            rel="nofollow noopener noreferrer"
+          >
+            <Image
+              src={"/logotypes/x.svg"}
+              height={30}
+              width={30}
+              alt={"X logotyp"}
+            />
+          </a>
+        </li>
+      )}
+    </ul>
   );
 };
