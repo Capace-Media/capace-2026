@@ -2,38 +2,24 @@ import { getFooterData } from "@/lib/fetchers/footer";
 import Image from "next/image";
 import Link from "next/link";
 import BouncySticker from "./bouncy-sticker";
+import type { FooterQuery } from "@/graphql/graphql";
 
 export default async function Footer() {
   const data = await getFooterData();
   return (
     <footer className="bg-primary text-background overflow bottom-0 z-0 px-4 py-0 text-sm md:px-20 lg:sticky">
       <div className="bg-accent absolute top-0 left-0 h-22 w-full -translate-y-full" />
-      <div className="flex flex-col gap-2">
-        <div aria-hidden className="relative w-fit">
-          <h3 className="text-[120px] leading-25 font-bold text-black md:leading-50">
-            {data?.heading}
-          </h3>
-          <BouncySticker
-            className={"top-1/2 left-full -translate-x-[20%] -translate-y-1/2"}
-            imgSrc={"/stickers/sticker-small-hemsidor.webp"}
-          />
-          <BouncySticker
-            className={"top-0 left-1/2 -translate-y-[30%]"}
-            imgSrc={"/stickers/sticker-small-marketing.webp"}
-          />
-          <BouncySticker
-            className={"top-0 left-0 translate-x-[20%] -translate-y-[30%]"}
-            imgSrc={"/stickers/sticker-small-design.webp"}
-          />
-          <BouncySticker
-            className={"-bottom-5 left-1/2 -translate-x-1/2"}
-            imgSrc={"/stickers/sticker-small-ehandel.webp"}
-          />
+      <div className="flex flex-col gap-2 border">
+        <div className="flex w-full items-center justify-between border">
+          <LogoWithStickers label={data?.heading || "Let's talk"} />
+          <p className="prose text-sm">{data?.textContent}</p>
         </div>
 
-        <div className="mt-5 flex flex-col lg:flex-row">
-          <div className="flex flex-2 flex-col gap-6 pb-6 md:min-w-150">
-            <p className="prose text-sm">{data?.textContent}</p>
+        <div className="flex flex-col">
+          <div className="flex items-center justify-center gap-4 border border-green-300">
+            <Certifications certifications={data?.certifications} />
+          </div>
+          <div className="flex flex-2 flex-col gap-6 border border-red-800 pb-6 md:min-w-150">
             <ul className="flex flex-col gap-6 text-sm font-bold lg:flex-row lg:gap-12 [&>li]:flex [&>li]:items-center [&>li]:gap-2 [&>li]:before:block [&>li]:before:size-2 [&>li]:before:rounded-full [&>li]:before:bg-white [&>li]:hover:text-white">
               <li>
                 <a href={`tel:${data?.telephone}`}>{data?.telephone}</a>
@@ -163,20 +149,6 @@ export default async function Footer() {
               )}
             </ul>
           </div>
-          <div className="grid grid-cols-2 items-center gap-4 pb-10 sm:grid-cols-4">
-            {data?.certifications?.nodes.map((image) => (
-              <div key={image.id} className="flex items-center justify-center">
-                <Image
-                  src={image.mediaItemUrl || ""}
-                  alt={image.altText || ""}
-                  width={100}
-                  height={100}
-                  className="h-auto w-auto"
-                  sizes="(min-width: 768px) 10vw, 25vw"
-                />
-              </div>
-            ))}
-          </div>
         </div>
         <div className="flex flex-col-reverse items-center justify-center gap-8 border-t-black py-2 lg:flex-row lg:justify-between lg:border-t-2">
           © {new Date().getFullYear()} - Capace Media Group AB
@@ -195,3 +167,62 @@ export default async function Footer() {
     </footer>
   );
 }
+
+const LogoWithStickers = ({ label }: { label: string }) => {
+  return (
+    <div aria-hidden className="relative w-fit">
+      <h3 className="text-[120px] leading-25 font-bold text-black md:leading-50">
+        {label}
+      </h3>
+      <BouncySticker
+        className={"top-1/2 left-full -translate-x-[20%] -translate-y-1/2"}
+        imgSrc={"/stickers/sticker-small-hemsidor.webp"}
+      />
+      <BouncySticker
+        className={"top-0 left-1/2 -translate-y-[30%]"}
+        imgSrc={"/stickers/sticker-small-marketing.webp"}
+      />
+      <BouncySticker
+        className={"top-0 left-0 translate-x-[20%] -translate-y-[30%]"}
+        imgSrc={"/stickers/sticker-small-design.webp"}
+      />
+      <BouncySticker
+        className={"-bottom-5 left-1/2 -translate-x-1/2"}
+        imgSrc={"/stickers/sticker-small-ehandel.webp"}
+      />
+    </div>
+  );
+};
+
+const Certifications = ({
+  certifications,
+}: {
+  certifications:
+    | NonNullable<
+        NonNullable<
+          NonNullable<FooterQuery["footer"]>["footerContent"]
+        >["certifications"]
+      >
+    | null
+    | undefined;
+}) => {
+  return (
+    <div className="flex w-fit gap-12 border">
+      {certifications &&
+        certifications.nodes.map((image) => (
+          <div
+            key={image.id}
+            className="relative flex h-30 w-30 items-center justify-center"
+          >
+            <Image
+              src={image.mediaItemUrl || ""}
+              alt={image.altText || ""}
+              fill
+              className="object-contain"
+              sizes="(min-width: 768px) 10vw, 25vw"
+            />
+          </div>
+        ))}
+    </div>
+  );
+};
